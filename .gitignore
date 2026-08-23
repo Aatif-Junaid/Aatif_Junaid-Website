@@ -4,15 +4,35 @@ node_modules/
 .claude/
 Fable5/
 HANDOFF.md
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+coverage/
+dist/
+build/
 
 # OS noise
 Thumbs.db
 desktop.ini
 .DS_Store
 
+# Editors and scratch output
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.log
+*.tmp
+*.bak
+scratch/
+
 # Credentials and secrets: never commit these to a public repo
 .env
 .env.*
+!.env.example
 *.pem
 *.key
 *.p12

@@ -24,4 +24,10 @@ function Find-Python {
 $python = Find-Python
 $checker = Join-Path $PSScriptRoot 'check_site.py'
 & $python.Executable @($python.Prefix) $checker
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+}
+
+$securityChecker = Join-Path $PSScriptRoot 'check_security_policy.py'
+& $python.Executable @($python.Prefix) $securityChecker
 exit $LASTEXITCODE

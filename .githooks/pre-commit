@@ -1,4 +1,5 @@
 #!/bin/sh
 set -eu
 
-exec pwsh -NoProfile -File scripts/check.ps1
+pwsh -NoProfile -File scripts/check.ps1
+pwsh -NoProfile -File scripts/security_scan.ps1 -StagedOnly

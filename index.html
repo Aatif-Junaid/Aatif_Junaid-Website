@@ -79,7 +79,7 @@
   <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=49" />
+  <link rel="stylesheet" href="assets/css/site.css?v=1" />
   <!-- Without JS the reveal observer never runs, so make sure nothing stays invisible. -->
   <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
@@ -583,10 +583,8 @@
     <p class="site-footer__note">No AI models were trained for this page. Just me, trained on real users and real problems.</p>
   </footer>
 
+  <script src="assets/js/site.js?v=1"></script>
   <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
     // Section labels light up as they scroll into the top band, then dim again
     (function () {
       var labels = document.querySelectorAll('.eyebrow');
@@ -900,17 +898,6 @@
         } else { visible = true; }
       }
     })();
-
-    // Smooth scroll for in-page nav links
-    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        var id = this.getAttribute('href');
-        if (id.length > 1) {
-          var target = document.querySelector(id);
-          if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-        }
-      });
-    });
 
     // Fade-in-up reveal on scroll, disabled if the user prefers reduced motion
     var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=49" />
+  <link rel="stylesheet" href="assets/css/site.css?v=1" />
 
   <!-- Structured data: ties this page back to the same Person entity -->
   <script type="application/ld+json">
@@ -349,55 +349,7 @@
     <p class="site-footer__note">Evidence first. Marketing decisions second. Claims stay honest.</p>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-      link.addEventListener('click', function (event) {
-        var target = document.querySelector(this.getAttribute('href'));
-        if (target) { event.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-      });
-    });
-
-    (function () {
-      var studies = Array.prototype.slice.call(document.querySelectorAll('.case-study'));
-      var frameRequested = false;
-
-      if (!studies.length) return;
-
-      function updateFocusedStudy() {
-        var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-        var viewportCenter = viewportHeight * 0.5;
-        var closestStudy = null;
-        var closestDistance = Infinity;
-
-        studies.forEach(function (study) {
-          var bounds = study.getBoundingClientRect();
-          if (bounds.bottom <= 0 || bounds.top >= viewportHeight) return;
-
-          var studyCenter = bounds.top + (bounds.height * 0.5);
-          var distance = Math.abs(studyCenter - viewportCenter);
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestStudy = study;
-          }
-        });
-
-        studies.forEach(function (study) {
-          study.classList.toggle('is-focus', study === closestStudy);
-        });
-        frameRequested = false;
-      }
-
-      function requestFocusUpdate() {
-        if (frameRequested) return;
-        frameRequested = true;
-        window.requestAnimationFrame(updateFocusedStudy);
-      }
-
-      window.addEventListener('scroll', requestFocusUpdate, { passive: true });
-      window.addEventListener('resize', requestFocusUpdate, { passive: true });
-      requestFocusUpdate();
-    })();
-  </script>
+  <script src="assets/js/site.js?v=1"></script>
+  <script src="assets/js/case-studies.js?v=1"></script>
 </body>
 </html>

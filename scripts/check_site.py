@@ -7,10 +7,16 @@ Guards the regressions this site has actually hit: stale cache-busters,
 broken internal refs, em dashes in copy, missing noopener, secret leaks.
 Public financial metrics are allowed when verified and intentionally surfaced.
 """
-import json, os, re, sys
+import json, os, re, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = ["index.html", "case-studies.html", "field-program.html", "404.html"]
+REQUIRED_SCRIPTS = {
+    "index.html": {"assets/js/site.js"},
+    "case-studies.html": {"assets/js/site.js", "assets/js/case-studies.js"},
+    "field-program.html": {"assets/js/site.js"},
+    "404.html": {"assets/js/site.js"},
+}
 failures, notes = [], []
 
 def fail(msg): failures.append(msg)
@@ -57,21 +63,44 @@ for p, s in pages.items():
             fail(f"{p}: reference not found -> {u}")
 ok("internal references resolve")
 
-# 3. External link safety -----------------------------------------------------
+# 3. Shared script ownership --------------------------------------------------
+for p, required_scripts in REQUIRED_SCRIPTS.items():
+    if p not in pages:
+        continue
+    referenced = {
+        u.split("?")[0].lstrip("/")
+        for u in re.findall(r'<script[^>]+src=["\']([^"\']+)["\']', pages[p])
+    }
+    missing = required_scripts - referenced
+    if missing:
+        fail(f"{p}: missing required scripts {sorted(missing)}")
+ok("shared and page-specific scripts are referenced")
+
+# 4. External link safety -----------------------------------------------------
 for p, s in pages.items():
     for a in re.findall(r"<a\b[^>]*>", s):
         if 'target="_blank"' in a and "noopener" not in a:
             fail(f"{p}: target=_blank without rel=noopener -> {a[:80]}")
 ok("external links use noopener")
 
-# 4. Cache-buster consistency -------------------------------------------------
+# 5. Cache-buster consistency -------------------------------------------------
 css_versions = set()
 for s in pages.values():
-    css_versions.update(re.findall(r"styles\.css\?v=(\d+)", s))
-if len(css_versions) > 1:
-    fail(f"styles.css cache-buster differs across pages: {sorted(css_versions)}")
+    css_versions.update(re.findall(r"assets/css/site\.css\?v=(\d+)", s))
+if len(css_versions) != 1:
+    fail(f"site.css cache-buster missing or inconsistent: {sorted(css_versions)}")
 else:
-    ok(f"styles.css cache-buster consistent (v={next(iter(css_versions), '?')})")
+    ok(f"site.css cache-buster consistent (v={next(iter(css_versions))})")
+
+script_versions = {}
+for s in pages.values():
+    for name, version in re.findall(r"assets/js/([a-z-]+\.js)\?v=(\d+)", s):
+        script_versions.setdefault(name, set()).add(version)
+for name, versions in script_versions.items():
+    if len(versions) != 1:
+        fail(f"{name} cache-buster differs across pages: {sorted(versions)}")
+if script_versions:
+    ok("JavaScript cache-busters are consistent")
 
 resume_versions = set()
 for s in pages.values():
@@ -81,7 +110,7 @@ if len(resume_versions) > 1:
 elif resume_versions:
     ok(f"resume.pdf cache-buster consistent (v={next(iter(resume_versions))})")
 
-# 5. House copy rules ---------------------------------------------------------
+# 6. House copy rules ---------------------------------------------------------
 for p, s in pages.items():
     text = re.sub(r"<(script|style)\b[^>]*>.*?</\1>", " ", s, flags=re.S | re.I)
     text = re.sub(r"<[^>]+>", " ", text)
@@ -91,7 +120,7 @@ for p, s in pages.items():
         if w in text.lower(): fail(f"{p}: buzzword '{w}' in copy")
 ok("copy rules pass (no em dashes, no buzzwords)")
 
-# 6. JSON-LD validity ---------------------------------------------------------
+# 7. JSON-LD validity ---------------------------------------------------------
 datetime_pattern = re.compile(
     r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$"
 )
@@ -116,7 +145,7 @@ for p, s in pages.items():
         except Exception as e: fail(f"{p}: invalid JSON-LD ({e})")
 ok("JSON-LD parses and structured dates use ISO 8601 datetimes")
 
-# 7. Secret hygiene -----------------------------------------------------------
+# 8. Secret hygiene -----------------------------------------------------------
 SECRETS = [
     (r"(ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{20,}", "GitHub token"),
     (r"github_pat_[A-Za-z0-9_]{20,}", "GitHub fine-grained PAT"),
@@ -138,8 +167,52 @@ for dirpath, dirnames, filenames in os.walk(ROOT):
                 fail(f"{os.path.relpath(fp, ROOT)}: possible {label} committed")
 ok("no high-confidence secrets detected")
 
-# 8. Deploy-critical files ----------------------------------------------------
-for f in ["CNAME", "sitemap.xml", "resume.pdf", "og-image.jpg", "styles.css"]:
+# 9. Repository documentation links ------------------------------------------
+markdown_link = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+for dirpath, dirnames, filenames in os.walk(ROOT):
+    dirnames[:] = [d for d in dirnames if d != ".git"]
+    for fn in filenames:
+        if not fn.endswith(".md"):
+            continue
+        path = os.path.join(dirpath, fn)
+        for line_number, line in enumerate(open(path, encoding="utf-8"), 1):
+            for raw_target in markdown_link.findall(line):
+                target = raw_target.split("#", 1)[0]
+                if not target or target.startswith(("http://", "https://", "mailto:")):
+                    continue
+                resolved = os.path.normpath(os.path.join(dirpath, target))
+                if not os.path.exists(resolved):
+                    fail(f"{os.path.relpath(path, ROOT)}:{line_number}: broken link -> {raw_target}")
+ok("repository Markdown links resolve")
+
+# 10. Tracked-state hygiene ---------------------------------------------------
+tracked = subprocess.run(
+    ["git", "ls-files", "--cached", "--others", "--exclude-standard"],
+    cwd=ROOT,
+    check=True,
+    capture_output=True,
+    text=True,
+).stdout.splitlines()
+for relative in tracked:
+    if not os.path.isfile(os.path.join(ROOT, relative)):
+        continue
+    parts = set(relative.replace("\\", "/").split("/"))
+    if parts & {".DS_Store", ".idea", ".pytest_cache", ".venv", ".vscode", "__pycache__", "node_modules"}:
+        fail(f"local or generated path is tracked: {relative}")
+    if relative.endswith((".log", ".pyc", ".tmp")):
+        fail(f"generated file is tracked: {relative}")
+ok("tracked files exclude generated and local state")
+
+# 11. Deploy-critical files ---------------------------------------------------
+for f in [
+    "CNAME",
+    "sitemap.xml",
+    "resume.pdf",
+    "og-image.jpg",
+    "assets/css/site.css",
+    "assets/js/site.js",
+    "assets/js/case-studies.js",
+]:
     if not os.path.isfile(os.path.join(ROOT, f)): fail(f"missing deploy-critical file: {f}")
 cname = read("CNAME").strip() if os.path.isfile(os.path.join(ROOT, "CNAME")) else ""
 if cname != "aatifmulla.me": fail(f"CNAME changed: {cname!r} (expected 'aatifmulla.me')")

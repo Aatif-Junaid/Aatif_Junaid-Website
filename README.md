@@ -1,30 +1,63 @@
 # aatifmulla.me
 
-Personal site for Aatif Junaid Mulla. Static HTML and CSS, hosted on GitHub Pages. No framework, no build step.
+The public portfolio of Aatif Junaid Mulla, built with static HTML, CSS, and vanilla JavaScript and deployed from `main` through GitHub Pages.
 
-## Files
-- `index.html`: all the content and copy for the home page
-- `case-studies.html`: the five go-to-market case studies
-- `styles.css`: all the styling for both pages
-- `resume.pdf`: the file both Resume buttons link to
-- `og-image.jpg`: the preview card shown when the site is shared
-- `favicon.svg`, `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`: browser and device icons
-- `sitemap.xml`: the page list for search engines
-- `assets/`: the headshot and the company and school logos
-- `CNAME`: tells GitHub Pages the custom domain is aatifmulla.me (do not delete)
+Live site: [aatifmulla.me](https://aatifmulla.me/)
 
-## Edit the copy
-Open `index.html` or `case-studies.html` and edit the text between the tags. Save, refresh the browser.
+## Prerequisites
 
-## Cache busting
-Both pages load the stylesheet as `styles.css?v=NN`. Bump `NN` in both files on every CSS change, or returning visitors keep the old styles. Do the same for `resume.pdf?v=...` on both Resume buttons whenever the PDF is replaced.
+- Git
+- PowerShell 7
+- Python 3.10 or newer, or the bundled Codex Python runtime
 
-## Preview locally
-From this folder, run:
+No package installation, framework, bundler, runtime environment variables, or build step is required.
 
-    python -m http.server 8000
+## Quick start
 
-Then open http://localhost:8000 in your browser.
+```powershell
+git clone https://github.com/Aatif-Junaid/Aatif_Junaid-Website.git
+cd Aatif_Junaid-Website
+pwsh -File scripts/check.ps1
+python -m http.server 8000
+```
 
-## Deploy
-Pushing to the `main` branch updates the live site automatically through GitHub Pages. It goes live in roughly one to three minutes.
+Open `http://localhost:8000`.
+
+## Core commands
+
+| Task | Command |
+|---|---|
+| Validate the complete repository | `pwsh -File scripts/check.ps1` |
+| Preview the site locally | `python -m http.server 8000` |
+
+Detailed setup, branching, testing, and contribution rules live in [`docs/development.md`](docs/development.md).
+
+## Repository map
+
+```text
+index.html              Homepage and professional timeline
+case-studies.html       GTM case studies
+field-program.html      First-person field-program article
+404.html                Custom not-found page
+assets/css/             Shared site styling
+assets/js/              Shared and page-specific browser behavior
+assets/logos/           Organization logos
+scripts/                Deterministic repository validation
+docs/                   Architecture, development, and runbooks
+.github/                Pull-request checks and template
+CNAME                   GitHub Pages custom-domain binding
+resume.pdf              Public downloadable resume
+sitemap.xml             Search-engine page inventory
+```
+
+## Canonical documentation
+
+- [Architecture](docs/architecture.md)
+- [Development and contribution workflow](docs/development.md)
+- [Deployment runbook](docs/runbooks/deployment.md)
+- [Cache-busting runbook](docs/runbooks/cache-busting.md)
+- [Security-header runbook](docs/runbooks/security-headers.md)
+- [Security reporting](SECURITY.md)
+- [Change history](CHANGELOG.md)
+
+The professional facts behind this public site are governed by the private `Aatif-professional-brain` repository. Public copy must remain consistent with its identity, evidence, constraints, and voice rules.

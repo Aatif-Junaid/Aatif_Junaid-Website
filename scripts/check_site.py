@@ -12,7 +12,7 @@ import json, os, re, subprocess, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = ["index.html", "case-studies.html", "field-program.html", "404.html"]
 REQUIRED_SCRIPTS = {
-    "index.html": {"assets/js/site.js"},
+    "index.html": {"assets/js/site.js", "assets/js/homepage.js"},
     "case-studies.html": {"assets/js/site.js", "assets/js/case-studies.js"},
     "field-program.html": {"assets/js/site.js"},
     "404.html": {"assets/js/site.js"},
@@ -39,7 +39,8 @@ for p, s in pages.items():
     if len(re.findall(r"<h1\b", s)) != 1: fail(f"{p}: expected exactly one <h1>")
     if not s.lstrip().lower().startswith("<!doctype html>"): fail(f"{p}: missing doctype")
     required = [('lang="', "lang"), ("charset=", "charset"),
-                ("viewport", "viewport"), ("<title>", "title")]
+                ("viewport", "viewport"), ("<title>", "title"),
+                ('http-equiv="Content-Security-Policy"', "Content Security Policy")]
     if p != "404.html":                    # a noindex error page must not self-canonicalise
         required.append(('rel="canonical"', "canonical"))
     for needle, label in required:
@@ -75,6 +76,18 @@ for p, required_scripts in REQUIRED_SCRIPTS.items():
     if missing:
         fail(f"{p}: missing required scripts {sorted(missing)}")
 ok("shared and page-specific scripts are referenced")
+
+for p, s in pages.items():
+    executable_inline = re.findall(
+        r'<script(?![^>]*\btype=["\']application/ld\+json["\'])[^>]*>(\s*[^<\s].*?)</script>',
+        s,
+        re.S | re.I,
+    )
+    if executable_inline:
+        fail(f"{p}: executable inline script found; keep behavior in assets/js")
+    if re.search(r'\son[a-z]+\s*=', s, re.I):
+        fail(f"{p}: inline event handler found; keep behavior in assets/js")
+ok("executable JavaScript is externalized for CSP")
 
 # 4. External link safety -----------------------------------------------------
 for p, s in pages.items():
@@ -212,6 +225,7 @@ for f in [
     "assets/css/site.css",
     "assets/js/site.js",
     "assets/js/case-studies.js",
+    "assets/js/homepage.js",
 ]:
     if not os.path.isfile(os.path.join(ROOT, f)): fail(f"missing deploy-critical file: {f}")
 cname = read("CNAME").strip() if os.path.isfile(os.path.join(ROOT, "CNAME")) else ""

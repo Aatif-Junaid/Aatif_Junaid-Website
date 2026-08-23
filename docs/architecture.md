@@ -26,7 +26,7 @@ Cloudflare and aatifmulla.me
 | `assets/css/site.css` | Shared visual system and responsive behavior |
 | `assets/js/site.js` | Footer year and shared in-page navigation behavior |
 | `assets/js/case-studies.js` | Case-study focus behavior |
-| Homepage inline script | Homepage-only canvas, timeline, carousel, and reveal behavior |
+| `assets/js/homepage.js` | Homepage-only canvas, timeline, carousel, and reveal behavior |
 | `assets/` media | Headshot and organization logos |
 | Root media | Social image, icons, and public resume required at stable URLs |
 | `scripts/check_site.py` | Canonical structural, safety, link, cache, and deploy validation |
@@ -36,7 +36,7 @@ Cloudflare and aatifmulla.me
 
 - Root HTML stays in place because GitHub Pages deploys `/` from `main`. Moving pages behind a build step would add risk without user value.
 - CSS and reusable scripts live under `assets/` so static source has clear boundaries.
-- The homepage animation remains page-local for now because extracting its tightly coupled 300-line canvas behavior would create a large functional diff. It is tracked as technical debt, not duplicated shared behavior.
+- Page-specific behavior remains separate from shared behavior so each page loads only the JavaScript it uses.
 - Static query-string versions provide deterministic cache invalidation without a build system.
 - No `.env.example` exists because the website consumes no environment variables or secrets.
 - Response headers are controlled by Cloudflare, not by GitHub Pages source files.

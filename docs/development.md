@@ -41,7 +41,7 @@ Opening HTML directly does not reproduce root-relative URLs on `404.html`; use t
 
 ## Branches
 
-`main` is protected, deployable, and changed only through pull requests. Use short-lived branches with these prefixes:
+`main` is deployable and accepts direct pushes for small, validated changes. For larger work, use short-lived branches with these prefixes:
 
 - `feature/`
 - `fix/`
@@ -51,14 +51,14 @@ Opening HTML directly does not reproduce root-relative URLs on `404.html`; use t
 
 Delete branches after merging and do not reuse merged branches.
 
-## Pull requests
+## Optional pull requests
 
-Use the repository template. Every pull request must include a concise description, why the change is needed, validation or a reason tests do not apply, links to relevant documents, and any deployment follow-up.
+Use a pull request when review or isolated testing is useful. Include a concise description, validation, and any deployment follow-up.
 
 Visible changes require desktop and mobile review. CSS, JavaScript, resume, metadata, sitemap, or deployment changes must follow the relevant runbook.
 
 ## CI and formatting
 
-The pre-commit hook and the read-only `static-checks` CI job run the same PowerShell check. CI also verifies `CNAME` and warns on assets over 500 KB. Do not skip hooks with `--no-verify`.
+The pre-commit hook and the read-only `Site integrity` CI job run the same PowerShell check. The separate `TruffleHog secrets` job scans commits for credentials. Do not skip hooks with `--no-verify`.
 
 Use two-space indentation in HTML, CSS, YAML, and JavaScript. Preserve UTF-8, semantic HTML, accessible labels, reduced-motion behavior, and the writing rules enforced by `check_site.py`.

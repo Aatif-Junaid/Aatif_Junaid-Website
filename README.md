@@ -44,7 +44,7 @@ assets/js/              Shared and page-specific browser behavior
 assets/logos/           Organization logos
 scripts/                Deterministic repository validation
 docs/                   Architecture, development, and runbooks
-.github/                Pull-request checks and template
+.github/                Lightweight integrity and secret checks
 CNAME                   GitHub Pages custom-domain binding
 resume.pdf              Public downloadable resume
 sitemap.xml             Search-engine page inventory

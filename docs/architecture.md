@@ -30,7 +30,7 @@ Cloudflare and aatifmulla.me
 | `assets/` media | Headshot and organization logos |
 | Root media | Social image, icons, and public resume required at stable URLs |
 | `scripts/check_site.py` | Canonical structural, safety, link, cache, and deploy validation |
-| `.github/workflows/pr-checks.yml` | Read-only CI using the same local check |
+| `.github/workflows/security-scan.yml` | Lightweight site-integrity and secret checks |
 
 ## Decisions
 
@@ -43,7 +43,7 @@ Cloudflare and aatifmulla.me
 
 ## Data and publishing flow
 
-Public professional claims originate in the private professional brain. A website change copies only reviewed, public-safe information. A pull request runs `static-checks`; merging to protected `main` triggers GitHub Pages automatically.
+Public professional claims originate in the private professional brain. A website change copies only reviewed, public-safe information. A push to `main` runs the integrity and secret checks and triggers GitHub Pages automatically.
 
 ## Related documentation
 

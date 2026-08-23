@@ -9,7 +9,7 @@ Treat these as high severity and investigate immediately:
 - Repository deletion, transfer, archive, visibility, default-branch, Pages, custom-domain, DNS, or ruleset changes.
 - New owners, admins, collaborators, deploy keys, webhooks, OAuth apps, GitHub Apps, PATs, SSH keys, or signing keys.
 - Force-push attempts, branch deletion attempts, bypasses, disabled checks, workflow-permission escalation, or workflow edits that add write permissions.
-- Secret-scanning or TruffleHog findings, push-protection bypasses, Dependabot critical alerts, or CodeQL high/critical findings.
+- Secret-scanning or TruffleHog findings, push-protection bypasses, or critical dependency alerts.
 - Authentication from a new country, unfamiliar session or device, repeated recovery attempts, anomalous clone volume, unexpected forks, or archive downloads.
 - Failed or skipped immutable backups, changed retention, disabled Object Lock, KMS-policy changes, or checksum failures.
 

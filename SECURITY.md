@@ -10,9 +10,9 @@ The repository is a static public website with no authentication, forms backend,
 
 ## Response
 
-1. Stop deployment when a pull request is still open.
+1. Stop further deployment while an active incident is being investigated.
 2. Revoke exposed credentials immediately when applicable.
-3. Revert a deployed regression through a pull request; do not force-push `main`.
+3. Revert a deployed regression with a new commit; do not force-push `main`.
 4. Verify GitHub Pages and the public Cloudflare response separately.
 
 See the [deployment](docs/runbooks/deployment.md) and [security-header](docs/runbooks/security-headers.md) runbooks.

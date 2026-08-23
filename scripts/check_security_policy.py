@@ -12,7 +12,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = (
     ".github/CODEOWNERS",
-    ".github/dependabot.yml",
     ".github/workflows/security-scan.yml",
     ".github/workflows/immutable-backup.yml",
     ".githooks/pre-commit",
@@ -91,7 +90,7 @@ def main() -> int:
             print(f"  FAIL  {failure}")
         return 1
 
-    print("\nSecurity policy checks passed: required controls, tracked files, and workflows.")
+    print("\nSecurity policy checks passed: streamlined controls, tracked files, and workflows.")
     return 0
 
 

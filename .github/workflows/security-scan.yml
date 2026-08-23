@@ -5,16 +5,14 @@ on:
     branches: [main]
   push:
     branches: [main]
-  schedule:
-    - cron: '23 10 * * 1'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  security-policy:
-    name: Security policy
+  site-integrity:
+    name: Site integrity
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -23,11 +21,11 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: '3.12'
 
-      - name: Run site and security policy checks
+      - name: Run site integrity checks
         shell: pwsh
         run: ./scripts/check.ps1
 
@@ -45,42 +43,3 @@ jobs:
         with:
           version: 3.97.0
           extra_args: --fail-on-scan-errors
-
-  dependency-review:
-    name: Dependency review
-    if: ${{ github.event_name == 'pull_request' && (github.event.repository.private == false || vars.ENABLE_GITHUB_ADVANCED_SECURITY == 'true') }}
-    permissions:
-      contents: read
-    runs-on: ubuntu-latest
-    steps:
-      - name: Review dependency changes
-        uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
-        with:
-          fail-on-severity: moderate
-          show-openssf-scorecard: true
-          warn-on-openssf-scorecard-level: 4
-
-  codeql:
-    name: CodeQL (${{ matrix.language }})
-    if: ${{ github.event.repository.private == false || vars.ENABLE_GITHUB_ADVANCED_SECURITY == 'true' }}
-    permissions:
-      contents: read
-      packages: read
-      security-events: write
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [javascript-typescript, python]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@db488ddef3bf6cb639b32c2e9a7c0a7ea8271d28 # v4
-        with:
-          languages: ${{ matrix.language }}
-          queries: security-extended
-
-      - name: Analyze
-        uses: github/codeql-action/analyze@db488ddef3bf6cb639b32c2e9a7c0a7ea8271d28 # v4

@@ -15,6 +15,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 - Shared CSS moved to `assets/css/site.css`.
 - Shared page behavior moved to `assets/js/site.js`.
 - CI Actions are pinned to immutable commits.
+- Repository automation is streamlined to site-integrity and TruffleHog checks, with direct validated pushes to `main`.
 
 ## 2026-08-22
 

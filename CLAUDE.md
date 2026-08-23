@@ -1,12 +1,25 @@
-# Operating instructions for Claude Code
+# Website instructions for Claude Code
 
-Claude Code and Codex follow the same maintenance and security rules in this repository.
+Claude Code and Codex follow the same rules in this repository.
 
-## Security non-negotiables
+## Work safely
 
-- Read `docs/security/README.md` before changing workflows, repository settings, access, credentials, DNS, Pages, Cloudflare, or dependencies.
-- Never place credentials in source, prompts, issues, pull requests, command output, or logs. Use GitHub environments, OIDC, or an approved secret manager.
-- Never allow force-pushing or deletion of `main`, bypass a failed check, transfer, change visibility, archive, or delete this repository. Other rules require explicit owner approval to change.
-- Never add collaborators, deploy keys, webhooks, apps, or write permissions without explicit owner approval and a documented purpose.
-- Pin external GitHub Actions to full commit SHAs and run `./scripts/check.ps1` before proposing a change.
-- Preserve `CNAME`, HTTPS, and the verified custom-domain configuration. Stop and report a policy conflict instead of working around it.
+- This is plain HTML, CSS, and vanilla JavaScript. Edit source directly; there is no build step.
+- Read the relevant file in `docs/` before changing deployment, caching, security, or architecture.
+- Run `pwsh -File scripts/check.ps1` before every push. Visible changes also require browser review near 1440px and 375px, with no console errors, horizontal scroll, or undersized mobile controls.
+- Update query-string versions whenever CSS, JavaScript, `resume.pdf`, or the social image changes. Follow `docs/runbooks/cache-busting.md`.
+- Preserve semantic HTML, keyboard access, reduced-motion behavior, `CNAME`, HTTPS, and the verified domain.
+- Never commit credentials or private professional-brain content. Public claims must be reviewed and public-safe.
+- Never force-push or delete `main`. Direct validated pushes to `main` are allowed.
+- Pin external Actions to full commit SHAs and keep workflow permissions minimal.
+
+## Copy rules
+
+- Use no em dashes and no empty buzzwords.
+- Lead experience bullets with numbers.
+- Spell the company `Aiseberg` and the product `Aisepedia`.
+- Describe the enterprise deal with the documented Splunk/Cisco framing, never as “closed Cisco.”
+- Describe POLITICO figures as reported on or analyzed, never owned.
+- Keep positioning consistent with GTM and Product Growth unless the owner approves a repositioning.
+
+AI-authored commit messages end with `Co-Authored-By: Claude <noreply@anthropic.com>`.

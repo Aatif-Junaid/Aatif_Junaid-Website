@@ -1,30 +1,22 @@
-# Audit monitoring protocol
+# Audit monitoring
 
-Personal-account repositories do not provide the organization audit log needed for enterprise monitoring. Until the repositories move to an organization, review the account security log, repository activity, Actions history, collaborators, keys, webhooks, apps, rulesets, Pages, DNS, and security alerts on the cadence below.
+The site uses a small monitoring routine suited to one owner.
 
-## Alert conditions
+## Automated signals
 
-Treat these as high severity and investigate immediately:
+- GitHub Actions reports site-integrity or credential-scan failures after a push.
+- GitHub Pages reports deployment failures.
+- UptimeRobot checks `https://aatifmulla.me/`; notification preferences are controlled in UptimeRobot.
+- Cloudflare provides DNS, TLS, and security-event visibility.
 
-- Repository deletion, transfer, archive, visibility, default-branch, Pages, custom-domain, DNS, or ruleset changes.
-- New owners, admins, collaborators, deploy keys, webhooks, OAuth apps, GitHub Apps, PATs, SSH keys, or signing keys.
-- Force-push attempts, branch deletion attempts, bypasses, disabled checks, workflow-permission escalation, or workflow edits that add write permissions.
-- Secret-scanning or TruffleHog findings, push-protection bypasses, or critical dependency alerts.
-- Authentication from a new country, unfamiliar session or device, repeated recovery attempts, anomalous clone volume, unexpected forks, or archive downloads.
-- Failed or skipped immutable backups, changed retention, disabled Object Lock, KMS-policy changes, or checksum failures.
+## Review when alerted
 
-## Review procedure
+1. Confirm the alert is genuine and note the time and affected service.
+2. Check the latest GitHub commit, Actions run, Pages deployment, Cloudflare status, and live site.
+3. If credentials may be exposed, revoke or rotate them before changing repository history.
+4. Revert the smallest responsible change or restore the last known-good commit.
+5. Record anything worth remembering in the private professional-brain repository without copying secrets.
 
-1. Preserve the event, actor, timestamp, source IP when available, repository, target, and request identifier in immutable storage. Do not paste secret values into the incident record.
-2. Confirm the change against an approved PR or owner-authorized maintenance record.
-3. Revoke sessions, tokens, keys, or app access before editing repository history.
-4. Freeze deployment, DNS, and access changes when account compromise is possible.
-5. Compare `main`, tags, workflows, rulesets, Pages, DNS, Cloudflare, and backup settings with the last known-good snapshot.
-6. Restore or revert through a reviewed PR. Do not force-push unless history contains sensitive data and the owner approves a tested recovery plan.
-7. Record cause, scope, affected credentials, containment, recovery, and a dated follow-up action.
+## Occasional account review
 
-## Organization target state
-
-After migration, enable the organization audit log and source IP disclosure where legally appropriate. Export logs at least daily to a SIEM and immutable archive. Alert on these categories: `repo`, `org`, `team`, `member`, `hook`, `integration`, `oauth_application`, `personal_access_token`, `ruleset`, `protected_branch`, `workflows`, `secret_scanning`, `code_scanning`, and `repository_vulnerability_alert`.
-
-Retain searchable logs for at least one year and immutable raw exports for the same period as the incident-response requirement. Test one alert and one export restoration quarterly.
+Every few months, review GitHub sessions, recovery methods, SSH keys, OAuth apps, GitHub Apps, collaborators, deploy keys, webhooks, repository secrets, and branch rules. Remove anything unused or unfamiliar.

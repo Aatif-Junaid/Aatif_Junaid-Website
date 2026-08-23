@@ -1,13 +1,25 @@
-# Operating instructions for Codex
+# Website instructions for Codex
 
-Codex and Claude Code follow the same maintenance and security rules in this repository.
+Codex and Claude Code follow the same rules in this repository.
 
-## Security non-negotiables
+## Work safely
 
-- Read `docs/security/README.md` before changing workflows, repository settings, access, credentials, DNS, Pages, Cloudflare, or dependencies.
-- Never place a credential in source, command history, issues, pull requests, logs, or agent prompts. Use GitHub environments, OIDC, or an approved secret manager.
-- Never allow force-pushing or deletion of `main`, bypass a failed check, transfer, change visibility, archive, or delete this repository. Other rules require explicit owner approval to change.
-- Never add a collaborator, deploy key, webhook, GitHub App, OAuth app, or workflow permission without explicit owner approval and a documented purpose.
-- Pin every external GitHub Action to a full 40-character commit SHA. Keep workflow permissions explicit and minimal.
-- Run `./scripts/check.ps1` before proposing a change. The configured pre-commit hook also requires TruffleHog.
-- Preserve `CNAME`, HTTPS, and the verified custom-domain configuration. Stop and report a policy conflict instead of working around it.
+- This is plain HTML, CSS, and vanilla JavaScript. Edit source directly; there is no build step.
+- Read the relevant file in `docs/` before changing deployment, caching, security, or architecture.
+- Run `pwsh -File scripts/check.ps1` before every push. Visible changes also require browser review near 1440px and 375px, with no console errors, horizontal scroll, or undersized mobile controls.
+- Update query-string versions whenever CSS, JavaScript, `resume.pdf`, or the social image changes. Follow `docs/runbooks/cache-busting.md`.
+- Preserve semantic HTML, keyboard access, reduced-motion behavior, `CNAME`, HTTPS, and the verified domain.
+- Never commit credentials or private professional-brain content. Public claims must be reviewed and public-safe.
+- Never force-push or delete `main`. Direct validated pushes to `main` are allowed.
+- Pin external Actions to full commit SHAs and keep workflow permissions minimal.
+
+## Copy rules
+
+- Use no em dashes and no empty buzzwords.
+- Lead experience bullets with numbers.
+- Spell the company `Aiseberg` and the product `Aisepedia`.
+- Describe the enterprise deal with the documented Splunk/Cisco framing, never as “closed Cisco.”
+- Describe POLITICO figures as reported on or analyzed, never owned.
+- Keep positioning consistent with GTM and Product Growth unless the owner approves a repositioning.
+
+AI-authored commit messages end with `Co-Authored-By: Codex <noreply@openai.com>`.

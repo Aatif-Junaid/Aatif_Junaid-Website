@@ -11,15 +11,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = (
-    ".github/CODEOWNERS",
     ".github/workflows/security-scan.yml",
-    ".github/workflows/immutable-backup.yml",
     ".githooks/pre-commit",
     "AGENTS.md",
     "CLAUDE.md",
     "docs/security/README.md",
     "docs/security/audit-monitoring.md",
-    "docs/security/backup-and-recovery.md",
     "scripts/security_scan.ps1",
 )
 SENSITIVE_NAMES = {

@@ -8,7 +8,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 - Architecture, development, security, contribution, and focused operational runbooks.
 - One local check shared by pre-commit and CI.
-- Shared JavaScript assets and a pull-request template.
+- Shared JavaScript assets.
 
 ### Changed
 
@@ -16,6 +16,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 - Shared page behavior moved to `assets/js/site.js`.
 - CI Actions are pinned to immutable commits.
 - Repository automation is streamlined to site-integrity and TruffleHog checks, with direct validated pushes to `main`.
+- Dormant AWS backup automation and solo-owner pull-request scaffolding were removed.
 
 ## 2026-08-22
 

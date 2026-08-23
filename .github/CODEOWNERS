@@ -1,0 +1,3 @@
+# Repository ownership. Add a second trusted reviewer before enabling required
+# Code Owner approval; a pull-request author cannot approve their own change.
+* @Aatif-Junaid

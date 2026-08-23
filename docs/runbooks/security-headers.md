@@ -13,7 +13,7 @@ Verified on 2026-08-23 at `https://aatifmulla.me/`:
 - `X-Content-Type-Options: nosniff`
 - `Referrer-Policy: strict-origin-when-cross-origin`
 - `Permissions-Policy: geolocation=(), camera=(), microphone=(), interest-cohort=()`
-- A CSP fallback is enforced through an HTML meta tag. No CSP response header is currently present.
+- `Content-Security-Policy` is enforced through both a Cloudflare response header and an HTML meta fallback.
 
 ## Verification
 
@@ -24,13 +24,13 @@ $response.Headers
 
 ## Content Security Policy
 
-Executable JavaScript and event handlers are externalized. JSON-LD remains inline as inert structured data, and the homepage has one inline `noscript` style fallback. Every HTML page currently enforces this policy through a meta tag:
+Executable JavaScript and event handlers are externalized. JSON-LD remains inline as inert structured data, and the homepage has one inline `noscript` style fallback. Cloudflare and every HTML page currently enforce this policy:
 
 ```
 default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'
 ```
 
-Promote the same policy to a Cloudflare response header after a report-only browser pass. Add `frame-ancestors 'self'` to the response-header version because browsers ignore that directive in a meta policy. Once the header is verified, the meta fallback may stay as defense in depth or be removed to keep one source of truth.
+The Cloudflare response-header version also includes `frame-ancestors 'self'`, which browsers ignore in a meta policy. The header and meta fallback were verified live with no browser console violations on 2026-08-23.
 
 ## GitHub Pages origin warning
 

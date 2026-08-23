@@ -32,6 +32,8 @@ default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; sty
 
 The Cloudflare response-header version also includes `frame-ancestors 'self'`, which browsers ignore in a meta policy. The header and meta fallback were verified live with no browser console violations on 2026-08-23.
 
-## GitHub Pages origin warning
+## GitHub Pages origin certificate
 
-On 2026-08-23, the Pages API reported `https_enforced: false` and an origin certificate in `bad_authz`, while Cloudflare served valid HTTPS and HSTS publicly. Treat this as an infrastructure warning. Do not change DNS, Cloudflare proxying, or certificate settings without confirming the intended origin and rollback path.
+Resolved on 2026-08-23. GitHub Pages issued a replacement certificate for `aatifmulla.me`, and **Enforce HTTPS** is enabled in the repository's Pages settings. Cloudflare continues to proxy the four GitHub Pages apex records and the `www` CNAME. The separate `n8n` record remains DNS-only.
+
+If GitHub reports a future certificate error, temporarily set only the four GitHub Pages apex records and the `www` CNAME to DNS-only, wait for the Pages certificate to finish provisioning, enable **Enforce HTTPS**, and restore proxying. Do not change the `n8n` record, remove the custom domain, or unpublish the Pages site as part of certificate renewal.

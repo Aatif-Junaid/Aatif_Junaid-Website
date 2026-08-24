@@ -5,6 +5,7 @@ Claude Code and Codex follow the same rules in this repository.
 ## Work safely
 
 - This is plain HTML, CSS, and vanilla JavaScript. Edit source directly; there is no build step.
+- Read `DESIGN.md` before visible design work and preserve its visual system.
 - Read the relevant file in `docs/` before changing deployment, caching, security, or architecture.
 - Run `pwsh -File scripts/check.ps1` before every push. Visible changes also require browser review near 1440px and 375px, with no console errors, horizontal scroll, or undersized mobile controls.
 - Update query-string versions whenever CSS, JavaScript, `resume.pdf`, or the social image changes. Follow `docs/runbooks/cache-busting.md`.

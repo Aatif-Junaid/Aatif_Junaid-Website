@@ -41,7 +41,9 @@ field-program.html      First-person field-program article
 404.html                Custom not-found page
 assets/css/             Shared site styling
 assets/js/              Shared and page-specific browser behavior
+assets/evidence/        Public screenshots that substantiate case-study work
 assets/logos/           Organization logos
+DESIGN.md               Visual direction and interface rules
 scripts/                Deterministic repository validation
 docs/                   Architecture, development, and runbooks
 .github/                Lightweight integrity and secret checks
@@ -53,6 +55,7 @@ sitemap.xml             Search-engine page inventory
 ## Canonical documentation
 
 - [Architecture](docs/architecture.md)
+- [Design direction](DESIGN.md)
 - [Development and contribution workflow](docs/development.md)
 - [Deployment runbook](docs/runbooks/deployment.md)
 - [Cache-busting runbook](docs/runbooks/cache-busting.md)

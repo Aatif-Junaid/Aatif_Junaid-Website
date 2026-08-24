@@ -27,7 +27,8 @@ Cloudflare and aatifmulla.me
 | `assets/js/site.js` | Footer year and shared in-page navigation behavior |
 | `assets/js/case-studies.js` | Case-study focus behavior |
 | `assets/js/homepage.js` | Homepage-only canvas, timeline, carousel, and reveal behavior |
-| `assets/` media | Headshot and organization logos |
+| `assets/` media | Headshot, organization logos, and public case-study evidence |
+| `DESIGN.md` | Permanent visual direction, component, motion, and accessibility rules |
 | Root media | Social image, icons, and public resume required at stable URLs |
 | `scripts/check_site.py` | Canonical structural, safety, link, cache, and deploy validation |
 | `.github/workflows/security-scan.yml` | Lightweight site-integrity and secret checks |

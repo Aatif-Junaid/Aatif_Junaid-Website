@@ -9,6 +9,8 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 - Architecture, development, security, contribution, and focused operational runbooks.
 - One local check shared by pre-commit and CI.
 - Shared JavaScript assets.
+- A website-specific design guide for consistent future visual work.
+- A recruiter-friendly case-study index and two real Aisepedia artifact previews with links to the live pages.
 
 ### Changed
 
@@ -17,6 +19,10 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 - CI Actions are pinned to immutable commits.
 - Repository automation is streamlined to site-integrity and TruffleHog checks, with direct validated pushes to `main`.
 - Dormant AWS backup automation and solo-owner pull-request scaffolding were removed.
+- Case Studies is now the homepage hero's primary action, and case-study navigation includes a Resume link.
+- Case-study focus effects now use intersection observers, and continuous nonessential animation was removed.
+- The experience comet keeps its existing particle treatment and now includes a desktop pause control.
+- Public role titles now use `Senior Analyst, Revenue and Product` for POLITICO and `Business Strategy` for Peepal Consulting.
 
 ## 2026-08-22
 

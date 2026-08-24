@@ -21,11 +21,13 @@
   if (!timeline || !canvas) return;
   var ctx = canvas.getContext('2d');
   var items = timeline.querySelectorAll('.tl-item');
+  var motionToggle = document.querySelector('.motion-toggle');
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var dpr = 1, cssW = 0, cssH = 0;
+  var dpr = 1, cssW = 0, cssH = 0, timelineW = 0, timelineTop = 0;
   var head = { x: 0, y: 0 }, targetY = 0, prevY = 0, prevX = 0;
-  var parts = [], running = false, inView = false, resizeQueued = false, lastLitY = -999;
+  var parts = [], running = false, inView = false, resizeQueued = false, lastLitY = -999, userPaused = false;
+  var itemPositions = [];
   var t0 = performance.now();
 
   function resize() {
@@ -35,6 +37,17 @@
     dpr = Math.max(1, Math.min(1.5, window.devicePixelRatio || 1));
     cssW = vw;
     cssH = timeline.offsetHeight;
+    timelineW = timeline.offsetWidth;
+    timelineTop = timeline.getBoundingClientRect().top + window.scrollY;
+    itemPositions = Array.prototype.map.call(items, function (item) {
+      var dot = item.querySelector('.tl-dot');
+      return {
+        item: item,
+        center: item.offsetTop + (dot ? dot.offsetTop + dot.offsetHeight / 2 : 0),
+        start: item.offsetTop - 10,
+        end: item.offsetTop + item.offsetHeight + 10
+      };
+    });
     canvas.style.width = cssW + 'px';
     canvas.style.height = cssH + 'px';
     canvas.width = Math.round(cssW * dpr);
@@ -51,24 +64,21 @@
 
   var SAFE = 60;
   function pathX(y, time) {
-    var amplitude = Math.max(160, Math.min(cssW / 2 - SAFE, timeline.offsetWidth / 2 + 50));
+    var amplitude = Math.max(160, Math.min(cssW / 2 - SAFE, timelineW / 2 + 50));
     return cssW / 2 + Math.sin(y * 0.005 + time * 0.3) * amplitude;
   }
 
   function computeTarget() {
-    var rect = timeline.getBoundingClientRect();
     var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    targetY = Math.max(0, Math.min(cssH, viewportHeight * 0.5 - rect.top));
+    targetY = Math.max(0, Math.min(cssH, viewportHeight * 0.5 + window.scrollY - timelineTop));
   }
 
   function lightNodes(y) {
     if (Math.abs(y - lastLitY) < 4) return;
     lastLitY = y;
-    items.forEach(function (item) {
-      var dot = item.querySelector('.tl-dot');
-      var center = item.offsetTop + (dot ? dot.offsetTop + dot.offsetHeight / 2 : 0);
-      item.classList.toggle('lit', y >= center);
-      item.classList.toggle('comet-near', y > item.offsetTop - 10 && y < item.offsetTop + item.offsetHeight + 10);
+    itemPositions.forEach(function (position) {
+      position.item.classList.toggle('lit', y >= position.center);
+      position.item.classList.toggle('comet-near', y > position.start && y < position.end);
     });
   }
 
@@ -298,7 +308,7 @@
   }
 
   function start() {
-    if (!running) {
+    if (!running && !userPaused) {
       running = true;
       requestAnimationFrame(frame);
     }
@@ -316,13 +326,27 @@
 
   if (prefersReduced) {
     canvas.style.display = 'none';
-    function simple() {
-      computeTarget();
-      lightNodes(targetY);
+    if (motionToggle) motionToggle.hidden = true;
+    if ('IntersectionObserver' in window) {
+      var reducedObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          entry.target.classList.toggle('lit', entry.isIntersecting);
+        });
+      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+      items.forEach(function (item) { reducedObserver.observe(item); });
+    } else {
+      items.forEach(function (item) { item.classList.add('lit'); });
     }
-    window.addEventListener('scroll', simple, { passive: true });
-    simple();
     return;
+  }
+  if (motionToggle) {
+    motionToggle.addEventListener('click', function () {
+      userPaused = !userPaused;
+      motionToggle.setAttribute('aria-pressed', String(userPaused));
+      motionToggle.textContent = userPaused ? 'Play comet' : 'Pause comet';
+      if (userPaused) stop();
+      else if (inView && !document.hidden) start();
+    });
   }
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
@@ -406,25 +430,6 @@
   }, { passive: true });
   refresh();
 
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var paused = false, visible = false;
-    setInterval(function () {
-      if (!paused && visible && !document.hidden) move(1);
-    }, 7000);
-    ['pointerenter', 'pointerdown', 'focusin'].forEach(function (eventName) {
-      carousel.addEventListener(eventName, function () { paused = true; }, { passive: true });
-    });
-    ['pointerup', 'pointerleave', 'focusout'].forEach(function (eventName) {
-      carousel.addEventListener(eventName, function () { paused = false; }, { passive: true });
-    });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        visible = entries[0].isIntersecting;
-      }, { threshold: 0.1 }).observe(carousel);
-    } else {
-      visible = true;
-    }
-  }
 })();
 
 (function () {

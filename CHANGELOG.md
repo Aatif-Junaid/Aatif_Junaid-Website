@@ -23,6 +23,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 - Case-study focus effects now use intersection observers, and continuous nonessential animation was removed.
 - The experience comet keeps its existing particle treatment and now includes a desktop pause control.
 - The original spiraling comet motion and balanced Experience card stack were restored after design review.
+- The experience comet now has frame-rate-independent movement, a directional particle plume, a tapered light trail, a more defined nucleus and aura, and localized canvas redraws while retaining its original spiral path.
 - Public role titles now use `Senior Analyst, Revenue and Product` for POLITICO and `Business Strategy` for Peepal Consulting.
 
 ## 2026-08-22

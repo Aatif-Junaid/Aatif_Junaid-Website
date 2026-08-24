@@ -7,7 +7,7 @@ This file defines how aatifmulla.me should look and behave. Read it before visib
 This is a recruiter-facing GTM and Product Growth portfolio. It should feel warm, editorial, evidence-led, and technically credible. The site is a targeted evolution of its existing identity, not a template or a brand imitation.
 
 - Design variance: 6/10. Editorial composition with controlled asymmetry.
-- Motion intensity: 4/10. Fluid but restrained.
+- Motion intensity: 6/10 for the comet, 3/10 elsewhere. Expressive signature motion inside a calm interface.
 - Visual density: 5/10. Scannable proof with enough detail for a hiring manager.
 
 The warm editorial hierarchy is informed by the Claude design analysis in Awesome DESIGN.md. Only general principles are adapted. Keep Aatif's blue palette, copy, assets, and original visual identity. Do not copy Anthropic colors, marks, illustrations, layouts, or proprietary typefaces.
@@ -67,7 +67,7 @@ Use flat editorial bands, hairlines, and spacing before adding another tile. Rea
 
 ## Motion
 
-The comet communicates career progression and remains the site's signature motion. Preserve its original spiraling movement behind the balanced, full-width Experience stack. Do not add a dotted trajectory or carry the comet onto other pages. Preserve its established particle density and pause it when off-screen.
+The comet communicates career progression and remains the site's signature motion. Preserve its original spiraling movement behind the balanced, full-width Experience stack. Its head should read as a luminous coma with a bright nucleus, layered aura, curved tapered tail, and particles that follow the direction of travel. Do not add a dotted trajectory or carry the comet onto other pages. Keep the effect smooth, pause it when off-screen, and isolate its visual intensity from the rest of the interface.
 
 Other motion supports hierarchy or feedback only:
 

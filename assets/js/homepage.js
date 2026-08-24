@@ -29,6 +29,7 @@
   var head = { x: 0, y: 0 }, targetY = 0, prevY = 0, prevX = 0;
   var parts = [], trail = [], running = false, inView = false, resizeQueued = false, lastLitY = -999, userPaused = false;
   var travel = { x: 0, y: 1 }, travelSign = 1, lastFrameTime = 0, emissionCarry = 0, dirtyBounds = null;
+  var trailDistance = 0, TRAIL_WAVE = 4.2;
   var itemPositions = [];
   var SAFE = 60, pathAmplitude = 160, pathOriginY = 0, pathStartX = SAFE, pathStartPhase = -Math.PI / 2;
   var motionElapsed = 0, headInitialized = false;
@@ -44,6 +45,7 @@
       itemPositions = [];
       parts.length = 0;
       trail.length = 0;
+      trailDistance = 0;
       dirtyBounds = null;
       canvas.width = 1;
       canvas.height = 1;
@@ -88,6 +90,7 @@
     canvas.height = Math.round(cssH * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     trail.length = 0;
+    trailDistance = 0;
     dirtyBounds = null;
   }
 
@@ -181,17 +184,20 @@
 
   function recordTrail() {
     var lastPoint = trail[trail.length - 1];
-    if (!lastPoint || Math.hypot(head.x - lastPoint.x, head.y - lastPoint.y) > 1.2) {
-      trail.push({ x: head.x, y: head.y });
+    var step = lastPoint ? Math.hypot(head.x - lastPoint.x, head.y - lastPoint.y) : 0;
+    trailDistance += step;
+    if (!lastPoint || step > 1.2) {
+      trail.push({ x: head.x, y: head.y, phase: trailDistance });
       if (trail.length > 76) trail.shift();
     } else {
       lastPoint.x = head.x;
       lastPoint.y = head.y;
+      lastPoint.phase = trailDistance;
     }
   }
 
-  function drawDustTail(time) {
-    if (trail.length < 3) return;
+  function drawDustTail(time, visualTrail) {
+    if (visualTrail.length < 3) return;
     ctx.save();
     ctx.globalCompositeOperation = 'source-over';
     ctx.lineCap = 'round';
@@ -199,15 +205,15 @@
     var layers = [
       { farWidth: 54, nearWidth: 20, alpha: 0.032, color: '73, 138, 173' },
       { farWidth: 32, nearWidth: 13, alpha: 0.065, color: '75, 165, 198' },
-      { farWidth: 14, nearWidth: 7, alpha: 0.18, color: '136, 201, 218' }
+      { farWidth: 14, nearWidth: 7, alpha: 0.14, color: '136, 201, 218' }
     ];
     layers.forEach(function (tailLayer) {
-      for (var pointIndex = 1; pointIndex < trail.length; pointIndex++) {
-        var proximity = pointIndex / (trail.length - 1);
+      for (var pointIndex = 1; pointIndex < visualTrail.length; pointIndex++) {
+        var proximity = pointIndex / (visualTrail.length - 1);
         var distance = 1 - proximity;
         var breathe = 0.88 + 0.12 * Math.sin(pointIndex * 0.7 + time * 0.5);
-        var previous = trail[pointIndex - 1];
-        var current = trail[pointIndex];
+        var previous = visualTrail[pointIndex - 1];
+        var current = visualTrail[pointIndex];
         var alpha = tailLayer.alpha * Math.pow(proximity, 1.8) * breathe;
         ctx.strokeStyle = 'rgba(' + tailLayer.color + ', ' + alpha + ')';
         ctx.lineWidth = tailLayer.nearWidth + (tailLayer.farWidth - tailLayer.nearWidth) * distance;
@@ -220,38 +226,70 @@
     ctx.restore();
   }
 
-  function drawIonTail(speed, time) {
-    var angle = Math.atan2(travel.y, travel.x);
-    var length = 138 + Math.min(28, speed * 1.4);
+  function wavedTrailPoint(pointIndex, time) {
+    var point = trail[pointIndex];
+    var before = trail[Math.max(0, pointIndex - 1)];
+    var after = trail[Math.min(trail.length - 1, pointIndex + 1)];
+    var tangentX = after.x - before.x;
+    var tangentY = after.y - before.y;
+    var tangentLength = Math.hypot(tangentX, tangentY) || 1;
+    var proximity = pointIndex / Math.max(1, trail.length - 1);
+    var envelope = Math.sin(Math.PI * proximity);
+    var wave = Math.sin((point.phase || 0) * 0.045 + time * 0.35) * TRAIL_WAVE * envelope;
+    return {
+      x: point.x - tangentY / tangentLength * wave,
+      y: point.y + tangentX / tangentLength * wave
+    };
+  }
+
+  function buildVisualTrail(time) {
+    return trail.map(function (_, pointIndex) { return wavedTrailPoint(pointIndex, time); });
+  }
+
+  function drawCurvedIonTrail(time, visualTrail) {
+    if (visualTrail.length < 3) return;
+    var breathe = 0.96 + 0.04 * Math.sin(time * 0.8);
+    ctx.save();
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    for (var pointIndex = 1; pointIndex < visualTrail.length; pointIndex++) {
+      var proximity = pointIndex / (visualTrail.length - 1);
+      var previous = visualTrail[pointIndex - 1];
+      var current = visualTrail[pointIndex];
+      ctx.strokeStyle = 'rgba(100, 204, 229, ' + (0.18 * Math.pow(proximity, 1.45) * breathe) + ')';
+      ctx.lineWidth = 3 + 4.2 * proximity;
+      ctx.beginPath();
+      ctx.moveTo(previous.x, previous.y);
+      ctx.lineTo(current.x, current.y);
+      ctx.stroke();
+      ctx.strokeStyle = 'rgba(194, 239, 244, ' + (0.46 * Math.pow(proximity, 2.1) * breathe) + ')';
+      ctx.lineWidth = 0.9 + proximity;
+      ctx.beginPath();
+      ctx.moveTo(previous.x, previous.y);
+      ctx.lineTo(current.x, current.y);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawHead(time, visualTrail) {
+    var directionX = travel.x;
+    var directionY = travel.y;
+    if (visualTrail.length >= 4) {
+      var headBase = visualTrail[Math.max(0, visualTrail.length - 4)];
+      directionX = head.x - headBase.x;
+      directionY = head.y - headBase.y;
+      var directionLength = Math.hypot(directionX, directionY) || 1;
+      directionX /= directionLength;
+      directionY /= directionLength;
+    }
+    var angle = Math.atan2(directionY, directionX);
     var breathe = 0.96 + 0.04 * Math.sin(time * 0.8);
     ctx.save();
     ctx.globalCompositeOperation = 'source-over';
     ctx.translate(head.x, head.y);
     ctx.rotate(angle);
-
-    var streamGradient = ctx.createLinearGradient(-length, 0, 8, 0);
-    streamGradient.addColorStop(0, 'rgba(70, 143, 181, 0)');
-    streamGradient.addColorStop(0.58, 'rgba(71, 158, 194, ' + (0.06 * breathe) + ')');
-    streamGradient.addColorStop(1, 'rgba(135, 210, 224, ' + (0.34 * breathe) + ')');
-    ctx.fillStyle = streamGradient;
-    ctx.beginPath();
-    ctx.moveTo(8, -8);
-    ctx.quadraticCurveTo(-length * 0.42, -5, -length, -1);
-    ctx.lineTo(-length, 1);
-    ctx.quadraticCurveTo(-length * 0.42, 5, 8, 8);
-    ctx.closePath();
-    ctx.fill();
-
-    var filamentGradient = ctx.createLinearGradient(-length, 0, 2, 0);
-    filamentGradient.addColorStop(0, 'rgba(117, 208, 236, 0)');
-    filamentGradient.addColorStop(0.64, 'rgba(91, 198, 226, ' + (0.13 * breathe) + ')');
-    filamentGradient.addColorStop(1, 'rgba(190, 239, 244, ' + (0.62 * breathe) + ')');
-    ctx.strokeStyle = filamentGradient;
-    ctx.lineWidth = 1.15;
-    ctx.beginPath();
-    ctx.moveTo(-length, 0);
-    ctx.lineTo(2, 0);
-    ctx.stroke();
 
     ctx.scale(1.28, 0.88);
     var coma = ctx.createRadialGradient(4, 0, 0, -3, 0, 25);
@@ -330,7 +368,11 @@
     var speed = Math.abs(deltaY) / frameScale;
     if (Math.abs(deltaY) > 0.08) {
       var nextTravelSign = deltaY > 0 ? 1 : -1;
-      if (nextTravelSign !== travelSign) trail.length = 0;
+      if (nextTravelSign !== travelSign) {
+        trail.length = 0;
+        trailDistance = 0;
+        parts.forEach(function (particle) { particle.life = Math.min(particle.life, 0.24); });
+      }
       travelSign = nextTravelSign;
     }
     prevY = head.y;
@@ -342,7 +384,7 @@
     var tangentLength = Math.hypot(tangentX, tangentProbe) || 1;
     var targetTravelX = tangentX / tangentLength;
     var targetTravelY = tangentProbe / tangentLength;
-    var directionBlend = 1 - Math.exp(-5 * deltaSeconds);
+    var directionBlend = 1 - Math.exp(-12 * deltaSeconds);
     travel.x += (targetTravelX - travel.x) * directionBlend;
     travel.y += (targetTravelY - travel.y) * directionBlend;
     var travelLength = Math.hypot(travel.x, travel.y) || 1;
@@ -359,7 +401,9 @@
       spawnOne(head.x, head.y, speed);
     }
     if (dirtyBounds) ctx.clearRect(dirtyBounds.x, dirtyBounds.y, dirtyBounds.width, dirtyBounds.height);
-    drawDustTail(time);
+    var visualTrail = buildVisualTrail(time);
+    drawDustTail(time, visualTrail);
+    drawCurvedIonTrail(time, visualTrail);
 
     for (var i = parts.length - 1; i >= 0; i--) {
       var particle = parts[i];
@@ -385,7 +429,7 @@
       ctx.restore();
     }
 
-    drawIonTail(speed, time);
+    drawHead(time, visualTrail);
 
     updateDirtyBounds();
     if (running) requestAnimationFrame(frame);

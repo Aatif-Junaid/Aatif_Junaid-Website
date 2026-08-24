@@ -30,7 +30,7 @@
   var parts = [], trail = [], running = false, inView = false, resizeQueued = false, lastLitY = -999, userPaused = false;
   var travel = { x: 0, y: 1 }, travelSign = 1, lastFrameTime = 0, emissionCarry = 0, dirtyBounds = null;
   var trailDistance = 0, TRAIL_WAVE = 3.6;
-  var MAX_TRAIL_POINTS = 52, MAX_TRAIL_DISTANCE = 230;
+  var MAX_TRAIL_POINTS = 66, MAX_TRAIL_DISTANCE = 340;
   var itemPositions = [];
   var SAFE = 60, pathAmplitude = 160, pathOriginY = 0, pathStartX = SAFE, pathStartPhase = -Math.PI / 2;
   var motionElapsed = 0, headInitialized = false;
@@ -104,11 +104,11 @@
 
   function pathX(y, time) {
     var relativeY = y - pathOriginY;
-    var flowingX = cssW / 2 + Math.sin(relativeY * 0.005 + time * 0.05 + pathStartPhase) * pathAmplitude;
+    var flowingX = cssW / 2 + Math.sin(relativeY * 0.005 + time * 0.035 + pathStartPhase) * pathAmplitude;
     var openingProgress = Math.max(0, Math.min(1, relativeY / 170));
     if (openingProgress >= 1) return flowingX;
     var easedProgress = openingProgress * openingProgress * (3 - 2 * openingProgress);
-    var openingAnchor = pathStartX + Math.sin(time * 0.05) * 3;
+    var openingAnchor = pathStartX + Math.sin(time * 0.035) * 3;
     var leftHook = -46 * Math.pow(Math.sin(Math.PI * openingProgress), 2);
     return openingAnchor + (flowingX - openingAnchor) * easedProgress + leftHook;
   }
@@ -206,24 +206,19 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     var layers = [
-      { farWidth: 40, nearWidth: 30, alpha: 0.018, color: '73, 138, 173' },
-      { farWidth: 25, nearWidth: 19, alpha: 0.038, color: '75, 165, 198' },
-      { farWidth: 13, nearWidth: 11, alpha: 0.085, color: '136, 201, 218' }
+      { farWidth: 42, nearWidth: 30, alpha: 0.024, color: '73, 138, 173' },
+      { farWidth: 27, nearWidth: 19, alpha: 0.052, color: '75, 165, 198' },
+      { farWidth: 14, nearWidth: 11, alpha: 0.11, color: '136, 201, 218' }
     ];
     layers.forEach(function (tailLayer) {
       for (var pointIndex = 1; pointIndex < visualTrail.length; pointIndex++) {
         var proximity = pointIndex / (visualTrail.length - 1);
         var distance = 1 - proximity;
         var breathe = 0.88 + 0.12 * Math.sin(pointIndex * 0.7 + time * 0.5);
-        var previous = visualTrail[pointIndex - 1];
-        var current = visualTrail[pointIndex];
-        var alpha = tailLayer.alpha * Math.pow(proximity, 2.3) * breathe;
+        var alpha = tailLayer.alpha * Math.pow(proximity, 2.05) * breathe;
         ctx.strokeStyle = 'rgba(' + tailLayer.color + ', ' + alpha + ')';
         ctx.lineWidth = tailLayer.nearWidth + (tailLayer.farWidth - tailLayer.nearWidth) * distance;
-        ctx.beginPath();
-        ctx.moveTo(previous.x, previous.y);
-        ctx.lineTo(current.x, current.y);
-        ctx.stroke();
+        strokeSmoothTrailSegment(visualTrail, pointIndex);
       }
     });
     ctx.restore();
@@ -246,7 +241,29 @@
   }
 
   function buildVisualTrail(time) {
-    return trail.map(function (_, pointIndex) { return wavedTrailPoint(pointIndex, time); });
+    var wavedTrail = trail.map(function (_, pointIndex) { return wavedTrailPoint(pointIndex, time); });
+    if (wavedTrail.length < 5) return wavedTrail;
+    return wavedTrail.map(function (point, pointIndex) {
+      if (pointIndex < 2 || pointIndex > wavedTrail.length - 3) return point;
+      return {
+        x: wavedTrail[pointIndex - 2].x * 0.1 + wavedTrail[pointIndex - 1].x * 0.2 + point.x * 0.4 + wavedTrail[pointIndex + 1].x * 0.2 + wavedTrail[pointIndex + 2].x * 0.1,
+        y: wavedTrail[pointIndex - 2].y * 0.1 + wavedTrail[pointIndex - 1].y * 0.2 + point.y * 0.4 + wavedTrail[pointIndex + 1].y * 0.2 + wavedTrail[pointIndex + 2].y * 0.1
+      };
+    });
+  }
+
+  function strokeSmoothTrailSegment(points, pointIndex) {
+    var previous = points[pointIndex - 1];
+    var current = points[pointIndex];
+    var next = points[Math.min(points.length - 1, pointIndex + 1)];
+    var startX = pointIndex === 1 ? previous.x : (previous.x + current.x) / 2;
+    var startY = pointIndex === 1 ? previous.y : (previous.y + current.y) / 2;
+    var endX = pointIndex === points.length - 1 ? current.x : (current.x + next.x) / 2;
+    var endY = pointIndex === points.length - 1 ? current.y : (current.y + next.y) / 2;
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.quadraticCurveTo(current.x, current.y, endX, endY);
+    ctx.stroke();
   }
 
   function drawCurvedIonTrail(time, visualTrail) {
@@ -258,20 +275,12 @@
     ctx.lineJoin = 'round';
     for (var pointIndex = 1; pointIndex < visualTrail.length; pointIndex++) {
       var proximity = pointIndex / (visualTrail.length - 1);
-      var previous = visualTrail[pointIndex - 1];
-      var current = visualTrail[pointIndex];
-      ctx.strokeStyle = 'rgba(100, 204, 229, ' + (0.16 * Math.pow(proximity, 2.2) * breathe) + ')';
+      ctx.strokeStyle = 'rgba(100, 204, 229, ' + (0.17 * Math.pow(proximity, 1.8) * breathe) + ')';
       ctx.lineWidth = 1.8 + 7.5 * proximity;
-      ctx.beginPath();
-      ctx.moveTo(previous.x, previous.y);
-      ctx.lineTo(current.x, current.y);
-      ctx.stroke();
-      ctx.strokeStyle = 'rgba(194, 239, 244, ' + (0.42 * Math.pow(proximity, 2.8) * breathe) + ')';
+      strokeSmoothTrailSegment(visualTrail, pointIndex);
+      ctx.strokeStyle = 'rgba(194, 239, 244, ' + (0.44 * Math.pow(proximity, 2.4) * breathe) + ')';
       ctx.lineWidth = 0.7 + 2.5 * proximity;
-      ctx.beginPath();
-      ctx.moveTo(previous.x, previous.y);
-      ctx.lineTo(current.x, current.y);
-      ctx.stroke();
+      strokeSmoothTrailSegment(visualTrail, pointIndex);
     }
     ctx.restore();
   }
@@ -363,9 +372,9 @@
     motionElapsed += deltaSeconds;
     var time = motionElapsed;
     computeTarget();
-    var follow = 1 - Math.exp(-2 * deltaSeconds);
+    var follow = 1 - Math.exp(-1.65 * deltaSeconds);
     var yStep = (targetY - head.y) * follow;
-    var maxStep = 10 * frameScale;
+    var maxStep = 8.2 * frameScale;
     head.y += Math.max(-maxStep, Math.min(maxStep, yStep));
     var deltaY = head.y - prevY;
     var speed = Math.abs(deltaY) / frameScale;

@@ -200,7 +200,11 @@ a.logo-chip:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 9px 2
 }
 .timeline__list { position: relative; z-index: 1; margin: 0; padding: 0; }
 /* proximity highlight: the card the comet head is passing behind lifts and glows */
-.tl-card { transition: box-shadow 0.6s ease, border-color 0.6s ease, transform 0.6s ease; }
+.tl-card {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  transition: box-shadow 0.6s ease, border-color 0.6s ease, transform 0.6s ease;
+}
 @media (min-width: 769px) {
   .tl-item.comet-near .tl-card {
     border-color: rgba(143, 205, 238, 0.95);

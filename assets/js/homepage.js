@@ -30,7 +30,7 @@
   var parts = [], trail = [], running = false, inView = false, resizeQueued = false, lastLitY = -999, userPaused = false;
   var travel = { x: 0, y: 1 }, travelSign = 1, lastFrameTime = 0, emissionCarry = 0, dirtyBounds = null;
   var itemPositions = [];
-  var SAFE = 60, pathAmplitude = 160, pathOriginY = 0, pathStartPhase = -Math.PI / 2;
+  var SAFE = 60, pathAmplitude = 160, pathOriginY = 0, pathStartX = SAFE, pathStartPhase = -Math.PI / 2;
   var motionElapsed = 0, headInitialized = false;
 
   function resize() {
@@ -69,6 +69,7 @@
       var firstDotRect = firstPosition.dot ? firstPosition.dot.getBoundingClientRect() : null;
       var firstDotX = firstDotRect ? firstDotRect.left + firstDotRect.width / 2 : SAFE;
       pathOriginY = firstPosition.center;
+      pathStartX = firstDotX - 4;
       pathAmplitude = Math.max(160, Math.min(cssW / 2 - SAFE, timelineW / 2 + 50));
       var startRatio = Math.max(-1, Math.min(1, (firstDotX - 28 - cssW / 2) / pathAmplitude));
       pathStartPhase = Math.asin(startRatio);
@@ -98,7 +99,14 @@
   }
 
   function pathX(y, time) {
-    return cssW / 2 + Math.sin((y - pathOriginY) * 0.005 + time * 0.05 + pathStartPhase) * pathAmplitude;
+    var relativeY = y - pathOriginY;
+    var flowingX = cssW / 2 + Math.sin(relativeY * 0.005 + time * 0.05 + pathStartPhase) * pathAmplitude;
+    var openingProgress = Math.max(0, Math.min(1, relativeY / 170));
+    if (openingProgress >= 1) return flowingX;
+    var easedProgress = openingProgress * openingProgress * (3 - 2 * openingProgress);
+    var openingAnchor = pathStartX + Math.sin(time * 0.05) * 3;
+    var leftHook = -46 * Math.pow(Math.sin(Math.PI * openingProgress), 2);
+    return openingAnchor + (flowingX - openingAnchor) * easedProgress + leftHook;
   }
 
   function computeTarget() {
@@ -133,26 +141,40 @@
     [0.36, 'rgba(82, 169, 204, 0.11)'],
     [1, 'rgba(47, 127, 179, 0)']
   ]);
+  var sparkSprite = makeGlowSprite([
+    [0, 'rgba(222, 249, 252, 0.96)'],
+    [0.2, 'rgba(128, 220, 237, 0.72)'],
+    [0.55, 'rgba(48, 164, 207, 0.2)'],
+    [1, 'rgba(34, 123, 182, 0)']
+  ]);
+  var emberSprite = makeGlowSprite([
+    [0, 'rgba(255, 244, 207, 0.9)'],
+    [0.24, 'rgba(239, 194, 112, 0.58)'],
+    [0.6, 'rgba(194, 129, 55, 0.14)'],
+    [1, 'rgba(166, 98, 40, 0)']
+  ]);
 
   function spawnOne(x, y, speed) {
     if (parts.length >= 300) return;
+    var spark = Math.random() < 0.18;
     var perpendicularX = -travel.y;
     var perpendicularY = travel.x;
-    var back = 10 + Math.random() * 54;
-    var spread = 5 + back * 0.24;
+    var back = spark ? 5 + Math.random() * 34 : 10 + Math.random() * 54;
+    var spread = spark ? 4 + back * 0.16 : 5 + back * 0.24;
     var side = (Math.random() - 0.5) * spread;
-    var drift = 0.24 + Math.random() * 0.5;
-    var turbulence = (Math.random() - 0.5) * 0.18;
+    var drift = spark ? 0.7 + Math.random() * 1.4 : 0.24 + Math.random() * 0.5;
+    var turbulence = (Math.random() - 0.5) * (spark ? 0.5 : 0.18);
     parts.push({
       x: x - travel.x * back + perpendicularX * side,
       y: y - travel.y * back + perpendicularY * side,
       vx: -travel.x * drift + perpendicularX * turbulence,
       vy: -travel.y * drift + perpendicularY * turbulence,
-      drag: 0.986,
+      drag: spark ? 0.97 : 0.986,
       life: 1,
-      decay: 0.007 + Math.random() * 0.006,
-      size: 2.4 + Math.random() * 3.8,
-      warm: Math.random() < 0.2,
+      decay: spark ? 0.014 + Math.random() * 0.016 : 0.007 + Math.random() * 0.006,
+      size: spark ? 1.5 + Math.random() * 2 : 2.4 + Math.random() * 3.8,
+      spark: spark,
+      warm: spark && Math.random() < 0.24,
       speedBoost: Math.min(0.35, speed * 0.012)
     });
   }
@@ -175,9 +197,9 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     var layers = [
-      { farWidth: 54, nearWidth: 20, alpha: 0.026, color: '73, 138, 173' },
-      { farWidth: 32, nearWidth: 13, alpha: 0.047, color: '75, 165, 198' },
-      { farWidth: 14, nearWidth: 8, alpha: 0.075, color: '136, 201, 218' }
+      { farWidth: 54, nearWidth: 20, alpha: 0.032, color: '73, 138, 173' },
+      { farWidth: 32, nearWidth: 13, alpha: 0.065, color: '75, 165, 198' },
+      { farWidth: 14, nearWidth: 7, alpha: 0.18, color: '136, 201, 218' }
     ];
     layers.forEach(function (tailLayer) {
       for (var pointIndex = 1; pointIndex < trail.length; pointIndex++) {
@@ -209,8 +231,8 @@
 
     var streamGradient = ctx.createLinearGradient(-length, 0, 8, 0);
     streamGradient.addColorStop(0, 'rgba(70, 143, 181, 0)');
-    streamGradient.addColorStop(0.58, 'rgba(71, 158, 194, ' + (0.035 * breathe) + ')');
-    streamGradient.addColorStop(1, 'rgba(128, 199, 217, ' + (0.16 * breathe) + ')');
+    streamGradient.addColorStop(0.58, 'rgba(71, 158, 194, ' + (0.06 * breathe) + ')');
+    streamGradient.addColorStop(1, 'rgba(135, 210, 224, ' + (0.34 * breathe) + ')');
     ctx.fillStyle = streamGradient;
     ctx.beginPath();
     ctx.moveTo(8, -8);
@@ -220,25 +242,46 @@
     ctx.closePath();
     ctx.fill();
 
+    var filamentGradient = ctx.createLinearGradient(-length, 0, 2, 0);
+    filamentGradient.addColorStop(0, 'rgba(117, 208, 236, 0)');
+    filamentGradient.addColorStop(0.64, 'rgba(91, 198, 226, ' + (0.13 * breathe) + ')');
+    filamentGradient.addColorStop(1, 'rgba(190, 239, 244, ' + (0.62 * breathe) + ')');
+    ctx.strokeStyle = filamentGradient;
+    ctx.lineWidth = 1.15;
+    ctx.beginPath();
+    ctx.moveTo(-length, 0);
+    ctx.lineTo(2, 0);
+    ctx.stroke();
+
     ctx.scale(1.28, 0.88);
     var coma = ctx.createRadialGradient(4, 0, 0, -3, 0, 25);
-    coma.addColorStop(0, 'rgba(154, 214, 227, ' + (0.24 * breathe) + ')');
-    coma.addColorStop(0.34, 'rgba(97, 184, 211, ' + (0.15 * breathe) + ')');
-    coma.addColorStop(0.72, 'rgba(59, 148, 192, ' + (0.055 * breathe) + ')');
+    coma.addColorStop(0, 'rgba(164, 226, 235, ' + (0.42 * breathe) + ')');
+    coma.addColorStop(0.34, 'rgba(93, 192, 215, ' + (0.24 * breathe) + ')');
+    coma.addColorStop(0.72, 'rgba(48, 151, 194, ' + (0.08 * breathe) + ')');
     coma.addColorStop(1, 'rgba(47, 127, 179, 0)');
     ctx.fillStyle = coma;
     ctx.beginPath();
     ctx.arc(0, 0, 25, 0, Math.PI * 2);
     ctx.fill();
 
-    var softCore = ctx.createRadialGradient(4, 0, 0, 0, 0, 12);
-    softCore.addColorStop(0, 'rgba(177, 226, 235, ' + (0.38 * breathe) + ')');
-    softCore.addColorStop(0.34, 'rgba(126, 205, 221, ' + (0.24 * breathe) + ')');
-    softCore.addColorStop(0.72, 'rgba(76, 168, 201, ' + (0.09 * breathe) + ')');
+    var softCore = ctx.createRadialGradient(4, 0, 0, 0, 0, 14);
+    softCore.addColorStop(0, 'rgba(194, 239, 244, ' + (0.78 * breathe) + ')');
+    softCore.addColorStop(0.34, 'rgba(116, 211, 226, ' + (0.52 * breathe) + ')');
+    softCore.addColorStop(0.72, 'rgba(50, 165, 205, ' + (0.2 * breathe) + ')');
     softCore.addColorStop(1, 'rgba(47, 127, 179, 0)');
     ctx.fillStyle = softCore;
     ctx.beginPath();
-    ctx.arc(0, 0, 12, 0, Math.PI * 2);
+    ctx.arc(0, 0, 14, 0, Math.PI * 2);
+    ctx.fill();
+
+    var hotCore = ctx.createRadialGradient(3, -1, 0, 1, 0, 9);
+    hotCore.addColorStop(0, 'rgba(218, 248, 248, ' + (0.98 * breathe) + ')');
+    hotCore.addColorStop(0.32, 'rgba(156, 230, 238, ' + (0.78 * breathe) + ')');
+    hotCore.addColorStop(0.72, 'rgba(65, 184, 215, ' + (0.28 * breathe) + ')');
+    hotCore.addColorStop(1, 'rgba(42, 144, 193, 0)');
+    ctx.fillStyle = hotCore;
+    ctx.beginPath();
+    ctx.arc(0, 0, 9, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
   }
@@ -333,12 +376,12 @@
       var radius = Math.max(0.8, particle.size * (0.48 + particle.life));
       ctx.save();
       ctx.globalCompositeOperation = 'source-over';
-      ctx.globalAlpha = Math.pow(particle.life, 1.7) * 0.22;
+      ctx.globalAlpha = Math.pow(particle.life, particle.spark ? 1.25 : 1.7) * (particle.spark ? 0.82 : 0.25);
       ctx.translate(particle.x, particle.y);
       ctx.rotate(Math.atan2(particle.vy, particle.vx));
-      ctx.scale(1 + particle.speedBoost, 0.82);
-      if (particle.warm) ctx.globalAlpha *= 0.55;
-      ctx.drawImage(mistSprite, -radius, -radius, radius * 2, radius * 2);
+      ctx.scale(1 + particle.speedBoost + (particle.spark ? 0.3 : 0), particle.spark ? 0.52 : 0.82);
+      var particleSprite = particle.warm ? emberSprite : (particle.spark ? sparkSprite : mistSprite);
+      ctx.drawImage(particleSprite, -radius, -radius, radius * 2, radius * 2);
       ctx.restore();
     }
 

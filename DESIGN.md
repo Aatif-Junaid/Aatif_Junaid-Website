@@ -7,7 +7,7 @@ This file defines how aatifmulla.me should look and behave. Read it before visib
 This is a recruiter-facing GTM and Product Growth portfolio. It should feel warm, editorial, evidence-led, and technically credible. The site is a targeted evolution of its existing identity, not a template or a brand imitation.
 
 - Design variance: 6/10. Editorial composition with controlled asymmetry.
-- Motion intensity: 4/10. Fluid but restrained.
+- Motion intensity: 6/10 on the homepage, concentrated almost entirely in the comet. Supporting motion remains restrained.
 - Visual density: 5/10. Scannable proof with enough detail for a hiring manager.
 
 The warm editorial hierarchy is informed by the Claude design analysis in Awesome DESIGN.md. Only general principles are adapted. Keep Aatif's blue palette, copy, assets, and original visual identity. Do not copy Anthropic colors, marks, illustrations, layouts, or proprietary typefaces.
@@ -67,7 +67,11 @@ Use flat editorial bands, hairlines, and spacing before adding another tile. Rea
 
 ## Motion
 
-The comet communicates career progression and remains the site's signature motion. Do not add a dotted trajectory. Preserve its established particle density and pause it when off-screen.
+The comet communicates career progression and remains the site's signature motion. It launches beside `Let me show you`, travels through intentional open space around the Experience cards, and ends with Experience. It does not continue through Education, later homepage sections, or Case Studies. Do not add a dotted trajectory. Preserve its established particle density and pause it when off-screen.
+
+On screens below 768px, do not render the comet. Mobile uses a quiet active-card treatment with solid surfaces and no large neon glow so the reading experience stays light and stable. Under reduced motion on larger screens, preserve the comet as a static high-fidelity composition rather than removing it.
+
+Blue luminosity belongs primarily to the comet and the card it is actively passing. Keep the hero, section labels, inactive cards, and supporting animations visually quieter so they do not compete with it.
 
 Other motion supports hierarchy or feedback only:
 

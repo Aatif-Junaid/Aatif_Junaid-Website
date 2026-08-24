@@ -67,7 +67,7 @@ Use flat editorial bands, hairlines, and spacing before adding another tile. Rea
 
 ## Motion
 
-The comet communicates career progression and remains the site's signature motion. It begins beside the first Experience marker, aligned with the first role's date, then follows its original spiraling movement behind the balanced, full-width Experience stack. Its head reads as a compact, shaded mineral nucleus inside a controlled icy coma. A narrow cyan ion tail points away from its movement while a wider warm-gold dust tail follows the curve, fans outward, and breaks into visible grains. Keep the core and both tails visually distinct. Do not add a dotted trajectory or carry the comet onto other pages. Keep the effect smooth, pause it when off-screen, and isolate its visual intensity from the rest of the interface.
+The comet communicates career progression and remains the site's signature motion. It begins beside the first Experience marker, aligned with the first role's date, then follows its original spiraling movement behind the balanced, full-width Experience stack. Render it as one soft atmospheric form: a low-contrast coma that blends directly into a tapered blue stream and sparse mist. Do not use a hard nucleus, flare, dense particle cone, dotted trajectory, or separate tail colors. Keep its glide slow, its opacity low, and its drawing work lightweight. Do not carry it onto other pages. Pause it when off-screen and isolate its visual intensity from the rest of the interface.
 
 Other motion supports hierarchy or feedback only:
 

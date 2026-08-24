@@ -43,7 +43,6 @@
       timelineW = 0;
       itemPositions = [];
       parts.length = 0;
-      fragments.length = 0;
       trail.length = 0;
       dirtyBounds = null;
       canvas.width = 1;
@@ -99,7 +98,7 @@
   }
 
   function pathX(y, time) {
-    return cssW / 2 + Math.sin((y - pathOriginY) * 0.005 + time * 0.12 + pathStartPhase) * pathAmplitude;
+    return cssW / 2 + Math.sin((y - pathOriginY) * 0.005 + time * 0.05 + pathStartPhase) * pathAmplitude;
   }
 
   function computeTarget() {
@@ -129,68 +128,33 @@
     return sprite;
   }
 
-  var glowSprites = {
-    dust: makeGlowSprite([[0, 'rgba(255, 238, 194, 0.46)'], [0.28, 'rgba(238, 205, 142, 0.2)'], [1, 'rgba(220, 186, 124, 0)']]),
-    ion: makeGlowSprite([[0, 'rgba(190, 239, 255, 0.66)'], [0.3, 'rgba(72, 189, 238, 0.28)'], [1, 'rgba(40, 135, 210, 0)']]),
-    spark: makeGlowSprite([[0, 'rgba(224, 247, 255, 0.82)'], [0.25, 'rgba(126, 213, 244, 0.34)'], [1, 'rgba(62, 151, 215, 0)']])
-  };
+  var mistSprite = makeGlowSprite([
+    [0, 'rgba(151, 211, 226, 0.28)'],
+    [0.36, 'rgba(82, 169, 204, 0.11)'],
+    [1, 'rgba(47, 127, 179, 0)']
+  ]);
 
   function spawnOne(x, y, speed) {
-    if (parts.length >= 720) return;
-    var kindRoll = Math.random();
-    var kind = kindRoll < 0.38 ? 'dust' : (kindRoll < 0.8 ? 'ion' : 'spark');
+    if (parts.length >= 180) return;
     var perpendicularX = -travel.y;
     var perpendicularY = travel.x;
-    var back = kind === 'dust' ? 7 + Math.random() * 38 : 4 + Math.random() * (kind === 'ion' ? 18 : 12);
-    var spread = kind === 'dust' ? 12 + back * 0.85 : (kind === 'ion' ? 9 : 6);
+    var back = 10 + Math.random() * 54;
+    var spread = 5 + back * 0.24;
     var side = (Math.random() - 0.5) * spread;
-    var drift = kind === 'dust' ? 0.45 + Math.random() * 0.85 : (kind === 'ion' ? 1.05 + Math.random() * 1.7 : 1.8 + Math.random() * 2.8);
-    var turbulence = (Math.random() - 0.5) * (kind === 'dust' ? 0.5 : 0.55);
-    var noiseStrength = kind === 'dust' ? 0.15 + Math.random() * 0.22 : 0;
+    var drift = 0.24 + Math.random() * 0.5;
+    var turbulence = (Math.random() - 0.5) * 0.18;
     parts.push({
       x: x - travel.x * back + perpendicularX * side,
       y: y - travel.y * back + perpendicularY * side,
       vx: -travel.x * drift + perpendicularX * turbulence,
       vy: -travel.y * drift + perpendicularY * turbulence,
-      drag: kind === 'dust' ? 0.989 : (kind === 'ion' ? 0.974 : 0.95),
+      drag: 0.986,
       life: 1,
-      decay: kind === 'dust' ? 0.0045 + Math.random() * 0.0035 : (kind === 'ion' ? 0.009 + Math.random() * 0.008 : 0.024 + Math.random() * 0.018),
-      size: kind === 'dust' ? 4 + Math.random() * 6 : (kind === 'ion' ? 1.7 + Math.random() * 3 : 1.2 + Math.random() * 2.2),
-      kind: kind,
-      speedBoost: Math.min(1.35, speed * 0.022),
-      noisePhase: Math.random() * Math.PI * 2,
-      noiseX: perpendicularX * noiseStrength,
-      noiseY: perpendicularY * noiseStrength
+      decay: 0.007 + Math.random() * 0.006,
+      size: 2.4 + Math.random() * 3.8,
+      warm: Math.random() < 0.2,
+      speedBoost: Math.min(0.35, speed * 0.012)
     });
-  }
-
-  var fragments = [];
-  function spawnFragment(x, y) {
-    if (fragments.length >= 12) return;
-    var side = Math.random() < 0.5 ? -1 : 1;
-    var perpendicularX = -travel.y;
-    var perpendicularY = travel.x;
-    var outward = side * (0.7 + Math.random() * 1.5);
-    var backward = 0.9 + Math.random() * 1.8;
-    fragments.push({
-      x: x,
-      y: y,
-      vx: perpendicularX * outward - travel.x * backward,
-      vy: perpendicularY * outward - travel.y * backward,
-      life: 1,
-      decay: 0.007 + Math.random() * 0.010,
-      size: 2 + Math.random() * 2.6
-    });
-  }
-
-  function layer(radius, centerColor, edgeColor) {
-    var gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius);
-    gradient.addColorStop(0, centerColor);
-    gradient.addColorStop(1, edgeColor);
-    ctx.fillStyle = gradient;
-    ctx.beginPath();
-    ctx.arc(0, 0, radius, 0, Math.PI * 2);
-    ctx.fill();
   }
 
   function recordTrail() {
@@ -211,27 +175,23 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     var layers = [
-      { farWidth: 68, nearWidth: 11, alpha: 0.045, color: '205, 166, 100', offset: 18 },
-      { farWidth: 36, nearWidth: 6, alpha: 0.09, color: '232, 196, 128', offset: 11 },
-      { farWidth: 13, nearWidth: 2.8, alpha: 0.17, color: '255, 225, 169', offset: 5 }
+      { farWidth: 48, nearWidth: 17, alpha: 0.026, color: '73, 138, 173' },
+      { farWidth: 28, nearWidth: 11, alpha: 0.047, color: '75, 165, 198' },
+      { farWidth: 12, nearWidth: 6, alpha: 0.075, color: '136, 201, 218' }
     ];
     layers.forEach(function (tailLayer) {
       for (var pointIndex = 1; pointIndex < trail.length; pointIndex++) {
         var proximity = pointIndex / (trail.length - 1);
         var distance = 1 - proximity;
-        var noise = 0.62 + 0.2 * Math.sin(pointIndex * 1.73 + time * 2.1) + 0.12 * Math.sin(pointIndex * 3.91 - time * 1.4);
-        var breakup = 0.7 + 0.3 * Math.sin(pointIndex * 5.17 + time * 0.8);
+        var breathe = 0.88 + 0.12 * Math.sin(pointIndex * 0.7 + time * 0.5);
         var previous = trail[pointIndex - 1];
         var current = trail[pointIndex];
-        var previousDistance = 1 - ((pointIndex - 1) / (trail.length - 1));
-        var previousOffset = Math.sin(previousDistance * Math.PI) * tailLayer.offset;
-        var currentOffset = Math.sin(distance * Math.PI) * tailLayer.offset;
-        var alpha = tailLayer.alpha * Math.pow(proximity, 1.55) * Math.max(0.18, noise) * breakup;
+        var alpha = tailLayer.alpha * Math.pow(proximity, 1.8) * breathe;
         ctx.strokeStyle = 'rgba(' + tailLayer.color + ', ' + alpha + ')';
         ctx.lineWidth = tailLayer.nearWidth + (tailLayer.farWidth - tailLayer.nearWidth) * distance;
         ctx.beginPath();
-        ctx.moveTo(previous.x - travel.y * previousOffset, previous.y + travel.x * previousOffset);
-        ctx.lineTo(current.x - travel.y * currentOffset, current.y + travel.x * currentOffset);
+        ctx.moveTo(previous.x, previous.y);
+        ctx.lineTo(current.x, current.y);
         ctx.stroke();
       }
     });
@@ -240,56 +200,49 @@
 
   function drawIonTail(speed, time) {
     var angle = Math.atan2(travel.y, travel.x);
-    var length = 165 + Math.min(95, speed * 3.6);
-    var shimmer = 0.92 + 0.08 * Math.sin(time * 2.8);
+    var length = 138 + Math.min(28, speed * 1.4);
+    var breathe = 0.96 + 0.04 * Math.sin(time * 0.8);
     ctx.save();
     ctx.globalCompositeOperation = 'source-over';
     ctx.translate(head.x, head.y);
     ctx.rotate(angle);
 
-    var ionGradient = ctx.createLinearGradient(-length, 0, 3, 0);
-    ionGradient.addColorStop(0, 'rgba(85, 170, 255, 0)');
-    ionGradient.addColorStop(0.48, 'rgba(33, 143, 211, ' + (0.045 * shimmer) + ')');
-    ionGradient.addColorStop(0.84, 'rgba(52, 181, 229, ' + (0.15 * shimmer) + ')');
-    ionGradient.addColorStop(1, 'rgba(117, 218, 246, ' + (0.34 * shimmer) + ')');
-    ctx.fillStyle = ionGradient;
+    var streamGradient = ctx.createLinearGradient(-length, 0, 8, 0);
+    streamGradient.addColorStop(0, 'rgba(70, 143, 181, 0)');
+    streamGradient.addColorStop(0.58, 'rgba(71, 158, 194, ' + (0.035 * breathe) + ')');
+    streamGradient.addColorStop(1, 'rgba(128, 199, 217, ' + (0.16 * breathe) + ')');
+    ctx.fillStyle = streamGradient;
     ctx.beginPath();
-    ctx.moveTo(4, -3.8);
-    ctx.quadraticCurveTo(-length * 0.46, -3.2, -length, -0.8);
-    ctx.lineTo(-length, 0.8);
-    ctx.quadraticCurveTo(-length * 0.46, 3.2, 4, 3.8);
+    ctx.moveTo(8, -8);
+    ctx.quadraticCurveTo(-length * 0.42, -5, -length, -1);
+    ctx.lineTo(-length, 1);
+    ctx.quadraticCurveTo(-length * 0.42, 5, 8, 8);
     ctx.closePath();
     ctx.fill();
 
-    var filamentGradient = ctx.createLinearGradient(-length, 0, 0, 0);
-    filamentGradient.addColorStop(0, 'rgba(150, 225, 255, 0)');
-    filamentGradient.addColorStop(0.62, 'rgba(74, 191, 232, ' + (0.1 * shimmer) + ')');
-    filamentGradient.addColorStop(1, 'rgba(143, 229, 249, ' + (0.48 * shimmer) + ')');
-    ctx.strokeStyle = filamentGradient;
-    ctx.lineWidth = 1.1;
+    ctx.scale(1.28, 0.88);
+    var coma = ctx.createRadialGradient(4, 0, 0, -3, 0, 25);
+    coma.addColorStop(0, 'rgba(154, 214, 227, ' + (0.24 * breathe) + ')');
+    coma.addColorStop(0.34, 'rgba(97, 184, 211, ' + (0.15 * breathe) + ')');
+    coma.addColorStop(0.72, 'rgba(59, 148, 192, ' + (0.055 * breathe) + ')');
+    coma.addColorStop(1, 'rgba(47, 127, 179, 0)');
+    ctx.fillStyle = coma;
     ctx.beginPath();
-    ctx.moveTo(-length, 0);
-    ctx.lineTo(1, 0);
-    ctx.stroke();
+    ctx.arc(0, 0, 25, 0, Math.PI * 2);
+    ctx.fill();
     ctx.restore();
   }
 
   function updateDirtyBounds() {
-    var minX = head.x - 340;
-    var maxX = head.x + 340;
-    var minY = head.y - 340;
-    var maxY = head.y + 340;
+    var minX = head.x - 220;
+    var maxX = head.x + 220;
+    var minY = head.y - 220;
+    var maxY = head.y + 220;
     parts.forEach(function (particle) {
       minX = Math.min(minX, particle.x - 80);
       maxX = Math.max(maxX, particle.x + 80);
       minY = Math.min(minY, particle.y - 80);
       maxY = Math.max(maxY, particle.y + 80);
-    });
-    fragments.forEach(function (fragment) {
-      minX = Math.min(minX, fragment.x - 40);
-      maxX = Math.max(maxX, fragment.x + 40);
-      minY = Math.min(minY, fragment.y - 40);
-      maxY = Math.max(maxY, fragment.y + 40);
     });
     trail.forEach(function (point) {
       minX = Math.min(minX, point.x - 80);
@@ -316,9 +269,9 @@
     motionElapsed += deltaSeconds;
     var time = motionElapsed;
     computeTarget();
-    var follow = 1 - Math.exp(-4.6 * deltaSeconds);
+    var follow = 1 - Math.exp(-2 * deltaSeconds);
     var yStep = (targetY - head.y) * follow;
-    var maxStep = 24 * frameScale;
+    var maxStep = 10 * frameScale;
     head.y += Math.max(-maxStep, Math.min(maxStep, yStep));
     var deltaY = head.y - prevY;
     var speed = Math.abs(deltaY) / frameScale;
@@ -336,7 +289,7 @@
     var tangentLength = Math.hypot(tangentX, tangentProbe) || 1;
     var targetTravelX = tangentX / tangentLength;
     var targetTravelY = tangentProbe / tangentLength;
-    var directionBlend = 1 - Math.exp(-9 * deltaSeconds);
+    var directionBlend = 1 - Math.exp(-5 * deltaSeconds);
     travel.x += (targetTravelX - travel.x) * directionBlend;
     travel.y += (targetTravelY - travel.y) * directionBlend;
     var travelLength = Math.hypot(travel.x, travel.y) || 1;
@@ -345,27 +298,20 @@
     lightNodes(head.y);
     recordTrail();
 
-    var emissionRate = 380 + Math.min(300, speed * 15 + Math.abs(horizontalVelocity) * 10);
+    var emissionRate = 72 + Math.min(38, speed * 2.5 + Math.abs(horizontalVelocity) * 1.5);
     emissionCarry += emissionRate * deltaSeconds;
-    var emit = Math.min(18, Math.floor(emissionCarry));
+    var emit = Math.min(3, Math.floor(emissionCarry));
     emissionCarry -= emit;
     for (var emitted = 0; emitted < emit; emitted++) {
       spawnOne(head.x, head.y, speed);
     }
-    if (Math.random() < (0.06 + Math.min(0.2, speed * 0.02)) * frameScale) {
-      spawnFragment(head.x, head.y);
-    }
-
     if (dirtyBounds) ctx.clearRect(dirtyBounds.x, dirtyBounds.y, dirtyBounds.width, dirtyBounds.height);
     drawDustTail(time);
-    drawIonTail(speed, time);
 
     for (var i = parts.length - 1; i >= 0; i--) {
       var particle = parts[i];
-      particle.noisePhase += 0.08 * frameScale;
-      var particleNoise = Math.sin(particle.noisePhase) * frameScale;
-      particle.x += particle.vx * frameScale + particle.noiseX * particleNoise;
-      particle.y += particle.vy * frameScale + particle.noiseY * particleNoise;
+      particle.x += particle.vx * frameScale;
+      particle.y += particle.vy * frameScale;
       particle.vx *= Math.pow(particle.drag, frameScale);
       particle.vy *= Math.pow(particle.drag, frameScale);
       particle.life -= particle.decay * frameScale;
@@ -374,122 +320,19 @@
         parts.pop();
         continue;
       }
-      var velocityLength = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy) || 0.001;
       var radius = Math.max(0.8, particle.size * (0.48 + particle.life));
-      var stretch = 1 + Math.min(particle.kind === 'dust' ? 1.1 : 3.2, velocityLength * (particle.kind === 'dust' ? 0.55 : 1.15) + particle.speedBoost);
-      ctx.save();
-      ctx.globalAlpha = Math.pow(particle.life, 1.48) * (particle.kind === 'dust' ? 0.68 : 0.78);
-      ctx.translate(particle.x, particle.y);
-      ctx.rotate(Math.atan2(particle.vy, particle.vx));
-      if (particle.kind === 'dust') {
-        var grain = Math.max(0.55, Math.min(2.2, radius * 0.22));
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.fillStyle = particle.life > 0.58 ? '#e4bf79' : '#c99c50';
-        ctx.beginPath();
-        ctx.ellipse(0, 0, grain * stretch, grain, 0, 0, Math.PI * 2);
-        ctx.fill();
-        if (particle.life > 0.72) {
-          ctx.globalAlpha *= 0.22;
-          ctx.drawImage(glowSprites.dust, -radius, -radius, radius * 2, radius * 2);
-        }
-      } else {
-        ctx.globalCompositeOperation = particle.kind === 'spark' ? 'lighter' : 'source-over';
-        ctx.scale(stretch, 1);
-        ctx.drawImage(glowSprites[particle.kind], -radius, -radius, radius * 2, radius * 2);
-      }
-      ctx.restore();
-    }
-
-    for (var fragmentIndex = fragments.length - 1; fragmentIndex >= 0; fragmentIndex--) {
-      var fragment = fragments[fragmentIndex];
-      fragment.x += fragment.vx * frameScale;
-      fragment.y += fragment.vy * frameScale;
-      fragment.vx *= Math.pow(0.99, frameScale);
-      fragment.vy *= Math.pow(0.988, frameScale);
-      fragment.life -= fragment.decay * frameScale;
-      if (fragment.life <= 0) {
-        fragments[fragmentIndex] = fragments[fragments.length - 1];
-        fragments.pop();
-        continue;
-      }
-      if (parts.length < 700 && Math.random() < 0.62 * Math.min(1, frameScale)) {
-        parts.push({
-          x: fragment.x,
-          y: fragment.y,
-          vx: -travel.x * (0.7 + Math.random()) + (Math.random() - 0.5) * 0.3,
-          vy: -travel.y * (0.7 + Math.random()) + (Math.random() - 0.5) * 0.3,
-          drag: 0.95,
-          life: 0.7 * fragment.life,
-          decay: 0.02 + Math.random() * 0.02,
-          size: 0.9 + Math.random() * 1.5,
-          kind: Math.random() < 0.72 ? 'ion' : 'spark',
-          speedBoost: 0.4,
-          noisePhase: Math.random() * Math.PI * 2,
-          noiseX: 0,
-          noiseY: 0
-        });
-      }
-      var fragmentRadius = fragment.size * 3.2;
       ctx.save();
       ctx.globalCompositeOperation = 'source-over';
-      ctx.globalAlpha = fragment.life * 0.62;
-      ctx.translate(fragment.x, fragment.y);
-      ctx.rotate(Math.atan2(fragment.vy, fragment.vx));
-      ctx.scale(2.2, 1);
-      ctx.drawImage(glowSprites.spark, -fragmentRadius, -fragmentRadius, fragmentRadius * 2, fragmentRadius * 2);
+      ctx.globalAlpha = Math.pow(particle.life, 1.7) * 0.18;
+      ctx.translate(particle.x, particle.y);
+      ctx.rotate(Math.atan2(particle.vy, particle.vx));
+      ctx.scale(1 + particle.speedBoost, 0.82);
+      if (particle.warm) ctx.globalAlpha *= 0.55;
+      ctx.drawImage(mistSprite, -radius, -radius, radius * 2, radius * 2);
       ctx.restore();
     }
 
-    var travelAngle = Math.atan2(travel.y, travel.x);
-    var pulse = 0.98 + 0.02 * Math.sin(time * 3.2);
-    var coreX = head.x + travel.x * 4;
-    var coreY = head.y + travel.y * 4;
-
-    ctx.save();
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.translate(head.x, head.y);
-    ctx.rotate(travelAngle);
-    ctx.scale(1.08, 1);
-    layer(52, 'rgba(49, 142, 202, ' + (0.055 * pulse) + ')', 'rgba(47, 127, 179, 0)');
-    layer(35, 'rgba(48, 169, 222, ' + (0.1 * pulse) + ')', 'rgba(54, 151, 210, 0)');
-    layer(23, 'rgba(101, 206, 237, ' + (0.18 * pulse) + ')', 'rgba(67, 174, 222, 0)');
-    ctx.restore();
-
-    ctx.save();
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.globalAlpha = 0.52 * pulse;
-    ctx.translate(coreX, coreY);
-    ctx.rotate(travelAngle);
-    ctx.scale(1.06, 1);
-    ctx.drawImage(glowSprites.ion, -16, -16, 32, 32);
-    ctx.restore();
-
-    ctx.save();
-    ctx.globalCompositeOperation = 'source-over';
-    var coreGradient = ctx.createRadialGradient(coreX - 2.1, coreY - 2.3, 0.6, coreX, coreY, 6.2);
-    coreGradient.addColorStop(0, '#d9edf1');
-    coreGradient.addColorStop(0.28, '#8fc2d0');
-    coreGradient.addColorStop(0.68, '#4d8295');
-    coreGradient.addColorStop(1, '#244f66');
-    ctx.fillStyle = coreGradient;
-    ctx.beginPath();
-    ctx.arc(coreX, coreY, 5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(125, 213, 235, 0.72)';
-    ctx.lineWidth = 0.8;
-    ctx.stroke();
-
-    ctx.translate(coreX, coreY);
-    ctx.rotate(travelAngle);
-    ctx.fillStyle = 'rgba(26, 66, 84, 0.48)';
-    ctx.beginPath();
-    ctx.ellipse(-1.1, 1.5, 1.35, 0.75, -0.45, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = 'rgba(220, 244, 246, 0.76)';
-    ctx.beginPath();
-    ctx.arc(1.4, -1.5, 1.05, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
+    drawIonTail(speed, time);
 
     updateDirtyBounds();
     if (running) requestAnimationFrame(frame);

@@ -14,6 +14,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Defined the Experience comet with a shaded nucleus, controlled bloom, separate ion and dust tails, and granular dissipation.
 - Shared CSS moved to `assets/css/site.css`.
 - Shared page behavior moved to `assets/js/site.js`.
 - CI Actions are pinned to immutable commits.

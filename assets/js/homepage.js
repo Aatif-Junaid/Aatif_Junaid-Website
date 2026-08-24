@@ -130,9 +130,9 @@
   }
 
   var glowSprites = {
-    dust: makeGlowSprite([[0, 'rgba(255, 250, 230, 0.72)'], [0.48, 'rgba(248, 229, 184, 0.32)'], [1, 'rgba(228, 205, 158, 0)']]),
-    ion: makeGlowSprite([[0, 'rgba(195, 238, 255, 0.92)'], [0.42, 'rgba(105, 203, 255, 0.52)'], [1, 'rgba(65, 160, 248, 0)']]),
-    spark: makeGlowSprite([[0, 'rgba(255, 255, 255, 1)'], [0.34, 'rgba(185, 235, 255, 0.82)'], [1, 'rgba(90, 185, 255, 0)']])
+    dust: makeGlowSprite([[0, 'rgba(255, 238, 194, 0.46)'], [0.28, 'rgba(238, 205, 142, 0.2)'], [1, 'rgba(220, 186, 124, 0)']]),
+    ion: makeGlowSprite([[0, 'rgba(190, 239, 255, 0.66)'], [0.3, 'rgba(72, 189, 238, 0.28)'], [1, 'rgba(40, 135, 210, 0)']]),
+    spark: makeGlowSprite([[0, 'rgba(224, 247, 255, 0.82)'], [0.25, 'rgba(126, 213, 244, 0.34)'], [1, 'rgba(62, 151, 215, 0)']])
   };
 
   function spawnOne(x, y, speed) {
@@ -207,26 +207,31 @@
   function drawDustTail(time) {
     if (trail.length < 3) return;
     ctx.save();
-    ctx.globalCompositeOperation = 'lighter';
+    ctx.globalCompositeOperation = 'source-over';
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     var layers = [
-      { farWidth: 68, nearWidth: 13, alpha: 0.1, color: '236, 215, 176' },
-      { farWidth: 38, nearWidth: 7, alpha: 0.22, color: '255, 239, 205' },
-      { farWidth: 14, nearWidth: 3.5, alpha: 0.36, color: '255, 250, 232' }
+      { farWidth: 68, nearWidth: 11, alpha: 0.045, color: '205, 166, 100', offset: 18 },
+      { farWidth: 36, nearWidth: 6, alpha: 0.09, color: '232, 196, 128', offset: 11 },
+      { farWidth: 13, nearWidth: 2.8, alpha: 0.17, color: '255, 225, 169', offset: 5 }
     ];
     layers.forEach(function (tailLayer) {
       for (var pointIndex = 1; pointIndex < trail.length; pointIndex++) {
         var proximity = pointIndex / (trail.length - 1);
         var distance = 1 - proximity;
-        var noise = 0.78 + 0.14 * Math.sin(pointIndex * 1.73 + time * 2.1) + 0.08 * Math.sin(pointIndex * 3.91 - time * 1.4);
+        var noise = 0.62 + 0.2 * Math.sin(pointIndex * 1.73 + time * 2.1) + 0.12 * Math.sin(pointIndex * 3.91 - time * 1.4);
+        var breakup = 0.7 + 0.3 * Math.sin(pointIndex * 5.17 + time * 0.8);
         var previous = trail[pointIndex - 1];
         var current = trail[pointIndex];
-        ctx.strokeStyle = 'rgba(' + tailLayer.color + ', ' + (tailLayer.alpha * Math.pow(proximity, 1.35) * noise) + ')';
+        var previousDistance = 1 - ((pointIndex - 1) / (trail.length - 1));
+        var previousOffset = Math.sin(previousDistance * Math.PI) * tailLayer.offset;
+        var currentOffset = Math.sin(distance * Math.PI) * tailLayer.offset;
+        var alpha = tailLayer.alpha * Math.pow(proximity, 1.55) * Math.max(0.18, noise) * breakup;
+        ctx.strokeStyle = 'rgba(' + tailLayer.color + ', ' + alpha + ')';
         ctx.lineWidth = tailLayer.nearWidth + (tailLayer.farWidth - tailLayer.nearWidth) * distance;
         ctx.beginPath();
-        ctx.moveTo(previous.x, previous.y);
-        ctx.lineTo(current.x, current.y);
+        ctx.moveTo(previous.x - travel.y * previousOffset, previous.y + travel.x * previousOffset);
+        ctx.lineTo(current.x - travel.y * currentOffset, current.y + travel.x * currentOffset);
         ctx.stroke();
       }
     });
@@ -238,30 +243,30 @@
     var length = 165 + Math.min(95, speed * 3.6);
     var shimmer = 0.92 + 0.08 * Math.sin(time * 2.8);
     ctx.save();
-    ctx.globalCompositeOperation = 'lighter';
+    ctx.globalCompositeOperation = 'source-over';
     ctx.translate(head.x, head.y);
     ctx.rotate(angle);
 
     var ionGradient = ctx.createLinearGradient(-length, 0, 3, 0);
     ionGradient.addColorStop(0, 'rgba(85, 170, 255, 0)');
-    ionGradient.addColorStop(0.48, 'rgba(85, 180, 255, ' + (0.055 * shimmer) + ')');
-    ionGradient.addColorStop(0.84, 'rgba(125, 215, 255, ' + (0.22 * shimmer) + ')');
-    ionGradient.addColorStop(1, 'rgba(205, 245, 255, ' + (0.58 * shimmer) + ')');
+    ionGradient.addColorStop(0.48, 'rgba(33, 143, 211, ' + (0.045 * shimmer) + ')');
+    ionGradient.addColorStop(0.84, 'rgba(52, 181, 229, ' + (0.15 * shimmer) + ')');
+    ionGradient.addColorStop(1, 'rgba(117, 218, 246, ' + (0.34 * shimmer) + ')');
     ctx.fillStyle = ionGradient;
     ctx.beginPath();
-    ctx.moveTo(4, -5.5);
-    ctx.quadraticCurveTo(-length * 0.46, -4.5, -length, -1.1);
-    ctx.lineTo(-length, 1.1);
-    ctx.quadraticCurveTo(-length * 0.46, 4.5, 4, 5.5);
+    ctx.moveTo(4, -3.8);
+    ctx.quadraticCurveTo(-length * 0.46, -3.2, -length, -0.8);
+    ctx.lineTo(-length, 0.8);
+    ctx.quadraticCurveTo(-length * 0.46, 3.2, 4, 3.8);
     ctx.closePath();
     ctx.fill();
 
     var filamentGradient = ctx.createLinearGradient(-length, 0, 0, 0);
     filamentGradient.addColorStop(0, 'rgba(150, 225, 255, 0)');
-    filamentGradient.addColorStop(0.62, 'rgba(160, 230, 255, ' + (0.08 * shimmer) + ')');
-    filamentGradient.addColorStop(1, 'rgba(235, 252, 255, ' + (0.48 * shimmer) + ')');
+    filamentGradient.addColorStop(0.62, 'rgba(74, 191, 232, ' + (0.1 * shimmer) + ')');
+    filamentGradient.addColorStop(1, 'rgba(143, 229, 249, ' + (0.48 * shimmer) + ')');
     ctx.strokeStyle = filamentGradient;
-    ctx.lineWidth = 1.4;
+    ctx.lineWidth = 1.1;
     ctx.beginPath();
     ctx.moveTo(-length, 0);
     ctx.lineTo(1, 0);
@@ -373,12 +378,25 @@
       var radius = Math.max(0.8, particle.size * (0.48 + particle.life));
       var stretch = 1 + Math.min(particle.kind === 'dust' ? 1.1 : 3.2, velocityLength * (particle.kind === 'dust' ? 0.55 : 1.15) + particle.speedBoost);
       ctx.save();
-      ctx.globalCompositeOperation = 'lighter';
-      ctx.globalAlpha = Math.pow(particle.life, 1.32) * (particle.kind === 'dust' ? 0.82 : 0.96);
+      ctx.globalAlpha = Math.pow(particle.life, 1.48) * (particle.kind === 'dust' ? 0.68 : 0.78);
       ctx.translate(particle.x, particle.y);
       ctx.rotate(Math.atan2(particle.vy, particle.vx));
-      ctx.scale(stretch, 1);
-      ctx.drawImage(glowSprites[particle.kind], -radius, -radius, radius * 2, radius * 2);
+      if (particle.kind === 'dust') {
+        var grain = Math.max(0.55, Math.min(2.2, radius * 0.22));
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = particle.life > 0.58 ? '#e4bf79' : '#c99c50';
+        ctx.beginPath();
+        ctx.ellipse(0, 0, grain * stretch, grain, 0, 0, Math.PI * 2);
+        ctx.fill();
+        if (particle.life > 0.72) {
+          ctx.globalAlpha *= 0.22;
+          ctx.drawImage(glowSprites.dust, -radius, -radius, radius * 2, radius * 2);
+        }
+      } else {
+        ctx.globalCompositeOperation = particle.kind === 'spark' ? 'lighter' : 'source-over';
+        ctx.scale(stretch, 1);
+        ctx.drawImage(glowSprites[particle.kind], -radius, -radius, radius * 2, radius * 2);
+      }
       ctx.restore();
     }
 
@@ -413,8 +431,8 @@
       }
       var fragmentRadius = fragment.size * 3.2;
       ctx.save();
-      ctx.globalCompositeOperation = 'lighter';
-      ctx.globalAlpha = fragment.life;
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha = fragment.life * 0.62;
       ctx.translate(fragment.x, fragment.y);
       ctx.rotate(Math.atan2(fragment.vy, fragment.vx));
       ctx.scale(2.2, 1);
@@ -428,30 +446,48 @@
     var coreY = head.y + travel.y * 4;
 
     ctx.save();
-    ctx.globalCompositeOperation = 'lighter';
+    ctx.globalCompositeOperation = 'source-over';
     ctx.translate(head.x, head.y);
     ctx.rotate(travelAngle);
     ctx.scale(1.08, 1);
-    layer(52, 'rgba(95, 178, 248, ' + (0.15 * pulse) + ')', 'rgba(75, 145, 235, 0)');
-    layer(35, 'rgba(120, 205, 252, ' + (0.36 * pulse) + ')', 'rgba(85, 175, 245, 0)');
-    layer(23, 'rgba(190, 238, 255, ' + (0.76 * pulse) + ')', 'rgba(105, 205, 255, 0)');
+    layer(52, 'rgba(49, 142, 202, ' + (0.055 * pulse) + ')', 'rgba(47, 127, 179, 0)');
+    layer(35, 'rgba(48, 169, 222, ' + (0.1 * pulse) + ')', 'rgba(54, 151, 210, 0)');
+    layer(23, 'rgba(101, 206, 237, ' + (0.18 * pulse) + ')', 'rgba(67, 174, 222, 0)');
     ctx.restore();
 
     ctx.save();
-    ctx.globalCompositeOperation = 'lighter';
-    ctx.globalAlpha = pulse;
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 0.52 * pulse;
     ctx.translate(coreX, coreY);
     ctx.rotate(travelAngle);
     ctx.scale(1.06, 1);
-    ctx.drawImage(glowSprites.ion, -22, -22, 44, 44);
-    ctx.drawImage(glowSprites.spark, -10, -10, 20, 20);
+    ctx.drawImage(glowSprites.ion, -16, -16, 32, 32);
     ctx.restore();
 
     ctx.save();
-    ctx.globalCompositeOperation = 'lighter';
-    ctx.fillStyle = '#ffffff';
+    ctx.globalCompositeOperation = 'source-over';
+    var coreGradient = ctx.createRadialGradient(coreX - 2.1, coreY - 2.3, 0.6, coreX, coreY, 6.2);
+    coreGradient.addColorStop(0, '#d9edf1');
+    coreGradient.addColorStop(0.28, '#8fc2d0');
+    coreGradient.addColorStop(0.68, '#4d8295');
+    coreGradient.addColorStop(1, '#244f66');
+    ctx.fillStyle = coreGradient;
     ctx.beginPath();
     ctx.arc(coreX, coreY, 5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(125, 213, 235, 0.72)';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+
+    ctx.translate(coreX, coreY);
+    ctx.rotate(travelAngle);
+    ctx.fillStyle = 'rgba(26, 66, 84, 0.48)';
+    ctx.beginPath();
+    ctx.ellipse(-1.1, 1.5, 1.35, 0.75, -0.45, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(220, 244, 246, 0.76)';
+    ctx.beginPath();
+    ctx.arc(1.4, -1.5, 1.05, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
 

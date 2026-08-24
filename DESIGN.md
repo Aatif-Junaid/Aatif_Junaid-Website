@@ -44,7 +44,7 @@ Copy is part of the design:
 
 The general content container caps at 1280px with responsive 20-64px gutters and a 12-column desktop grid. The signature Experience composition remains at its established 1380px width so the comet geometry does not shift. Desktop navigation is 68px tall and remains on one line. Mobile layouts collapse to one column below 768px and never depend on horizontal page scrolling.
 
-Use a 4px base spacing system. Major sections use 112px vertical padding on desktop, 80px on tablet, and 64px on mobile. Section headings sit 48px above their content on desktop and 32px above it on mobile. Education, capability groups, work categories, and Approach use flat editorial groupings with hairlines and asymmetric column spans instead of repeated equal-card grids.
+Use a 4px base spacing system. Major sections use 112px vertical padding on desktop, 80px on tablet, and 64px on mobile. Section headings sit 48px above their content on desktop and 32px above it on mobile. Education and capability groups use flat editorial groupings with hairlines. Work and Approach use a consistent two-column editorial matrix with shared rails and row rhythm, collapsing to one column on mobile.
 
 The hero is an editorial manifesto: one positioning statement, one proof-oriented primary action, and one secondary action. Contact and social links belong in the header or contact section, not as competing hero actions.
 

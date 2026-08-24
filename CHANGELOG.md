@@ -14,6 +14,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Aligned the Go-to-market and Approach content into consistent two-column editorial grids with shared rails and responsive single-column fallbacks.
 - Standardized typography, the 12-column grid, responsive spacing, radii, and shadows while preserving the blue atmosphere, luminous hero treatment, and comet rendering.
 - Replaced repeated Education, toolkit, Work, and Approach tiles with flatter editorial groupings and removed the visible comet pause control.
 - Smoothed the comet's turns, restored a moderately longer visible trail, and slowed both scroll-follow and ambient drift.

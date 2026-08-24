@@ -414,19 +414,22 @@ a.dp-name:hover { color: var(--blue-text); }
   box-shadow: var(--tile-shadow);
 }
 
-/* ---------- work / what I build: asymmetric editorial grid ---------- */
-.sample-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-8) var(--grid-gap); }
+/* ---------- work / what I build: aligned editorial grid ---------- */
+.sample-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-12); row-gap: 0; align-items: stretch;
+}
 .sample {
-  padding: var(--space-6) 0 var(--space-8); border: 0; border-top: 1px solid var(--line-strong); border-radius: 0;
+  display: grid; grid-template-rows: auto 1fr; align-content: start; min-width: 0;
+  padding: var(--space-8) 0 var(--space-12); border: 0; border-top: 1px solid var(--line-strong); border-radius: 0;
   background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;
 }
-.sample:nth-child(4n + 1) { grid-column: 1 / span 7; }
-.sample:nth-child(4n + 2) { grid-column: 8 / -1; }
-.sample:nth-child(4n + 3) { grid-column: 1 / span 5; }
-.sample:nth-child(4n + 4) { grid-column: 6 / -1; }
 .sample:hover { transform: none; background: transparent; box-shadow: none; }
-.sample__title { font-family: var(--serif); font-weight: 600; font-size: var(--text-heading); line-height: 1.14; margin-bottom: 0.7rem; }
-.sample__body { color: var(--ink-soft); font-size: 0.97rem; }
+.sample__title {
+  max-width: 24ch; font-family: var(--serif); font-weight: 600;
+  font-size: var(--text-heading); line-height: 1.14; margin-bottom: var(--space-3); text-wrap: balance;
+}
+.sample__body { max-width: 52ch; color: var(--ink-soft); font-size: 0.97rem; text-wrap: pretty; }
 .samples__cta { justify-content: center; margin-top: 1.5rem; }
 .case-study-spotlight {
   display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(1.5rem, 4vw, 3rem);
@@ -561,19 +564,22 @@ a.dp-name:hover { color: var(--blue-text); }
 .case-cta .eyebrow { margin-bottom: 0.8rem; }
 .case-cta .section-title { margin: 0 auto; max-width: 28ch; }
 
-/* ---------- approach: asymmetric flat editorial grid ---------- */
-.framework-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-8) var(--grid-gap); }
+/* ---------- approach: aligned flat editorial grid ---------- */
+.framework-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-12); row-gap: 0; align-items: stretch;
+}
 .framework {
-  padding: var(--space-6) 0 var(--space-8); border: 0; border-top: 1px solid var(--line-strong); border-radius: 0;
+  display: grid; grid-template-rows: auto 1fr; align-content: start; min-width: 0;
+  padding: var(--space-8) 0 var(--space-12); border: 0; border-top: 1px solid var(--line-strong); border-radius: 0;
   background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;
 }
-.framework:nth-child(4n + 1) { grid-column: 1 / span 7; }
-.framework:nth-child(4n + 2) { grid-column: 8 / -1; }
-.framework:nth-child(4n + 3) { grid-column: 1 / span 5; }
-.framework:nth-child(4n + 4) { grid-column: 6 / -1; }
 .framework:hover { transform: none; background: transparent; box-shadow: none; }
-.framework__title { font-family: var(--serif); font-weight: 600; font-size: var(--text-heading); line-height: 1.15; margin-bottom: 0.6rem; }
-.framework p { color: var(--ink-soft); font-size: 0.98rem; }
+.framework__title {
+  max-width: 24ch; font-family: var(--serif); font-weight: 600;
+  font-size: var(--text-heading); line-height: 1.15; margin-bottom: var(--space-3); text-wrap: balance;
+}
+.framework p { max-width: 52ch; color: var(--ink-soft); font-size: 0.98rem; text-wrap: pretty; }
 
 /* ---------- contact ---------- */
 .contact-tile { padding: clamp(1.8rem, 4vw, 2.8rem); }
@@ -692,6 +698,7 @@ a.dp-name:hover { color: var(--blue-text); }
   .edu-card, .sample, .framework,
   .sample:nth-child(n), .framework:nth-child(n) { grid-column: 1 / -1; }
   .edu-card { grid-template-columns: 1fr; gap: var(--space-4); }
+  .sample, .framework { padding: var(--space-6) 0 var(--space-8); }
   .metrics, .metrics--balanced { grid-template-columns: repeat(2, 1fr); }
   .metrics--balanced > .metric, .metrics--balanced > .metric:nth-child(4) { grid-column: auto; }
 

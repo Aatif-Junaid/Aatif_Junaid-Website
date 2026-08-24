@@ -14,6 +14,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Rebalanced the comet silhouette with a larger coma, a shorter tapered tail, and a quieter distant wake.
 - Unified the comet's inner filament and atmospheric wake on one curved trajectory, added a restrained internal wave, and shortened stale particles after scroll reversals.
 - Gave the Experience comet a brighter core, a defined inner trail, sparse breakaway sparks, and a compact opening U-turn without increasing its pace or mobile cost. Removed the Experience card's backdrop blur so those details remain legible behind the content.
 - Restored the ambient comet's visibility with full canvas opacity, a soft core, and a moderately denser silky trail while retaining its slower pace.

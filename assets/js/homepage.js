@@ -29,7 +29,8 @@
   var head = { x: 0, y: 0 }, targetY = 0, prevY = 0, prevX = 0;
   var parts = [], trail = [], running = false, inView = false, resizeQueued = false, lastLitY = -999, userPaused = false;
   var travel = { x: 0, y: 1 }, travelSign = 1, lastFrameTime = 0, emissionCarry = 0, dirtyBounds = null;
-  var trailDistance = 0, TRAIL_WAVE = 4.2;
+  var trailDistance = 0, TRAIL_WAVE = 3.6;
+  var MAX_TRAIL_POINTS = 52, MAX_TRAIL_DISTANCE = 230;
   var itemPositions = [];
   var SAFE = 60, pathAmplitude = 160, pathOriginY = 0, pathStartX = SAFE, pathStartPhase = -Math.PI / 2;
   var motionElapsed = 0, headInitialized = false;
@@ -174,7 +175,7 @@
       vy: -travel.y * drift + perpendicularY * turbulence,
       drag: spark ? 0.97 : 0.986,
       life: 1,
-      decay: spark ? 0.014 + Math.random() * 0.016 : 0.007 + Math.random() * 0.006,
+      decay: spark ? 0.014 + Math.random() * 0.016 : 0.009 + Math.random() * 0.007,
       size: spark ? 1.5 + Math.random() * 2 : 2.4 + Math.random() * 3.8,
       spark: spark,
       warm: spark && Math.random() < 0.24,
@@ -188,11 +189,13 @@
     trailDistance += step;
     if (!lastPoint || step > 1.2) {
       trail.push({ x: head.x, y: head.y, phase: trailDistance });
-      if (trail.length > 76) trail.shift();
     } else {
       lastPoint.x = head.x;
       lastPoint.y = head.y;
       lastPoint.phase = trailDistance;
+    }
+    while (trail.length > MAX_TRAIL_POINTS || (trail.length > 1 && trailDistance - trail[0].phase > MAX_TRAIL_DISTANCE)) {
+      trail.shift();
     }
   }
 
@@ -203,9 +206,9 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     var layers = [
-      { farWidth: 54, nearWidth: 20, alpha: 0.032, color: '73, 138, 173' },
-      { farWidth: 32, nearWidth: 13, alpha: 0.065, color: '75, 165, 198' },
-      { farWidth: 14, nearWidth: 7, alpha: 0.14, color: '136, 201, 218' }
+      { farWidth: 40, nearWidth: 30, alpha: 0.018, color: '73, 138, 173' },
+      { farWidth: 25, nearWidth: 19, alpha: 0.038, color: '75, 165, 198' },
+      { farWidth: 13, nearWidth: 11, alpha: 0.085, color: '136, 201, 218' }
     ];
     layers.forEach(function (tailLayer) {
       for (var pointIndex = 1; pointIndex < visualTrail.length; pointIndex++) {
@@ -214,7 +217,7 @@
         var breathe = 0.88 + 0.12 * Math.sin(pointIndex * 0.7 + time * 0.5);
         var previous = visualTrail[pointIndex - 1];
         var current = visualTrail[pointIndex];
-        var alpha = tailLayer.alpha * Math.pow(proximity, 1.8) * breathe;
+        var alpha = tailLayer.alpha * Math.pow(proximity, 2.3) * breathe;
         ctx.strokeStyle = 'rgba(' + tailLayer.color + ', ' + alpha + ')';
         ctx.lineWidth = tailLayer.nearWidth + (tailLayer.farWidth - tailLayer.nearWidth) * distance;
         ctx.beginPath();
@@ -257,14 +260,14 @@
       var proximity = pointIndex / (visualTrail.length - 1);
       var previous = visualTrail[pointIndex - 1];
       var current = visualTrail[pointIndex];
-      ctx.strokeStyle = 'rgba(100, 204, 229, ' + (0.18 * Math.pow(proximity, 1.45) * breathe) + ')';
-      ctx.lineWidth = 3 + 4.2 * proximity;
+      ctx.strokeStyle = 'rgba(100, 204, 229, ' + (0.16 * Math.pow(proximity, 2.2) * breathe) + ')';
+      ctx.lineWidth = 1.8 + 7.5 * proximity;
       ctx.beginPath();
       ctx.moveTo(previous.x, previous.y);
       ctx.lineTo(current.x, current.y);
       ctx.stroke();
-      ctx.strokeStyle = 'rgba(194, 239, 244, ' + (0.46 * Math.pow(proximity, 2.1) * breathe) + ')';
-      ctx.lineWidth = 0.9 + proximity;
+      ctx.strokeStyle = 'rgba(194, 239, 244, ' + (0.42 * Math.pow(proximity, 2.8) * breathe) + ')';
+      ctx.lineWidth = 0.7 + 2.5 * proximity;
       ctx.beginPath();
       ctx.moveTo(previous.x, previous.y);
       ctx.lineTo(current.x, current.y);
@@ -291,35 +294,35 @@
     ctx.translate(head.x, head.y);
     ctx.rotate(angle);
 
-    ctx.scale(1.28, 0.88);
-    var coma = ctx.createRadialGradient(4, 0, 0, -3, 0, 25);
+    ctx.scale(1.22, 0.96);
+    var coma = ctx.createRadialGradient(5, 0, 0, -3, 0, 30);
     coma.addColorStop(0, 'rgba(164, 226, 235, ' + (0.42 * breathe) + ')');
     coma.addColorStop(0.34, 'rgba(93, 192, 215, ' + (0.24 * breathe) + ')');
     coma.addColorStop(0.72, 'rgba(48, 151, 194, ' + (0.08 * breathe) + ')');
     coma.addColorStop(1, 'rgba(47, 127, 179, 0)');
     ctx.fillStyle = coma;
     ctx.beginPath();
-    ctx.arc(0, 0, 25, 0, Math.PI * 2);
+    ctx.arc(0, 0, 30, 0, Math.PI * 2);
     ctx.fill();
 
-    var softCore = ctx.createRadialGradient(4, 0, 0, 0, 0, 14);
+    var softCore = ctx.createRadialGradient(5, 0, 0, 0, 0, 17);
     softCore.addColorStop(0, 'rgba(194, 239, 244, ' + (0.78 * breathe) + ')');
     softCore.addColorStop(0.34, 'rgba(116, 211, 226, ' + (0.52 * breathe) + ')');
     softCore.addColorStop(0.72, 'rgba(50, 165, 205, ' + (0.2 * breathe) + ')');
     softCore.addColorStop(1, 'rgba(47, 127, 179, 0)');
     ctx.fillStyle = softCore;
     ctx.beginPath();
-    ctx.arc(0, 0, 14, 0, Math.PI * 2);
+    ctx.arc(0, 0, 17, 0, Math.PI * 2);
     ctx.fill();
 
-    var hotCore = ctx.createRadialGradient(3, -1, 0, 1, 0, 9);
+    var hotCore = ctx.createRadialGradient(4, -1, 0, 1, 0, 10.5);
     hotCore.addColorStop(0, 'rgba(218, 248, 248, ' + (0.98 * breathe) + ')');
     hotCore.addColorStop(0.32, 'rgba(156, 230, 238, ' + (0.78 * breathe) + ')');
     hotCore.addColorStop(0.72, 'rgba(65, 184, 215, ' + (0.28 * breathe) + ')');
     hotCore.addColorStop(1, 'rgba(42, 144, 193, 0)');
     ctx.fillStyle = hotCore;
     ctx.beginPath();
-    ctx.arc(0, 0, 9, 0, Math.PI * 2);
+    ctx.arc(0, 0, 10.5, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
   }

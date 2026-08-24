@@ -22,10 +22,8 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 - Case Studies is now the homepage hero's primary action, and case-study navigation includes a Resume link.
 - Case-study focus effects now use intersection observers, and continuous nonessential animation was removed.
 - The experience comet keeps its existing particle treatment and now includes a desktop pause control.
+- The original spiraling comet motion and balanced Experience card stack were restored after design review.
 - Public role titles now use `Senior Analyst, Revenue and Product` for POLITICO and `Business Strategy` for Peepal Consulting.
-- The homepage comet now launches from the hero, follows an Experience-only flight corridor, and activates each experience at deliberate waypoints.
-- Mobile experience cards now use lighter solid surfaces and a stable edge highlight instead of the desktop comet or large neon glow.
-- Reduced-motion mode preserves a static comet composition, and the particle renderer reuses sprites and objects for smoother animation.
 
 ## 2026-08-22
 

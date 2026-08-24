@@ -80,11 +80,11 @@
   <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/site.css?v=3" />
+  <link rel="stylesheet" href="assets/css/site.css?v=4" />
   <!-- Without JS the reveal observer never runs, so make sure nothing stays invisible. -->
   <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
-<body class="home-page">
+<body>
 
   <a class="skip-link" href="#top">Skip to content</a>
 
@@ -113,9 +113,6 @@
 
   <main id="top">
 
-    <div class="comet-story">
-      <canvas class="tl-comet" aria-hidden="true"></canvas>
-
     <!-- HERO -->
     <section class="hero">
       <p class="kicker reveal">GTM and Product Growth | San Francisco</p>
@@ -124,7 +121,7 @@
         <p class="hero__statement">
           <span>I take technical products from zero to signed revenue.</span>
           <span>No inherited playbook. No inherited pipeline.</span>
-          <strong class="comet-launch">Let me show you.</strong>
+          <strong>Let me show you.</strong>
         </p>
       </div>
 
@@ -145,6 +142,7 @@
       </div>
 
       <div class="timeline">
+        <canvas class="tl-comet" aria-hidden="true"></canvas>
         <ol class="timeline__list">
 
         <!-- Aiseberg / Aisepedia -->
@@ -394,7 +392,6 @@
         </ol>
       </div>
     </section>
-    </div>
 
     <!-- EDUCATION -->
     <section class="section" id="education">
@@ -588,7 +585,7 @@
   </footer>
 
   <script src="assets/js/site.js?v=2"></script>
-  <script src="assets/js/homepage.js?v=5"></script>
+  <script src="assets/js/homepage.js?v=6"></script>
 
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3bb28b64147b4f9db81fc8ee585187c4"}'></script>

@@ -14,6 +14,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Restored the ambient comet's visibility with full canvas opacity, a soft core, and a moderately denser silky trail while retaining its slower pace.
 - Reworked the Experience comet into a slower, softer ambient form with fewer particles and lower rendering cost.
 - Defined the Experience comet with a shaded nucleus, controlled bloom, separate ion and dust tails, and granular dissipation.
 - Shared CSS moved to `assets/css/site.css`.

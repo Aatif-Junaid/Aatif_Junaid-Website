@@ -135,7 +135,7 @@
   ]);
 
   function spawnOne(x, y, speed) {
-    if (parts.length >= 180) return;
+    if (parts.length >= 300) return;
     var perpendicularX = -travel.y;
     var perpendicularY = travel.x;
     var back = 10 + Math.random() * 54;
@@ -175,9 +175,9 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     var layers = [
-      { farWidth: 48, nearWidth: 17, alpha: 0.026, color: '73, 138, 173' },
-      { farWidth: 28, nearWidth: 11, alpha: 0.047, color: '75, 165, 198' },
-      { farWidth: 12, nearWidth: 6, alpha: 0.075, color: '136, 201, 218' }
+      { farWidth: 54, nearWidth: 20, alpha: 0.026, color: '73, 138, 173' },
+      { farWidth: 32, nearWidth: 13, alpha: 0.047, color: '75, 165, 198' },
+      { farWidth: 14, nearWidth: 8, alpha: 0.075, color: '136, 201, 218' }
     ];
     layers.forEach(function (tailLayer) {
       for (var pointIndex = 1; pointIndex < trail.length; pointIndex++) {
@@ -229,6 +229,16 @@
     ctx.fillStyle = coma;
     ctx.beginPath();
     ctx.arc(0, 0, 25, 0, Math.PI * 2);
+    ctx.fill();
+
+    var softCore = ctx.createRadialGradient(4, 0, 0, 0, 0, 12);
+    softCore.addColorStop(0, 'rgba(177, 226, 235, ' + (0.38 * breathe) + ')');
+    softCore.addColorStop(0.34, 'rgba(126, 205, 221, ' + (0.24 * breathe) + ')');
+    softCore.addColorStop(0.72, 'rgba(76, 168, 201, ' + (0.09 * breathe) + ')');
+    softCore.addColorStop(1, 'rgba(47, 127, 179, 0)');
+    ctx.fillStyle = softCore;
+    ctx.beginPath();
+    ctx.arc(0, 0, 12, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
   }
@@ -298,9 +308,9 @@
     lightNodes(head.y);
     recordTrail();
 
-    var emissionRate = 72 + Math.min(38, speed * 2.5 + Math.abs(horizontalVelocity) * 1.5);
+    var emissionRate = 145 + Math.min(75, speed * 4 + Math.abs(horizontalVelocity) * 2.5);
     emissionCarry += emissionRate * deltaSeconds;
-    var emit = Math.min(3, Math.floor(emissionCarry));
+    var emit = Math.min(6, Math.floor(emissionCarry));
     emissionCarry -= emit;
     for (var emitted = 0; emitted < emit; emitted++) {
       spawnOne(head.x, head.y, speed);
@@ -323,7 +333,7 @@
       var radius = Math.max(0.8, particle.size * (0.48 + particle.life));
       ctx.save();
       ctx.globalCompositeOperation = 'source-over';
-      ctx.globalAlpha = Math.pow(particle.life, 1.7) * 0.18;
+      ctx.globalAlpha = Math.pow(particle.life, 1.7) * 0.22;
       ctx.translate(particle.x, particle.y);
       ctx.rotate(Math.atan2(particle.vy, particle.vx));
       ctx.scale(1 + particle.speedBoost, 0.82);

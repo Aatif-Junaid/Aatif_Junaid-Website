@@ -14,6 +14,8 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Standardized typography, the 12-column grid, responsive spacing, radii, and shadows while preserving the blue atmosphere, luminous hero treatment, and comet rendering.
+- Replaced repeated Education, toolkit, Work, and Approach tiles with flatter editorial groupings and removed the visible comet pause control.
 - Smoothed the comet's turns, restored a moderately longer visible trail, and slowed both scroll-follow and ambient drift.
 - Rebalanced the comet silhouette with a larger coma, a shorter tapered tail, and a quieter distant wake.
 - Unified the comet's inner filament and atmospheric wake on one curved trajectory, added a restrained internal wave, and shortened stale particles after scroll reversals.

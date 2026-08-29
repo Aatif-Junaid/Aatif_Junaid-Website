@@ -15,6 +15,8 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Consolidated Quantum Corporation and EnCloudEn into one compact resume entry with explicit dates, giving the current Aisepedia work more space without obscuring the earlier chronology.
+- Expanded the public resume with verified Aisepedia pipeline, design-partner, field-event, activation, and AI-automation evidence.
 - Reconciled every public design-partner reference to 13 participants, including 8 senior participants, and removed stale company references from the public resume.
 - Corrected the public resume titles to `Senior Analyst, Revenue and Product` and `Business Strategy`.
 - Fixed local TruffleHog executable discovery when the scanner is available through `PATH`.

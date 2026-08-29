@@ -133,5 +133,25 @@ else
     claude plugin install "$p" >/dev/null 2>&1 \
       || echo "session-start: failed to install plugin $p" >&2
   done
-  echo "session-start: plugin provisioning complete"
+    echo "session-start: plugin provisioning complete"
+
+  # --- chrome-devtools MCP ---------------------------------------------
+  # For QA of this site (console errors, network, Lighthouse). Needs the
+  # Playwright-bundled Chromium (no system Chrome here) and, since this
+  # container runs as root, Chrome's sandbox must be disabled to launch at
+  # all. `claude mcp add` errors if the server already exists, so guard it.
+  if ! claude mcp get chrome-devtools >/dev/null 2>&1; then
+    if [ -x /opt/pw-browsers/chromium ]; then
+      claude mcp add chrome-devtools --scope user -- \
+        npx -y chrome-devtools-mcp@latest \
+        --executablePath=/opt/pw-browsers/chromium \
+        --headless \
+        --chromeArg=--no-sandbox \
+        --chromeArg=--disable-setuid-sandbox \
+        >/dev/null 2>&1 \
+        || echo "session-start: failed to add chrome-devtools MCP server" >&2
+    else
+      echo "session-start: /opt/pw-browsers/chromium not found; skipping chrome-devtools MCP" >&2
+    fi
+  fi
 fi

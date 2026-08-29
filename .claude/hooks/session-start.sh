@@ -2,7 +2,7 @@
 # SessionStart hook: install PowerShell 7 so `pwsh -File scripts/check.ps1`
 # works in Claude Code on the web. The container is ephemeral, so this runs
 # on each remote session start. Idempotent and non-interactive.
-set -euo pipefail
+set -uo pipefail
 
 # Remote (web) sessions only. Locally, developers install pwsh themselves.
 if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then

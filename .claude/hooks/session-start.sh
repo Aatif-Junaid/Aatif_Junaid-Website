@@ -114,7 +114,8 @@ else
   for m in \
     "composio-community/awesome-claude-plugins" \
     "0xmariowu/AgentLint" \
-    "Onome-AJ/security-sweep-plugin"
+    "Onome-AJ/security-sweep-plugin" \
+    "anthropics/claude-plugins-official"
   do
     claude plugin marketplace add "$m" >/dev/null 2>&1 \
       || echo "session-start: failed to add marketplace $m" >&2
@@ -126,7 +127,8 @@ else
     "security-guidance@awesome-claude-plugins" \
     "changelog-generator@awesome-claude-plugins" \
     "agent-lint@agent-lint" \
-    "security-sweep@security-sweep-marketplace"
+    "security-sweep@security-sweep-marketplace" \
+    "claude-code-setup@claude-plugins-official"
   do
     claude plugin install "$p" >/dev/null 2>&1 \
       || echo "session-start: failed to install plugin $p" >&2

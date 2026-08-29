@@ -39,6 +39,12 @@ Opening HTML directly does not reproduce root-relative URLs on `404.html`; use t
 
 `python -m http.server 8000` is the canonical `dev` command. There is no `build`, `format`, or `clean` command because the repository has no generated build or formatter dependency.
 
+## Agent tooling
+
+`AGENTS.md` and `CLAUDE.md` route repository-maintenance work without loading private career context. Claude web sessions additionally use `.claude/hooks/session-start.sh` to install the pinned PowerShell dependency in an ephemeral remote container. The hook runs only when `CLAUDE_CODE_REMOTE=true`, verifies the downloaded package checksum, and does not provision marketplaces or third-party plugins.
+
+Local Codex, Claude, and human development continue to use the prerequisites above. Changes to agent bootstrap behavior require the same review and validation as other executable repository code.
+
 ## Branches
 
 `main` is deployable and accepts direct pushes for small, validated changes. For larger work, use short-lived branches with these prefixes:
@@ -50,6 +56,10 @@ Opening HTML directly does not reproduce root-relative URLs on `404.html`; use t
 - `refactor/`
 
 Delete branches after merging and do not reuse merged branches.
+
+## Public history hygiene
+
+Commit messages and pull-request discussions are public. Describe the code or content correction at the level needed to review it, but do not include nonpublic contact information, unnecessary third-party relationship details, or private career context. Do not rewrite published history for routine corrections because copies may already exist outside the repository.
 
 ## Optional pull requests
 

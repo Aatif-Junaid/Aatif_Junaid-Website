@@ -4,11 +4,13 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repositoryRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
-$truffleHog = if ($env:TRUFFLEHOG_PATH -and (Test-Path -LiteralPath $env:TRUFFLEHOG_PATH)) {
-    Get-Item -LiteralPath $env:TRUFFLEHOG_PATH
+$truffleHogPath = if ($env:TRUFFLEHOG_PATH -and (Test-Path -LiteralPath $env:TRUFFLEHOG_PATH)) {
+    $env:TRUFFLEHOG_PATH
 } else {
-    Get-Command trufflehog -ErrorAction SilentlyContinue
+    $command = Get-Command trufflehog -ErrorAction SilentlyContinue
+    if ($command) { $command.Source } else { $null }
 }
+$truffleHog = if ($truffleHogPath) { Get-Item -LiteralPath $truffleHogPath } else { $null }
 $resultPath = $null
 $errorPath = $null
 

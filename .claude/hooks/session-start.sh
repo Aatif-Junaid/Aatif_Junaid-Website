@@ -31,11 +31,16 @@ fi
 PS_VERSION="7.6.5"
 DEB="powershell_${PS_VERSION}-1.deb_amd64.deb"
 URL="https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/p/powershell/${DEB}"
+PS_SHA256="dd683d29a5c95ed43e426f4fe1679469d8b89e78ea955455f6238a0b0e6f1a24"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
 echo "session-start: downloading PowerShell ${PS_VERSION}..."
 curl -fsSL --retry 3 --retry-delay 2 --max-time 300 -o "$TMP/$DEB" "$URL"
+echo "${PS_SHA256}  $TMP/$DEB" | sha256sum --check --status || {
+  echo "session-start: PowerShell package checksum mismatch" >&2
+  exit 1
+}
 
 echo "session-start: installing PowerShell..."
 # Base image already carries pwsh's runtime deps; fall back to apt if not.

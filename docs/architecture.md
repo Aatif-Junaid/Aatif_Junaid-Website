@@ -32,6 +32,8 @@ Cloudflare and aatifmulla.me
 | Root media | Social image, icons, and public resume required at stable URLs |
 | `scripts/check_site.py` | Canonical structural, safety, link, cache, and deploy validation |
 | `.github/workflows/security-scan.yml` | Lightweight site-integrity and secret checks |
+| `.githooks/` | Versioned local checks that run before a commit or push |
+| `.claude/` | Remote-only bootstrap that installs the pinned PowerShell validation dependency for Claude web sessions |
 
 ## Decisions
 
@@ -41,6 +43,7 @@ Cloudflare and aatifmulla.me
 - Static query-string versions provide deterministic cache invalidation without a build system.
 - No `.env.example` exists because the website consumes no environment variables or secrets.
 - Response headers are controlled by Cloudflare, not by GitHub Pages source files.
+- The Claude session hook runs only in ephemeral remote sessions, verifies the pinned PowerShell package checksum, and does not install third-party plugins.
 
 ## Data and publishing flow
 

@@ -1,7 +1,10 @@
 # Local-only / tooling, never deploy these
 .pdfscratch/
 node_modules/
-.claude/
+.claude/*
+!.claude/hooks/
+!.claude/hooks/**
+!.claude/settings.json
 Fable5/
 HANDOFF.md
 .venv/

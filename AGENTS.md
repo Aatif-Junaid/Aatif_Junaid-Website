@@ -22,5 +22,6 @@ Codex and Claude Code follow the same rules in this repository.
 - Describe the enterprise deal with the documented Splunk/Cisco framing, never as “closed Cisco.”
 - Describe POLITICO figures as reported on or analyzed, never owned.
 - Keep positioning consistent with GTM and Product Growth unless the owner approves a repositioning.
+- Cross-surface consistency: the resume, `index.html`, `case-studies.html`, and LinkedIn must show the identical role title, employer, and location. Diff them before finishing; do not let the resume and the timeline disagree.
 
 AI-authored commit messages end with `Co-Authored-By: Codex <noreply@openai.com>`.

@@ -7,7 +7,7 @@ Guards the regressions this site has actually hit: stale cache-busters,
 broken internal refs, em dashes in copy, missing noopener, secret leaks.
 Public financial metrics are allowed when verified and intentionally surfaced.
 """
-import json, os, re, subprocess, sys
+import html, json, os, re, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = ["index.html", "case-studies.html", "field-program.html", "404.html"]
@@ -133,7 +133,39 @@ for p, s in pages.items():
         if w in text.lower(): fail(f"{p}: buzzword '{w}' in copy")
 ok("copy rules pass (no em dashes, no buzzwords)")
 
-# 7. JSON-LD validity ---------------------------------------------------------
+# 7. Canonical public claims --------------------------------------------------
+def visible_text(source):
+    source = re.sub(r"<(script|style)\b[^>]*>.*?</\1>", " ", source, flags=re.S | re.I)
+    source = re.sub(r"<[^>]+>", " ", source)
+    return re.sub(r"\s+", " ", html.unescape(source)).strip()
+
+canonical_design_partner_claims = {
+    "index.html": [
+        "Co-built a 13-member design partner program",
+        "13 Design partners, 8 senior",
+    ],
+    "case-studies.html": [
+        "Design partner conversion 13 practitioners recruited",
+        "Built a 13-member design partner cohort, 8 at Director level or above",
+    ],
+    "field-program.html": [
+        "a 13-member cohort with 8 people at Director level or above",
+    ],
+}
+for page, claims in canonical_design_partner_claims.items():
+    text = visible_text(pages.get(page, ""))
+    for claim in claims:
+        if claim.lower() not in text.lower():
+            fail(f"{page}: canonical design-partner claim missing -> {claim}")
+    for legacy in [
+        r"\b27(?:-member)?\s+(?:design partners?|practitioners?)\b",
+        r"\b18\s+(?:senior|at Director)\b",
+    ]:
+        if re.search(legacy, text, re.I):
+            fail(f"{page}: stale design-partner claim found")
+ok("canonical design-partner claims agree across public pages")
+
+# 8. JSON-LD validity ---------------------------------------------------------
 datetime_pattern = re.compile(
     r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$"
 )
@@ -158,7 +190,7 @@ for p, s in pages.items():
         except Exception as e: fail(f"{p}: invalid JSON-LD ({e})")
 ok("JSON-LD parses and structured dates use ISO 8601 datetimes")
 
-# 8. Secret hygiene -----------------------------------------------------------
+# 9. Secret hygiene -----------------------------------------------------------
 SECRETS = [
     (r"(ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{20,}", "GitHub token"),
     (r"github_pat_[A-Za-z0-9_]{20,}", "GitHub fine-grained PAT"),
@@ -180,7 +212,7 @@ for dirpath, dirnames, filenames in os.walk(ROOT):
                 fail(f"{os.path.relpath(fp, ROOT)}: possible {label} committed")
 ok("no high-confidence secrets detected")
 
-# 9. Repository documentation links ------------------------------------------
+# 10. Repository documentation links -----------------------------------------
 markdown_link = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 for dirpath, dirnames, filenames in os.walk(ROOT):
     dirnames[:] = [d for d in dirnames if d != ".git"]
@@ -198,7 +230,7 @@ for dirpath, dirnames, filenames in os.walk(ROOT):
                     fail(f"{os.path.relpath(path, ROOT)}:{line_number}: broken link -> {raw_target}")
 ok("repository Markdown links resolve")
 
-# 10. Tracked-state hygiene ---------------------------------------------------
+# 11. Tracked-state hygiene ---------------------------------------------------
 tracked = subprocess.run(
     ["git", "ls-files", "--cached", "--others", "--exclude-standard"],
     cwd=ROOT,
@@ -216,7 +248,7 @@ for relative in tracked:
         fail(f"generated file is tracked: {relative}")
 ok("tracked files exclude generated and local state")
 
-# 11. Deploy-critical files ---------------------------------------------------
+# 12. Deploy-critical files ---------------------------------------------------
 for f in [
     "CNAME",
     "sitemap.xml",

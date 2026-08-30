@@ -7,6 +7,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 ### Added
 
 - Architecture, development, security, contribution, and focused operational runbooks.
+- A remote-only Claude web-session hook that installs a pinned, checksum-verified PowerShell validation dependency.
 - One local check shared by pre-commit and CI.
 - Shared JavaScript assets.
 - A website-specific design guide for consistent future visual work.
@@ -14,6 +15,11 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Consolidated Quantum Corporation and EnCloudEn into one compact resume entry with explicit dates, giving the current Aisepedia work more space without obscuring the earlier chronology.
+- Expanded the public resume with verified Aisepedia pipeline, design-partner, field-event, activation, and AI-automation evidence.
+- Reconciled every public design-partner reference to 13 participants, including 8 senior participants, and removed stale company references from the public resume.
+- Corrected the public resume titles to `Senior Analyst, Revenue and Product` and `Business Strategy`.
+- Fixed local TruffleHog executable discovery when the scanner is available through `PATH`.
 - Matched the browser theme color to the paper canvas and aligned case-study metadata with the approved GTM and Product Growth positioning.
 - Made shared anchor scrolling respect reduced-motion preferences and added the missing keyboard skip link to the 404 page.
 - Aligned the Go-to-market and Approach content into consistent two-column editorial grids with shared rails and responsive single-column fallbacks.

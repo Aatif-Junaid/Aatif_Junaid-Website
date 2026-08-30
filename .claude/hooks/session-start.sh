@@ -29,16 +29,18 @@ else
     PS_VERSION="7.6.5"
     DEB="powershell_${PS_VERSION}-1.deb_amd64.deb"
     URL="https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/p/powershell/${DEB}"
+    PS_SHA256="dd683d29a5c95ed43e426f4fe1679469d8b89e78ea955455f6238a0b0e6f1a24"
     TMP="$(mktemp -d)"
 
     echo "session-start: downloading PowerShell ${PS_VERSION}..."
-    if curl -fsSL --retry 3 --retry-delay 2 --max-time 300 -o "$TMP/$DEB" "$URL"; then
+    if curl -fsSL --retry 3 --retry-delay 2 --max-time 300 -o "$TMP/$DEB" "$URL" \
+      && echo "${PS_SHA256}  $TMP/$DEB" | sha256sum --check --status; then
       echo "session-start: installing PowerShell..."
       # Base image already carries pwsh's runtime deps; fall back to apt if not.
       $SUDO dpkg -i "$TMP/$DEB" 2>&1 || $SUDO apt-get install -f -y
       command -v pwsh >/dev/null 2>&1 && pwsh --version
     else
-      echo "session-start: pwsh download failed; skipping" >&2
+      echo "session-start: pwsh download or checksum verification failed; skipping" >&2
     fi
     rm -rf "$TMP"
   fi

@@ -10,7 +10,7 @@ Live site: [aatifmulla.me](https://aatifmulla.me/)
 - PowerShell 7
 - Python 3.10 or newer, or the bundled Codex Python runtime
 
-No package installation, framework, bundler, runtime environment variables, or build step is required.
+The website itself requires no package installation, framework, bundler, runtime environment variables, or build step. Claude web sessions use a repository hook to install the PowerShell validation dependency in their temporary container.
 
 ## Quick start
 
@@ -47,6 +47,8 @@ DESIGN.md               Visual direction and interface rules
 scripts/                Deterministic repository validation
 docs/                   Architecture, development, and runbooks
 .github/                Lightweight integrity and secret checks
+.githooks/               Versioned local Git validation hooks
+.claude/                 Remote Claude web-session validation bootstrap
 CNAME                   GitHub Pages custom-domain binding
 resume.pdf              Public downloadable resume
 sitemap.xml             Search-engine page inventory

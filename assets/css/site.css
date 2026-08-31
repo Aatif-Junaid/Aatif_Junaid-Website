@@ -232,6 +232,7 @@ body::before {
 .btn:not(.btn--primary):hover { border-color: var(--blue); color: var(--blue-deep); }
 .hero__actions .btn { display: inline-flex; align-items: center; gap: 0.72rem; border-radius: 8px; }
 .hero__actions .btn--primary { min-width: 17.8rem; justify-content: space-between; padding: 0.88rem 1.5rem; font-size: 1.17rem; }
+.hero__actions .btn[hidden] { display: none; }
 .hero__actions .btn:not(.btn--primary) {
   padding: 0.3rem 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: var(--ink);
   text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em;
@@ -248,9 +249,9 @@ body::before {
 .hero-proof__intro { padding-right: clamp(1.5rem, 3.2vw, 3.5rem); }
 .hero-proof__eyebrow { margin-bottom: 0.6rem; color: #063c82; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
 .hero-proof__intro h2 { font-family: var(--serif); font-size: clamp(2rem, 2.7vw, 2.65rem); font-weight: 500; line-height: 1.03; letter-spacing: -0.03em; }
-.hero-proof__intro > p:last-child { max-width: 31ch; margin-top: 0.95rem; color: var(--ink); font-size: 0.94rem; line-height: 1.62; }
+.hero-proof__how { margin-top: 0.95rem; color: var(--ink); font-size: 0.94rem; font-weight: 500; line-height: 1.62; }
 .hero-proof__item { display: grid; grid-template-columns: 2.65rem 1fr; align-content: start; gap: 0.65rem; min-height: 8.9rem; padding: 0.3rem 1.3rem 0 1.65rem; border-left: 1px solid var(--line-strong); }
-.hero-proof__icon { display: block; width: 2.15rem; height: 2.15rem; object-fit: contain; }
+.hero-proof__icon { display: block; width: 2.15rem; height: 2.15rem; object-fit: contain; filter: invert(34%) sepia(28%) saturate(1743%) hue-rotate(161deg) brightness(89%) contrast(88%); }
 .hero-proof__item h3 { margin-top: 0.22rem; color: #063c82; font-family: var(--sans); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
 .hero-proof__item p { margin-top: 0.72rem; color: var(--ink); font-size: 0.72rem; line-height: 1.7; }
 
@@ -264,6 +265,10 @@ body::before {
 .toolkit-wrap { margin-top: clamp(1.75rem, 4vw, 2.75rem); }
 .toolkit-label { display: block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--ink-soft); margin-bottom: 0.95rem; }
 .section-title { font-family: var(--serif); font-weight: 500; font-size: var(--text-display); line-height: 1.08; letter-spacing: -0.018em; }
+/* Homepage section titles sit one 4pt step below the Experience eyebrow. */
+#experience .section-title, #education .section-title, #samples .section-title, #thinking .section-title, #contact .section-title {
+  font-size: clamp(1.917rem, calc(4.4vw - 0.333rem), 3.167rem);
+}
 
 /* ---------- shared logo chip ---------- */
 .logo-chip {
@@ -792,6 +797,9 @@ a.dp-name:hover { color: var(--blue-text); }
   #experience { padding-top: var(--space-16); padding-bottom: var(--space-16); }
   .section-head, .case-section__head { margin-bottom: var(--space-8); }
   .section-title { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+  #experience .section-title, #education .section-title, #samples .section-title, #thinking .section-title, #contact .section-title {
+    font-size: clamp(1.467rem, calc(7vw - 0.333rem), 2.067rem);
+  }
   .case-header { align-items: flex-start; }
   .case-hero { padding-top: 3.5rem; }
   .case-hero__title { -webkit-text-stroke-width: 0.35px; }
@@ -873,6 +881,7 @@ a.dp-name:hover { color: var(--blue-text); }
   .hero__name { font-size: clamp(2.8rem, 13vw, 3.6rem); -webkit-text-stroke-width: 0.35px; }
   .hero__name::before { opacity: 0.4; filter: blur(6px) saturate(1.08); }
   .section-title { font-size: 1.75rem; }
+  #experience .section-title, #education .section-title, #samples .section-title, #thinking .section-title, #contact .section-title { font-size: 1.417rem; }
   .tl-role { font-size: 1.25rem; }
   .tl-card, .contact-tile { padding: 1.25rem; }
   .metrics, .metrics--balanced { grid-template-columns: 1fr; }

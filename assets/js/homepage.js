@@ -498,7 +498,7 @@
         inView = entry.isIntersecting;
         if (inView && !document.hidden) start(); else stop();
       });
-    }, { rootMargin: '0px 0px 22% 0px', threshold: 0 }).observe(timeline);
+    }, { rootMargin: '0px 0px 35% 0px', threshold: 0 }).observe(timeline);
   } else {
     inView = true;
     start();

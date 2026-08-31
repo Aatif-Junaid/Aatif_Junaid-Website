@@ -123,25 +123,19 @@ body::before {
   border-bottom: 1.5px solid transparent; transition: color 0.2s ease, border-color 0.2s ease;
 }
 .site-nav a:hover { color: var(--ink); border-color: var(--sky); }
-.site-nav .case-home {
-  align-self: center; padding: 0.5rem 0.9rem; margin: -0.45rem 0; border: 1px solid var(--navy); border-radius: var(--radius-control);
-  background: var(--navy); color: #fff; font-weight: 600; box-shadow: var(--tile-shadow);
-  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-.site-nav .case-home:hover {
-  background: var(--blue-text); border-color: var(--blue-text); color: #fff; box-shadow: var(--tile-shadow-hover); transform: translateY(-1px);
-}
-/* Case Studies leaves the page, so it reads as a destination, not a jump link. */
+/* Page destinations use one light-blue treatment across the site. */
 .site-nav .nav-page {
   display: inline-flex; align-items: center; gap: 0.3rem; align-self: center;
-  padding: 0.34rem 0.75rem; margin: -0.34rem 0; border: 1px solid var(--line-strong);
-  border-radius: var(--radius-control); background: rgba(255, 255, 255, 0.6); color: var(--ink); font-weight: 600;
+  padding: 0.34rem 0.75rem; margin: -0.34rem 0; border: 1px solid rgba(47, 127, 179, 0.48);
+  border-radius: var(--radius-control); background: rgba(143, 205, 238, 0.17); color: var(--blue-deep); font-weight: 600;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68), 0 2px 8px rgba(31, 85, 117, 0.06);
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 .site-nav .nav-page:hover {
-  color: var(--blue-text); border-color: var(--sky-deep); background: rgba(143, 205, 238, 0.22); transform: translateY(-1px);
+  color: var(--blue-deep); border-color: var(--blue-text); background: rgba(143, 205, 238, 0.28); transform: translateY(-1px);
 }
 .nav-page__arrow { font-size: 0.92em; line-height: 1; color: var(--blue-text); }
+.nav-page__icon { font-size: 1.05em; line-height: 1; color: var(--blue-text); transform: translateY(-0.02em); }
 
 /* ---------- shared layout ---------- */
 .hero, .section, .site-footer { padding-left: var(--gutter); padding-right: var(--gutter); }
@@ -161,14 +155,14 @@ body::before {
   background: linear-gradient(110deg, var(--blue-text) 0%, var(--blue) 52%, #226aa0 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0.55px rgba(31, 85, 117, 0.58); paint-order: stroke fill;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.7)) drop-shadow(0 10px 20px rgba(31, 85, 117, 0.18));
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.7)) drop-shadow(0 6px 16px rgba(31, 85, 117, 0.16)) drop-shadow(0 0 16px rgba(143, 205, 238, 0.32));
 }
 .hero__story { position: relative; max-width: 60rem; margin: 0 0 2.4rem; }
 .hero__statement {
   display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; margin: 0;
 }
 .hero__tagline {
-  display: block; font-family: var(--sans); font-size: clamp(0.9rem, 1.3vw, 1.05rem); line-height: 1.5;
+  display: block; font-family: var(--sans); font-size: clamp(1.07rem, 1.5vw, 1.22rem); line-height: 1.5;
   letter-spacing: 0.005em; font-weight: 500; color: var(--ink-soft); white-space: nowrap;
 }
 .hero__statement strong {
@@ -668,7 +662,7 @@ a.dp-name:hover { color: var(--blue-text); }
   .hero { grid-template-columns: 1fr; padding-top: var(--space-16); padding-bottom: var(--space-16); }
   .hero > * { grid-column: 1; }
   .hero__name { font-size: clamp(2.6rem, 12vw, 4rem); -webkit-text-stroke-width: 0.4px; }
-  .hero__tagline { font-size: 0.9rem; }
+  .hero__tagline { font-size: 1.07rem; }
   .hero__statement strong { font-size: clamp(1.35rem, 5vw, 1.65rem); }
   .hero__story { margin-bottom: 2rem; }
   .section, .case-section { padding-top: var(--space-16); padding-bottom: var(--space-16); }

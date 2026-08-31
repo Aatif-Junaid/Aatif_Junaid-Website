@@ -249,9 +249,9 @@ body::before {
 .hero-proof__intro { padding-right: clamp(1.5rem, 3.2vw, 3.5rem); }
 .hero-proof__eyebrow { margin-bottom: 0.6rem; color: #063c82; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
 .hero-proof__intro h2 { font-family: var(--serif); font-size: clamp(2rem, 2.7vw, 2.65rem); font-weight: 500; line-height: 1.03; letter-spacing: -0.03em; }
-.hero-proof__intro > p:last-child { max-width: 31ch; margin-top: 0.95rem; color: var(--ink); font-size: 0.94rem; line-height: 1.62; }
+.hero-proof__how { margin-top: 0.95rem; color: var(--ink); font-size: 0.94rem; font-weight: 500; line-height: 1.62; }
 .hero-proof__item { display: grid; grid-template-columns: 2.65rem 1fr; align-content: start; gap: 0.65rem; min-height: 8.9rem; padding: 0.3rem 1.3rem 0 1.65rem; border-left: 1px solid var(--line-strong); }
-.hero-proof__icon { display: block; width: 2.15rem; height: 2.15rem; object-fit: contain; }
+.hero-proof__icon { display: block; width: 2.15rem; height: 2.15rem; object-fit: contain; filter: invert(34%) sepia(28%) saturate(1743%) hue-rotate(161deg) brightness(89%) contrast(88%); }
 .hero-proof__item h3 { margin-top: 0.22rem; color: #063c82; font-family: var(--sans); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
 .hero-proof__item p { margin-top: 0.72rem; color: var(--ink); font-size: 0.72rem; line-height: 1.7; }
 

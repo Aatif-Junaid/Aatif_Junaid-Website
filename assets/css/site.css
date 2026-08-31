@@ -164,13 +164,13 @@ body::before {
 /* A controlled cyan halo gives the name a distinct signature without competing
    with the comet. The glow is rendered once, behind the type, so it stays crisp. */
 .hero__name {
-  position: relative; isolation: isolate; font-family: var(--serif); font-weight: 600;
+  position: relative; isolation: isolate; font-family: var(--serif); font-weight: 500;
   font-size: clamp(4rem, 6.6vw, 6rem); line-height: 0.95; letter-spacing: -0.042em; padding-bottom: 0.12em;
   background: linear-gradient(110deg, #07336f 0%, #0e5196 39%, #bfeeff 48%, #0e5196 57%, #063c82 100%);
   background-size: 240% 100%; background-position: 0% 50%; animation: hero-name-sheen 11s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
   -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 0.55px rgba(31, 85, 117, 0.64); paint-order: stroke fill;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.78)) drop-shadow(0 5px 13px rgba(31, 85, 117, 0.18));
+  -webkit-text-stroke: 0.3px rgba(31, 85, 117, 0.42); paint-order: stroke fill;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.78)) drop-shadow(0 4px 10px rgba(31, 85, 117, 0.14));
 }
 .hero__name::before {
   content: attr(data-name); position: absolute; inset: 0; z-index: -1; pointer-events: none;
@@ -198,9 +198,10 @@ body::before {
 .hero__actions { position: relative; z-index: 1; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 0.85rem; }
 .hero__geometry {
   position: absolute; grid-column: auto; grid-row: auto; align-self: auto; justify-self: auto;
-  top: 1.6rem; right: -8rem; width: min(46vw, 600px); margin: 0; opacity: 0.94; pointer-events: none;
+  top: 1.6rem; right: 0; width: min(41vw, 520px); margin: 0; opacity: 0.94; pointer-events: none;
 }
 .hero__geometry img { width: 100%; height: auto; filter: drop-shadow(0 16px 24px rgba(31, 85, 117, 0.06)); }
+.hero__name, .case-hero__title, .section-title, .hero-proof__intro h2 { text-wrap: balance; }
 @keyframes hero-name-sheen {
   0%, 30% { background-position: 0% 50%; }
   54%, 100% { background-position: 100% 50%; }

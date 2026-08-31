@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Aatif Mulla AM monogram</title>
+  <desc id="desc">An angular A and M monogram with an open geometric base.</desc>
+  <defs>
+    <linearGradient id="blue" x1="21" y1="17" x2="105" y2="111" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#63c8f2"/>
+      <stop offset="0.30" stop-color="#2f8ec5"/>
+      <stop offset="0.72" stop-color="#216da4"/>
+      <stop offset="1" stop-color="#174b75"/>
+    </linearGradient>
+    <linearGradient id="glint" x1="27" y1="11" x2="91" y2="101" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".68"/>
+      <stop offset="0.26" stop-color="#b9efff" stop-opacity=".30"/>
+      <stop offset="0.62" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="1.15" result="blur"/>
+      <feFlood flood-color="#49c3f2" flood-opacity=".34" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="softGlow"/>
+      <feMerge>
+        <feMergeNode in="softGlow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <path d="M18 91 64 13 110 91" stroke="url(#blue)" stroke-width="10"/>
+    <path d="M31 91 48 61 64 84 80 61 97 91" stroke="url(#blue)" stroke-width="10"/>
+    <path d="M18 91 64 113 110 91" stroke="url(#blue)" stroke-width="10"/>
+    <path d="M18 91 64 13 110 91 M31 91 48 61 64 84 80 61" stroke="url(#glint)" stroke-width="1.65" opacity=".62"/>
+  </g>
+</svg>

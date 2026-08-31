@@ -198,7 +198,7 @@ body::before {
   display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem; margin: 0;
 }
 .hero__tagline {
-  display: block; font-family: var(--serif); font-size: clamp(2rem, 3.35vw, 3.2rem); line-height: 1.08;
+  display: block; font-family: var(--serif); font-size: clamp(1.833rem, calc(3.35vw - 0.167rem), 3.033rem); line-height: 1.08;
   letter-spacing: -0.025em; font-style: italic; font-weight: 500; color: var(--ink); white-space: nowrap;
 }
 .hero__statement strong {
@@ -781,7 +781,7 @@ a.dp-name:hover { color: var(--blue-text); }
   .hero > *, .hero > .kicker, .hero > .hero__name, .hero > .hero__story, .hero > .hero__actions { grid-column: 1 / -1; }
   .hero__name { font-size: clamp(3rem, 13.5vw, 4.15rem); -webkit-text-stroke-width: 0.4px; }
   .hero__name::before { opacity: 0.43; filter: blur(8px) saturate(1.1); }
-  .hero__tagline { font-size: clamp(1.55rem, 7.5vw, 2rem); white-space: normal; }
+  .hero__tagline { font-size: clamp(1.383rem, calc(7.5vw - 0.167rem), 1.833rem); white-space: normal; }
   .hero__statement strong { font-size: 0.78rem; }
   .hero__story { margin-bottom: 2rem; }
   .hero__actions .btn--primary { width: min(100%, 19rem); min-width: 0; font-size: 1rem; }

@@ -40,8 +40,10 @@ try {
 
     $resultPath = Join-Path ([IO.Path]::GetTempPath()) ("trufflehog-results-" + [guid]::NewGuid() + '.jsonl')
     $errorPath = Join-Path ([IO.Path]::GetTempPath()) ("trufflehog-errors-" + [guid]::NewGuid() + '.log')
-    & $truffleHog.FullName filesystem $temporaryRoot --json --fail --fail-on-scan-errors --no-update --no-color 1> $resultPath 2> $errorPath
-    $scanExitCode = $LASTEXITCODE
+    $scanProcess = Start-Process -FilePath $truffleHog.FullName -ArgumentList @(
+        'filesystem', $temporaryRoot, '--json', '--fail', '--fail-on-scan-errors', '--no-update', '--no-color'
+    ) -NoNewWindow -PassThru -Wait -RedirectStandardOutput $resultPath -RedirectStandardError $errorPath
+    $scanExitCode = $scanProcess.ExitCode
     if ($scanExitCode -ne 0) {
         $summaries = @(
             Get-Content -LiteralPath $resultPath -ErrorAction SilentlyContinue | ForEach-Object {

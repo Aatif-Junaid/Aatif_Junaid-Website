@@ -121,8 +121,13 @@ body::before {
 }
 .wordmark { display: inline-flex; align-items: center; gap: 0.56rem; font-size: 0.98rem; letter-spacing: -0.01em; font-weight: 600; color: var(--ink); }
 .wordmark__mark { width: 28px; height: 28px; flex: 0 0 auto; }
-.site-header--floating .wordmark { width: 68px; height: 68px; justify-content: center; }
+.site-header--floating .wordmark { width: auto; min-width: 13.75rem; height: 68px; justify-content: flex-start; gap: 0.72rem; }
 .site-header--floating .wordmark__mark { width: 64px; height: 64px; }
+.wordmark__name {
+  color: var(--blue-deep); font-family: var(--serif); font-size: 1rem; line-height: 1;
+  font-weight: 600; letter-spacing: -0.018em; white-space: nowrap;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+}
 .wordmark:hover { color: var(--blue-text); }
 .site-nav { display: flex; gap: clamp(0.8rem, 2.4vw, 1.7rem); }
 .site-nav a {
@@ -161,6 +166,11 @@ body::before {
 .hero > * { grid-column: 1 / span 9; min-width: 0; }
 .hero > .kicker, .hero > .hero__name, .hero > .hero__story, .hero > .hero__actions { grid-column: 1 / span 10; }
 .kicker { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: #063c82; font-weight: 600; margin-bottom: 1.7rem; }
+.hero__kicker { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; }
+.hero__location-group { display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
+.hero__kicker-divider { color: var(--blue-text); font-size: 1.1em; line-height: 1; }
+.hero__location { display: inline-flex; align-items: center; gap: 0.28rem; }
+.hero__location svg { width: 0.93em; height: 0.93em; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 /* A controlled cyan halo gives the name a distinct signature without competing
    with the comet. The glow is rendered once, behind the type, so it stays crisp. */
 .hero__name {
@@ -240,7 +250,7 @@ body::before {
 .hero-proof__intro h2 { font-family: var(--serif); font-size: clamp(2rem, 2.7vw, 2.65rem); font-weight: 500; line-height: 1.03; letter-spacing: -0.03em; }
 .hero-proof__intro > p:last-child { max-width: 31ch; margin-top: 0.95rem; color: var(--ink); font-size: 0.94rem; line-height: 1.62; }
 .hero-proof__item { display: grid; grid-template-columns: 2.65rem 1fr; align-content: start; gap: 0.65rem; min-height: 8.9rem; padding: 0.3rem 1.3rem 0 1.65rem; border-left: 1px solid var(--line-strong); }
-.hero-proof__icon { width: 2.45rem; height: 2.45rem; fill: none; stroke: var(--blue-text); stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+.hero-proof__icon { width: 2.45rem; height: 2.45rem; color: var(--blue-text); fill: none; stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
 .hero-proof__item h3 { margin-top: 0.22rem; color: #063c82; font-family: var(--sans); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
 .hero-proof__item p { margin-top: 0.72rem; color: var(--ink); font-size: 0.72rem; line-height: 1.7; }
 
@@ -323,6 +333,15 @@ a.logo-chip:hover { transform: translateY(-2px) scale(1.04); box-shadow: var(--t
   color: var(--blue-deep); background: rgba(143, 205, 238, 0.26); border: 1px solid rgba(143, 205, 238, 0.5);
   vertical-align: 1px;
 }
+.tl-promotion { list-style: none; display: grid; max-width: 34rem; margin: -0.15rem 0 1.15rem; padding: 0; }
+.tl-promotion__role { position: relative; padding: 0.55rem 0 0.55rem 1.1rem; border-left: 1px solid var(--line-strong); }
+.tl-promotion__role + .tl-promotion__role { border-top: 1px solid var(--line); }
+.tl-promotion__role::before {
+  content: ""; position: absolute; top: 1.15rem; left: -4px; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--paper); border: 1.5px solid var(--blue-text); box-shadow: 0 0 0 3px rgba(143, 205, 238, 0.18);
+}
+.tl-promotion__date { display: block; color: var(--blue-deep); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.tl-promotion__role h4 { margin-top: 0.18rem; font-family: var(--serif); font-size: 1.08rem; font-weight: 500; line-height: 1.18; color: var(--ink); }
 /* MBA interlude: a slim dashed card, deliberately lighter than a job card */
 .tl-gapcard {
   display: flex; align-items: flex-start; gap: 0.9rem;
@@ -753,8 +772,9 @@ a.dp-name:hover { color: var(--blue-text); }
     top: 0; width: 100%; min-height: 68px; margin: 0; padding-inline: var(--gutter); border-inline: 0; border-radius: 0;
     box-shadow: none;
   }
-  .site-header--floating .wordmark { width: 44px; height: 44px; }
+  .site-header--floating .wordmark { width: 44px; min-width: 44px; height: 44px; }
   .site-header--floating .wordmark__mark { width: 38px; height: 38px; }
+  .wordmark__name { display: none; }
   .site-header--floating .site-nav { justify-content: flex-start; gap: 1rem; }
   .site-header--floating .site-nav a { font-size: 0.75rem; letter-spacing: 0; text-transform: none; }
   .hero { grid-template-columns: 1fr; padding-top: var(--space-16); padding-bottom: 0; }

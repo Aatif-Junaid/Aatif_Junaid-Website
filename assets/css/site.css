@@ -114,7 +114,13 @@ body::before {
   -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
   border-bottom: 1px solid var(--line);
 }
-.wordmark { font-size: 0.98rem; letter-spacing: -0.01em; font-weight: 600; color: var(--ink); }
+.site-header--floating {
+  top: 12px; width: min(1392px, calc(100% - 40px)); min-height: 60px; margin: 12px auto 0; padding: 0 clamp(1rem, 2.2vw, 1.6rem);
+  border: 1px solid rgba(38, 36, 31, 0.12); border-radius: 14px; background: rgba(247, 246, 242, 0.76);
+  box-shadow: 0 12px 32px rgba(31, 85, 117, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.84);
+}
+.wordmark { display: inline-flex; align-items: center; gap: 0.56rem; font-size: 0.98rem; letter-spacing: -0.01em; font-weight: 600; color: var(--ink); }
+.wordmark__mark { width: 28px; height: 28px; flex: 0 0 auto; }
 .wordmark:hover { color: var(--blue-text); }
 .site-nav { display: flex; gap: clamp(0.8rem, 2.4vw, 1.7rem); }
 .site-nav a {
@@ -134,6 +140,8 @@ body::before {
 .site-nav .nav-page:hover {
   color: var(--blue-deep); border-color: var(--blue-text); background: rgba(143, 205, 238, 0.28); transform: translateY(-1px);
 }
+.site-header--floating .site-nav { gap: clamp(0.7rem, 1.8vw, 1.25rem); }
+.site-header--floating .site-nav .nav-page { border-radius: 8px; }
 .nav-page__arrow { font-size: 0.92em; line-height: 1; color: var(--blue-text); }
 .nav-page__icon { font-size: 1.05em; line-height: 1; color: var(--blue-text); transform: translateY(-0.02em); }
 
@@ -146,13 +154,15 @@ body::before {
   display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--grid-gap); text-align: left;
 }
 .hero > * { grid-column: 1 / span 9; min-width: 0; }
+.hero > .kicker, .hero > .hero__name, .hero > .hero__story, .hero > .hero__actions { grid-column: 1 / span 8; }
 .kicker { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-deep); font-weight: 600; margin-bottom: 1.1rem; }
 /* A controlled cyan halo gives the name a distinct signature without competing
    with the comet. The glow is rendered once, behind the type, so it stays crisp. */
 .hero__name {
   position: relative; isolation: isolate; font-family: var(--serif); font-weight: 600;
-  font-size: var(--text-hero); line-height: 0.98; letter-spacing: -0.025em; padding-bottom: 0.1em;
-  background: linear-gradient(108deg, #1e5c8a 0%, #2f87bd 40%, #76b9e2 58%, #226aa0 100%);
+  font-size: clamp(3.25rem, 5.3vw, 4.9rem); line-height: 0.98; letter-spacing: -0.025em; padding-bottom: 0.1em;
+  background: linear-gradient(108deg, #1e5c8a 0%, #2f87bd 36%, #c9f2ff 48%, #2f87bd 58%, #226aa0 100%);
+  background-size: 220% 100%; background-position: 0% 50%; animation: hero-name-sheen 10s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
   -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0.55px rgba(31, 85, 117, 0.64); paint-order: stroke fill;
   filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.78)) drop-shadow(0 5px 13px rgba(31, 85, 117, 0.18));
@@ -180,7 +190,16 @@ body::before {
   font-family: var(--serif); font-style: normal; font-weight: 600; font-size: clamp(1.5rem, 3.1vw, 2.1rem);
   line-height: 1.12; letter-spacing: -0.015em; color: var(--blue-deep);
 }
-.hero__actions { justify-content: flex-start; }
+.hero__actions { position: relative; z-index: 1; justify-content: flex-start; }
+.hero__geometry {
+  grid-column: 9 / -1; grid-row: 1 / span 4; align-self: center; justify-self: end; width: min(31vw, 420px);
+  margin: -1.75rem -3.5rem -2.75rem 0; opacity: 0.92; pointer-events: none;
+}
+.hero__geometry img { width: 100%; height: auto; filter: drop-shadow(0 18px 26px rgba(31, 85, 117, 0.10)); }
+@keyframes hero-name-sheen {
+  0%, 30% { background-position: 0% 50%; }
+  54%, 100% { background-position: 100% 50%; }
+}
 
 /* buttons */
 .hero__actions, .contact__actions, .samples__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
@@ -195,6 +214,8 @@ body::before {
 .btn--primary { background: var(--blue-text); color: #fff; border-color: var(--blue-text); }
 .btn--primary:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
 .btn:not(.btn--primary):hover { border-color: var(--blue); color: var(--blue-deep); }
+.hero__actions .btn { display: inline-flex; align-items: center; gap: 0.48rem; border-radius: 8px; }
+.btn__icon { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---------- section scaffold ---------- */
 .section { max-width: var(--maxw); margin: 0 auto; padding-top: var(--space-28); padding-bottom: var(--space-28); }
@@ -679,6 +700,8 @@ a.dp-name:hover { color: var(--blue-text); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
+  .hero__geometry { display: none; }
+  .hero > .kicker, .hero > .hero__name, .hero > .hero__story, .hero > .hero__actions { grid-column: 1 / span 9; }
   .tool-groups { grid-template-columns: repeat(2, 1fr); }
   .section, .case-section { padding-top: var(--space-20); padding-bottom: var(--space-20); }
   #experience { padding-top: var(--space-20); padding-bottom: var(--space-20); }
@@ -694,6 +717,10 @@ a.dp-name:hover { color: var(--blue-text); }
   .case-results p:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
 }
 @media (max-width: 768px) {
+  .site-header--floating {
+    top: 0; width: 100%; min-height: 68px; margin: 0; padding-inline: var(--gutter); border-inline: 0; border-radius: 0;
+    box-shadow: none;
+  }
   .hero { grid-template-columns: 1fr; padding-top: var(--space-16); padding-bottom: var(--space-16); }
   .hero > * { grid-column: 1; }
   .hero__name { font-size: clamp(2.6rem, 12vw, 4rem); -webkit-text-stroke-width: 0.4px; }
@@ -809,7 +836,7 @@ a.dp-name:hover { color: var(--blue-text); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   body::before { animation: none; }
-  .hero__name { animation: none; }
+  .hero__name { animation: none; background-position: 50% 50%; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .case-study { transition: none; }
   .case-study.is-focus { transform: none; }

@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/site.css?v=13" />
+  <link rel="stylesheet" href="assets/css/site.css?v=14" />
 
   <!-- Structured data: ties this page back to the same Person entity -->
   <script type="application/ld+json">
@@ -73,10 +73,19 @@
 
   <main class="case-page" id="top">
     <section class="case-hero" id="overview">
-      <p class="kicker">Pipeline, revenue, and the systems behind them</p>
-      <h1 class="case-hero__title">Go-to-market: the work behind the outcomes.</h1>
-      <p class="case-hero__lede">I find who the buyer is, build the motion that reaches them, and measure whether it drove pipeline.</p>
-      <p class="case-hero__context">Five cases show the problem, the play I ran, what I owned, and the result. Every number says what it does and does not claim.</p>
+      <p class="kicker">Pipeline &rarr; Revenue &rarr; Repeatable Systems</p>
+      <h1 class="case-hero__title">Go-to-market, end to end.</h1>
+      <div class="case-loop" role="group" aria-label="GTM feedback loop: find the buyer, build the motion, measure the outcome, and use feedback to iterate.">
+        <span class="case-loop__step case-loop__step--buyer">Find the buyer</span>
+        <span class="case-loop__arrow case-loop__arrow--right" aria-hidden="true">&rarr;</span>
+        <span class="case-loop__step case-loop__step--motion">Build the motion</span>
+        <span class="case-loop__arrow case-loop__arrow--down" aria-hidden="true">&darr;</span>
+        <span class="case-loop__step case-loop__step--outcome">Measure the outcome</span>
+        <span class="case-loop__arrow case-loop__arrow--left" aria-hidden="true">&larr;</span>
+        <span class="case-loop__step case-loop__step--iterate">Use feedback. Iterate.</span>
+        <span class="case-loop__arrow case-loop__arrow--up" aria-hidden="true">&uarr;</span>
+      </div>
+      <p class="case-hero__context">Five cases. Full GTM spectrum.</p>
       <div class="case-hero__actions">
         <a class="btn btn--primary" href="#cases">Read the cases</a>
         <a class="btn" href="resume.pdf?v=2026-08i" target="_blank" rel="noopener">Resume</a>

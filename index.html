@@ -80,7 +80,7 @@
   <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/site.css?v=16" />
+  <link rel="stylesheet" href="assets/css/site.css?v=17" />
   <!-- Without JS the reveal observer never runs, so make sure nothing stays invisible. -->
   <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
@@ -101,8 +101,7 @@
 
   <header class="site-header site-header--floating">
     <a class="wordmark" href="/" aria-label="Aatif Junaid Mulla home">
-      <img class="wordmark__mark" src="assets/logos/am-mark.svg" alt="" width="32" height="32" />
-      <span>Aatif Junaid Mulla</span>
+      <img class="wordmark__mark" src="assets/logos/am-mark.svg" alt="" width="64" height="64" />
     </a>
     <nav class="site-nav" aria-label="Primary">
       <a href="#experience">Experience</a>
@@ -128,12 +127,35 @@
       </div>
 
       <div class="hero__actions reveal">
-        <a class="btn btn--primary" href="case-studies.html">View Case Studies</a>
+        <a class="btn btn--primary" href="case-studies.html">View Case Studies<span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
         <a class="btn" href="resume.pdf?v=2026-08i" target="_blank" rel="noopener"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 2.75h7.1l3.9 3.9v14.6H6.5z"/><path d="M13.5 2.75v4h4"/><path d="M9.25 12h5.5M9.25 15.5h5.5"/></svg>Resume</a>
       </div>
       <div class="hero__geometry" aria-hidden="true">
         <img src="assets/logos/hero-geometry.svg" alt="" width="560" height="540" decoding="async" />
       </div>
+      <section class="hero-proof reveal" aria-labelledby="proof-in-motion">
+        <div class="hero-proof__intro">
+          <p class="hero-proof__eyebrow">GTM &amp; Product Growth</p>
+          <h2 id="proof-in-motion">The proof in motion.</h2>
+          <p>Building GTM systems that turn strategy into repeatable growth.</p>
+        </div>
+        <div class="hero-proof__item">
+          <svg class="hero-proof__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5 28 9.5v13L16 29.5 4 22.5v-13Z"/><path d="m11 19 5-8 5 8Z"/></svg>
+          <div><h3>Strategy</h3><p>Clarify positioning, ICP, and messaging to align teams and markets.</p></div>
+        </div>
+        <div class="hero-proof__item">
+          <svg class="hero-proof__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5 28 9.5v13L16 29.5 4 22.5v-13Z"/><path d="m16 8-5 13h10Z"/></svg>
+          <div><h3>Launch</h3><p>Go-to-market execution that converts interest into initial traction.</p></div>
+        </div>
+        <div class="hero-proof__item">
+          <svg class="hero-proof__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5 28 9.5v13L16 29.5 4 22.5v-13Z"/><path d="m10 12 6-4 6 4v8l-6 4-6-4Z"/><path d="m10 12 6 4 6-4M16 16v8"/></svg>
+          <div><h3>Scale</h3><p>Drive sustainable growth with channel, product, and demand engines.</p></div>
+        </div>
+        <div class="hero-proof__item">
+          <svg class="hero-proof__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5 28 9.5v13L16 29.5 4 22.5v-13Z"/><path d="m10 12 7-4 5 3-7 4 6 3-7 6"/></svg>
+          <div><h3>Systems</h3><p>Build repeatable operating models that compound over time.</p></div>
+        </div>
+      </section>
     </section>
 
     <!-- EXPERIENCE TIMELINE -->

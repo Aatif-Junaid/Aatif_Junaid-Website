@@ -26,12 +26,12 @@
     <path d="m508 250 106-62v53l-106 62Z"/>
   </g>
   <g fill="#1f5f9a" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing=".55">
-    <text x="84" y="170">INSIGHTS</text>
-    <text x="84" y="188" font-size="10" font-weight="400" letter-spacing="0">Market &amp; Customer</text>
-    <text x="318" y="357">GROWTH</text>
-    <text x="318" y="375" font-size="10" font-weight="400" letter-spacing="0">Execution &amp; Scale</text>
-    <text x="426" y="238">STRATEGY</text>
-    <text x="426" y="256" font-size="10" font-weight="400" letter-spacing="0">Position &amp; Messaging</text>
+    <text x="84" y="170">BUYER SIGNAL</text>
+    <text x="84" y="188" font-size="10" font-weight="400" letter-spacing="0">Research &amp; Qualification</text>
+    <text x="318" y="357">REVENUE SYSTEM</text>
+    <text x="318" y="375" font-size="10" font-weight="400" letter-spacing="0">Pipeline &amp; Feedback</text>
+    <text x="426" y="238">TECHNICAL PROOF</text>
+    <text x="426" y="256" font-size="10" font-weight="400" letter-spacing="0">Position &amp; Enablement</text>
   </g>
   <g fill="#1f5f9a">
     <circle cx="64" cy="122" r="3"/><circle cx="189" cy="304" r="3"/><circle cx="402" cy="188" r="3"/>

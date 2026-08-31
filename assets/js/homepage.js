@@ -34,6 +34,7 @@
   var itemPositions = [];
   var SAFE = 60, pathAmplitude = 160, pathOriginY = 0, pathStartX = SAFE, pathStartPhase = -Math.PI / 2;
   var motionElapsed = 0, headInitialized = false;
+  var COMET_SPEED_MULTIPLIER = 1.10;
 
   function resize() {
     resizeQueued = false;
@@ -372,9 +373,9 @@
     motionElapsed += deltaSeconds;
     var time = motionElapsed;
     computeTarget();
-    var follow = 1 - Math.exp(-1.65 * deltaSeconds);
+    var follow = 1 - Math.exp(-(1.65 * COMET_SPEED_MULTIPLIER) * deltaSeconds);
     var yStep = (targetY - head.y) * follow;
-    var maxStep = 8.2 * frameScale;
+    var maxStep = 8.2 * COMET_SPEED_MULTIPLIER * frameScale;
     head.y += Math.max(-maxStep, Math.min(maxStep, yStep));
     var deltaY = head.y - prevY;
     var speed = Math.abs(deltaY) / frameScale;
@@ -497,7 +498,7 @@
         inView = entry.isIntersecting;
         if (inView && !document.hidden) start(); else stop();
       });
-    }, { threshold: 0 }).observe(timeline);
+    }, { rootMargin: '0px 0px 22% 0px', threshold: 0 }).observe(timeline);
   } else {
     inView = true;
     start();

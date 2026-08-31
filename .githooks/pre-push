@@ -1,0 +1,16 @@
+#!/bin/sh
+set -eu
+
+# PR branches must include the current remote main before they are pushed.
+# This prevents GitHub merge conflicts caused by a stale local base.
+branch="$(git branch --show-current)"
+if [ "$branch" = "main" ]; then
+  exit 0
+fi
+
+git fetch --quiet origin main
+
+if ! git merge-base --is-ancestor origin/main HEAD; then
+  echo "Push blocked: this branch is behind origin/main. Rebase onto origin/main, resolve locally, run checks, then push again." >&2
+  exit 1
+fi

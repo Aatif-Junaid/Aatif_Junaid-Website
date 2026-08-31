@@ -66,7 +66,10 @@ finally {
     }
     foreach ($path in @($resultPath, $errorPath)) {
         if ($path -and (Test-Path -LiteralPath $path)) {
-            Remove-Item -LiteralPath $path -Force
+            # A virus scanner or the TruffleHog process can briefly retain a
+            # handle after a successful scan. Cleanup must not turn a passed
+            # security check into a failed commit.
+            Remove-Item -LiteralPath $path -Force -ErrorAction SilentlyContinue
         }
     }
 }

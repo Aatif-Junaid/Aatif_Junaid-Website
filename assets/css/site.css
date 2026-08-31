@@ -147,15 +147,26 @@ body::before {
 }
 .hero > * { grid-column: 1 / span 9; min-width: 0; }
 .kicker { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-deep); font-weight: 600; margin-bottom: 1.1rem; }
-/* The name stays within the blue system, with a restrained edge and a shallow
-   blue-tinted shadow so it reads as a signature rather than a luminous effect. */
+/* A controlled cyan halo gives the name a distinct signature without competing
+   with the comet. The glow is rendered once, behind the type, so it stays crisp. */
 .hero__name {
-  font-family: var(--serif); font-weight: 600;
+  position: relative; isolation: isolate; font-family: var(--serif); font-weight: 600;
   font-size: var(--text-hero); line-height: 0.98; letter-spacing: -0.025em; padding-bottom: 0.1em;
-  background: linear-gradient(110deg, var(--blue-text) 0%, var(--blue) 52%, #226aa0 100%);
+  background: linear-gradient(108deg, #1e5c8a 0%, #2f87bd 40%, #76b9e2 58%, #226aa0 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 0.55px rgba(31, 85, 117, 0.58); paint-order: stroke fill;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.7)) drop-shadow(0 6px 16px rgba(31, 85, 117, 0.16)) drop-shadow(0 0 16px rgba(143, 205, 238, 0.32));
+  -webkit-text-stroke: 0.55px rgba(31, 85, 117, 0.64); paint-order: stroke fill;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.78)) drop-shadow(0 5px 13px rgba(31, 85, 117, 0.18));
+}
+.hero__name::before {
+  content: attr(data-name); position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  color: #7ec9ed; -webkit-text-fill-color: #7ec9ed; opacity: 0.48;
+  filter: blur(10px) saturate(1.15);
+}
+.hero__name::after {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  left: 8%; right: 9%; top: 56%; height: 34%;
+  background: radial-gradient(ellipse at center, rgba(143, 205, 238, 0.38), rgba(143, 205, 238, 0) 70%);
+  filter: blur(12px);
 }
 .hero__story { position: relative; max-width: 60rem; margin: 0 0 2.4rem; }
 .hero__statement {
@@ -686,6 +697,7 @@ a.dp-name:hover { color: var(--blue-text); }
   .hero { grid-template-columns: 1fr; padding-top: var(--space-16); padding-bottom: var(--space-16); }
   .hero > * { grid-column: 1; }
   .hero__name { font-size: clamp(2.6rem, 12vw, 4rem); -webkit-text-stroke-width: 0.4px; }
+  .hero__name::before { opacity: 0.43; filter: blur(8px) saturate(1.1); }
   .hero__tagline { font-size: 1.07rem; }
   .hero__statement strong { font-size: clamp(1.35rem, 5vw, 1.65rem); }
   .hero__story { margin-bottom: 2rem; }
@@ -772,6 +784,7 @@ a.dp-name:hover { color: var(--blue-text); }
   body { font-size: 16px; }
   .section, .case-section { padding-top: var(--space-16); padding-bottom: var(--space-16); }
   .hero__name { font-size: clamp(2.2rem, 13vw, 3rem); -webkit-text-stroke-width: 0.35px; }
+  .hero__name::before { opacity: 0.4; filter: blur(6px) saturate(1.08); }
   .section-title { font-size: 1.75rem; }
   .tl-role { font-size: 1.25rem; }
   .tl-card, .contact-tile { padding: 1.25rem; }

@@ -31,7 +31,7 @@
   --serif: "Playfair Display", Georgia, "Times New Roman", serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 
-  --text-hero: clamp(3.2rem, 5.3vw, 4.8rem);
+  --text-hero: clamp(3.84rem, 6.36vw, 5.76rem);
   --text-display: clamp(1.4rem, calc(3.5vw - 0.4rem), 2.35rem);
   --text-heading: clamp(1.2rem, 1.9vw, 1.6rem);
   --text-lead: 1rem;
@@ -780,7 +780,7 @@ a.dp-name:hover { color: var(--blue-text); }
   .site-header--floating .site-nav a { font-size: 0.75rem; letter-spacing: 0; text-transform: none; }
   .hero { grid-template-columns: 1fr; padding-top: var(--space-16); padding-bottom: 0; }
   .hero > *, .hero > .kicker, .hero > .hero__name, .hero > .hero__story, .hero > .hero__actions { grid-column: 1 / -1; }
-  .hero__name, .case-hero__title { font-size: clamp(2.4rem, 10.8vw, 3.3rem); -webkit-text-stroke-width: 0.4px; }
+  .hero__name, .case-hero__title { font-size: clamp(2.88rem, 12.96vw, 3.96rem); -webkit-text-stroke-width: 0.4px; }
   .hero__name::before { opacity: 0.43; filter: blur(8px) saturate(1.1); }
   .hero__tagline { font-size: clamp(1.1rem, calc(5.5vw - 0.2rem), 1.35rem); white-space: normal; }
   .hero__statement strong { font-size: 0.78rem; }
@@ -871,7 +871,7 @@ a.dp-name:hover { color: var(--blue-text); }
 @media (max-width: 480px) {
   body { font-size: 16px; }
   .section, .case-section { padding-top: var(--space-16); padding-bottom: var(--space-16); }
-  .hero__name, .case-hero__title { font-size: clamp(2.2rem, 10.4vw, 2.9rem); -webkit-text-stroke-width: 0.35px; }
+  .hero__name, .case-hero__title { font-size: clamp(2.64rem, 12.48vw, 3.48rem); -webkit-text-stroke-width: 0.35px; }
   .hero__name::before { opacity: 0.4; filter: blur(6px) saturate(1.08); }
   .section-title { font-size: 1.05rem; }
   .tl-role { font-size: 1.05rem; }

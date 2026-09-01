@@ -1,6 +1,6 @@
 # AI.md — Quick-start for any AI agent working on this repo
 
-Read this file first. It replaces reading AGENTS.md + CLAUDE.md + DESIGN.md separately.
+Read this file first as a quick-start. It complements, rather than replaces, the task-specific instructions in `AGENTS.md`, `CLAUDE.md`, and `DESIGN.md`.
 See `docs/ai/CONTEXT.md` for the full context, and `docs/ai/file-map.md` for the annotated file map.
 
 ## What this repo is
@@ -12,7 +12,7 @@ no server-side code. Four HTML pages, one shared CSS file, three JS files.
 ## Cardinal rules (never violate these)
 
 1. **No secrets, tokens, or private career data** in any tracked file — ever.
-2. **Direct pushes to `main` are allowed**. This is a zero-friction solo-developer workflow. Force-pushes are permitted for fast-tracking hotfixes.
+2. **Direct validated pushes to `main` are allowed**. GitHub blocks force-pushes and deletion of `main`.
 3. **No installing Claude plugins, marketplace extensions, or MCP servers** that are
    not already listed in `.claude/settings.json`. The session-start hook is the only
    approved provisioning path.
@@ -31,14 +31,15 @@ no server-side code. Four HTML pages, one shared CSS file, three JS files.
 | `AGENTS.md` | Full agent workflow, branching, commit, copy, and deploy rules |
 | `CLAUDE.md` | Claude-specific rules (same substance, tighter format) |
 
-## Files you must never edit without explicit owner approval
+## Files requiring explicit owner approval
 
 - `CNAME` (breaks the custom domain)
-- `assets/css/site.css` cache-buster version (`?v=24`) — follow `docs/runbooks/cache-busting.md`
-- `assets/js/*.js` cache-buster versions — same runbook
-- `resume.pdf?v=...` cache-buster — same runbook
 - `.github/workflows/security-scan.yml` — any change here must keep Actions pinned to full SHAs
 - `.claude/hooks/session-start.sh` — only TruffleHog + Chrome DevTools MCP are approved
+
+## Cache versions
+
+Update a cache-buster only when its underlying CSS, JavaScript, resume, or social image changes. Follow `docs/runbooks/cache-busting.md`; do not hardcode a version in these instructions.
 
 ## Canonical facts (these must be consistent across all pages)
 

@@ -9,6 +9,10 @@
 
 set -eu
 
+if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
+  exit 0
+fi
+
 # --- TruffleHog -------------------------------------------------------------
 # Needed for scripts/security_scan.ps1 pre-commit secret scan.
 if command -v trufflehog > /dev/null 2>&1; then
@@ -73,8 +77,9 @@ if ! command -v claude > /dev/null 2>&1; then
 elif claude mcp get chrome-devtools > /dev/null 2>&1; then
   echo "session-start: chrome-devtools MCP already registered"
 elif [ -x /opt/pw-browsers/chromium ]; then
+  MCP_VERSION="1.8.0"
   claude mcp add chrome-devtools --scope user -- \
-    npx -y chrome-devtools-mcp@latest \
+    npx -y "chrome-devtools-mcp@${MCP_VERSION}" \
     --executablePath=/opt/pw-browsers/chromium \
     --headless \
     --chromeArg=--no-sandbox \

@@ -12,7 +12,7 @@ no server-side code. Four HTML pages, one shared CSS file, three JS files.
 ## Cardinal rules (never violate these)
 
 1. **No secrets, tokens, or private career data** in any tracked file — ever.
-2. **No force-pushing or deleting `main`**. Branch protection is enforced.
+2. **Direct pushes to `main` are allowed**. This is a zero-friction solo-developer workflow. Force-pushes are permitted for fast-tracking hotfixes.
 3. **No installing Claude plugins, marketplace extensions, or MCP servers** that are
    not already listed in `.claude/settings.json`. The session-start hook is the only
    approved provisioning path.

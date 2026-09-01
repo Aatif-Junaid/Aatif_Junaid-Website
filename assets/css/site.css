@@ -937,3 +937,42 @@ a.dp-name:hover { color: var(--blue-text); }
   transition: transform 0.2s ease;
 }
 .skip-link:focus { transform: translateX(-50%) translateY(0); }
+
+
+/* ---------- print ---------- */
+@media print {
+  /* Swap dark canvas for plain white so ink is not wasted */
+  :root {
+    --paper: #ffffff;
+    --paper-2: #f5f5f5;
+    --ink: #111111;
+    --ink-soft: #444444;
+    --line: #cccccc;
+  }
+  /* Remove decorative chrome that makes no sense on paper */
+  body::before,
+  .tl-comet,
+  .tl-dot,
+  .hero__geometry,
+  .dp-carousel,
+  .site-header,
+  .skip-link,
+  .hero__actions,
+  .case-hero__actions,
+  .contact__actions,
+  .site-footer__note,
+  .footer-linkedin { display: none !important; }
+
+  /* Remove interactive styles */
+  .tile, .btn, .metric, .tools li, a.logo-chip { transform: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+
+  /* Ensure text stays readable */
+  a { color: var(--ink); text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75rem; color: var(--ink-soft); }
+  a[href^="mailto:"]::after, a[href^="tel:"]::after { content: none; }
+
+  /* Keep readable line width */
+  body { max-width: 100%; font-size: 11pt; }
+  .section, .case-section { page-break-inside: avoid; }
+}

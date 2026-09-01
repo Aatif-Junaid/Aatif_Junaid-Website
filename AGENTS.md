@@ -14,6 +14,7 @@ Codex and Claude Code follow the same rules in this repository.
 - Never commit credentials or private professional-brain content. Public claims must be reviewed and public-safe.
 - Never force-push or delete `main`. Direct validated pushes to `main` are allowed.
 - Pin external Actions to full commit SHAs and keep workflow permissions minimal.
+- Do not install Claude plugins, marketplace extensions, or MCP servers that are not already listed in .claude/settings.json. The .claude/hooks/session-start.sh file is the only approved provisioning path, and it may only contain TruffleHog and the Chrome DevTools MCP.
 
 ## Copy rules
 

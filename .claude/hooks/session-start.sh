@@ -1,63 +1,21 @@
-#!/bin/bash
-# SessionStart hook: install PowerShell 7 so `pwsh -File scripts/check.ps1`
-# works in Claude Code on the web. The container is ephemeral, so this runs
-# on each remote session start. Idempotent and non-interactive.
-set -uo pipefail
+#!/bin/sh
+# Session-start hook for Claude remote sessions.
+# Runs only when CLAUDE_CODE_REMOTE=true (ephemeral containers).
+# Installs TruffleHog (used by pre-commit) and registers the Chrome DevTools MCP.
+# Third-party Claude plugin installation has been removed: those marketplace
+# sources are unaffiliated GitHub accounts with no version pins or checksums,
+# which creates a supply-chain risk on every session. Only tools with a clear,
+# verifiable purpose are provisioned here.
 
-# Remote (web) sessions only. Locally, developers install pwsh themselves.
-if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
-  exit 0
-fi
-
-# Already present (e.g. resume/clear on a warm container): skip reinstall,
-# but keep going into the later stages below.
-if command -v pwsh >/dev/null 2>&1; then
-  echo "pwsh already installed: $(pwsh --version)"
-else
-
-  # Only Debian/Ubuntu x86_64 is supported by this hook's install path.
-  if [ "$(uname -m)" != "x86_64" ] || ! command -v dpkg >/dev/null 2>&1; then
-    echo "session-start: unsupported platform for pwsh auto-install; skipping" >&2
-  else
-    SUDO=""
-    if [ "$(id -u)" -ne 0 ]; then
-      SUDO="sudo"
-    fi
-
-    # github.com is blocked by the web egress policy, but packages.microsoft.com
-    # is reachable, so pull the official Ubuntu 24.04 .deb from there.
-    PS_VERSION="7.6.5"
-    DEB="powershell_${PS_VERSION}-1.deb_amd64.deb"
-    URL="https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/p/powershell/${DEB}"
-    PS_SHA256="dd683d29a5c95ed43e426f4fe1679469d8b89e78ea955455f6238a0b0e6f1a24"
-    TMP="$(mktemp -d)"
-
-    echo "session-start: downloading PowerShell ${PS_VERSION}..."
-    if curl -fsSL --retry 3 --retry-delay 2 --max-time 300 -o "$TMP/$DEB" "$URL" \
-      && echo "${PS_SHA256}  $TMP/$DEB" | sha256sum --check --status; then
-      echo "session-start: installing PowerShell..."
-      # Base image already carries pwsh's runtime deps; fall back to apt if not.
-      $SUDO dpkg -i "$TMP/$DEB" 2>&1 || $SUDO apt-get install -f -y
-      command -v pwsh >/dev/null 2>&1 && pwsh --version
-    else
-      echo "session-start: pwsh download or checksum verification failed; skipping" >&2
-    fi
-    rm -rf "$TMP"
-  fi
-fi
+set -eu
 
 # --- TruffleHog -------------------------------------------------------------
-# Needed for scripts/security_scan.ps1's pre-push secret scan.
-if command -v trufflehog >/dev/null 2>&1; then
+# Needed for scripts/security_scan.ps1 pre-commit secret scan.
+if command -v trufflehog > /dev/null 2>&1; then
   echo "session-start: trufflehog already installed"
-elif ! command -v go >/dev/null 2>&1; then
+elif ! command -v go > /dev/null 2>&1; then
   echo "session-start: go toolchain not found; skipping trufflehog install" >&2
 else
-  # `go install` refuses this module directly: its go.mod carries `replace`
-  # directives, which Go only honors for the main module. Work around it by
-  # downloading the module source through the Go module proxy (reachable
-  # here, unlike GitHub releases, TruffleHog's normal distribution channel)
-  # and building it as a standalone main module instead.
   TH_VERSION="v3.97.1"
   TH_TMP="$(mktemp -d)"
 
@@ -107,53 +65,23 @@ PY
   rm -rf "$TH_TMP"
 fi
 
-# --- Claude Code plugins ------------------------------------------------
-# Review/lint/security plugins used on this repo. Both marketplace add and
-# plugin install are already idempotent no-ops when already present.
-if ! command -v claude >/dev/null 2>&1; then
-  echo "session-start: claude CLI not found; skipping plugin install" >&2
+# --- Chrome DevTools MCP ---------------------------------------------------
+# For QA of this site (console errors, network, Lighthouse). Only registered
+# when Playwright Chromium is present and the MCP server is not already set.
+if ! command -v claude > /dev/null 2>&1; then
+  echo "session-start: claude CLI not found; skipping MCP registration" >&2
+elif claude mcp get chrome-devtools > /dev/null 2>&1; then
+  echo "session-start: chrome-devtools MCP already registered"
+elif [ -x /opt/pw-browsers/chromium ]; then
+  claude mcp add chrome-devtools --scope user -- \
+    npx -y chrome-devtools-mcp@latest \
+    --executablePath=/opt/pw-browsers/chromium \
+    --headless \
+    --chromeArg=--no-sandbox \
+    --chromeArg=--disable-setuid-sandbox \
+    > /dev/null 2>&1 \
+    && echo "session-start: chrome-devtools MCP registered" \
+    || echo "session-start: failed to add chrome-devtools MCP server" >&2
 else
-  for m in \
-    "composio-community/awesome-claude-plugins" \
-    "0xmariowu/AgentLint" \
-    "Onome-AJ/security-sweep-plugin" \
-    "anthropics/claude-plugins-official"
-  do
-    claude plugin marketplace add "$m" >/dev/null 2>&1 \
-      || echo "session-start: failed to add marketplace $m" >&2
-  done
-
-  for p in \
-    "pr-review@awesome-claude-plugins" \
-    "code-review@awesome-claude-plugins" \
-    "security-guidance@awesome-claude-plugins" \
-    "changelog-generator@awesome-claude-plugins" \
-    "agent-lint@agent-lint" \
-    "security-sweep@security-sweep-marketplace" \
-    "claude-code-setup@claude-plugins-official"
-  do
-    claude plugin install "$p" >/dev/null 2>&1 \
-      || echo "session-start: failed to install plugin $p" >&2
-  done
-    echo "session-start: plugin provisioning complete"
-
-  # --- chrome-devtools MCP ---------------------------------------------
-  # For QA of this site (console errors, network, Lighthouse). Needs the
-  # Playwright-bundled Chromium (no system Chrome here) and, since this
-  # container runs as root, Chrome's sandbox must be disabled to launch at
-  # all. `claude mcp add` errors if the server already exists, so guard it.
-  if ! claude mcp get chrome-devtools >/dev/null 2>&1; then
-    if [ -x /opt/pw-browsers/chromium ]; then
-      claude mcp add chrome-devtools --scope user -- \
-        npx -y chrome-devtools-mcp@latest \
-        --executablePath=/opt/pw-browsers/chromium \
-        --headless \
-        --chromeArg=--no-sandbox \
-        --chromeArg=--disable-setuid-sandbox \
-        >/dev/null 2>&1 \
-        || echo "session-start: failed to add chrome-devtools MCP server" >&2
-    else
-      echo "session-start: /opt/pw-browsers/chromium not found; skipping chrome-devtools MCP" >&2
-    fi
-  fi
+  echo "session-start: /opt/pw-browsers/chromium not found; skipping chrome-devtools MCP" >&2
 fi

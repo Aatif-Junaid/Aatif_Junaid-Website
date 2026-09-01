@@ -47,15 +47,50 @@ Local Codex, Claude, and human development continue to use the prerequisites abo
 
 ## Branches
 
-`main` is deployable and accepts direct pushes for small, validated changes. For larger work, use short-lived branches with these prefixes:
+`main` is the only long-lived branch. It is deployable and protected: force-pushes and deletions are blocked at GitHub, and the `Site integrity` check must pass before a branch can merge.
 
-- `feature/`
-- `fix/`
-- `docs/`
-- `chore/`
-- `refactor/`
+For any non-trivial change, use a short-lived topic branch with this two-tier naming scheme:
 
-Delete branches after merging and do not reuse merged branches.
+```
+<type>/<topic>/<short-description>
+```
+
+**Types** — what kind of change:
+
+| Type | Use for |
+|---|---|
+| `feat` | New capability or page section |
+| `fix` | Bug or regression correction |
+| `content` | Copy, metrics, or public claim updates |
+| `refactor` | Code reorganisation, no visible change |
+| `docs` | Documentation only |
+| `chore` | CI, hooks, scripts, config |
+
+**Topics** — what domain it touches:
+
+| Topic | Use for |
+|---|---|
+| `ui` | CSS, layout, typography, visual design |
+| `motion` | Comet, canvas, animation |
+| `content` | Copy, case studies, structured data, JSON-LD |
+| `seo` | Meta tags, OG, sitemap, robots.txt, canonical |
+| `infra` | CI, hooks, scripts, security controls |
+| `perf` | Image compression, lazy loading, cache-busting |
+
+**Examples:**
+
+```
+feat/ui/redesign-contact-section
+fix/motion/comet-mobile-flicker
+content/case-studies/update-design-partner-count
+fix/seo/404-og-tags
+chore/infra/activate-branch-protection
+fix/perf/compress-og-image
+```
+
+Direct pushes to `main` are allowed for small, validated, single-file corrections. Use a branch when the change touches multiple files, requires review, or has a non-trivial rollback risk.
+
+Delete branches after merging. Do not reuse merged branches.
 
 ## Public history hygiene
 

@@ -10,11 +10,12 @@ Public financial metrics are allowed when verified and intentionally surfaced.
 import html, json, os, re, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGES = ["index.html", "case-studies.html", "field-program.html", "404.html"]
+PAGES = ["index.html", "case-studies.html", "field-program.html", "gtm-systems.html", "404.html"]
 REQUIRED_SCRIPTS = {
     "index.html": {"assets/js/site.js", "assets/js/homepage.js"},
     "case-studies.html": {"assets/js/site.js", "assets/js/case-studies.js"},
     "field-program.html": {"assets/js/site.js"},
+    "gtm-systems.html": {"assets/js/site.js"},
     "404.html": {"assets/js/site.js"},
 }
 failures, notes = [], []

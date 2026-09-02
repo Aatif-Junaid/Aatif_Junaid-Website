@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing GTM Systems That Keep Humans in Control | Aatif Junaid Mulla</title>
+  <meta name="description" content="A public GTM systems write-up from Aatif Junaid Mulla on AI-assisted workflows, lifecycle automation, human approval, CRM logging, and product growth instrumentation." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aatifmulla.me/gtm-systems.html" />
+  <meta property="og:title" content="Designing GTM Systems That Keep Humans in Control | Aatif Junaid Mulla" />
+  <meta property="og:description" content="A public GTM systems write-up on AI-assisted workflows, lifecycle automation, human approval, CRM logging, and product growth instrumentation." />
+  <meta property="og:image" content="https://aatifmulla.me/og-image.jpg?v=4" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="2400" />
+  <meta property="og:image:height" content="1260" />
+  <meta property="og:image:alt" content="Aatif Junaid Mulla | GTM & Product Growth" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Designing GTM Systems That Keep Humans in Control | Aatif Junaid Mulla" />
+  <meta name="twitter:description" content="A public GTM systems write-up on AI-assisted workflows, lifecycle automation, human approval, CRM logging, and product growth instrumentation." />
+  <meta name="twitter:image" content="https://aatifmulla.me/og-image.jpg?v=4" />
+
+  <meta name="theme-color" content="#EEEDE8" />
+  <link rel="canonical" href="https://aatifmulla.me/gtm-systems.html" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css?v=29" />
+
+  <!-- Structured data: a public article authored by the same Person entity -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Designing GTM systems that keep humans in control",
+    "url": "https://aatifmulla.me/gtm-systems.html",
+    "datePublished": "2026-09-01T09:00:00-07:00",
+    "dateModified": "2026-09-01T09:00:00-07:00",
+    "image": "https://aatifmulla.me/og-image.jpg?v=4",
+    "author": {
+      "@type": "Person",
+      "@id": "https://aatifmulla.me/#person",
+      "name": "Aatif Junaid Mulla",
+      "url": "https://aatifmulla.me",
+      "jobTitle": "GTM & Product Growth",
+      "sameAs": ["https://www.linkedin.com/in/aatif-junaid"]
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Aatif Junaid Mulla",
+      "url": "https://aatifmulla.me"
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://aatifmulla.me/gtm-systems.html" },
+    "about": ["GTM systems", "AI-assisted workflows", "Marketing automation", "Product growth instrumentation"],
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aatifmulla.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://aatifmulla.me/case-studies.html" },
+        { "@type": "ListItem", "position": 3, "name": "GTM systems write-up", "item": "https://aatifmulla.me/gtm-systems.html" }
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#top">Skip to content</a>
+
+  <header class="site-header case-header">
+    <a class="wordmark" href="/">Aatif Junaid Mulla</a>
+    <nav class="site-nav" aria-label="Article navigation">
+      <a href="#pattern">Pattern</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#proof">Proof</a>
+      <a href="#controls">Controls</a>
+      <a class="nav-page" href="/case-studies.html" aria-label="Back to case studies">Case Studies<span class="nav-page__arrow" aria-hidden="true">&lsaquo;</span></a>
+    </nav>
+  </header>
+
+  <main class="case-page" id="top" tabindex="-1">
+    <section class="case-hero" id="overview">
+      <p class="kicker">Writing &middot; GTM systems</p>
+      <h1 class="case-hero__title">How I design GTM systems that keep humans in control.</h1>
+      <p class="case-hero__lede">The system should gather signal, draft the next move, and leave judgment with the operator.</p>
+      <p class="case-hero__context">A public operating-pattern write-up using synthetic examples and verified, public-safe Aiseberg evidence. No private customer, employer, or recruiting materials are used.</p>
+      <div class="case-hero__actions">
+        <a class="btn btn--primary" href="#workflow">See the workflow</a>
+        <a class="btn" href="/case-studies.html#marketing-ops">See the measured result</a>
+      </div>
+    </section>
+
+    <section class="case-section" id="pattern">
+      <div class="case-section__head">
+        <span class="eyebrow">The pattern</span>
+        <h2 class="section-title">GTM work fails when signal has nowhere to go</h2>
+      </div>
+      <div class="systems-copy">
+        <p>Most go-to-market teams do not lose because they lack tools. They lose because customer signal sits in too many places: LinkedIn threads, call notes, demo forms, CRM fields, product analytics, and follow-up tasks. The handoff becomes memory. Memory does not scale.</p>
+        <p>The systems I like are small enough to trust and explicit enough to audit. They do not replace the operator. They remove the repetitive work around the operator: capture the signal, structure it, suggest the next step, and make the human approval point obvious.</p>
+      </div>
+    </section>
+
+    <section class="case-section" id="workflow">
+      <div class="case-section__head">
+        <span class="eyebrow">Workflow</span>
+        <h2 class="section-title">A simple AI-assisted lifecycle loop</h2>
+      </div>
+      <ol class="systems-stack" aria-label="AI-assisted GTM lifecycle workflow">
+        <li class="systems-step"><span>01</span><strong>Intake</strong><p>Capture a form fill, meeting booked, content response, or product signal with the source attached.</p></li>
+        <li class="systems-step"><span>02</span><strong>Enrich</strong><p>Add account context, role, use case, funnel stage, and the last known interaction.</p></li>
+        <li class="systems-step"><span>03</span><strong>Prioritize</strong><p>Score the signal against ICP fit, urgency, seniority, and stage so the best next move rises first.</p></li>
+        <li class="systems-step"><span>04</span><strong>Draft</strong><p>Prepare the follow-up note, task, or lifecycle message using only approved facts and visible context.</p></li>
+        <li class="systems-step"><span>05</span><strong>Approve</strong><p>Hold the message for review when risk is high, data is missing, or the contact is strategic.</p></li>
+        <li class="systems-step"><span>06</span><strong>Log</strong><p>Write the outcome back to the CRM and analytics layer so the next action starts with history.</p></li>
+      </ol>
+    </section>
+
+    <section class="case-section" id="proof">
+      <div class="case-section__head">
+        <span class="eyebrow">Proof</span>
+        <h2 class="section-title">What I have already built and measured</h2>
+      </div>
+      <div class="systems-copy">
+        <p>At Aiseberg, I built the operating layer underneath the motion: n8n, HubSpot, Calendly triggers, funnel instrumentation, and recovery logic. The goal was practical: keep leads from waiting on me, see where people stalled, and give every lifecycle stage a measurable signal.</p>
+      </div>
+      <div class="case-results">
+        <p><strong>24% less early abandonment</strong> after automation, onboarding changes, instrumentation, and recovery flows landed.</p>
+        <p><strong>22 lifecycle KPIs</strong> gave acquisition, activation, and retention a named signal.</p>
+        <p><strong>11 tracked events</strong> mapped across 8 defined funnel stages.</p>
+        <p><strong>3 systems connected</strong>: n8n, HubSpot, and Calendly carrying follow-up and lifecycle work.</p>
+      </div>
+      <p class="case-note">The numbers above are verified public profile metrics. This page does not disclose private workflow records.</p>
+    </section>
+
+    <section class="case-section" id="controls">
+      <div class="case-section__head">
+        <span class="eyebrow">Controls</span>
+        <h2 class="section-title">The system has to earn trust before it earns scale</h2>
+      </div>
+      <div class="message-flow" aria-label="Controls for GTM systems">
+        <div><span>01</span><strong>Source trace</strong><small>Every recommendation points back to the signal that caused it.</small></div>
+        <div><span>02</span><strong>Human approval</strong><small>Strategic contacts, uncertain facts, and high-risk messages wait for review.</small></div>
+        <div><span>03</span><strong>CRM memory</strong><small>Actions are logged where the team already works, not kept in a side tool.</small></div>
+        <div><span>04</span><strong>Failure handling</strong><small>Missing fields, stale data, and duplicate contacts stop the flow before they create mess.</small></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__head">
+        <span class="eyebrow">Why it matters</span>
+        <h2 class="section-title">This is how a lean GTM team acts larger than it is</h2>
+      </div>
+      <div class="systems-copy">
+        <p>The point is not automation for its own sake. The point is better judgment under more load. When the system handles capture, routing, drafts, reminders, and logging, the human has more time for the work that cannot be templated: positioning, buyer understanding, objection handling, and deciding which opportunities are real.</p>
+      </div>
+    </section>
+
+    <section class="case-section case-cta">
+      <span class="eyebrow">Comparing notes</span>
+      <h2 class="section-title">I can walk through how I would design this for a real GTM motion.</h2>
+      <div class="case-hero__actions">
+        <!--email_off--><a class="btn btn--primary" href="mailto:aatif.recruitment@gmail.com">Email me</a><!--/email_off-->
+        <a class="btn" href="/">Back to my profile</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__row">
+      <span class="site-footer__copy">&copy; <span id="year">2026</span> Aatif Junaid Mulla &middot; San Francisco</span>
+      <a class="footer-linkedin" href="https://www.linkedin.com/in/aatif-junaid" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="site-footer__note">Evidence first. Systems second. Claims stay honest.</p>
+  </footer>
+
+  <script src="assets/js/site.js?v=3"></script>
+</body>
+</html>

@@ -208,9 +208,13 @@ body::before {
 .hero__actions { position: relative; z-index: 1; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 0.85rem; }
 .hero__geometry {
   position: absolute; grid-column: auto; grid-row: auto; align-self: auto; justify-self: auto;
-  top: 1.6rem; right: 0; width: min(41vw, 520px); margin: 0; opacity: 0.94; pointer-events: none;
+  top: clamp(2rem, 4.4vw, 4.1rem); right: clamp(-7.5rem, -7vw, -4.25rem); width: min(48vw, 42.5rem);
+  margin: 0; opacity: 1; pointer-events: none; transform: translate3d(0, 0, 0);
 }
-.hero__geometry img { width: 100%; height: auto; filter: drop-shadow(0 16px 24px rgba(31, 85, 117, 0.06)); }
+.hero__geometry img {
+  display: block; width: 100%; height: auto;
+  filter: drop-shadow(0 22px 34px rgba(31, 85, 117, 0.08));
+}
 .hero__name, .case-hero__title, .section-title, .hero-proof__intro h2 { text-wrap: balance; }
 @keyframes hero-name-sheen {
   0%, 30% { background-position: 0% 50%; }

@@ -18,7 +18,7 @@ Annotated map of every tracked file. Grouped by domain. Use this to orient quick
 | `CNAME` | Custom domain record (`aatifmulla.me`) — never edit |
 | `sitemap.xml` | Three-URL sitemap for search crawlers |
 | `robots.txt` | Allow all + sitemap pointer |
-| `resume.pdf` | Linked resume (placeholder — replace with real PDF) |
+| `resume.pdf` | Published one-page public resume |
 | `og-image.jpg` | 2400×1260 social preview image (119 KB after compression) |
 | `apple-touch-icon.png` | 180×180 iOS home screen icon |
 | `favicon.ico` | Multi-size favicon |
@@ -30,7 +30,7 @@ Annotated map of every tracked file. Grouped by domain. Use this to orient quick
 
 | File | What it is |
 |---|---|
-| `assets/css/site.css` | **Single CSS file for the entire site** (63 KB). Design tokens, layout, components, responsive, a11y, reduced-motion, print. Cache-buster: `?v=24` |
+| `assets/css/site.css` | **Single CSS file for the entire site** (63 KB). Design tokens, layout, components, responsive, a11y, reduced-motion, print. Cache-buster: `?v=28` |
 | `assets/js/site.js` | Shared JS: footer year, smooth scroll, logo-error hiding. Cache-buster: `?v=3` |
 | `assets/js/homepage.js` | Homepage-only: experience comet (canvas), carousel, reveal observer. Cache-buster: `?v=17` |
 | `assets/js/case-studies.js` | Case-study focus observer. Cache-buster: `?v=2` |

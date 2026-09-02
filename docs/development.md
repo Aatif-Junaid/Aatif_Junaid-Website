@@ -41,13 +41,13 @@ Opening HTML directly does not reproduce root-relative URLs on `404.html`; use t
 
 ## Agent tooling
 
-`AGENTS.md` and `CLAUDE.md` route repository-maintenance work without loading private career context. Claude web sessions additionally use `.claude/hooks/session-start.sh` to install the pinned PowerShell dependency in an ephemeral remote container. The hook runs only when `CLAUDE_CODE_REMOTE=true`, verifies the downloaded package checksum, and does not provision marketplaces or third-party plugins.
+`AGENTS.md` and `CLAUDE.md` route repository-maintenance work without loading private career context. Claude remote sessions additionally use `.claude/hooks/session-start.sh` only when `CLAUDE_CODE_REMOTE=true`. The hook builds pinned TruffleHog source and registers a pinned Chrome DevTools MCP release when the required browser is present. It does not provision marketplaces or third-party plugins.
 
 Local Codex, Claude, and human development continue to use the prerequisites above. Changes to agent bootstrap behavior require the same review and validation as other executable repository code.
 
 ## Branches
 
-`main` is the only long-lived branch. It is deployable and protected: force-pushes and deletions are blocked at GitHub, and the `Site integrity` check must pass before a branch can merge.
+`main` is the only long-lived branch. It is deployable and protected: GitHub blocks force-pushes and deletions. Site Integrity and TruffleHog run in CI on pushes and pull requests; direct validated pushes remain allowed.
 
 For any non-trivial change, use a short-lived topic branch with this two-tier naming scheme:
 

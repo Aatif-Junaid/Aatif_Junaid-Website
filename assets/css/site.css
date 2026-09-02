@@ -791,7 +791,6 @@ a.dp-name:hover { color: var(--blue-text); }
   .artifact-proof--reverse .artifact-proof__media { order: 0; }
   .case-study-spotlight { grid-template-columns: 1fr; }
   .message-flow > div { min-height: 0; }
-  
   .case-actions li { grid-template-columns: 5.5rem 1fr; }
 
   /* stack the experience card header so nothing is squished into a column */

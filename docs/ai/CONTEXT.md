@@ -47,7 +47,7 @@ no environment variables.
 | Pre-push: branch currency check | `.githooks/pre-push` | ✅ Active |
 | CI: site integrity + TruffleHog full-history scan | `.github/workflows/security-scan.yml` | ✅ All Actions pinned to full SHA |
 | Branch protection: no force-push, no deletion | GitHub API | ✅ Enforced on main |
-| Required status check before merge | GitHub API | ✅ Site integrity / Site integrity |
+| CI status checks | GitHub Actions | ✅ Site integrity and TruffleHog run on pushes and pull requests; direct validated pushes remain allowed |
 | No collaborators except owner | GitHub | ✅ |
 | No deploy keys, secrets, webhooks | GitHub | ✅ |
 | Session-start hook: TruffleHog + Chrome DevTools MCP only | `.claude/hooks/session-start.sh` | ✅ Third-party plugins removed |

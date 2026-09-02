@@ -35,7 +35,9 @@ Annotated map of every tracked file. Grouped by domain. Use this to orient quick
 | `assets/js/homepage.js` | Homepage-only: experience comet (canvas), carousel, reveal observer. Cache-buster: `?v=17` |
 | `assets/js/case-studies.js` | Case-study focus observer. Cache-buster: `?v=2` |
 | `assets/headshot.jpg` | 24 KB contact section photo |
-| `assets/logos/am-mark.svg` | AM wordmark SVG (header logo) |
+| `assets/logos/am-mark-glossy.svg` | AM glossy blue monogram used in the header |
+| `assets/logos/am-mark-flat.svg` | AM flat blue monogram for print, stamps, and small uses |
+| `assets/logos/README.md` | AM mark decision record and usage rules |
 | `assets/logos/hero-geometry.svg` | Decorative hero background geometry |
 | `assets/logos/proof-*.svg/png` | Hero proof section icons (position, demand, activate, convert, launch, scale, strategy, system) |
 | `assets/logos/acharya.png` | Acharya Institute logo (education section) |

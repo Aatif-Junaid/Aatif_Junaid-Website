@@ -208,15 +208,16 @@ body::before {
 .hero__actions { position: relative; z-index: 1; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 0.85rem; }
 .hero__geometry {
   position: absolute; grid-column: auto; grid-row: auto; align-self: auto; justify-self: auto;
-  z-index: 0; top: clamp(2rem, 4.4vw, 4.1rem); width: min(67.6vw, 59.8rem);
-  /* 30% larger than the shipped size; the right offset grows by the same amount the
-     width grew (~13.8rem) so the container's LEFT edge does not creep toward the name. */
-  right: clamp(-21.3rem, calc(-7vw - 13.8rem), -18.05rem);
+  z-index: 0; top: clamp(2rem, 4.4vw, 4.1rem); width: min(81.1vw, 71.76rem);
+  /* Another 20% of field reach on top of the previous 30% bump. Right offset grows by
+     the same amount the width grew again (~11.96rem) so the container's LEFT edge --
+     and therefore the triad's own absolute position -- does not move. */
+  right: clamp(-33.26rem, calc(-7vw - 25.76rem), -30.01rem);
   margin: 0; opacity: 1; pointer-events: none; transform: translate3d(0, 0, 0);
   /* Bleed: mist on both sides. Triad is the one clear point; grid dissolves outward
      in every direction, no hard edges or container box. */
-  -webkit-mask-image: radial-gradient(78% 118% at 48% 46%, #000 20%, rgba(0,0,0,0.45) 42%, transparent 74%);
-  mask-image: radial-gradient(78% 118% at 48% 46%, #000 20%, rgba(0,0,0,0.45) 42%, transparent 74%);
+  -webkit-mask-image: radial-gradient(70% 118% at 40% 46%, #000 17%, rgba(0,0,0,0.45) 36%, transparent 68%);
+  mask-image: radial-gradient(70% 118% at 40% 46%, #000 17%, rgba(0,0,0,0.45) 36%, transparent 68%);
 }
 .hero__geometry img {
   display: block; width: 100%; height: auto;

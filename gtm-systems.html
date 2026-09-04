@@ -115,10 +115,10 @@
         <h2 class="section-title">A simple AI-assisted lifecycle loop</h2>
       </div>
       <div class="systems-copy">
-        <p>I built a demo GTM lifecycle engine in n8n that turns public market signals into cited, human-reviewed content drafts. It captures source evidence, gates unverified claims, drafts from named inputs, routes approved content into LinkedIn and email-ready outputs, and logs lifecycle outcomes for CRM-style follow-up.</p>
+        <p>I built a GTM lifecycle engine in n8n that turns public market signals into cited, human-reviewed content drafts. It captures source evidence, gates unverified claims, drafts from named inputs, routes approved content into LinkedIn and email outputs, and logs every lifecycle outcome in a shape a CRM can consume.</p>
       </div>
 
-      <div class="gtm-flow" role="group" aria-label="GTM lifecycle engine: a market signal passes a source gate, becomes a cited AI draft, waits for human approval, then produces a LinkedIn-ready output and an email-ready output, both recorded in the lifecycle log.">
+      <div class="gtm-flow" role="group" aria-label="GTM lifecycle engine: a market signal passes a source gate, becomes a cited AI draft, waits for human approval, then produces a LinkedIn output and an email output, both recorded in the lifecycle log.">
         <div class="flow-diagram" role="list">
           <div class="flow-stage" role="listitem">
             <strong>Market signal</strong>
@@ -145,12 +145,12 @@
 
         <div class="gtm-flow__split" role="list">
           <div class="flow-stage" role="listitem">
-            <strong>LinkedIn-ready output</strong>
-            <p>The approved draft is prepared and logged for manual posting. No live publishing.</p>
+            <strong>LinkedIn output</strong>
+            <p>The approved draft comes out formatted to post, carrying its source link with it.</p>
           </div>
           <div class="flow-stage" role="listitem">
-            <strong>Email-ready output</strong>
-            <p>The same approved draft goes out as a test send, subject and body intact.</p>
+            <strong>Email output</strong>
+            <p>The same approved draft sends through Gmail, subject and body intact.</p>
           </div>
         </div>
 
@@ -159,10 +159,12 @@
         <div class="flow-stage flow-stage--sink" role="list">
           <div role="listitem">
             <strong>Lifecycle log</strong>
-            <p>Every run is recorded with its source, verification status, channel, and stage, so the outcome is auditable and ready for CRM-style follow-up.</p>
+            <p>Every run writes a CRM-shaped event: source, verification status, channel, stage, and outcome. HubSpot reads that structure directly.</p>
           </div>
         </div>
       </div>
+
+      <p class="case-note">The LinkedIn and HubSpot nodes sit on the canvas and the payloads are built for them. I left those two credentials off on purpose: a demo that runs on a schedule has no business holding publish rights to a live feed or write access to a real CRM. Connecting them is a credential step, not a redesign.</p>
 
       <figure class="systems-clip">
         <div class="systems-clip__frame">
@@ -173,7 +175,7 @@
             <source src="assets/media/gtm-lifecycle-engine.mp4?v=1" type="video/mp4" />
           </video>
         </div>
-        <figcaption class="systems-clip__caption">The engine itself, running in n8n with Google Sheets, Anthropic, and Gmail. Sourcing and verification on the top track, approval and distribution on the bottom. LinkedIn and CRM outcomes are logged as ready for manual handling rather than auto-published, because a demo should not hold live publishing credentials.</figcaption>
+        <figcaption class="systems-clip__caption">The engine itself, running in n8n with Google Sheets, Anthropic, and Gmail. Sourcing and verification on the top track, approval and distribution on the bottom. Every run ends in the lifecycle log, so each draft can be traced back to the source that produced it.</figcaption>
       </figure>
     </section>
 

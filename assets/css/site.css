@@ -696,6 +696,19 @@ a.dp-name:hover { color: var(--blue-text); }
   width: clamp(1.4rem, 2.4vw, 2.1rem); color: var(--blue-text); font-size: 1.1rem; line-height: 1;
 }
 
+/* The running system itself, so the diagram above is provably not a mockup.
+   figure carries a UA default margin of 1em 40px; reset it or the clip is
+   squeezed off the content column on narrow screens. */
+.systems-clip { margin: clamp(1.4rem, 3vw, 2.1rem) 0 0; }
+.systems-clip__frame {
+  border: 1px solid var(--line-strong); border-radius: var(--radius-inner); overflow: hidden;
+  background: #1a1a1a; box-shadow: var(--tile-shadow); line-height: 0;
+}
+.systems-clip__frame video { display: block; width: 100%; height: auto; }
+.systems-clip__caption {
+  margin-top: 0.7rem; color: var(--ink-soft); font-size: 0.82rem; line-height: 1.5;
+}
+
 /* ---------- approach: aligned flat editorial grid ---------- */
 .framework-grid {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));

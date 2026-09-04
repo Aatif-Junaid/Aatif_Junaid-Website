@@ -7,6 +7,11 @@ node_modules/
 !.claude/settings.json
 Fable5/
 HANDOFF.md
+# Working drafts kept beside the repo. Pages serves from main, so anything
+# committed here is publicly readable at aatifmulla.me/<filename>.
+linkedin-updates-*.md
+resume-workflow-kickoff.md
+*-kickoff.md
 .venv/
 venv/
 __pycache__/

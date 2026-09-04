@@ -211,8 +211,8 @@ body::before {
   z-index: 0; top: clamp(2rem, 4.4vw, 4.1rem); right: clamp(-7.5rem, -7vw, -4.25rem); width: min(52vw, 46rem);
   margin: 0; opacity: 1; pointer-events: none; transform: translate3d(0, 0, 0);
   /* Bleed: melt the cluster into the paper canvas, no hard edges or container box. */
-  -webkit-mask-image: radial-gradient(125% 108% at 32% 46%, #000 42%, rgba(0,0,0,0.55) 66%, transparent 84%);
-  mask-image: radial-gradient(125% 108% at 32% 46%, #000 42%, rgba(0,0,0,0.55) 66%, transparent 84%);
+  -webkit-mask-image: radial-gradient(112% 105% at 66% 46%, #000 38%, rgba(0,0,0,0.5) 60%, transparent 82%);
+  mask-image: radial-gradient(112% 105% at 66% 46%, #000 38%, rgba(0,0,0,0.5) 60%, transparent 82%);
 }
 .hero__geometry img {
   display: block; width: 100%; height: auto;

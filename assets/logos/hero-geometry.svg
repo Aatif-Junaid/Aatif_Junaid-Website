@@ -1,49 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 560" fill="none" aria-hidden="true">
-  <defs>
-    <linearGradient id="wireFade" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
-      <stop stop-color="#2f7fb3" stop-opacity=".85"/>
-      <stop offset="1" stop-color="#2f7fb3" stop-opacity=".55"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" fill="none" aria-hidden="true"><defs>
+    <marker id="arrowHeadF" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#2f7fb3" fill-opacity=".75"/>
+    </marker>
+    <linearGradient id="topFillF" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f4fbff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#8fcdee" stop-opacity=".07"/>
     </linearGradient>
-    <linearGradient id="topFill" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#f4fbff" stop-opacity=".8"/>
-      <stop offset="1" stop-color="#8fcdee" stop-opacity=".1"/>
+    <linearGradient id="sideFillF" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#9fd4ea" stop-opacity=".1"/>
+      <stop offset="1" stop-color="#2f7fb3" stop-opacity=".015"/>
     </linearGradient>
-    <linearGradient id="sideFill" x1="0" y1="0" x2="0" y2="1">
-      <stop stop-color="#9fd4ea" stop-opacity=".15"/>
-      <stop offset="1" stop-color="#2f7fb3" stop-opacity=".02"/>
-    </linearGradient>
-  </defs>
-
-  <!-- flat hex lattice: 19 isometric cubes tiled edge-to-edge on a true hex
-       grid, so the shared silhouettes read as one continuous honeycomb
-       rather than floating cubes. Mostly thin outline; three cells filled
-       and labeled, joined by a flow line. -->
-  <g stroke="url(#wireFade)" stroke-width=".85" stroke-opacity=".4" fill="none">
-    <path d="M144 54.2 206 90 206 166 144 201.8 82 166 82 90Z M82 90 144 125.8 144 201.8 82 237.5 20 201.8 20 125.8Z M330 18.5 392 54.2 392 130.2 330 166 268 130.2 268 54.2Z M268 54.2 330 90 330 166 268 201.8 206 166 206 90Z M206 90 268 125.8 268 201.8 206 237.5 144 201.8 144 125.8Z M144 125.8 206 161.5 206 237.5 144 273.3 82 237.5 82 161.5Z M454 18.5 516 54.2 516 130.2 454 166 392 130.2 392 54.2Z M392 54.2 454 90 454 166 392 201.8 330 166 330 90Z M330 90 392 125.8 392 201.8 330 237.5 268 201.8 268 125.8Z M206 161.5 268 197.3 268 273.3 206 309.1 144 273.3 144 197.3Z M516 54.2 578 90 578 166 516 201.8 454 166 454 90Z M454 90 516 125.8 516 201.8 454 237.5 392 201.8 392 125.8Z M392 125.8 454 161.5 454 237.5 392 273.3 330 237.5 330 161.5Z M330 161.5 392 197.3 392 273.3 330 309.1 268 273.3 268 197.3Z M578 90 640 125.8 640 201.8 578 237.5 516 201.8 516 125.8Z M454 161.5 516 197.3 516 273.3 454 309.1 392 273.3 392 197.3Z"/>
-  </g>
+  </defs><g stroke="#2f7fb3" stroke-width=".9" stroke-opacity="0.26" fill="none"><path d="M670 204.6 740 245 740 329 670 369.4 600 329 600 245Z M670 285.4 740 325.8 740 409.8 670 450.2 600 409.8 600 325.8Z"/></g><g stroke="#2f7fb3" stroke-width=".9" stroke-opacity="0.21" fill="none"><path d="M600 325.8 670 366.2 670 450.2 600 490.6 530 450.2 530 366.2Z"/></g><g stroke="#2f7fb3" stroke-width=".9" stroke-opacity="0.2" fill="none"><path d="M600 164.2 670 204.6 670 288.6 600 329 530 288.6 530 204.6Z M810 285.4 880 325.8 880 409.8 810 450.2 740 409.8 740 325.8Z"/></g><g stroke="#2f7fb3" stroke-width=".9" stroke-opacity="0.19" fill="none"><path d="M740 164.2 810 204.6 810 288.6 740 329 670 288.6 670 204.6Z"/></g><g stroke="#2f7fb3" stroke-width=".9" stroke-opacity="0.18" fill="none"><path d="M810 204.6 880 245 880 329 810 369.4 740 329 740 245Z"/></g><g stroke="#2f7fb3" stroke-width=".9" stroke-opacity="0.17" fill="none"><path d="M880 245 950 285.4 950 369.4 880 409.8 810 369.4 810 285.4Z"/></g><g stroke="#2f7fb3" stroke-width=".9" stroke-opacity="0.14" fill="none"><path d="M740 325.8 810 366.2 810 450.2 740 490.6 670 450.2 670 366.2Z"/></g><g stroke="#2f7fb3" stroke-width=".8" stroke-opacity="0.23" stroke-linecap="round" fill="none"><path d="M810 450.2 810 366.2 880 325.8 950 366.2"/></g><g stroke="#2f7fb3" stroke-width=".8" stroke-opacity="0.21" stroke-linecap="round" fill="none"><path d="M880 329 880 245 950 204.6 1020 245"/></g><g stroke="#2f7fb3" stroke-width=".8" stroke-opacity="0.2" stroke-linecap="round" fill="none"><path d="M740 490.6 740 406.6 810 366.2 880 406.6"/></g><g stroke="#2f7fb3" stroke-width=".8" stroke-opacity="0.19" stroke-linecap="round" fill="none"><path d="M740 248.2 740 164.2 810 123.8 880 164.2 M950 369.4 950 285.4 1020 245 1090 285.4"/></g><g stroke="#2f7fb3" stroke-width=".8" stroke-opacity="0.18" stroke-linecap="round" fill="none"><path d="M810 288.6 810 204.6 880 164.2 950 204.6 M600 490.6 600 406.6 670 366.2 740 406.6"/></g><g stroke="#2f7fb3" stroke-width=".8" stroke-opacity="0.13" stroke-linecap="round" fill="none"><path d="M600 248.2 600 164.2 670 123.8 740 164.2"/></g><g stroke="#2f7fb3" stroke-width=".8" stroke-opacity="0.1" stroke-linecap="round" fill="none"><path d="M880 409.8 880 325.8 950 285.4 1020 325.8"/></g><defs><linearGradient id="rayFade0" x1="950" y1="204.6" x2="1061.6" y2="269" gradientUnits="userSpaceOnUse"><stop stop-color="#2f7fb3" stop-opacity=".3"/><stop offset="1" stop-color="#2f7fb3" stop-opacity="0"/></linearGradient><linearGradient id="rayFade1" x1="1020" y1="366.2" x2="1128.6" y2="303.5" gradientUnits="userSpaceOnUse"><stop stop-color="#2f7fb3" stop-opacity=".3"/><stop offset="1" stop-color="#2f7fb3" stop-opacity="0"/></linearGradient><linearGradient id="rayFade2" x1="915" y1="527.7" x2="915" y2="611.9" gradientUnits="userSpaceOnUse"><stop stop-color="#2f7fb3" stop-opacity=".3"/><stop offset="1" stop-color="#2f7fb3" stop-opacity="0"/></linearGradient><linearGradient id="rayFade3" x1="740" y1="123.8" x2="678.2" y2="159.5" gradientUnits="userSpaceOnUse"><stop stop-color="#2f7fb3" stop-opacity=".3"/><stop offset="1" stop-color="#2f7fb3" stop-opacity="0"/></linearGradient><linearGradient id="rayFade4" x1="1055" y1="204.6" x2="1170.8" y2="224.7" gradientUnits="userSpaceOnUse"><stop stop-color="#2f7fb3" stop-opacity=".3"/><stop offset="1" stop-color="#2f7fb3" stop-opacity="0"/></linearGradient><linearGradient id="rayFade5" x1="810" y1="608.5" x2="875.3" y2="646.2" gradientUnits="userSpaceOnUse"><stop stop-color="#2f7fb3" stop-opacity=".3"/><stop offset="1" stop-color="#2f7fb3" stop-opacity="0"/></linearGradient></defs><g stroke-width="1" stroke-linecap="round" fill="none"><path d="M950 204.6 1061.6 269" stroke="url(#rayFade0)"/><path d="M1020 366.2 1128.6 303.5" stroke="url(#rayFade1)"/><path d="M915 527.7 915 611.9" stroke="url(#rayFade2)"/><path d="M740 123.8 678.2 159.5" stroke="url(#rayFade3)"/><path d="M1055 204.6 1170.8 224.7" stroke="url(#rayFade4)"/><path d="M810 608.5 875.3 646.2" stroke="url(#rayFade5)"/></g>
   <g stroke="none">
-    <path d="M144 54.2 206 90 206 166 144 130.2Z M268 54.2 206 90 206 166 268 130.2Z M206 161.5 268 197.3 268 273.3 206 237.5Z M330 161.5 268 197.3 268 273.3 330 237.5Z M454 161.5 516 197.3 516 273.3 454 237.5Z M578 161.5 516 197.3 516 273.3 578 237.5Z" fill="url(#sideFill)"/>
-    <path d="M206 18.5 268 54.2 206 90 144 54.2Z M268 125.8 330 161.5 268 197.3 206 161.5Z M516 125.8 578 161.5 516 197.3 454 161.5Z" fill="url(#topFill)"/>
+    <path d="M530 285.4 600 325.8 600 409.8 530 369.4Z M670 285.4 600 325.8 600 409.8 670 369.4Z M670 285.4 740 325.8 740 409.8 670 369.4Z M810 285.4 740 325.8 740 409.8 810 369.4Z M530 201.4 600 241.8 600 325.8 530 285.4Z M670 201.4 600 241.8 600 325.8 670 285.4Z" fill="url(#sideFillF)"/>
+    <path d="M600 245 670 285.4 600 325.8 530 285.4Z M740 245 810 285.4 740 325.8 670 285.4Z M600 161 670 201.4 600 241.8 530 201.4Z" fill="url(#topFillF)"/>
   </g>
-  <g stroke="#1f5575" stroke-width="1.4" stroke-linejoin="round" stroke-opacity=".85" fill="none">
-    <path d="M206 18.5 268 54.2 268 130.2 206 166 144 130.2 144 54.2Z M268 125.8 330 161.5 330 237.5 268 273.3 206 237.5 206 161.5Z M516 125.8 578 161.5 578 237.5 516 273.3 454 237.5 454 161.5Z"/>
-  </g>
-  <g stroke="#226aa0" stroke-width="1.1" stroke-dasharray="1 5" stroke-linecap="round" fill="none" opacity=".7">
-    <path d="M206 90 Q237 60 268 197.3 M268 197.3 Q392 167.3 516 197.3"/>
-  </g>
-
-  <g font-family="Inter, Arial, sans-serif" fill="#155f94">
-    <g transform="translate(314 130)">
-      <text font-size="10.5" font-weight="700" letter-spacing=".7">BUYER SIGNAL</text>
-      <text y="14" font-size="9.3" font-weight="400" fill="#3f7ba6">Research &amp; qualification</text>
-    </g>
-    <g transform="translate(270 441.5)">
-      <text font-size="10.5" font-weight="700" letter-spacing=".7">REVENUE SYSTEM</text>
-      <text y="14" font-size="9.3" font-weight="400" fill="#3f7ba6">Pipeline &amp; feedback</text>
-    </g>
-    <g transform="translate(548 204.2)">
-      <text font-size="10.5" font-weight="700" letter-spacing=".7">TECHNICAL PROOF</text>
-      <text y="14" font-size="9.3" font-weight="400" fill="#3f7ba6">Position &amp; enablement</text>
-    </g>
-  </g>
-</svg>
+  <g stroke="#2f7fb3" stroke-width="1.1" stroke-linejoin="round" stroke-opacity=".5" fill="none">
+    <path d="M600 245 670 285.4 670 369.4 600 409.8 530 369.4 530 285.4Z M740 245 810 285.4 810 369.4 740 409.8 670 369.4 670 285.4Z M600 161 670 201.4 670 285.4 600 325.8 530 285.4 530 201.4Z"/>
+    <path d="M530 285.4 600 325.8 670 285.4 M600 245 600 325.8 600 409.8 M670 285.4 740 325.8 810 285.4 M740 245 740 325.8 740 409.8 M530 201.4 600 241.8 670 201.4 M600 161 600 241.8 600 325.8"/>
+  </g><g stroke="#1f5575" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" stroke-opacity=".78" fill="none"><path d="M530 201.4 600 161 670 201.4 670 285.4 740 245 810 285.4 810 369.4 740 409.8 670 369.4 600 409.8 530 369.4 530 285.4Z"/></g><g stroke="#1f5575" stroke-width="1.7" stroke-opacity=".78" stroke-linecap="round" fill="none"><path d="M740 245 810 285.4" marker-end="url(#arrowHeadF)"/><path d="M600 409.8 530 369.4" marker-end="url(#arrowHeadF)"/></g><g transform="translate(545 117)" font-family="Inter, Arial, sans-serif" fill="#2f6690"><text font-size="10.5" font-weight="700" letter-spacing=".7" fill-opacity=".8">BUYER SIGNAL</text><text y="14" font-size="9" font-weight="400" fill="#5a89ab" fill-opacity=".8">Research &amp; qualification</text></g><g transform="translate(435 433)" font-family="Inter, Arial, sans-serif" fill="#2f6690"><text font-size="10.5" font-weight="700" letter-spacing=".7" fill-opacity=".8">REVENUE SYSTEM</text><text y="14" font-size="9" font-weight="400" fill="#5a89ab" fill-opacity=".8">Pipeline &amp; feedback</text></g><g transform="translate(655 440)" font-family="Inter, Arial, sans-serif" fill="#2f6690"><text font-size="10.5" font-weight="700" letter-spacing=".7" fill-opacity=".8">TECHNICAL PROOF</text><text y="14" font-size="9" font-weight="400" fill="#5a89ab" fill-opacity=".8">Position &amp; enablement</text></g></svg>

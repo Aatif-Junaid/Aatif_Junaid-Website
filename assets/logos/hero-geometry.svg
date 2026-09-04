@@ -1,72 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 560" fill="none" aria-hidden="true">
   <defs>
-    <linearGradient id="wireFade" x1="60" y1="0" x2="760" y2="0" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#2f7fb3" stop-opacity=".16"/>
-      <stop offset=".22" stop-color="#2f7fb3" stop-opacity=".9"/>
-      <stop offset=".6" stop-color="#2f7fb3" stop-opacity=".8"/>
-      <stop offset="1" stop-color="#2f7fb3" stop-opacity=".1"/>
+    <linearGradient id="wireFade" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#2f7fb3" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#2f7fb3" stop-opacity=".55"/>
     </linearGradient>
-    <linearGradient id="topFill" x1="60" y1="120" x2="620" y2="470" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#f4fbff" stop-opacity=".85"/>
-      <stop offset=".55" stop-color="#d6eef9" stop-opacity=".28"/>
-      <stop offset="1" stop-color="#8fcdee" stop-opacity=".08"/>
+    <linearGradient id="topFill" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f4fbff" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#8fcdee" stop-opacity=".1"/>
     </linearGradient>
     <linearGradient id="sideFill" x1="0" y1="0" x2="0" y2="1">
-      <stop stop-color="#9fd4ea" stop-opacity=".16"/>
+      <stop stop-color="#9fd4ea" stop-opacity=".15"/>
       <stop offset="1" stop-color="#2f7fb3" stop-opacity=".02"/>
     </linearGradient>
-    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(0)">
-      <path d="M0 .75H6" stroke="#2f7fb3" stroke-opacity=".22" stroke-width=".55"/>
-    </pattern>
   </defs>
 
-  <!-- faint connective splines behind the cluster -->
-  <g stroke="url(#wireFade)" stroke-linecap="round" fill="none">
-    <path d="M24 250C150 196 214 116 320 100 415 86 452 140 556 118 636 101 700 44 792 70" stroke-width=".85" stroke-dasharray="1.5 7" opacity=".55"/>
-    <path d="M70 392c126-26 196 26 296-16 86-36 140-128 246-136 76-6 118 28 184-10" stroke-width=".8" stroke-dasharray="2 8" opacity=".4"/>
-    <path d="M300 486c120-58 226-52 348-9 58 20 94 16 134-9" stroke-width=".75" stroke-dasharray="1 7" opacity=".28"/>
+  <!-- flat hex lattice: 19 isometric cubes tiled edge-to-edge on a true hex
+       grid, so the shared silhouettes read as one continuous honeycomb
+       rather than floating cubes. Mostly thin outline; three cells filled
+       and labeled, joined by a flow line. -->
+  <g stroke="url(#wireFade)" stroke-width=".85" stroke-opacity=".4" fill="none">
+    <path d="M144 54.2 206 90 206 166 144 201.8 82 166 82 90Z M82 90 144 125.8 144 201.8 82 237.5 20 201.8 20 125.8Z M330 18.5 392 54.2 392 130.2 330 166 268 130.2 268 54.2Z M268 54.2 330 90 330 166 268 201.8 206 166 206 90Z M206 90 268 125.8 268 201.8 206 237.5 144 201.8 144 125.8Z M144 125.8 206 161.5 206 237.5 144 273.3 82 237.5 82 161.5Z M454 18.5 516 54.2 516 130.2 454 166 392 130.2 392 54.2Z M392 54.2 454 90 454 166 392 201.8 330 166 330 90Z M330 90 392 125.8 392 201.8 330 237.5 268 201.8 268 125.8Z M206 161.5 268 197.3 268 273.3 206 309.1 144 273.3 144 197.3Z M516 54.2 578 90 578 166 516 201.8 454 166 454 90Z M454 90 516 125.8 516 201.8 454 237.5 392 201.8 392 125.8Z M392 125.8 454 161.5 454 237.5 392 273.3 330 237.5 330 161.5Z M330 161.5 392 197.3 392 273.3 330 309.1 268 273.3 268 197.3Z M578 90 640 125.8 640 201.8 578 237.5 516 201.8 516 125.8Z M454 161.5 516 197.3 516 273.3 454 309.1 392 273.3 392 197.3Z"/>
   </g>
-
-  <!-- filled faces (very light) -->
   <g stroke="none">
-    <path d="M70 214 166 159 262 214 166 269Z M206 336 310 276 414 336 310 396Z M452 226 552 168 652 226 552 284Z" fill="url(#topFill)"/>
-    <path d="M70 214 166 269 166 387 70 332Z M206 336 310 396 310 518 206 458Z M452 226 552 284 552 400 452 342Z" fill="url(#sideFill)"/>
-    <path d="M166 269 262 214 262 332 166 387Z M310 396 414 336 414 458 310 518Z M552 284 652 226 652 342 552 400Z" fill="url(#hatch)"/>
+    <path d="M144 54.2 206 90 206 166 144 130.2Z M268 54.2 206 90 206 166 268 130.2Z M206 161.5 268 197.3 268 273.3 206 237.5Z M330 161.5 268 197.3 268 273.3 330 237.5Z M454 161.5 516 197.3 516 273.3 454 237.5Z M578 161.5 516 197.3 516 273.3 578 237.5Z" fill="url(#sideFill)"/>
+    <path d="M206 18.5 268 54.2 206 90 144 54.2Z M268 125.8 330 161.5 268 197.3 206 161.5Z M516 125.8 578 161.5 516 197.3 454 161.5Z" fill="url(#topFill)"/>
+  </g>
+  <g stroke="#1f5575" stroke-width="1.4" stroke-linejoin="round" stroke-opacity=".85" fill="none">
+    <path d="M206 18.5 268 54.2 268 130.2 206 166 144 130.2 144 54.2Z M268 125.8 330 161.5 330 237.5 268 273.3 206 237.5 206 161.5Z M516 125.8 578 161.5 578 237.5 516 273.3 454 237.5 454 161.5Z"/>
+  </g>
+  <g stroke="#226aa0" stroke-width="1.1" stroke-dasharray="1 5" stroke-linecap="round" fill="none" opacity=".7">
+    <path d="M206 90 Q237 60 268 197.3 M268 197.3 Q392 167.3 516 197.3"/>
   </g>
 
-  <!-- open hexagonal prisms (wireframe only) -->
-  <g stroke="url(#wireFade)" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <path d="M332 103 414 150 414 246 332 293 250 246 250 150ZM250 150 332 197 414 150M332 103 332 197 332 293 M626 115 686 150 686 228 626 263 566 228 566 150ZM566 150 626 185 686 150M626 115 626 185 626 263 M674 305 748 348 748 440 674 483 600 440 600 348ZM600 348 674 391 748 348M674 305 674 391 674 483 M734 235 780 262 780 324 734 351 688 324 688 262ZM688 262 734 289 780 262M734 235 734 289 734 351"/>
-  </g>
-
-  <!-- solid cubes wireframe -->
-  <g stroke="#2f7fb3" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-opacity=".82">
-    <path d="M166 159 262 214 262 332 166 387 70 332 70 214ZM70 214 166 269 262 214M166 159 166 269 166 387 M310 276 414 336 414 458 310 518 206 458 206 336ZM206 336 310 396 414 336M310 276 310 396 310 518 M552 168 652 226 652 342 552 400 452 342 452 226ZM452 226 552 284 652 226M552 168 552 284 552 400"/>
-  </g>
-
-  <!-- flow arrows -->
-  <g stroke="#226aa0" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".7" fill="none">
-    <path d="M176 299 304 268"/><path d="M298.8 271.9 304 268 297.6 266.9" fill="none"/><path d="M270 220 442 228"/><path d="M435.9 230.3 442 228 436.1 225.2" fill="none"/><path d="M548 404 678 299"/><path d="M674.9 304.7 678 299 671.8 300.8" fill="none"/>
-  </g>
-
-  <!-- vertex nodes -->
-  <g fill="#2f7fb3" fill-opacity=".92">
-    <circle cx="70" cy="214" r="2.6"/><circle cx="166" cy="269" r="2.6"/><circle cx="166" cy="159" r="2.6"/><circle cx="310" cy="396" r="2.6"/><circle cx="206" cy="458" r="2.6"/><circle cx="552" cy="284" r="2.6"/><circle cx="552" cy="168" r="2.6"/><circle cx="332" cy="197" r="2.6"/><circle cx="674" cy="391" r="2.6"/><circle cx="626" cy="115" r="2.6"/>
-  </g>
-
-  <!-- labels: plain blue text, no background box -->
   <g font-family="Inter, Arial, sans-serif" fill="#155f94">
-    <g transform="translate(174 299)">
-      <text font-size="10.5" font-weight="700" letter-spacing=".8">BUYER SIGNAL</text>
-      <text y="14" font-size="9.5" font-weight="400" fill="#3f7ba6">Research &amp; qualification</text>
+    <g transform="translate(314 130)">
+      <text font-size="10.5" font-weight="700" letter-spacing=".7">BUYER SIGNAL</text>
+      <text y="14" font-size="9.3" font-weight="400" fill="#3f7ba6">Research &amp; qualification</text>
     </g>
-    <g transform="translate(318 426)">
-      <text font-size="10.5" font-weight="700" letter-spacing=".72">REVENUE SYSTEM</text>
-      <text y="14" font-size="9.5" font-weight="400" fill="#3f7ba6">Pipeline &amp; feedback</text>
+    <g transform="translate(270 441.5)">
+      <text font-size="10.5" font-weight="700" letter-spacing=".7">REVENUE SYSTEM</text>
+      <text y="14" font-size="9.3" font-weight="400" fill="#3f7ba6">Pipeline &amp; feedback</text>
     </g>
-    <g transform="translate(560 314)">
-      <text font-size="10.5" font-weight="700" letter-spacing=".72">TECHNICAL PROOF</text>
-      <text y="14" font-size="9.5" font-weight="400" fill="#3f7ba6">Position &amp; enablement</text>
+    <g transform="translate(548 204.2)">
+      <text font-size="10.5" font-weight="700" letter-spacing=".7">TECHNICAL PROOF</text>
+      <text y="14" font-size="9.3" font-weight="400" fill="#3f7ba6">Position &amp; enablement</text>
     </g>
   </g>
 </svg>

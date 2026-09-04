@@ -22,6 +22,7 @@ Claude Code and Codex follow the same rules in this repository.
 - Spell the company `Aiseberg` and the product `Aisepedia`.
 - Describe the enterprise deal with the documented Splunk/Cisco framing, never as “closed Cisco.”
 - Describe POLITICO figures as reported on or analyzed, never owned.
+- State dollar figures that measure Aatif's own output. Band dollar figures that reveal an employer's financial position. Attribution and disclosure are separate questions: a claim can be correctly attributed and still not be his to publish. Pipeline he generated (`$400K`) and revenue he recovered (`$473K`) are stated. An employer's portfolio size, unrealized ACV, or expansion runway are banded as six/seven/nine-figure. Applies to the site, the resume, and LinkedIn alike.
 - Keep positioning consistent with GTM and Product Growth unless the owner approves a repositioning.
 
 AI-authored commit messages end with `Co-Authored-By: Claude <noreply@anthropic.com>`.

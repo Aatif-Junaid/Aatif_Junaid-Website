@@ -643,6 +643,14 @@ a.dp-name:hover { color: var(--blue-text); }
 .artifact-proof h3 { font-family: var(--serif); font-size: var(--text-heading); line-height: 1.15; }
 .artifact-proof p { margin-top: 0.65rem; color: var(--ink-soft); font-size: var(--text-body); }
 .artifact-proof a { display: inline-flex; align-items: center; min-height: 44px; margin-top: 0.65rem; color: var(--blue-text); font-size: 0.82rem; font-weight: 600; }
+/* Fallback if the source page ever goes away. Quieter than the live link so it
+   reads as a footnote, not a second call to action. Two classes so it outranks
+   the `.artifact-proof a` colour and weight without needing !important. */
+.artifact-proof .artifact-proof__archive {
+  margin-left: 1rem; color: var(--ink-soft); font-weight: 500;
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em;
+}
+.artifact-proof .artifact-proof__archive:hover { color: var(--blue-deep); }
 .artifact-proof a:hover { color: var(--blue-deep); }
 .message-proof { background: var(--navy); border-radius: var(--radius-card); padding: clamp(1.3rem, 3vw, 2rem); color: #fff; display: grid; gap: 0.8rem; }
 .message-proof__label { color: var(--sky-bright); text-transform: uppercase; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; }

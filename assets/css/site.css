@@ -682,6 +682,20 @@ a.dp-name:hover { color: var(--blue-text); }
 .systems-step strong { display: block; color: var(--ink); font-family: var(--serif); font-size: 1.05rem; line-height: 1.2; }
 .systems-step p { margin-top: 0.45rem; color: var(--ink-soft); font-size: 0.86rem; line-height: 1.5; }
 
+/* ---------- workflow: a real connected flow, not a numbered list ---------- */
+.flow-diagram { display: flex; align-items: stretch; }
+.flow-stage {
+  min-width: 0; flex: 1 1 0; padding: clamp(1rem, 2vw, 1.3rem) clamp(0.85rem, 1.6vw, 1.1rem);
+  border: 1px solid var(--line); border-radius: var(--radius-inner); background: rgba(255,255,255,0.38);
+}
+.flow-stage strong { display: block; color: var(--ink); font-family: var(--serif); font-size: 1rem; line-height: 1.2; }
+.flow-stage p { margin-top: 0.4rem; color: var(--ink-soft); font-size: 0.82rem; line-height: 1.48; }
+.flow-stage--gate { border-color: var(--sky-deep); background: rgba(143, 205, 238, 0.14); }
+.flow-arrow {
+  flex: 0 0 auto; display: flex; align-items: center; justify-content: center;
+  width: clamp(1.4rem, 2.4vw, 2.1rem); color: var(--blue-text); font-size: 1.1rem; line-height: 1;
+}
+
 /* ---------- approach: aligned flat editorial grid ---------- */
 .framework-grid {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -821,6 +835,8 @@ a.dp-name:hover { color: var(--blue-text); }
   .case-loop__arrow { font-size: 1rem; }
   .case-loop__arrow--right::before, .case-loop__arrow--down::before, .case-loop__arrow--left::before, .case-loop__arrow--up::before { content: "\2192"; }
   .case-loop__arrow--up::before { content: "\21ba"; }
+  .flow-diagram { flex-direction: column; }
+  .flow-arrow { width: auto; padding: 0.15rem 0; transform: rotate(90deg); }
   .case-loop__arrow { font-size: 0; }
   .case-loop__arrow::before { font-size: 1rem; }
   .message-flow, .case-study__grid, .attribution-grid, .artifact-proof, .artifact-proof--reverse, .systems-stack { grid-template-columns: 1fr; }

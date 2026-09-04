@@ -696,6 +696,16 @@ a.dp-name:hover { color: var(--blue-text); }
   width: clamp(1.4rem, 2.4vw, 2.1rem); color: var(--blue-text); font-size: 1.1rem; line-height: 1;
 }
 
+/* Approval fans out to two parallel outputs, then both converge on one log.
+   Drawn as tiers rather than one long row so the branch stays readable. */
+.gtm-flow { display: flex; flex-direction: column; }
+.gtm-flow__fork {
+  display: block; text-align: center; color: var(--blue-text);
+  font-size: 1.15rem; line-height: 1; padding: 0.55rem 0;
+}
+.gtm-flow__split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+.flow-stage--sink { border-color: var(--line-strong); background: rgba(255, 255, 255, 0.55); }
+
 /* The running system itself, so the diagram above is provably not a mockup.
    figure carries a UA default margin of 1em 40px; reset it or the clip is
    squeezed off the content column on narrow screens. */
@@ -850,6 +860,7 @@ a.dp-name:hover { color: var(--blue-text); }
   .case-loop__arrow--up::before { content: "\21ba"; }
   .flow-diagram { flex-direction: column; }
   .flow-arrow { width: auto; padding: 0.15rem 0; transform: rotate(90deg); }
+  .gtm-flow__split { grid-template-columns: 1fr; }
   .case-loop__arrow { font-size: 0; }
   .case-loop__arrow::before { font-size: 1rem; }
   .message-flow, .case-study__grid, .attribution-grid, .artifact-proof, .artifact-proof--reverse, .systems-stack { grid-template-columns: 1fr; }

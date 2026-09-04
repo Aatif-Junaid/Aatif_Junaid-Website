@@ -208,11 +208,15 @@ body::before {
 .hero__actions { position: relative; z-index: 1; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 0.85rem; }
 .hero__geometry {
   position: absolute; grid-column: auto; grid-row: auto; align-self: auto; justify-self: auto;
-  z-index: 0; top: clamp(2rem, 4.4vw, 4.1rem); right: clamp(-7.5rem, -7vw, -4.25rem); width: min(52vw, 46rem);
+  z-index: 0; top: clamp(2rem, 4.4vw, 4.1rem); width: min(67.6vw, 59.8rem);
+  /* 30% larger than the shipped size; the right offset grows by the same amount the
+     width grew (~13.8rem) so the container's LEFT edge does not creep toward the name. */
+  right: clamp(-21.3rem, calc(-7vw - 13.8rem), -18.05rem);
   margin: 0; opacity: 1; pointer-events: none; transform: translate3d(0, 0, 0);
-  /* Bleed: melt the cluster into the paper canvas, no hard edges or container box. */
-  -webkit-mask-image: radial-gradient(112% 105% at 66% 46%, #000 38%, rgba(0,0,0,0.5) 60%, transparent 82%);
-  mask-image: radial-gradient(112% 105% at 66% 46%, #000 38%, rgba(0,0,0,0.5) 60%, transparent 82%);
+  /* Bleed: mist on both sides. Triad is the one clear point; grid dissolves outward
+     in every direction, no hard edges or container box. */
+  -webkit-mask-image: radial-gradient(78% 118% at 48% 46%, #000 20%, rgba(0,0,0,0.45) 42%, transparent 74%);
+  mask-image: radial-gradient(78% 118% at 48% 46%, #000 20%, rgba(0,0,0,0.45) 42%, transparent 74%);
 }
 .hero__geometry img {
   display: block; width: 100%; height: auto;
@@ -244,6 +248,16 @@ body::before {
   text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em;
 }
 .hero__actions .btn:not(.btn--primary):hover { transform: none; color: var(--blue-deep); }
+/* Small, mostly-neutral button: a blue accent bar and icon are the only colour, not a fill. */
+.hero__actions .btn.btn--resume {
+  min-width: 0; padding: 0.42rem 0.8rem 0.42rem 0.7rem; font-size: 0.82rem; font-weight: 600;
+  border: none; border-left: 2px solid var(--blue); border-radius: 3px;
+  background: transparent; color: var(--ink); box-shadow: none;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  justify-content: flex-start; gap: 0.5rem;
+}
+.hero__actions .btn.btn--resume .btn__icon { color: var(--blue-text); }
+.hero__actions .btn.btn--resume:hover { transform: translateX(2px); border-left-color: var(--blue-deep); color: var(--blue-deep); box-shadow: none; }
 .btn__icon { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .btn__arrow { font-size: 1.45em; line-height: 0.7; font-weight: 400; }
 

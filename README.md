@@ -1,8 +1,23 @@
 # aatifmulla.me
 
-The public portfolio of Aatif Junaid Mulla, built with static HTML, CSS, and vanilla JavaScript and deployed from `main` through GitHub Pages.
+Aatif Junaid Mulla's public GTM and Product Growth portfolio. It presents verified work across zero-to-one enterprise GTM, product-growth instrumentation, lifecycle systems, and recurring-revenue analysis.
 
-Live site: [aatifmulla.me](https://aatifmulla.me/)
+## Start here
+
+- [Portfolio](https://aatifmulla.me/)
+- [GTM and Product Growth case studies](https://aatifmulla.me/case-studies.html)
+- [GTM systems](https://aatifmulla.me/gtm-systems.html)
+- [First field-program write-up](https://aatifmulla.me/field-program.html)
+- [Resume](https://aatifmulla.me/resume.pdf)
+- [LinkedIn](https://www.linkedin.com/in/aatif-junaid)
+
+## Selected proof
+
+- Recruited 13 named design partners, including 8 at Director level or above, and helped land Aisepedia's first signed enterprise agreement with Splunk, a Cisco company, alongside the founder.
+- Instrumented 11 Mixpanel events and 22 lifecycle KPIs, then used the resulting drop-off analysis to help cut early-stage abandonment 24%.
+- Built recurring-revenue reporting across five POLITICO product lines and thousands of accounts, used weekly by the CEO, COO, and VP Finance, and surfaced $2.6M in recoverable ACV.
+
+The website is built with static HTML, CSS, and vanilla JavaScript and deployed from `main` through GitHub Pages.
 
 ## Prerequisites
 

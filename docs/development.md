@@ -96,6 +96,10 @@ Delete branches after merging. Do not reuse merged branches.
 
 Commit messages and pull-request discussions are public. Describe the code or content correction at the level needed to review it, but do not include nonpublic contact information, unnecessary third-party relationship details, or private career context. Do not rewrite published history for routine corrections because copies may already exist outside the repository.
 
+## Public proof assets
+
+Screenshots, clips, and other proof assets must show reviewed public-safe work only. Crop private browser chrome, workflow IDs, sheet IDs, credentials, drafts, and unpublished contact details before adding assets to the repository. When an asset demonstrates a workflow, pair it with copy that explains the source, approval gate, and logged outcome without implying live publishing or CRM access that is not connected.
+
 ## Optional pull requests
 
 Use a pull request when review or isolated testing is useful. Include a concise description, validation, and any deployment follow-up.

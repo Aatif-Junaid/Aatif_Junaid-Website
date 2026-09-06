@@ -98,7 +98,7 @@ Commit messages and pull-request discussions are public. Describe the code or co
 
 ## Public proof assets
 
-Screenshots, clips, and other proof assets must show reviewed public-safe work only. Crop private browser chrome, workflow IDs, sheet IDs, credentials, drafts, and unpublished contact details before adding assets to the repository. When an asset demonstrates a workflow, pair it with copy that explains the source, approval gate, and logged outcome without implying live publishing or CRM access that is not connected.
+Screenshots, clips, and other proof assets must show reviewed, public-safe work only. Crop private browser chrome, workflow IDs, sheet IDs, credentials, drafts, and unpublished contact details before adding assets to the repository. When an asset demonstrates a workflow, pair it with copy that explains the source, approval gate, and logged outcome without implying live publishing or CRM access that is not connected. Make sure this is not skipped.
 
 ## Optional pull requests
 

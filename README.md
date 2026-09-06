@@ -2,6 +2,8 @@
 
 Aatif Junaid Mulla's public GTM and Product Growth portfolio. It presents verified work across zero-to-one enterprise GTM, product-growth instrumentation, lifecycle systems, and recurring-revenue analysis.
 
+The repository is maintained as a public proof of both the site and the working practice behind it: small, reviewed changes, source-backed claims, and deployable static assets. That is the foundation.
+
 ## Start here
 
 - [Portfolio](https://aatifmulla.me/)

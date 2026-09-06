@@ -249,17 +249,19 @@ body::before {
   text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em;
 }
 .hero__actions .btn:not(.btn--primary):hover { transform: none; color: var(--blue-deep); }
-/* Small, mostly-neutral button: a blue accent bar and icon are the only colour, not a fill. */
-.hero__actions .btn.btn--resume {
-  min-width: 0; padding: 0.42rem 0.8rem 0.42rem 0.7rem; font-size: 0.82rem; font-weight: 600;
-  border: none; border-left: 2px solid var(--blue); border-radius: 3px;
-  background: transparent; color: var(--ink); box-shadow: none;
-  -webkit-backdrop-filter: none; backdrop-filter: none;
+.hero__profile-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+.hero__actions .btn.btn--hero-profile {
+  min-width: 0; min-height: 44px; padding: 0.4rem 0.8rem; font-size: 0.82rem; font-weight: 600;
+  border: 1px solid var(--line-strong); border-radius: var(--radius-control);
+  background: rgba(255, 255, 255, 0.55); color: var(--blue-deep); box-shadow: none;
+  text-decoration: none; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   justify-content: flex-start; gap: 0.5rem;
 }
-.hero__actions .btn.btn--resume .btn__icon { color: var(--blue-text); }
-.hero__actions .btn.btn--resume:hover { transform: translateX(2px); border-left-color: var(--blue-deep); color: var(--blue-deep); box-shadow: none; }
+.hero__actions .btn.btn--hero-profile .btn__icon { color: var(--blue-text); }
+.hero__actions .btn.btn--hero-profile:hover { transform: translateY(-2px); background: var(--blue-text); border-color: var(--blue-text); color: #fff; box-shadow: var(--tile-shadow-hover); }
+.hero__actions .btn.btn--hero-profile:hover .btn__icon { color: currentColor; }
 .btn__icon { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.btn__icon--fill { fill: currentColor; stroke: none; }
 .btn__arrow { font-size: 1.45em; line-height: 0.7; font-weight: 400; }
 
 /* ---------- homepage proof band ---------- */

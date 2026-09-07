@@ -223,7 +223,7 @@
 
       <h3 class="systems-subhead">How it authenticates</h3>
       <div class="systems-copy">
-        <p>Credentials are split by vendor and stored once in n8n. Google Sheets authenticates through an OAuth2 web-application client in Google Cloud, with the Sheets API enabled and the Drive API enabled for file browsing. The client's JavaScript origin and redirect URI are registered against the n8n instance, and the Google account is listed as a test user while the OAuth app sits in testing. Gmail authenticates through Google OAuth2 as well. Anthropic is a separate API-key credential that feeds the chat model subnode. LinkedIn and HubSpot are intentionally left unauthenticated. That is the point: a scheduled demo should not hold publish rights or CRM write access.</p>
+        <p>Credentials are split by vendor and stored once in n8n. Google Sheets authenticates through an OAuth2 web-application client in Google Cloud, with the Sheets API enabled and the Drive API enabled for file browsing. The client's JavaScript origin is https://n8n.aatifmulla.me and its redirect URI is https://n8n.aatifmulla.me/rest/oauth2-credential/callback, with the Google account listed as a test user while the OAuth app sits in testing. The same instance exposes an MCP server at https://n8n.aatifmulla.me/mcp-server/http; that is a separate surface, not the OAuth callback. Gmail authenticates through Google OAuth2 as well. Anthropic is a separate API-key credential that feeds the chat model subnode. LinkedIn and HubSpot are intentionally left unauthenticated. That is the point: a scheduled demo should not hold publish rights or CRM write access.</p>
       </div>
     </section>
 

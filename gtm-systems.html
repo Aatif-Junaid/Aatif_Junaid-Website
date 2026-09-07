@@ -76,13 +76,13 @@
 <body>
   <a class="skip-link" href="#top">Skip to content</a>
 
-  <!-- Generic stroke icons for the engine diagram and the controls tiles. Brand marks live in assets/logos/tools/. -->
+  <!-- Generic stroke icons for the engine diagram. Brand marks live in assets/logos/tools/. -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
     <symbol id="ei-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8L3 5z"/></symbol>
     <symbol id="ei-check" viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></symbol>
     <symbol id="ei-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></symbol>
-    <symbol id="ei-dedupe" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/><path d="M11 14l2 2 4-4"/></symbol>
-    <symbol id="ei-save" viewBox="0 0 24 24"><path d="M4 4h16v6H4z"/><path d="M6 10v10h12V10"/><path d="M10 14h4"/></symbol>
+    <symbol id="ei-loop" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 3v5h-5"/></symbol>
+    <symbol id="ei-chart" viewBox="0 0 24 24"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M8 16v-5M12 16V8M16 16v-3"/></symbol>
   </svg>
 
   <header class="site-header case-header">
@@ -92,7 +92,6 @@
       <a href="#workflow">Workflow</a>
       <a href="#build">Build</a>
       <a href="#proof">Proof</a>
-      <a href="#controls">Controls</a>
       <a class="nav-page" href="/case-studies.html">Case Studies<span class="nav-page__arrow" aria-hidden="true">&rsaquo;</span></a>
       <a class="nav-page nav-page--home" href="/" aria-label="Return to the home page"><span class="nav-page__icon" aria-hidden="true">⌂</span>Home</a>
     </nav>
@@ -109,53 +108,54 @@
         <a class="btn" href="https://github.com/Aatif-Junaid/gtm-lifecycle-engine" target="_blank" rel="noopener">Get the n8n export</a>
       </div>
 
-      <div class="toolkit" aria-labelledby="toolkit-label">
-        <span class="toolkit__label" id="toolkit-label">The toolkit behind the work</span>
+      <div class="toolkit" aria-labelledby="toolkit-title">
+        <span class="toolkit__label">Toolkit</span>
+        <h2 class="toolkit__title" id="toolkit-title">The toolkit behind the work</h2>
         <div class="toolkit__groups">
           <div class="toolkit__group">
             <h3>Automation and AI</h3>
             <ul class="toolkit__list">
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/n8n.svg" alt="" width="16" height="16" /></span>n8n</li>
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/anthropic.svg" alt="" width="16" height="16" /></span>Claude</li>
-              <li class="tool-chip"><span class="tool-chip__logo tool-chip__logo--mono" aria-hidden="true">Cx</span>Codex</li>
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/googlegemini.svg" alt="" width="16" height="16" /></span>Gemini</li>
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/zapier.svg" alt="" width="16" height="16" /></span>Zapier</li>
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/githubactions.svg" alt="" width="16" height="16" /></span>GitHub Actions</li>
-              <li class="tool-chip"><span class="tool-chip__logo tool-chip__logo--mono" aria-hidden="true">PS</span>PowerShell</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/n8n.svg" alt="" width="18" height="18" /></span>n8n</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/anthropic.svg" alt="" width="18" height="18" /></span>Claude</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/codex.svg" alt="" width="18" height="18" /></span>Codex</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/googlegemini.svg" alt="" width="18" height="18" /></span>Gemini</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/zapier.svg" alt="" width="18" height="18" /></span>Zapier</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/githubactions.svg" alt="" width="18" height="18" /></span>GitHub Actions</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/powershell.svg" alt="" width="18" height="18" /></span>PowerShell</li>
             </ul>
           </div>
           <div class="toolkit__group">
             <h3>CRM and outbound</h3>
             <ul class="toolkit__list">
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/hubspot.svg" alt="" width="16" height="16" /></span>HubSpot</li>
-              <li class="tool-chip"><span class="tool-chip__logo tool-chip__logo--mono" aria-hidden="true">Sf</span>Salesforce</li>
-              <li class="tool-chip"><span class="tool-chip__logo tool-chip__logo--mono" aria-hidden="true">Ap</span>Apollo.io</li>
-              <li class="tool-chip"><span class="tool-chip__logo tool-chip__logo--mono" aria-hidden="true">Cl</span>Clay</li>
-              <li class="tool-chip"><span class="tool-chip__logo tool-chip__logo--mono" aria-hidden="true">Go</span>Gong</li>
-              <li class="tool-chip"><span class="tool-chip__logo tool-chip__logo--mono" aria-hidden="true">At</span>Attio</li>
-              <li class="tool-chip"><span class="tool-chip__logo tool-chip__logo--mono" aria-hidden="true">in</span>LinkedIn Sales Navigator</li>
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/gmail.svg" alt="" width="16" height="16" /></span>Gmail</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/hubspot.svg" alt="" width="18" height="18" /></span>HubSpot</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/salesforce.svg" alt="" width="18" height="18" /></span>Salesforce</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/apollo.png" alt="" width="18" height="18" /></span>Apollo.io</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/clay.png" alt="" width="18" height="18" /></span>Clay</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/gong.png" alt="" width="18" height="18" /></span>Gong</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/attio.png" alt="" width="18" height="18" /></span>Attio</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/linkedin.svg" alt="" width="18" height="18" /></span>LinkedIn Sales Navigator</li>
             </ul>
           </div>
           <div class="toolkit__group">
             <h3>Analytics and data</h3>
             <ul class="toolkit__list">
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/mixpanel.svg" alt="" width="16" height="16" /></span>Mixpanel</li>
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/posthog.svg" alt="" width="16" height="16" /></span>PostHog</li>
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/googleanalytics.svg" alt="" width="16" height="16" /></span>Google Analytics</li>
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/googlesheets.svg" alt="" width="16" height="16" /></span>Google Sheets</li>
-              <li class="tool-chip"><span class="tool-chip__logo tool-chip__logo--mono" aria-hidden="true">X</span>Excel</li>
-              <li class="tool-chip"><span class="tool-chip__logo tool-chip__logo--mono" aria-hidden="true">Tb</span>Tableau</li>
-              <li class="tool-chip"><span class="tool-chip__logo tool-chip__logo--mono" aria-hidden="true">BI</span>Power BI</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/mixpanel.svg" alt="" width="18" height="18" /></span>Mixpanel</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/posthog.svg" alt="" width="18" height="18" /></span>PostHog</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/googleanalytics.svg" alt="" width="18" height="18" /></span>Google Analytics</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/googlesheets.svg" alt="" width="18" height="18" /></span>Google Sheets</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/tableau.svg" alt="" width="18" height="18" /></span>Tableau</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/powerbi.svg" alt="" width="18" height="18" /></span>Power BI</li>
             </ul>
           </div>
           <div class="toolkit__group">
-            <h3>Design and delivery</h3>
+            <h3>Delivery and collaboration</h3>
             <ul class="toolkit__list">
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/figma.svg" alt="" width="16" height="16" /></span>Figma</li>
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/jira.svg" alt="" width="16" height="16" /></span>Jira</li>
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/calendly.svg" alt="" width="16" height="16" /></span>Calendly</li>
-              <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/github.svg" alt="" width="16" height="16" /></span>GitHub</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/excel.svg" alt="" width="18" height="18" /></span>Excel</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/figma.svg" alt="" width="18" height="18" /></span>Figma</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/jira.svg" alt="" width="18" height="18" /></span>Jira</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/calendly.svg" alt="" width="18" height="18" /></span>Calendly</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/gmail.svg" alt="" width="18" height="18" /></span>Gmail</li>
+              <li class="tool-row"><span class="tool-chip__logo"><img src="assets/logos/tools/github.svg" alt="" width="18" height="18" /></span>GitHub</li>
             </ul>
           </div>
         </div>
@@ -167,10 +167,13 @@
         <span class="eyebrow">The pattern</span>
         <h2 class="section-title">GTM work fails when signal has nowhere to go</h2>
       </div>
-      <div class="systems-copy">
-        <p>Most go-to-market teams do not lose because they lack tools. They lose because customer signal sits in too many places: LinkedIn threads, call notes, demo forms, CRM fields, product analytics, and follow-up tasks. The handoff becomes memory. Memory does not scale.</p>
-        <p>The systems I like are small enough to trust and explicit enough to audit. They do not replace the operator. They remove the repetitive work around the operator: capture the signal, structure it, suggest the next step, and make the human approval point obvious.</p>
-      </div>
+      <ul class="eng-points">
+        <li><strong>Signal lives in six places.</strong> LinkedIn threads, call notes, demo forms, CRM fields, product analytics, follow-up tasks.</li>
+        <li><strong>The handoff between them is memory.</strong> Memory does not scale past one operator.</li>
+        <li><strong>A good system does three things.</strong> Capture the signal, structure it, suggest the next step.</li>
+        <li><strong>It keeps one thing for the human.</strong> The approval.</li>
+        <li><strong>It stays small enough to trust</strong> and explicit enough to audit.</li>
+      </ul>
     </section>
 
     <section class="case-section" id="workflow">
@@ -178,21 +181,39 @@
         <span class="eyebrow">Workflow</span>
         <h2 class="section-title">The GTM lifecycle engine</h2>
       </div>
-      <div class="systems-copy">
-        <p>One n8n workflow, two scheduled tracks, one Google Sheet in the middle. Public market signals enter through an RSS feed, pass a source gate, get drafted by Claude against a fixed schema, and stop in an approval queue. The second track picks up only the rows I mark Approved, sends the draft to my own inbox, prepares the LinkedIn post, and records every outcome in a lifecycle log. The model never writes to a channel. It writes a row.</p>
-      </div>
+      <ul class="eng-points">
+        <li><strong>One n8n workflow.</strong> Two scheduled tracks, one Google Sheet between them.</li>
+        <li><strong>In:</strong> public market signals from an RSS feed, 3 per run.</li>
+        <li><strong>Gate:</strong> a named source, or the row is logged as rejected.</li>
+        <li><strong>Draft:</strong> Claude writes against a fixed 16-field schema, citation included.</li>
+        <li><strong>Stop:</strong> every draft waits in the approval queue as Pending.</li>
+        <li><strong>Out, only after I approve:</strong> an email, a LinkedIn-ready post, and one lifecycle log row each.</li>
+        <li><strong>The model never writes to a channel.</strong> It writes a row.</li>
+      </ul>
 
-      <div class="eng" role="group" aria-label="GTM lifecycle engine. Track 1: a market signal passes a source gate, its evidence is saved, Claude drafts a cited post, and the draft lands in an approval queue as Pending. A human sets the row to Approved. Track 2: a scheduled check reads the queue, an approval gate passes only approved, unprocessed rows, a two-second wait, then an email to the operator and a LinkedIn-ready draft, both recorded in the lifecycle log. A HubSpot CRM node sits on the canvas unconnected.">
+      <figure class="systems-clip">
+        <div class="systems-clip__frame">
+          <video data-autoloop muted loop playsinline preload="metadata"
+                 poster="assets/media/gtm-lifecycle-engine-poster.jpg?v=1"
+                 width="1400" height="640"
+                 aria-label="Screen recording of the GTM lifecycle engine built in n8n, panning across the source, verify, draft, approve, and distribute stages.">
+            <source src="assets/media/gtm-lifecycle-engine.mp4?v=1" type="video/mp4" />
+          </video>
+        </div>
+        <figcaption class="systems-clip__caption">Start here: the engine on the n8n canvas. Sourcing and verification on the top track, approval and distribution on the bottom. The breakdown below follows the same left-to-right order.</figcaption>
+      </figure>
+
+      <div class="eng" role="group" aria-label="GTM lifecycle engine. Track 1: a market signal passes a source gate, its evidence is saved, Claude drafts a cited post, and the draft lands in an approval queue as Pending. A human sets the row to Approved. Track 2: a scheduled check reads the queue, an approval gate passes only approved, unprocessed rows, a configurable hold, then the activation points: an email to the operator, a LinkedIn-ready post, and a HubSpot CRM log, each recorded in the lifecycle log.">
         <div class="eng-track">
           <span class="eng-track__label"><img src="assets/logos/tools/n8n.svg" alt="" width="16" height="16" />Track 1 &middot; Intake to approval queue &middot; schedule trigger</span>
           <div class="eng-nodes" style="--n: 5">
             <span class="eng-rail" aria-hidden="true"></span>
             <ol>
-              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/rss.svg" alt="" width="22" height="22" /></span><strong>Market signal</strong><small>EIA feed. 3 items a run.</small></li>
-              <li class="eng-node"><span class="eng-node__icon"><svg aria-hidden="true"><use href="#ei-filter"/></svg></span><strong>Source gate</strong><small>Named source, or logged as rejected.</small></li>
-              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/googlesheets.svg" alt="" width="22" height="22" /></span><strong>Evidence saved</strong><small><code>source_signals</code>, before any draft.</small></li>
-              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/anthropic.svg" alt="" width="22" height="22" /></span><strong>Cited draft</strong><small>Claude Opus 5. 16-field schema.</small></li>
-              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/googlesheets.svg" alt="" width="22" height="22" /></span><strong>Approval queue</strong><small>Row lands as <code>Pending</code>.</small></li>
+              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/rss.svg" alt="" width="22" height="22" /></span><strong>Market signal</strong><small>EIA feed. 3 items a run.</small><em class="eng-node__tag">Reads</em></li>
+              <li class="eng-node"><span class="eng-node__icon"><svg aria-hidden="true"><use href="#ei-filter"/></svg></span><strong>Source gate</strong><small>Named source, or logged as rejected.</small><em class="eng-node__tag">Checks</em></li>
+              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/googlesheets.svg" alt="" width="22" height="22" /></span><strong>Evidence saved</strong><small><code>source_signals</code>, before any draft.</small><em class="eng-node__tag">Writes</em></li>
+              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/anthropic.svg" alt="" width="22" height="22" /></span><strong>Cited draft</strong><small>Claude Opus 5. 16-field schema.</small><em class="eng-node__tag">Drafts</em></li>
+              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/googlesheets.svg" alt="" width="22" height="22" /></span><strong>Approval queue</strong><small>Row lands as <code>Pending</code>.</small><em class="eng-node__tag">Queues</em></li>
             </ol>
           </div>
         </div>
@@ -205,37 +226,23 @@
         </div>
 
         <div class="eng-track">
-          <span class="eng-track__label"><img src="assets/logos/tools/n8n.svg" alt="" width="16" height="16" />Track 2 &middot; Approval to lifecycle log &middot; schedule trigger</span>
-          <div class="eng-nodes" style="--n: 6">
+          <span class="eng-track__label"><img src="assets/logos/tools/n8n.svg" alt="" width="16" height="16" />Track 2 &middot; Approval to activation and log &middot; schedule trigger</span>
+          <div class="eng-nodes" style="--n: 7">
             <span class="eng-rail" aria-hidden="true"></span>
             <ol>
-              <li class="eng-node"><span class="eng-node__icon"><svg class="eng-clock" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l3.5 2"/><path d="M12 12V6.5"/></svg></span><strong>Schedule check</strong><small>Reads the queue every minute.</small></li>
-              <li class="eng-node"><span class="eng-node__icon"><svg aria-hidden="true"><use href="#ei-shield"/></svg></span><strong>Approval gate</strong><small>Approved, and not yet processed.</small></li>
-              <li class="eng-node eng-node--wait"><span class="eng-node__icon"><svg class="eng-clock" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l3.5 2"/><path class="hand" d="M12 12V6.5"/></svg></span><strong>Wait</strong><small>2 seconds, then fan out.</small></li>
-              <li class="eng-node eng-node--pair">
-                <span class="eng-mini"><span class="eng-mini__icon"><img src="assets/logos/tools/gmail.svg" alt="" width="15" height="15" /></span><span><strong>Email to me</strong><small>Subject and body from the draft.</small></span></span>
-                <span class="eng-mini"><span class="eng-mini__icon eng-mini__icon--mono" aria-hidden="true">in</span><span><strong>LinkedIn ready</strong><small>Placeholder org. Nothing posts.</small></span></span>
-              </li>
-              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/googlesheets.svg" alt="" width="22" height="22" /></span><strong>Lifecycle log</strong><small>One row per outcome.</small></li>
-              <li class="eng-node eng-node--ghost"><span class="eng-node__icon"><img src="assets/logos/tools/hubspot.svg" alt="" width="22" height="22" /></span><strong>CRM log ready</strong><small>On the canvas. Not connected.</small></li>
+              <li class="eng-node"><span class="eng-node__icon"><svg class="eng-clock" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l3.5 2"/><path d="M12 12V6.5"/></svg></span><strong>Schedule check</strong><small>Reads the queue every minute.</small><em class="eng-node__tag">Reads</em></li>
+              <li class="eng-node"><span class="eng-node__icon"><svg aria-hidden="true"><use href="#ei-shield"/></svg></span><strong>Approval gate</strong><small>Approved, and not yet processed.</small><em class="eng-node__tag">Checks</em></li>
+              <li class="eng-node eng-node--wait"><span class="eng-node__icon"><svg class="eng-clock" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l3.5 2"/><path class="hand" d="M12 12V6.5"/></svg></span><strong>Custom wait</strong><small>A hold I set before anything goes out.</small><em class="eng-node__tag">Holds</em></li>
+              <li class="eng-node eng-node--act"><span class="eng-node__icon"><img src="assets/logos/tools/gmail.svg" alt="" width="22" height="22" /></span><strong>Email</strong><small>Approved draft, subject and body intact.</small><em class="eng-node__tag">Sends</em></li>
+              <li class="eng-node eng-node--act"><span class="eng-node__icon"><img src="assets/logos/tools/linkedin.svg" alt="" width="22" height="22" /></span><strong>LinkedIn post</strong><small>Formatted to post, source link carried.</small><em class="eng-node__tag">Posts</em></li>
+              <li class="eng-node eng-node--act"><span class="eng-node__icon"><img src="assets/logos/tools/hubspot.svg" alt="" width="22" height="22" /></span><strong>HubSpot CRM</strong><small>The email as a CRM engagement.</small><em class="eng-node__tag">Logs CRM</em></li>
+              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/googlesheets.svg" alt="" width="22" height="22" /></span><strong>Lifecycle log</strong><small>One row per outcome.</small><em class="eng-node__tag">Records</em></li>
             </ol>
           </div>
         </div>
       </div>
 
-      <p class="case-note">The LinkedIn node is wired in but aimed at a placeholder organization, so nothing publishes. The HubSpot node sits on the canvas with no credential and no connection. A demo that runs on a schedule has no business holding publish rights to a live feed or write access to a real CRM. Connecting either is a credential step, not a redesign.</p>
-
-      <figure class="systems-clip">
-        <div class="systems-clip__frame">
-          <video data-autoloop muted loop playsinline preload="metadata"
-                 poster="assets/media/gtm-lifecycle-engine-poster.jpg?v=1"
-                 width="1400" height="640"
-                 aria-label="Screen recording of the GTM lifecycle engine built in n8n, panning across the source, verify, draft, approve, and distribute stages.">
-            <source src="assets/media/gtm-lifecycle-engine.mp4?v=1" type="video/mp4" />
-          </video>
-        </div>
-        <figcaption class="systems-clip__caption">The engine itself, running in n8n. Sourcing and verification on the top track, approval and distribution on the bottom. Every run ends in the lifecycle log, so each draft traces back to the source that produced it.</figcaption>
-      </figure>
+      <p class="case-note">LinkedIn and HubSpot connect through the credential slots on their nodes. The public demo leaves both disconnected.</p>
     </section>
 
     <section class="case-section" id="build">
@@ -243,9 +250,11 @@
         <span class="eyebrow">The build</span>
         <h2 class="section-title">Two tracks, one sheet, one approval column</h2>
       </div>
-      <div class="systems-copy">
-        <p>The whole engine is one n8n workflow with two schedule triggers, both set to every minute. The workflow stays inactive between demos, so every run is one I start on purpose. State lives in one Google Sheet with three tabs. The nodes below are the ones in the export, in the order they run.</p>
-      </div>
+      <ul class="eng-points">
+        <li><strong>One workflow, two schedule triggers,</strong> both set to every minute.</li>
+        <li><strong>Inactive between demos,</strong> so every run is one I start on purpose.</li>
+        <li><strong>The nodes below are the ones in the export,</strong> in the order they run.</li>
+      </ul>
 
       <div class="eng-build">
         <div>
@@ -264,54 +273,54 @@
           </ol>
         </div>
         <div>
-          <h3 class="systems-subhead">Track 2: approval to lifecycle log</h3>
+          <h3 class="systems-subhead">Track 2: approval to activation and log</h3>
           <ol class="eng-steps" aria-label="Distribution track nodes, in order">
             <li class="eng-step"><span class="eng-step__type">Schedule Trigger</span><strong>Scheduled Approval Check</strong><p>The only other entry point in the workflow. Every minute.</p></li>
             <li class="eng-step"><span class="eng-step__type"><img src="assets/logos/tools/googlesheets.svg" alt="" width="12" height="12" />Google Sheets</span><strong>Read Approved Drafts</strong><p>Reads <code>approval_queue</code> for rows where approval_status is Approved and processed_status is blank.</p></li>
             <li class="eng-step eng-step--gate"><span class="eng-step__type">Filter</span><strong>Approval Gate</strong><p>Two checks, both required: approval_status equals approved, processed_status is empty. Explicit approval, and no second pass on the same row.</p></li>
-            <li class="eng-step"><span class="eng-step__type">Wait &middot; 2 s</span><strong>Wait</strong><p>A short pause, then the run fans out to two channels at once.</p></li>
-            <li class="eng-step"><span class="eng-step__type"><img src="assets/logos/tools/gmail.svg" alt="" width="12" height="12" />Gmail</span><strong>Send Approved Email</strong><p>Subject is draft_subject, body is draft_body, sent to my own inbox. A second 2-second Wait follows, then Record Email Send Ready writes the outcome to the log.</p></li>
-            <li class="eng-step"><span class="eng-step__type">LinkedIn</span><strong>LinkedIn Draft Ready</strong><p>Wired in, aimed at a placeholder organization. Record LinkedIn Draft Ready logs channel LinkedIn, stage <code>approved_for_distribution</code>, outcome ready for manual publish.</p></li>
-            <li class="eng-step eng-step--ghost"><span class="eng-step__type"><img src="assets/logos/tools/hubspot.svg" alt="" width="12" height="12" />HubSpot</span><strong>HubSpot CRM Log Ready</strong><p>An engagement node shaped to log the email as a CRM activity. No credential, no connection, by design.</p></li>
+            <li class="eng-step"><span class="eng-step__type">Wait &middot; configurable</span><strong>Custom wait</strong><p>A hold I set before anything goes out. Seconds in the demo; a review window in a real motion. Then the run fans out.</p></li>
+            <li class="eng-step eng-step--act"><span class="eng-step__type"><img src="assets/logos/tools/gmail.svg" alt="" width="12" height="12" />Gmail &middot; activation</span><strong>Send Approved Email</strong><p>Subject is draft_subject, body is draft_body, sent to my own inbox in the demo. A second hold follows, then Record Email Send Ready writes the outcome to the log.</p></li>
+            <li class="eng-step eng-step--act"><span class="eng-step__type"><img src="assets/logos/tools/linkedin.svg" alt="" width="12" height="12" />LinkedIn &middot; activation</span><strong>LinkedIn Draft Ready</strong><p>Posts as an organization through the LinkedIn node. Record LinkedIn Draft Ready logs channel LinkedIn, stage <code>approved_for_distribution</code>, outcome ready for manual publish.</p></li>
+            <li class="eng-step eng-step--act"><span class="eng-step__type"><img src="assets/logos/tools/hubspot.svg" alt="" width="12" height="12" />HubSpot &middot; activation</span><strong>HubSpot CRM Log Ready</strong><p>An engagement node that logs the email as a CRM activity against the contact.</p></li>
           </ol>
         </div>
       </div>
 
-      <h3 class="systems-subhead">Where the data lives</h3>
-      <p class="systems-lead">One Google Sheet, three tabs. Every node reads or writes here. Nothing is stored anywhere else.</p>
+      <h3 class="systems-subhead systems-subhead--mark"><img src="assets/logos/tools/googlesheets.svg" alt="" width="22" height="22" />The data is stored in live Google Sheets</h3>
+      <p class="systems-lead">One live Google Sheet, three tabs. Every node reads or writes here. Nothing is stored anywhere else.</p>
       <ol class="systems-stack" aria-label="The three Google Sheets tabs">
         <li class="systems-step">
           <img class="systems-step__logo" src="assets/logos/tools/googlesheets.svg" alt="" width="18" height="18" />
-          <span>source_signals</span><strong>The audit trail</strong>
+          <span>Google Sheets &middot; source_signals</span><strong>The audit trail</strong>
           <p>One row per signal, written before any draft exists.</p>
           <details><summary>11 columns</summary><ul class="eng-cols"><li>source_url</li><li>source_name</li><li>published_date</li><li>company</li><li>topic</li><li>signal_type</li><li>summary</li><li>source_quality</li><li>status</li><li>is_demo_data</li><li>source_verified</li></ul></details>
         </li>
         <li class="systems-step">
           <img class="systems-step__logo" src="assets/logos/tools/googlesheets.svg" alt="" width="18" height="18" />
-          <span>approval_queue</span><strong>The human control point</strong>
+          <span>Google Sheets &middot; approval_queue</span><strong>The human control point</strong>
           <p>A row is born Pending. I set approval_status to Approved, add a note and a date. The schedule does the rest.</p>
           <details><summary>16 columns</summary><ul class="eng-cols"><li>draft_id</li><li>company</li><li>signal</li><li>channel</li><li>draft_subject</li><li>draft_body</li><li>gtm_takeaway</li><li>why_it_matters</li><li>source_url</li><li>source_verified</li><li>confidence</li><li>approval_status</li><li>reviewer_note</li><li>approved_at</li><li>processed_status</li><li>processed_at</li></ul></details>
         </li>
         <li class="systems-step">
           <img class="systems-step__logo" src="assets/logos/tools/googlesheets.svg" alt="" width="18" height="18" />
-          <span>lifecycle_log</span><strong>The event trail</strong>
-          <p>Every gate decision and every distribution outcome, one row each. This is the CRM-shaped record.</p>
+          <span>Google Sheets &middot; lifecycle_log</span><strong>The event trail</strong>
+          <p>Every gate decision and every activation outcome, one row each. This is the CRM-shaped record.</p>
           <details><summary>15 columns, plus 8 source fields carried through</summary><ul class="eng-cols"><li>event_time</li><li>run_id</li><li>company</li><li>channel</li><li>action_taken</li><li>journey_stage</li><li>hubspot_status</li><li>analytics_event</li><li>outcome</li><li>source_url</li><li>source_verified</li><li>notes</li><li>approved_for_distribution</li><li>distribution_logged</li><li>crm_log_ready</li></ul></details>
         </li>
       </ol>
 
       <h3 class="systems-subhead">How it authenticates</h3>
-      <p class="systems-lead">Credentials are split by vendor and stored once in n8n. The instance is <code>https://n8n.aatifmulla.me</code>. Its MCP server at <code>/mcp-server/http</code> is a separate surface, not the OAuth callback.</p>
-      <ul class="systems-stack systems-stack--4" aria-label="Credentials by vendor">
+      <p class="systems-lead">Credentials are split by vendor and stored once in n8n, on the self-hosted instance at <code>n8n.aatifmulla.me</code>.</p>
+      <ul class="systems-stack systems-stack--auth" aria-label="Credentials by vendor">
         <li class="systems-step">
           <img class="systems-step__logo" src="assets/logos/tools/googlesheets.svg" alt="" width="18" height="18" />
           <span>Google Sheets</span><strong>OAuth2 web client</strong>
-          <p>A Google Cloud client with the Sheets and Drive APIs enabled. Redirect URI <code>https://n8n.aatifmulla.me/rest/oauth2-credential/callback</code>. My account is a test user while the app sits in testing. Six nodes share it.</p>
+          <p>A Google Cloud client with the Sheets and Drive APIs enabled and the n8n callback registered. Six nodes share it.</p>
         </li>
         <li class="systems-step">
           <img class="systems-step__logo" src="assets/logos/tools/gmail.svg" alt="" width="18" height="18" />
-          <span>Gmail</span><strong>Google OAuth2, send only</strong>
-          <p>One node uses it, and it sends to my own address. Nothing goes to a prospect.</p>
+          <span>Gmail</span><strong>Google OAuth2, send scope</strong>
+          <p>One node uses it. In the demo it sends to my own inbox.</p>
         </li>
         <li class="systems-step">
           <img class="systems-step__logo" src="assets/logos/tools/anthropic.svg" alt="" width="18" height="18" />
@@ -319,9 +328,14 @@
           <p>Feeds the chat model subnode and nothing else.</p>
         </li>
         <li class="systems-step">
+          <img class="systems-step__logo" src="assets/logos/tools/linkedin.svg" alt="" width="18" height="18" />
+          <span>LinkedIn</span><strong>OAuth2, organization posting</strong>
+          <p>The LinkedIn node authenticates with a LinkedIn OAuth2 credential and posts as an organization.</p>
+        </li>
+        <li class="systems-step">
           <img class="systems-step__logo" src="assets/logos/tools/hubspot.svg" alt="" width="18" height="18" />
-          <span>LinkedIn and HubSpot</span><strong>No live rights</strong>
-          <p>LinkedIn is aimed at a placeholder organization, so nothing publishes. HubSpot holds no credential and no connection. A scheduled demo should not have publish or CRM write access.</p>
+          <span>HubSpot</span><strong>Private app token or OAuth2</strong>
+          <p>The HubSpot node authenticates with either and writes the engagement to the CRM.</p>
         </li>
       </ul>
     </section>
@@ -331,9 +345,28 @@
         <span class="eyebrow">Proof</span>
         <h2 class="section-title">What I have already built and measured</h2>
       </div>
-      <div class="systems-copy">
-        <p>The engine above is a portfolio demo. The system below is the one deployed at Aiseberg, and these are its verified public metrics. There I built the operating layer underneath the motion: n8n, HubSpot, Calendly triggers, PostHog and Mixpanel instrumentation, and recovery logic. The goal was practical: keep leads from waiting on me, see where people stalled, and give every lifecycle stage a measurable signal.</p>
+      <ul class="eng-points">
+        <li><strong>The engine above is a portfolio demo.</strong> The loop below is the system deployed at Aiseberg, with its verified public metrics.</li>
+        <li><strong>Four stages, each with a named signal:</strong> acquisition, activation, engagement, retention.</li>
+        <li><strong>Built on</strong> n8n, HubSpot, Calendly, Mixpanel, and PostHog.</li>
+      </ul>
+
+      <div class="eng" role="group" aria-label="The Aiseberg lifecycle loop: acquisition automated across n8n, HubSpot, and Calendly; activation instrumented as an eight-stage funnel with 11 events; engagement diagnosed through 12 abandonment stages mapped to recovery actions; retention measured with 22 lifecycle KPIs; recovery actions feed the next cycle.">
+        <div class="eng-track">
+          <span class="eng-track__label"><svg aria-hidden="true" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><use href="#ei-loop"/></svg>The Aiseberg lifecycle loop &middot; acquisition to retention</span>
+          <div class="eng-nodes" style="--n: 4">
+            <span class="eng-rail" aria-hidden="true"></span>
+            <ol>
+              <li class="eng-node eng-node--act"><span class="eng-node__icon"><img src="assets/logos/tools/n8n.svg" alt="" width="22" height="22" /></span><strong>Acquisition</strong><small>Follow-up flows across n8n, HubSpot, and Calendly. No lead waited on me.</small><em class="eng-node__tag">Automated</em></li>
+              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/mixpanel.svg" alt="" width="22" height="22" /></span><strong>Activation</strong><small>8-stage funnel, 11 events in Mixpanel and PostHog.</small><em class="eng-node__tag">Instrumented</em></li>
+              <li class="eng-node"><span class="eng-node__icon"><img src="assets/logos/tools/posthog.svg" alt="" width="22" height="22" /></span><strong>Engagement</strong><small>12 abandonment stages mapped to cause and recovery action.</small><em class="eng-node__tag">Diagnosed</em></li>
+              <li class="eng-node"><span class="eng-node__icon"><svg aria-hidden="true"><use href="#ei-chart"/></svg></span><strong>Retention</strong><small>22 lifecycle KPIs, each with a warning threshold.</small><em class="eng-node__tag">Measured</em></li>
+            </ol>
+          </div>
+          <p class="eng-loopnote"><svg aria-hidden="true"><use href="#ei-loop"/></svg>Recovery actions feed the next cycle: every drop-off maps to an automated follow-up.</p>
+        </div>
       </div>
+
       <ul class="proof-logos" aria-label="Systems in the Aiseberg stack">
         <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/n8n.svg" alt="" width="16" height="16" /></span>n8n</li>
         <li class="tool-chip"><span class="tool-chip__logo"><img src="assets/logos/tools/hubspot.svg" alt="" width="16" height="16" /></span>HubSpot</li>
@@ -348,19 +381,6 @@
         <p><strong>3 systems connected</strong>: n8n, HubSpot, and Calendly carrying follow-up and lifecycle work.</p>
       </div>
       <p class="case-note">The numbers above are verified public profile metrics. This page does not disclose private workflow records.</p>
-    </section>
-
-    <section class="case-section" id="controls">
-      <div class="case-section__head">
-        <span class="eyebrow">Controls</span>
-        <h2 class="section-title">The system has to earn trust before it earns scale</h2>
-      </div>
-      <div class="message-flow" aria-label="Controls in the engine, each tied to the node that enforces it">
-        <div><div class="ctl-icon" aria-hidden="true"><svg><use href="#ei-filter"/></svg></div><span>01 &middot; Require Named Source</span><strong>Source gate</strong><small>An If node. Four fields must exist, status must be New, source_verified must be Yes. Anything else is written to the log as <code>source_rejected</code>, never dropped silently.</small></div>
-        <div><div class="ctl-icon" aria-hidden="true"><svg><use href="#ei-dedupe"/></svg></div><span>02 &middot; Deduplicate Signals</span><strong>One signal, one draft</strong><small>Remove Duplicates keyed on <code>source_url</code>, before the gate. The same link cannot draft twice in a run.</small></div>
-        <div><div class="ctl-icon" aria-hidden="true"><svg><use href="#ei-shield"/></svg></div><span>03 &middot; Approval Gate</span><strong>Two-check approval</strong><small>approval_status must equal Approved and processed_status must be blank. No unapproved rows, no second run on the same row.</small></div>
-        <div><div class="ctl-icon" aria-hidden="true"><svg><use href="#ei-save"/></svg></div><span>04 &middot; Save Source Evidence</span><strong>Evidence before the model</strong><small>The source row is written to <code>source_signals</code> before the AI node runs. Every draft traces back to a stored row.</small></div>
-      </div>
     </section>
 
     <section class="case-section">
@@ -379,12 +399,12 @@
       <div class="case-hero__actions">
         <!--email_off--><a class="btn btn--primary" href="mailto:aatif.recruitment@gmail.com">Email me</a><!--/email_off-->
         <a class="btn" href="https://www.linkedin.com/in/aatif-junaid" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="/">Back to my profile</a>
+        <a class="btn" href="https://github.com/Aatif-Junaid" target="_blank" rel="noopener">GitHub profile</a>
       </div>
+      <span class="case-cta__sub">Repositories</span>
       <ul class="case-cta__links" aria-label="Repositories">
-        <li><a class="tool-chip" href="https://github.com/Aatif-Junaid/gtm-lifecycle-engine" target="_blank" rel="noopener"><span class="tool-chip__logo"><img src="assets/logos/tools/github.svg" alt="" width="16" height="16" /></span>The n8n export: gtm-lifecycle-engine</a></li>
-        <li><a class="tool-chip" href="https://github.com/Aatif-Junaid/Aatif_Junaid-Website" target="_blank" rel="noopener"><span class="tool-chip__logo"><img src="assets/logos/tools/github.svg" alt="" width="16" height="16" /></span>This site: Aatif_Junaid-Website</a></li>
-        <li><a class="tool-chip" href="https://github.com/Aatif-Junaid" target="_blank" rel="noopener"><span class="tool-chip__logo"><img src="assets/logos/tools/github.svg" alt="" width="16" height="16" /></span>GitHub profile</a></li>
+        <li><a class="tool-chip" href="https://github.com/Aatif-Junaid/gtm-lifecycle-engine" target="_blank" rel="noopener"><span class="tool-chip__logo"><img src="assets/logos/tools/n8n.svg" alt="" width="16" height="16" /></span>gtm-lifecycle-engine: the n8n export</a></li>
+        <li><a class="tool-chip" href="https://github.com/Aatif-Junaid/Aatif_Junaid-Website" target="_blank" rel="noopener"><span class="tool-chip__logo"><img src="assets/logos/tools/github.svg" alt="" width="16" height="16" /></span>Aatif_Junaid-Website: this site</a></li>
       </ul>
     </section>
   </main>

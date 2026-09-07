@@ -683,6 +683,7 @@ a.dp-name:hover { color: var(--blue-text); }
 .case-cta .section-title { margin: 0 auto; max-width: 28ch; }
 .systems-copy { max-width: 68ch; }
 .systems-copy p + p { margin-top: 1rem; }
+.systems-subhead { font-family: var(--serif); font-size: var(--text-heading); line-height: 1.15; margin: 2.2rem 0 0.9rem; }
 .systems-stack { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .systems-step {
   min-width: 0; padding: clamp(1.1rem, 2.4vw, 1.45rem); border: 1px solid var(--line);

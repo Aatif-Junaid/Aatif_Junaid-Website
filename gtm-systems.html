@@ -230,7 +230,7 @@
           <div class="eng-nodes" style="--n: 7">
             <span class="eng-rail" aria-hidden="true"></span>
             <ol>
-              <li class="eng-node"><span class="eng-node__icon"><svg class="eng-clock" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l3.5 2"/><path d="M12 12V6.5"/></svg></span><strong>Schedule check</strong><small>Reads the queue every minute.</small><em class="eng-node__tag">Reads</em></li>
+              <li class="eng-node"><span class="eng-node__icon"><svg class="eng-clock" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l3.5 2"/><path d="M12 12V6.5"/></svg></span><strong>Schedule check</strong><small>Reads the queue every 5 minutes.</small><em class="eng-node__tag">Reads</em></li>
               <li class="eng-node"><span class="eng-node__icon"><svg aria-hidden="true"><use href="#ei-shield"/></svg></span><strong>Approval gate</strong><small>Approved, and not yet processed.</small><em class="eng-node__tag">Checks</em></li>
               <li class="eng-node eng-node--wait"><span class="eng-node__icon"><svg class="eng-clock" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l3.5 2"/><path class="hand" d="M12 12V6.5"/></svg></span><strong>Custom wait</strong><small>A hold I set before anything goes out.</small><em class="eng-node__tag">Holds</em></li>
               <li class="eng-node eng-node--act"><span class="eng-node__icon"><img src="assets/logos/tools/gmail.svg" alt="" width="22" height="22" /></span><strong>Email</strong><small>Approved draft, subject and body intact.</small><em class="eng-node__tag">Sends</em></li>
@@ -251,7 +251,7 @@
         <h2 class="section-title">Two tracks, one sheet, one approval column</h2>
       </div>
       <ul class="eng-points">
-        <li><strong>One workflow, two schedule triggers,</strong> both set to every minute.</li>
+        <li><strong>One workflow, two schedule triggers,</strong> both set to every 5 minutes.</li>
         <li><strong>Inactive between demos,</strong> so every run is one I start on purpose.</li>
         <li><strong>The nodes below are the ones in the export,</strong> in the order they run.</li>
       </ul>
@@ -260,7 +260,7 @@
         <div>
           <h3 class="systems-subhead">Track 1: intake to approval queue</h3>
           <ol class="eng-steps" aria-label="Intake track nodes, in order">
-            <li class="eng-step"><span class="eng-step__type">Schedule Trigger</span><strong>Run GTM Engine Demo</strong><p>Fires every minute while the workflow is active.</p></li>
+            <li class="eng-step"><span class="eng-step__type">Schedule Trigger</span><strong>Run GTM Engine Demo</strong><p>Fires every 5 minutes while the workflow is active.</p></li>
             <li class="eng-step"><span class="eng-step__type"><img src="assets/logos/tools/rss.svg" alt="" width="12" height="12" />RSS Read</span><strong>Read Market Source</strong><p>EIA Today in Energy. A public, named source, not typed-in text.</p></li>
             <li class="eng-step"><span class="eng-step__type">Limit &middot; 3</span><strong>Limit Demo Intake</strong><p>Enough to prove the loop, small enough to watch in one recording.</p></li>
             <li class="eng-step"><span class="eng-step__type">Set</span><strong>Normalize GTM Signal</strong><p>Link becomes <code>source_url</code>, title becomes <code>topic</code>, the date is cut to YYYY-MM-DD, and every row is stamped <code>source_quality</code> High, <code>source_verified</code> Yes, <code>status</code> New.</p></li>
@@ -275,7 +275,7 @@
         <div>
           <h3 class="systems-subhead">Track 2: approval to activation and log</h3>
           <ol class="eng-steps" aria-label="Distribution track nodes, in order">
-            <li class="eng-step"><span class="eng-step__type">Schedule Trigger</span><strong>Scheduled Approval Check</strong><p>The only other entry point in the workflow. Every minute.</p></li>
+            <li class="eng-step"><span class="eng-step__type">Schedule Trigger</span><strong>Scheduled Approval Check</strong><p>The only other entry point in the workflow. Every 5 minutes.</p></li>
             <li class="eng-step"><span class="eng-step__type"><img src="assets/logos/tools/googlesheets.svg" alt="" width="12" height="12" />Google Sheets</span><strong>Read Approved Drafts</strong><p>Reads <code>approval_queue</code> for rows where approval_status is Approved and processed_status is blank.</p></li>
             <li class="eng-step eng-step--gate"><span class="eng-step__type">Filter</span><strong>Approval Gate</strong><p>Two checks, both required: approval_status equals approved, processed_status is empty. Explicit approval, and no second pass on the same row.</p></li>
             <li class="eng-step"><span class="eng-step__type">Wait &middot; configurable</span><strong>Custom wait</strong><p>A hold I set before anything goes out. Seconds in the demo; a review window in a real motion. Then the run fans out.</p></li>

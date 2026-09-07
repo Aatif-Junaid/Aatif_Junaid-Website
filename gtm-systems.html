@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/site.css?v=43" />
+  <link rel="stylesheet" href="assets/css/site.css?v=44" />
 
   <!-- Structured data: a public article authored by the same Person entity -->
   <script type="application/ld+json">
@@ -44,7 +44,7 @@
     "headline": "Designing GTM systems that keep humans in control",
     "url": "https://aatifmulla.me/gtm-systems.html",
     "datePublished": "2026-09-01T09:00:00-07:00",
-    "dateModified": "2026-09-01T09:00:00-07:00",
+    "dateModified": "2026-09-07T09:00:00-07:00",
     "image": "https://aatifmulla.me/og-image.jpg?v=4",
     "author": {
       "@type": "Person",
@@ -80,6 +80,7 @@
     <nav class="site-nav" aria-label="Article navigation">
       <a href="#pattern">Pattern</a>
       <a href="#workflow">Workflow</a>
+      <a href="#build">Build</a>
       <a href="#proof">Proof</a>
       <a href="#controls">Controls</a>
       <a class="nav-page" href="/case-studies.html">Case Studies<span class="nav-page__arrow" aria-hidden="true">&rsaquo;</span></a>
@@ -92,7 +93,7 @@
       <p class="kicker">Writing &middot; GTM systems</p>
       <h1 class="case-hero__title">How I design GTM systems that keep humans in control.</h1>
       <p class="case-hero__lede">The system should gather signal, draft the next move, and leave judgment with the operator.</p>
-      <p class="case-hero__context">A public operating-pattern write-up using synthetic examples and verified, public-safe Aiseberg evidence. No private customer, employer, or recruiting materials are used.</p>
+      <p class="case-hero__context">A public write-up of a demo I built and run myself on a self-hosted n8n instance, fed by public market data. No private customer, employer, or recruiting material is used.</p>
       <div class="case-hero__actions">
         <a class="btn btn--primary" href="#workflow">See the workflow</a>
         <a class="btn" href="/case-studies.html#marketing-ops">See the measured result</a>
@@ -116,7 +117,7 @@
         <h2 class="section-title">A simple AI-assisted lifecycle loop</h2>
       </div>
       <div class="systems-copy">
-        <p>I built a GTM lifecycle engine in n8n that turns public market signals into cited, human-reviewed content drafts. It captures source evidence, gates unverified claims, drafts from named inputs, routes approved content into LinkedIn and email outputs, and logs every lifecycle outcome in a shape a CRM can consume.</p>
+        <p>I built a GTM lifecycle engine in n8n that turns public market signals into cited, human-reviewed content drafts. Three EIA market signals enter through an RSS feed, pass a source gate, get drafted by Anthropic against a fixed schema, and stop in an approval queue. A scheduled second track picks up only the rows I mark approved and records LinkedIn-ready, email-ready, and CRM-ready outcomes to a lifecycle log.</p>
       </div>
 
       <div class="gtm-flow" role="group" aria-label="GTM lifecycle engine: a market signal passes a source gate, becomes a cited AI draft, waits for human approval, then produces a LinkedIn output and an email output, both recorded in the lifecycle log.">
@@ -180,13 +181,59 @@
       </figure>
     </section>
 
+    <section class="case-section" id="build">
+      <div class="case-section__head">
+        <span class="eyebrow">The build</span>
+        <h2 class="section-title">Two tracks, one sheet, one approval column</h2>
+      </div>
+      <div class="systems-copy">
+        <p>The whole engine is one n8n workflow with two triggers. The intake track runs on a manual trigger so I can start a demo on demand. The distribution track runs on a schedule, so once I approve a row in the sheet, nothing else needs a hand. State lives in one Google Sheet with three tabs. The model never writes to a channel. It writes a row.</p>
+      </div>
+
+      <h3 class="systems-subhead">Track 1: intake to approval queue</h3>
+      <ol class="case-actions" aria-label="Intake track nodes, in order">
+        <li><span>Read Market Source</span>RSS Read against the EIA Today in Energy feed. The run starts from a public, named source, not typed-in text.</li>
+        <li><span>Limit Demo Intake</span>Limit node, set to 3. Enough to prove the loop, small enough to watch in one recording.</li>
+        <li><span>Normalize GTM Signal</span>Maps RSS fields into the eleven-column source schema: link becomes source_url, title becomes topic, isoDate is cut to a date, and every row is stamped with source_quality, source_verified, and status New. Every node after this relies on those names staying stable.</li>
+        <li><span>Deduplicate Signals</span>Remove Duplicates keyed on the source_url column. One signal cannot draft twice in a run.</li>
+        <li><span>Require Named Source</span>Filter. A row moves forward only if source_url, summary, company, and source_quality exist and status is New. Rows that fail go to Log Suppressed Signal, which writes a source_rejected event to the lifecycle log. Nothing is dropped silently.</li>
+        <li><span>Save Source Evidence</span>Google Sheets append-or-update on source_signals, matched on source_url. The evidence row exists before the model runs.</li>
+        <li><span>AI Model</span>An Anthropic chat model with a structured output parser. The prompt passes only the normalized fields, forbids invented facts, requires the named source in the body and the URL at the end, and sets approval_status to Pending. The parser forces a sixteen-field JSON shape.</li>
+        <li><span>Draft From Cited Inputs</span>Flattens the parsed output into one row per draft. The sheet receives draft_id, draft_subject, draft_body, gtm_takeaway, why_it_matters, source_url, and the approval fields, not a nested JSON blob.</li>
+        <li><span>Write To Approval Queue</span>Append-or-update on approval_queue, matched on draft_id. The draft stops here and waits for me.</li>
+      </ol>
+
+      <h3 class="systems-subhead">Track 2: approval to lifecycle log</h3>
+      <ol class="case-actions" aria-label="Distribution track nodes, in order">
+        <li><span>Scheduled Approval Check</span>Schedule trigger. The only other entry point in the workflow.</li>
+        <li><span>Read Approved Drafts</span>Reads approval_queue for rows where approval_status is Approved and processed_status is blank.</li>
+        <li><span>Approval Gate</span>Filter on two Boolean checks: approval_status equals approved, and processed_status is empty. Explicit approval, and no second pass on the same row.</li>
+        <li><span>Wait</span>A short pause between the gate and the channel steps, so the run reads clearly on the canvas.</li>
+        <li><span>Send Approved Email</span>Gmail send. Subject is draft_subject, body is draft_body, taken from the approved draft payload directly. Record Email Send Ready then writes the email outcome to the log.</li>
+        <li><span>Record LinkedIn Draft Ready</span>Writes the LinkedIn-ready event to the lifecycle log: channel LinkedIn, journey_stage approved_for_distribution, outcome ready for manual publish.</li>
+        <li><span>HubSpot CRM Log Ready</span>Shapes the same event as a CRM lifecycle record. The HubSpot node sits on the canvas and is intentionally left unauthenticated.</li>
+      </ol>
+
+      <h3 class="systems-subhead">Where the data lives</h3>
+      <ol class="systems-stack" aria-label="The three Google Sheets tabs">
+        <li class="systems-step"><span>source_signals</span><strong>The audit trail</strong><p>Eleven columns: source_url, source_name, published_date, company, topic, signal_type, summary, source_quality, status, is_demo_data, source_verified. Written before any draft exists.</p></li>
+        <li class="systems-step"><span>approval_queue</span><strong>The human control point</strong><p>Sixteen columns, including draft_subject, draft_body, gtm_takeaway, why_it_matters, confidence, approval_status, reviewer_note, approved_at, processed_status, and processed_at. A row is born Pending. I read it, set approval_status to Approved, add a note and a date. The schedule does the rest.</p></li>
+        <li class="systems-step"><span>lifecycle_log</span><strong>The event trail</strong><p>Every gate decision and every distribution outcome lands here as one row: event_time, run_id, channel, action_taken, journey_stage, analytics_event, outcome, plus the source fields carried through. This is the CRM-shaped record.</p></li>
+      </ol>
+
+      <h3 class="systems-subhead">How it authenticates</h3>
+      <div class="systems-copy">
+        <p>Credentials are split by vendor and stored once in n8n. Google Sheets authenticates through an OAuth2 web-application client in Google Cloud, with the Sheets API enabled and the Drive API enabled for file browsing. The client's JavaScript origin and redirect URI are registered against the n8n instance, and the Google account is listed as a test user while the OAuth app sits in testing. Gmail authenticates through Google OAuth2 as well. Anthropic is a separate API-key credential that feeds the chat model subnode. LinkedIn and HubSpot are intentionally left unauthenticated. That is the point: a scheduled demo should not hold publish rights or CRM write access.</p>
+      </div>
+    </section>
+
     <section class="case-section" id="proof">
       <div class="case-section__head">
         <span class="eyebrow">Proof</span>
         <h2 class="section-title">What I have already built and measured</h2>
       </div>
       <div class="systems-copy">
-        <p>At Aiseberg, I built the operating layer underneath the motion: n8n, HubSpot, Calendly triggers, funnel instrumentation, and recovery logic. The goal was practical: keep leads from waiting on me, see where people stalled, and give every lifecycle stage a measurable signal.</p>
+        <p>The engine above is a portfolio demo. The system below is the one deployed at Aiseberg, and these are its verified public metrics. There I built the operating layer underneath the motion: n8n, HubSpot, Calendly triggers, funnel instrumentation, and recovery logic. The goal was practical: keep leads from waiting on me, see where people stalled, and give every lifecycle stage a measurable signal.</p>
       </div>
       <div class="case-results">
         <p><strong>24% less early abandonment</strong> after automation, onboarding changes, instrumentation, and recovery flows landed.</p>
@@ -203,10 +250,10 @@
         <h2 class="section-title">The system has to earn trust before it earns scale</h2>
       </div>
       <div class="message-flow" aria-label="Controls for GTM systems">
-        <div><span>01</span><strong>Source trace</strong><small>Every recommendation points back to the signal that caused it.</small></div>
-        <div><span>02</span><strong>Human approval</strong><small>Strategic contacts, uncertain facts, and high-risk messages wait for review.</small></div>
-        <div><span>03</span><strong>CRM memory</strong><small>Actions are logged where the team already works, not kept in a side tool.</small></div>
-        <div><span>04</span><strong>Failure handling</strong><small>Missing fields, stale data, and duplicate contacts stop the flow before they create mess.</small></div>
+        <div><span>01</span><strong>Source gate</strong><small>Four required fields and a status check before anything drafts. Rejections are logged as source_rejected, not dropped.</small></div>
+        <div><span>02</span><strong>Dedupe on the key</strong><small>Remove Duplicates keyed on the literal source_url column, not the evaluated URL. One signal, one draft.</small></div>
+        <div><span>03</span><strong>Two-check approval</strong><small>The gate needs approval_status equal to approved and processed_status blank. No unapproved rows, no double runs.</small></div>
+        <div><span>04</span><strong>Evidence first</strong><small>The source row is saved before the model is called. Every draft traces back to a stored row.</small></div>
       </div>
     </section>
 

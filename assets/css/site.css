@@ -1081,6 +1081,87 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .activation-result { align-items: flex-start; flex-direction: column; }
 }
 
+/* ---------- phone compaction (<=768px). Desktop rules above are untouched.
+   Phones get a tighter type scale, tiles side by side, and the first two
+   bullets per role with the rest behind a Show more toggle. ---------- */
+@media (max-width: 768px) {
+  body { font-size: 15px; }
+  .section, .case-section, #experience { padding-top: 40px; padding-bottom: 40px; }
+  .section-head, .case-section__head { margin-bottom: var(--space-6); }
+  .section-title { font-size: 1.35rem; }
+  .eyebrow { font-size: 0.72rem; margin-bottom: 0.4rem; }
+  .hero { padding-top: var(--space-12); }
+  .hero__name { font-size: clamp(2.4rem, 11vw, 3rem); }
+  .hero__story { margin-bottom: 1.4rem; }
+  .hero > .hero-proof { margin-top: 1.4rem; padding-top: 1.4rem; }
+  .hero-proof__intro { margin-bottom: 1rem; }
+  .hero-proof__intro h2 { font-size: 1.6rem; }
+  .hero-proof__nodes ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem 0.7rem; }
+  .hero-proof__nodes .eng-rail { display: none; }
+  .hero-proof__nodes .eng-node { grid-template-columns: 34px 1fr; column-gap: 0.5rem; }
+  .hero-proof__nodes .eng-node__icon { width: 34px; height: 34px; box-shadow: none; }
+  .hero-proof__nodes .eng-node__icon svg { width: 17px; height: 17px; }
+  .hero-proof__nodes .eng-node strong { margin-top: 0.1rem; font-size: 0.9rem; }
+  .hero-proof__nodes .eng-node small { margin-top: 0.1rem; max-width: none; font-size: 0.7rem; line-height: 1.35; }
+  .hero-proof__nodes .eng-node__tag { display: none; }
+  .tl-item { margin-bottom: 0.9rem; }
+  .tl-card, .contact-tile { padding: 1rem; }
+  .tl-head { margin-bottom: 0.6rem; }
+  .tl-role { font-size: 1.1rem; }
+  .tl-org { font-size: 0.84rem; }
+  .tl-desc { margin-bottom: 0.75rem; font-size: 0.86rem; }
+  .tl-note { margin-bottom: 0.8rem; font-size: 0.8rem; }
+  .tl-gaptext { font-size: 0.84rem; }
+  .tl-promotion { margin-bottom: 0.9rem; }
+  .tl-points { gap: 0.4rem; margin-bottom: 0.9rem; }
+  .tl-points li { font-size: 0.92rem; line-height: 1.5; }
+  .tl-points.is-collapsed li:nth-child(n+3) { display: none; }
+  .tl-more { display: inline-flex; align-items: center; min-height: 44px; margin: -0.7rem 0 0.5rem; padding: 0; border: 0; background: none; color: var(--blue-text); font: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
+  .tl-more::after { content: "\203A"; margin-left: 0.3rem; font-size: 1.1em; line-height: 1; transform: rotate(90deg); }
+  .tl-more[aria-expanded="true"]::after { transform: rotate(-90deg); }
+  .metrics, .metrics--balanced, .metrics--four { grid-template-columns: repeat(2, 1fr); gap: 0.55rem; }
+  .metrics > .metric:nth-child(4):last-child, .metrics--balanced > .metric, .metrics--balanced > .metric:nth-child(4) { grid-column: auto; }
+  .metric { padding: 0.75rem 0.8rem; }
+  .metric__num { font-size: 1.3rem; }
+  .metric__num--sm { font-size: 1rem; }
+  .metric__text { font-size: 0.98rem; }
+  .metric__label { font-size: 0.62rem; }
+  .metric__badge { font-size: 0.56rem; }
+  .event-strip { margin-top: 0.9rem; padding: 0.85rem 0.95rem; }
+  .event-strip__panelists { display: none; }
+  .event-strip__title { font-size: 0.95rem; }
+  .dp-carousel { margin-top: 0.9rem; }
+  .reports__meta { font-size: 0.8rem; }
+  .edu-grid { gap: 0; }
+  .edu-card { padding: 0.85rem 0; }
+  .edu-card__head { margin-bottom: 0.4rem; align-items: center; }
+  .edu-card__deg { font-size: 1rem; }
+  .edu-card__school { font-size: 0.8rem; margin-top: 0.15rem; }
+  .edu-card__note { font-size: 0.84rem; line-height: 1.45; }
+  .stack { margin-top: 1.4rem; padding-top: 1rem; }
+  .stack__title { font-size: 1.1rem; }
+  .stack__list li { row-gap: 0; padding: 0.4rem 0; }
+  .stack__dot { padding: 4px; }
+  .stack__mark img { width: 16px; height: 16px; }
+  .stack__list strong { font-size: 0.88rem; }
+  .stack__line { font-size: 0.78rem; line-height: 1.35; }
+  .framework-grid { gap: 0; }
+  .framework { padding: 0.9rem 0 1rem; }
+  .framework__title { font-size: 1.02rem; }
+  .framework p { font-size: 0.9rem; line-height: 1.5; }
+  .deeper { gap: 0.6rem; }
+  .deeper__row { padding: 0.85rem 0.95rem; row-gap: 0.25rem; }
+  .deeper__title { font-size: 1rem; }
+  .deeper__line { font-size: 0.82rem; }
+  .contact-intro { margin-bottom: 1rem; }
+  .contact-photo { width: 64px; height: 64px; }
+  .contact-bubble .contact__lead { font-size: 0.98rem; }
+  .contact__joke { display: none; }
+  .contact-list { margin-bottom: 1rem; }
+  .contact-list li { padding: 0.35rem 0; }
+  .site-footer__note { font-size: 0.8rem; }
+}
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

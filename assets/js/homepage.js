@@ -600,3 +600,35 @@
   }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
   revealElements.forEach(function (element) { observer.observe(element); });
 })();
+
+(function () {
+  // Phones: show the first two bullets per role, the rest behind Show more.
+  // Without this script every bullet renders, so nothing is ever lost.
+  var phone = window.matchMedia('(max-width: 768px)');
+  var lists = document.querySelectorAll('#experience .tl-points');
+  if (!lists.length) return;
+  lists.forEach(function (list) {
+    var extra = list.querySelectorAll('li').length - 2;
+    if (extra < 1) return;
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'tl-more';
+    button.hidden = true;
+    button.setAttribute('aria-expanded', 'false');
+    button.textContent = 'Show ' + extra + ' more';
+    list.insertAdjacentElement('afterend', button);
+    button.addEventListener('click', function () {
+      var open = list.classList.toggle('is-collapsed') === false;
+      button.setAttribute('aria-expanded', String(open));
+      button.textContent = open ? 'Show less' : 'Show ' + extra + ' more';
+    });
+    function apply() {
+      var on = phone.matches;
+      button.hidden = !on;
+      if (!on) { list.classList.remove('is-collapsed'); button.setAttribute('aria-expanded', 'false'); button.textContent = 'Show ' + extra + ' more'; }
+      else if (button.getAttribute('aria-expanded') !== 'true') list.classList.add('is-collapsed');
+    }
+    apply();
+    if (phone.addEventListener) phone.addEventListener('change', apply); else phone.addListener(apply);
+  });
+})();

@@ -81,7 +81,7 @@
   <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/site.css?v=50" />
+  <link rel="stylesheet" href="assets/css/site.css?v=51" />
   <!-- Without JS the reveal observer never runs, so make sure nothing stays invisible. -->
   <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
@@ -481,14 +481,14 @@
       <div class="stack reveal" aria-labelledby="stack-title">
         <h3 class="stack__title" id="stack-title">Core stack</h3>
         <ul class="stack__list">
-          <li><span class="stack__mark"><img src="assets/logos/tools/clay.png" alt="" width="18" height="18" /></span><strong>Clay</strong><span class="stack__line">Enrichment and list building for targeted outbound</span></li>
-          <li><span class="stack__mark"><img src="assets/logos/tools/hubspot.svg" alt="" width="18" height="18" /></span><strong>HubSpot</strong><span class="stack__line">134 accounts tracked by stage, follow-up that never waited on me</span></li>
-          <li><span class="stack__mark"><img src="assets/logos/tools/salesforce.svg" alt="" width="18" height="18" /></span><strong>Salesforce</strong><span class="stack__line">$473K recovered through renewal audits, 26,207 records migrated</span></li>
-          <li><span class="stack__mark"><img src="assets/logos/tools/zapier.svg" alt="" width="18" height="18" /></span><strong>Zapier</strong><span class="stack__line">Lightweight automations between the tools above</span></li>
-          <li><span class="stack__mark"><img src="assets/logos/tools/apollo.png" alt="" width="18" height="18" /></span><strong>Apollo.io</strong><span class="stack__line">Prospect data and sequences for outbound</span></li>
-          <li><span class="stack__mark"><img src="assets/logos/tools/n8n.svg" alt="" width="18" height="18" /></span><strong>n8n</strong><span class="stack__line">Lifecycle automation behind the 24% drop in early abandonment</span></li>
-          <li><span class="stack__mark"><img src="assets/logos/tools/mixpanel.svg" alt="" width="18" height="18" /><img src="assets/logos/tools/posthog.svg" alt="" width="18" height="18" /></span><strong>Mixpanel and PostHog</strong><span class="stack__line">11 events across the 8-stage funnel</span></li>
-          <li><span class="stack__mark"><img src="assets/logos/tools/anthropic.svg" alt="" width="18" height="18" /></span><strong>Claude</strong><span class="stack__line">Drafting inside the lifecycle engine, human-approved</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/clay.png" alt="" width="18" height="18" /></i></span><strong>Clay</strong><span class="stack__line">Enrichment and list building for targeted outbound</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/hubspot.svg" alt="" width="18" height="18" /></i></span><strong>HubSpot</strong><span class="stack__line">134 accounts tracked by stage, follow-up that never waited on me</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/salesforce.svg" alt="" width="18" height="18" /></i></span><strong>Salesforce</strong><span class="stack__line">$473K recovered through renewal audits, 26,207 records migrated</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/zapier.svg" alt="" width="18" height="18" /></i></span><strong>Zapier</strong><span class="stack__line">Lightweight automations between the tools above</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/apollo.png" alt="" width="18" height="18" /></i></span><strong>Apollo.io</strong><span class="stack__line">Prospect data and sequences for outbound</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/n8n.svg" alt="" width="18" height="18" /></i></span><strong>n8n</strong><span class="stack__line">Lifecycle automation behind the 24% drop in early abandonment</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/mixpanel.svg" alt="" width="18" height="18" /><img src="assets/logos/tools/posthog.svg" alt="" width="18" height="18" /></i></span><strong>Mixpanel and PostHog</strong><span class="stack__line">11 events across the 8-stage funnel</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/anthropic.svg" alt="" width="18" height="18" /></i></span><strong>Claude</strong><span class="stack__line">Drafting inside the lifecycle engine, human-approved</span></li>
         </ul>
         <a class="stack__more" href="gtm-systems.html#toolkit-title">Full toolkit</a>
       </div>
@@ -521,54 +521,24 @@
       </div>
     </section>
 
-    <!-- GTM SYSTEMS -->
-    <section class="section" id="gtm-systems">
+    <!-- GO DEEPER: two compact doors to the detail pages -->
+    <section class="section" id="more">
       <div class="section-head reveal">
-        <span class="eyebrow">GTM systems</span>
-        <h2 class="section-title">The engine underneath the motion</h2>
+        <span class="eyebrow">Go deeper</span>
+        <h2 class="section-title">Two pages with the full detail</h2>
       </div>
-      <aside class="case-study-spotlight tile reveal" aria-labelledby="gtm-spotlight-title">
-        <div class="case-study-spotlight__copy">
-          <span class="case-study-spotlight__eyebrow">Public write-up</span>
-          <h3 id="gtm-spotlight-title">An n8n lifecycle engine that drafts, waits for a human, then logs.</h3>
-          <p>Public market signals in, cited drafts out, nothing published without approval. The sanitized workflow export is on GitHub.</p>
-          <div class="case-study-spotlight__actions">
-            <a class="btn btn--primary" href="gtm-systems.html">Read the systems write-up</a>
-            <a class="btn" href="https://github.com/Aatif-Junaid/gtm-lifecycle-engine" target="_blank" rel="noopener">Get the n8n export</a>
-          </div>
-        </div>
-        <ol class="case-study-spotlight__list">
-          <li><span>01</span><strong>The engine</strong><small>Two scheduled tracks, one Google Sheet, one approval column</small></li>
-          <li><span>02</span><strong>The build</strong><small>Every node in the order it runs, with the data it touches</small></li>
-          <li><span>03</span><strong>The proof</strong><small>24% less early abandonment on the system deployed at Aiseberg</small></li>
-          <li><span>04</span><strong>The export</strong><small>Sanitized n8n JSON, MIT licensed, ready to import</small></li>
-        </ol>
-      </aside>
-    </section>
-
-    <!-- CASE STUDIES -->
-    <section class="section" id="cases">
-      <div class="section-head reveal">
-        <span class="eyebrow">Case studies</span>
-        <h2 class="section-title">Five cases, each with the problem, the play, and the number</h2>
+      <div class="deeper">
+        <a class="deeper__row tile reveal" href="gtm-systems.html">
+          <span class="deeper__eyebrow">GTM systems</span>
+          <span class="deeper__body"><span class="deeper__title">The engine underneath the motion.</span><span class="deeper__line">An n8n lifecycle engine that drafts, waits for a human, then logs.</span></span>
+          <span class="deeper__cta">Read the write-up <span aria-hidden="true">&rsaquo;</span></span>
+        </a>
+        <a class="deeper__row tile reveal" href="case-studies.html">
+          <span class="deeper__eyebrow">Case studies</span>
+          <span class="deeper__body"><span class="deeper__title">Five cases, each with the problem, the play, and the number.</span><span class="deeper__line">What I owned, what I decided, and what it moved.</span></span>
+          <span class="deeper__cta">See the case studies <span aria-hidden="true">&rsaquo;</span></span>
+        </a>
       </div>
-      <aside class="case-study-spotlight tile reveal" aria-labelledby="case-study-spotlight-title">
-        <div class="case-study-spotlight__copy">
-          <span class="case-study-spotlight__eyebrow">What I owned</span>
-          <h3 id="case-study-spotlight-title">What I decided, and what it moved.</h3>
-          <p>Each case shows the problem, the decision, the artifact, and the result in numbers.</p>
-          <div class="case-study-spotlight__actions">
-            <a class="btn btn--primary" href="case-studies.html">See the case studies</a>
-          </div>
-        </div>
-        <ol class="case-study-spotlight__list">
-          <li><span>01</span><strong>Category launch</strong><small>A launch event end to end for 36 senior marketers</small></li>
-          <li><span>02</span><strong>Pipeline generation</strong><small>Roughly $400K in qualified pipeline from a standing start</small></li>
-          <li><span>03</span><strong>Enterprise adoption</strong><small>13 design partners into proof and the first deal</small></li>
-          <li><span>04</span><strong>Marketing operations</strong><small>Cutting early abandonment by 24%</small></li>
-          <li><span>05</span><strong>Revenue intelligence</strong><small>The reporting a multi-product portfolio ran on</small></li>
-        </ol>
-      </aside>
     </section>
 
     <!-- CONTACT -->

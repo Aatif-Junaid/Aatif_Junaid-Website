@@ -757,6 +757,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .fold > summary .systems-subhead { display: inline-flex; align-items: center; gap: 0.5rem; }
 .fold__hint { display: none; }
 .fold--phone > summary { display: none; }
+.fold--tile > summary .framework__title { margin: 0; }
 
 .eng-build { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2rem; }
 .eng-build .systems-subhead { margin-top: 1.6rem; }
@@ -1165,14 +1166,16 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .site-header { flex-wrap: wrap; row-gap: 0; padding-top: 0.4rem; padding-bottom: 0.35rem; }
   .site-nav { display: contents; }
   .site-header::after { content: ""; order: 1; flex: 1 0 100%; height: 0; }
-  .site-nav .nav-page { order: 0; min-width: 0; padding: 0.3rem 0.55rem; font-size: 0.7rem; }
-  .site-nav .nav-page:first-of-type { margin-left: auto; }
+  /* row two: the page chips as a row of equal buttons */
+  .site-nav .nav-page { order: 2; flex: 1 1 0; min-width: 0; min-height: 40px; margin-top: 0.35rem; padding: 0.3rem 0.5rem; justify-content: center; font-size: 0.74rem; }
   .site-nav .nav-page + .nav-page { margin-left: 0.4rem; }
   .case-header .wordmark { width: 40px; min-width: 40px; height: 40px; font-size: 0; background: url(/assets/logos/am-mark-glossy.svg) center / 36px 36px no-repeat; }
   /* Home as an icon-only chip on phones so three chips and the mark share one row; the aria-label names it */
-  .site-nav .nav-page--home { margin-left: 0.4rem; min-width: 40px; padding: 0.3rem 0.5rem; font-size: 0; }
+  .site-nav .nav-page--home { flex: 0 0 44px; min-width: 44px; padding: 0.3rem 0.5rem; font-size: 0; }
   .site-nav .nav-page--home .nav-page__icon { font-size: 1rem; }
-  .site-nav a:not(.nav-page) { order: 2; flex: 1 1 0; min-height: 32px; margin-top: 0.15rem; padding: 0; justify-content: center; font-size: 0.68rem; letter-spacing: 0.02em; border-bottom: 0; }
+  /* row one: the mark and the section links, small */
+  .site-nav a:not(.nav-page) { order: 0; flex: 1 1 0; min-height: 40px; margin: 0; padding: 0; justify-content: center; font-size: 0.68rem; letter-spacing: 0.02em; border-bottom: 0; }
+  .site-nav a:not(.nav-page):first-child { margin-left: 0.4rem; }
   .site-header--floating {
     top: 10px; width: calc(100% - 20px); min-height: 60px; margin: 10px auto 0; padding: 0 0.7rem;
     border: 1px solid rgba(47, 127, 179, 0.56); border-radius: 12px;
@@ -1233,6 +1236,21 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .eng-build { gap: 0 2rem; }
   .eng-build > div + div { margin-top: 0; }
   .fold--phone > summary { min-height: 48px; }
+  /* approach: four small blocks two by two; the open one spans the row */
+  .framework-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+  .framework, .framework:nth-child(n) { grid-column: auto; margin: 0; padding: 0.7rem 0.75rem; border: 1px solid var(--line); border-radius: var(--radius-inner); background: rgba(255, 255, 255, 0.45); }
+  .framework[open] { grid-column: 1 / -1; padding-bottom: 0.9rem; }
+  .fold--tile > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; min-height: 44px; cursor: pointer; pointer-events: auto; }
+  .fold--tile .framework__title { margin: 0; font-size: 0.92rem; line-height: 1.2; }
+  .fold--tile .fold__hint { font-size: 0.62rem; }
+  .fold--tile:not([open]) .fold__hint::after { content: "\203A"; font-size: 1.1em; }
+  .fold--tile[open] .fold__hint::after { content: "\2039"; font-size: 1.1em; }
+  .framework p { margin-top: 0.5rem; font-size: 0.88rem; }
+  /* playbook: each play folds to its header */
+  .fold--play { margin-top: 0.3rem; padding: 0; border: 0; background: none; }
+  .fold--play[open] { padding-bottom: 0; }
+  .fold--play > summary { min-height: 44px; }
+  .fold--play .fold__title { font-size: 0.66rem; }
 }
 
 /* ---------- reduced motion ---------- */

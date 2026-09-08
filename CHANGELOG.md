@@ -22,6 +22,8 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- The two build tracks on the GTM systems page show their first two nodes, with the rest behind a See more control.
+- The five plays carry shorter titles and collapse on desktop to a header, a control, and their evidence image.
 - The footer line is the same on every page: no AI models were trained on this page.
 - The Contact heading and lead say what the section is for instead of stating a thesis.
 - Serif headings on the Playbook, GTM, and policy pages render at the loaded Playfair 600 instead of a browser-synthesized bold. Badges and small labels have a 0.7rem floor on desktop, and phone metric labels grew from 8.6px to 9.9px. The Field page phone header fits one row, the case-page hero closes at the section rhythm on phones, and a copy pass removed filler words.

@@ -6,7 +6,7 @@
   var folds = document.querySelectorAll('details.fold');
   if (folds.length) {
     var phone = window.matchMedia('(max-width: 768px)');
-    var applyFolds = function () { folds.forEach(function (fold) { fold.open = !phone.matches; }); };
+    var applyFolds = function () { folds.forEach(function (fold) { fold.open = fold.classList.contains('fold--always') ? false : !phone.matches; }); };
     applyFolds();
     if (phone.addEventListener) phone.addEventListener('change', applyFolds); else phone.addListener(applyFolds);
   }

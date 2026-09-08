@@ -291,7 +291,7 @@ body::before {
 /* ---------- homepage proof band ---------- */
 .hero-proof {
   grid-column: 1 / -1; display: grid; grid-template-columns: minmax(15rem, 1.15fr) 3fr; column-gap: clamp(1.5rem, 3vw, 3rem); align-items: center;
-  margin-top: 1.5rem; padding: 1rem 0 0.4rem;
+  margin-top: 5.5rem; padding: 1rem 0 0.4rem;
 }
 .hero-proof__eyebrow { margin-bottom: 0.6rem; color: var(--blue-ink); font-size: var(--text-micro); font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
 .hero-proof__intro h2 { font-family: var(--serif); font-size: clamp(2rem, 2.7vw, 2.65rem); font-weight: 500; line-height: 1.03; letter-spacing: -0.03em; }

@@ -750,6 +750,13 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .eng-gate__how { max-width: 46ch; color: var(--ink-soft); font-size: 0.8rem; line-height: 1.45; }
 
 /* ---------- gtm-systems: build timelines, data, credentials ---------- */
+/* Folds: open on desktop and not collapsible there; on phones site.js closes
+   them and the summary becomes the Show more control. */
+.fold > summary { list-style: none; cursor: default; pointer-events: none; }
+.fold > summary::-webkit-details-marker { display: none; }
+.fold > summary .systems-subhead { display: inline-flex; align-items: center; gap: 0.5rem; }
+.fold__hint { display: none; }
+
 .eng-build { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2rem; }
 .eng-build .systems-subhead { margin-top: 1.6rem; }
 .eng-steps { position: relative; padding-left: 1.7rem; }
@@ -1023,7 +1030,6 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .case-study__header { grid-template-columns: 1fr; }
   .case-study__outcome { grid-column: 1; }
   .case-actions li { grid-template-columns: 1fr; gap: 0.2rem; }
-  .toolkit__groups { grid-template-columns: 1fr; }
   .activation-result { align-items: flex-start; flex-direction: column; }
 }
 
@@ -1129,8 +1135,10 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .toolkit__title { font-size: 1.2rem; }
   .toolkit__groups { gap: 0.6rem; }
   .toolkit__group { padding: 0.7rem 0.6rem 0.75rem; }
-  .toolkit__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.1rem 0.3rem; }
-  .tool-row { min-height: 40px; padding: 0.15rem 0.2rem; gap: 0.4rem; font-size: 0.76rem; }
+  .toolkit__groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+  .toolkit__group { padding: 0.6rem 0.45rem 0.65rem; }
+  .toolkit__list { grid-template-columns: 1fr; gap: 0.05rem; }
+  .tool-row { min-height: 40px; padding: 0.1rem 0.15rem; gap: 0.35rem; font-size: 0.74rem; line-height: 1.2; }
   .tool-row .tool-chip__logo { width: 26px; height: 26px; }
   .tool-row .tool-chip__logo img { width: 15px; height: 15px; }
   .eng-track { padding: 0.9rem 0.8rem 1rem; }
@@ -1139,6 +1147,61 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .eng-step p, .systems-step p, .eng-points li { font-size: 0.9rem; line-height: 1.5; }
   .systems-step { padding: 0.9rem; }
   .systems-clip { margin-top: 1rem; }
+  .fold > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; cursor: pointer; pointer-events: auto; }
+  .fold > summary .systems-subhead { margin: 0.9rem 0 0.6rem; }
+  .fold__hint { display: inline-block; flex: 0 0 auto; color: var(--blue-text); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; }
+  .fold:not([open]) .fold__hint::after { content: "Show more \203A"; }
+  .fold[open] .fold__hint::after { content: "Hide \203A"; }
+  .fold:not([open]) > summary .systems-subhead { margin-bottom: 0.2rem; }
+}
+
+/* ---------- phone pass, round two: header, type scale, the MBA marker,
+   the comet control. Later in the file so it wins over the block above. ---------- */
+@media (max-width: 768px) {
+  /* header: one row, in-page anchors hidden, page chips fully visible, floating look kept */
+  .site-header { flex-wrap: nowrap; row-gap: 0; padding-top: 0.4rem; padding-bottom: 0.4rem; }
+  .site-nav { flex: 0 1 auto; overflow: visible; margin-inline: 0; padding-inline: 0; gap: 0.45rem; justify-content: flex-end; scroll-snap-type: none; }
+  .site-nav a:not(.nav-page), .site-nav .nav-page--home { display: none; }
+  .site-nav .nav-page { min-width: 0; padding: 0.3rem 0.6rem; font-size: 0.72rem; }
+  .site-header--floating {
+    top: 10px; width: calc(100% - 20px); min-height: 60px; margin: 10px auto 0; padding: 0 0.7rem;
+    border: 1px solid rgba(47, 127, 179, 0.56); border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(31, 85, 117, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.84);
+  }
+  .site-header--floating .site-nav { flex: 0 1 auto; justify-content: flex-end; gap: 0.45rem; }
+  .site-header--floating .site-nav a { font-size: 0.72rem; }
+  .wordmark { font-size: 0.86rem; }
+  /* type scale one step down */
+  body { font-size: 14px; }
+  .section-title { font-size: 1.25rem; }
+  .hero__name { font-size: clamp(2.1rem, 9.6vw, 2.6rem); }
+  .hero__tagline { font-size: 1rem; }
+  .hero__statement strong { font-size: 0.72rem; }
+  .hero-proof__intro h2 { font-size: 1.45rem; }
+  .tl-role { font-size: 1.02rem; }
+  .tl-date { font-size: 0.68rem; }
+  .tl-org { font-size: 0.8rem; }
+  .tl-desc { font-size: 0.84rem; }
+  .tl-points li { font-size: 14px; line-height: 1.45; }
+  .tl-note { font-size: 0.78rem; }
+  .metric { padding: 0.65rem 0.7rem; }
+  .metric__num { font-size: 1.2rem; }
+  .metric__label { font-size: 0.6rem; }
+  .tl-head .logo-chip { height: 44px; min-width: 44px; padding: 4px 8px; }
+  .tl-head .logo-chip img { height: 24px; }
+  .event-strip__title { font-size: 0.92rem; }
+  .dp-slide { padding: 0.75rem 0.85rem 0.7rem; }
+  .dp-slide blockquote { font-size: 0.84rem; line-height: 1.4; }
+  .dp-role { font-size: 0.7rem; }
+  /* the MBA marker: a quiet line on the timeline, not a card */
+  .tl-item--gap { margin-bottom: 0.6rem; }
+  .tl-gapcard { padding: 0.15rem 0 0.15rem 0.65rem; gap: 0; border: 0; border-left: 2px dashed var(--line-strong); border-radius: 0; background: transparent; }
+  .tl-gapcard .logo-chip { display: none; }
+  .tl-gapcard .tl-gaptext + .tl-gaptext { display: none; }
+  .tl-gapcard .tl-gaptext strong { color: var(--ink-soft); font-weight: 500; font-size: 0.82rem; }
+  .tl-gapcard .tl-date { margin-bottom: 0.1rem; font-size: 0.62rem; }
+  /* the comet does not run on phones, so its control has nothing to pause */
+  .motion-toggle { display: none; }
 }
 
 /* ---------- reduced motion ---------- */

@@ -1121,6 +1121,24 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .activation-result > strong { font-size: 2.2rem; }
   .artifact-proof { gap: 0.8rem; }
   .artifact-proof p { font-size: 0.86rem; }
+  /* every page: footer policy links and disclosure controls at full tap size */
+  .legal-links a { min-width: 44px; justify-content: center; }
+  .systems-step summary { padding: 0.85rem 0; }
+  .tool-chip { min-height: 44px; }
+  /* gtm-systems: the toolkit table two tools per row, the engine copy at phone size */
+  .toolkit__title { font-size: 1.2rem; }
+  .toolkit__groups { gap: 0.6rem; }
+  .toolkit__group { padding: 0.7rem 0.6rem 0.75rem; }
+  .toolkit__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.1rem 0.3rem; }
+  .tool-row { min-height: 40px; padding: 0.15rem 0.2rem; gap: 0.4rem; font-size: 0.76rem; }
+  .tool-row .tool-chip__logo { width: 26px; height: 26px; }
+  .tool-row .tool-chip__logo img { width: 15px; height: 15px; }
+  .eng-track { padding: 0.9rem 0.8rem 1rem; }
+  .eng-gate__how { font-size: 0.76rem; }
+  .eng-step { padding-bottom: 0.75rem; }
+  .eng-step p, .systems-step p, .eng-points li { font-size: 0.9rem; line-height: 1.5; }
+  .systems-step { padding: 0.9rem; }
+  .systems-clip { margin-top: 1rem; }
 }
 
 /* ---------- reduced motion ---------- */

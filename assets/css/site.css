@@ -1229,6 +1229,24 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   }
   .site-header--floating .site-nav { flex: 0 1 auto; justify-content: flex-end; gap: 0.45rem; }
   .site-header--floating .site-nav a { font-size: 0.72rem; }
+  /* Keep mobile navigation inside its own right-aligned column. */
+  .site-header, .site-header--floating {
+    display: grid; grid-template-columns: 44px minmax(0, 1fr);
+    align-items: start; column-gap: 8px; padding: 10px 12px;
+  }
+  .site-nav, .site-header--floating .site-nav {
+    display: flex; flex-wrap: wrap; justify-content: flex-end;
+    align-items: center; gap: 6px; width: 100%; min-width: 0;
+    overflow: visible; padding: 0; margin: 0;
+  }
+  .site-nav a:not(.nav-page), .site-nav .nav-page {
+    min-height: 44px; margin: 0;
+  }
+  .site-nav a:not(.nav-page):first-child,
+  .site-nav .nav-page:first-of-type { margin-left: 0; }
+  .site-nav::before { content: ""; order: 1; flex-basis: 100%; height: 0; }
+  .site-nav .nav-page { order: 2; }
+  .site-nav .nav-page--home { order: 3; min-height: 44px; }
   .wordmark { font-size: 0.86rem; }
   /* type scale one step down */
   body { font-size: 14px; }

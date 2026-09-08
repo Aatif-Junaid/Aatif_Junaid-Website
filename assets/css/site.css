@@ -550,6 +550,7 @@ a.dp-name:hover { color: var(--blue-text); }
 .case-hero { padding-top: var(--space-20); padding-bottom: var(--space-16); text-align: center; }
 .case-hero__title {
   font-family: var(--serif); font-weight: 600; font-size: var(--text-hero); line-height: 0.98; letter-spacing: -0.025em;
+  padding-bottom: 0.12em;
   background: linear-gradient(110deg, var(--blue-text) 0%, var(--blue) 52%, #226aa0 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0.45px rgba(31, 85, 117, 0.48); paint-order: stroke fill;
@@ -761,6 +762,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .tl-more::after { content: "\203A"; margin-left: 0.3rem; font-size: 1.1em; line-height: 1; transform: rotate(90deg); }
 .tl-more[aria-expanded="true"]::after { transform: rotate(-90deg); }
 .tl-more:hover { color: var(--blue-deep); }
+/* display on .tl-more overrides the browser's [hidden] rule, so restate it */
+.tl-more[hidden] { display: none; }
 @media (min-width: 769px) { .tl-points.is-collapsed li:nth-child(n+4) { display: none; } }
 /* a fold that starts closed on every width, with its control visible on desktop too */
 .fold--always > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; margin-top: 1.1rem; cursor: pointer; pointer-events: auto; }
@@ -774,7 +777,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 /* ---------- gtm-systems: build timelines, data, credentials ---------- */
 /* Folds: open on desktop and not collapsible there; on phones site.js closes
    them and the summary becomes the Show more control. */
-.fold > summary { list-style: none; cursor: default; pointer-events: none; }
+.fold:not(.fold--always) > summary { list-style: none; cursor: default; pointer-events: none; }
+.fold--always > summary { list-style: none; }
 .fold > summary::-webkit-details-marker { display: none; }
 .fold > summary .systems-subhead { display: inline-flex; align-items: center; gap: 0.5rem; }
 .fold__hint { display: none; }

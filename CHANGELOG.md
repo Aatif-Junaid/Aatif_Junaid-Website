@@ -14,8 +14,16 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 - A website-specific design guide for consistent future visual work.
 - A recruiter-friendly case-study index and two real Aisepedia artifact previews with links to the live pages.
 
+### Fixed
+
+- The testimonials control on the homepage is clickable again. A later base rule was cancelling its pointer events.
+- Experience cards no longer show a dead "Show 0 more" control. The script hid the button, but a `display` declaration overrode the browser's `[hidden]` rule.
+- The Playbook hero keeps its colour in the descenders of "playbook". The gradient is clipped to the text box, and the tails of the p and y fell outside it.
+
 ### Changed
 
+- The footer line is the same on every page: no AI models were trained on this page.
+- The Contact heading and lead say what the section is for instead of stating a thesis.
 - Serif headings on the Playbook, GTM, and policy pages render at the loaded Playfair 600 instead of a browser-synthesized bold. Badges and small labels have a 0.7rem floor on desktop, and phone metric labels grew from 8.6px to 9.9px. The Field page phone header fits one row, the case-page hero closes at the section rhythm on phones, and a copy pass removed filler words.
 - `main` accepts pull requests only; the `protect-main` ruleset requires the `Site integrity` and `TruffleHog secrets` checks.
 - `AGENTS.md` is the single rulebook for AI agents and `CLAUDE.md` imports it; the README gained a reader guide and a complete repository map.

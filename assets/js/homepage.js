@@ -602,31 +602,34 @@
 })();
 
 (function () {
-  // Phones: show the first two bullets per role, the rest behind Show more.
-  // Without this script every bullet renders, so nothing is ever lost.
+  // Bullets: three visible on desktop, two on phones, the rest behind Show more.
+  // Desktop only folds when it saves at least two lines. Without this script
+  // every bullet renders, so nothing is ever lost.
   var phone = window.matchMedia('(max-width: 768px)');
   var lists = document.querySelectorAll('#experience .tl-points');
   if (!lists.length) return;
   lists.forEach(function (list) {
-    var extra = list.querySelectorAll('li').length - 2;
-    if (extra < 1) return;
+    var total = list.querySelectorAll('li').length;
+    if (total < 3) return;
     var button = document.createElement('button');
     button.type = 'button';
     button.className = 'tl-more';
     button.hidden = true;
     button.setAttribute('aria-expanded', 'false');
-    button.textContent = 'Show ' + extra + ' more';
     list.insertAdjacentElement('afterend', button);
+    function extra() { return total - (phone.matches ? 2 : 3); }
+    function label(open) { button.textContent = open ? 'Show less' : 'Show ' + extra() + ' more'; }
     button.addEventListener('click', function () {
       var open = list.classList.toggle('is-collapsed') === false;
       button.setAttribute('aria-expanded', String(open));
-      button.textContent = open ? 'Show less' : 'Show ' + extra + ' more';
+      label(open);
     });
     function apply() {
-      var on = phone.matches;
+      var on = phone.matches ? extra() >= 1 : extra() >= 2;
       button.hidden = !on;
-      if (!on) { list.classList.remove('is-collapsed'); button.setAttribute('aria-expanded', 'false'); button.textContent = 'Show ' + extra + ' more'; }
+      if (!on) { list.classList.remove('is-collapsed'); button.setAttribute('aria-expanded', 'false'); }
       else if (button.getAttribute('aria-expanded') !== 'true') list.classList.add('is-collapsed');
+      label(button.getAttribute('aria-expanded') === 'true');
     }
     apply();
     if (phone.addEventListener) phone.addEventListener('change', apply); else phone.addListener(apply);

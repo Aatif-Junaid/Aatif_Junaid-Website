@@ -1,16 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="t">
-  <title id="t">Aatif Mulla AM mark, tab icon</title>
-  <defs>
-    <linearGradient id="tile" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#2b8fcf"/>
-      <stop offset=".55" stop-color="#1673b2"/>
-      <stop offset="1" stop-color="#0b4a82"/>
-    </linearGradient>
-  </defs>
-  <rect x="2" y="2" width="124" height="124" rx="28" fill="url(#tile)" stroke="#052b4f" stroke-width="3"/>
-  <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M24 100 64 22 104 100" stroke-width="13"/>
-    <path d="M24 100 64 118 104 100" stroke-width="13"/>
-    <path d="M44 93 55 71Q57 67.5 60 71L64 79 68 71Q71 67.5 73 71L84 93" stroke-width="11" stroke="#cdebfb"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Aatif Mulla AM mark, tab icon">
+<defs><linearGradient id="t" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#eaf7fe"/><stop offset="1" stop-color="#bfe3f8"/></linearGradient></defs>
+<rect x="2" y="2" width="124" height="124" rx="28" fill="url(#t)" stroke="#4f9fd4" stroke-width="3"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M24 100 64 22 104 100" stroke="#0b4a82" stroke-width="10"/>
+  <path d="M24 100 64 118 104 100" stroke="#0b4a82" stroke-width="10"/>
+  <path d="M44 93 55 71Q57 67.5 60 71L64 79 68 71Q71 67.5 73 71L84 93" stroke="#1f7fc0" stroke-width="9"/>
+</g>
 </svg>

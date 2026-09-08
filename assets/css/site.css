@@ -749,6 +749,21 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .eng-gate__badge svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .eng-gate__how { max-width: 46ch; color: var(--ink-soft); font-size: 0.8rem; line-height: 1.45; }
 
+/* ---------- experience bullets: Show more control (three visible on desktop, two on phones) ---------- */
+.tl-more { display: inline-flex; align-items: center; min-height: 44px; margin: -0.8rem 0 0.9rem; padding: 0; border: 0; background: none; color: var(--blue-text); font: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer; }
+.tl-more::after { content: "\203A"; margin-left: 0.3rem; font-size: 1.1em; line-height: 1; transform: rotate(90deg); }
+.tl-more[aria-expanded="true"]::after { transform: rotate(-90deg); }
+.tl-more:hover { color: var(--blue-deep); }
+@media (min-width: 769px) { .tl-points.is-collapsed li:nth-child(n+4) { display: none; } }
+/* a fold that starts closed on every width, with its control visible on desktop too */
+.fold--always > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; margin-top: 1.1rem; cursor: pointer; pointer-events: auto; }
+.fold--always .fold__title { color: var(--blue-deep); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.fold--always .fold__hint { display: inline-block; color: var(--blue-text); font-size: 0.74rem; font-weight: 600; }
+.fold--always:not([open]) .fold__hint::after { content: "Show more \203A"; }
+.fold--always[open] .fold__hint::after { content: "Hide \203A"; }
+.fold--always .dp-label { display: none; }
+.fold--always .dp-carousel { margin-top: 0.4rem; }
+
 /* ---------- gtm-systems: build timelines, data, credentials ---------- */
 /* Folds: open on desktop and not collapsible there; on phones site.js closes
    them and the summary becomes the Show more control. */
@@ -1070,9 +1085,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .tl-points { gap: 0.4rem; margin-bottom: 0.9rem; }
   .tl-points li { font-size: 0.92rem; line-height: 1.5; }
   .tl-points.is-collapsed li:nth-child(n+3) { display: none; }
-  .tl-more { display: inline-flex; align-items: center; min-height: 44px; margin: -0.7rem 0 0.5rem; padding: 0; border: 0; background: none; color: var(--blue-text); font: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
-  .tl-more::after { content: "\203A"; margin-left: 0.3rem; font-size: 1.1em; line-height: 1; transform: rotate(90deg); }
-  .tl-more[aria-expanded="true"]::after { transform: rotate(-90deg); }
+  .tl-more { margin: -0.7rem 0 0.5rem; font-size: 0.82rem; }
   .metrics, .metrics--balanced, .metrics--four { grid-template-columns: repeat(2, 1fr); gap: 0.55rem; }
   .metrics > .metric:nth-child(4):last-child, .metrics--balanced > .metric, .metrics--balanced > .metric:nth-child(4) { grid-column: auto; }
   .metric { padding: 0.75rem 0.8rem; }
@@ -1210,8 +1223,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .metrics > .metric:nth-child(3):last-child { grid-column: 1 / -1; justify-self: center; width: calc(50% - 0.225rem); }
   /* testimonials behind a control on phones */
   .fold--phone { margin-top: 0.9rem; }
-  .fold--phone > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; cursor: pointer; pointer-events: auto; }
-  .fold--phone .fold__title { color: var(--blue-deep); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .fold--phone > summary, .fold--always > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; margin-top: 0; cursor: pointer; pointer-events: auto; }
+  .fold--phone .fold__title, .fold--always .fold__title { color: var(--blue-deep); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
   .fold--phone .dp-carousel { margin-top: 0.4rem; }
   .fold--phone .dp-label { display: none; }
   .tl-head .logo-chip { height: 44px; min-width: 44px; padding: 4px 8px; }

@@ -36,6 +36,7 @@
   --sky-deep: #4f9fd4;
   --sky-bright: #cdebfb;
   --navy: #1f2c49;           /* single toolkit navy */
+  --blue-ink: #063c82;       /* eyebrows, kickers, and small uppercase labels */
 
   --line: rgba(38, 36, 31, 0.09);
   --line-strong: rgba(38, 36, 31, 0.16);
@@ -171,7 +172,7 @@ body::before {
 }
 .site-header--floating .site-nav { flex: 1; justify-content: flex-end; gap: clamp(1rem, 3.1vw, 3.25rem); }
 .site-header--floating .site-nav a {
-  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; color: #063c82;
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; color: var(--blue-ink);
 }
 .site-header--floating .site-nav .nav-page { padding: 0.58rem 1.15rem; border-radius: 7px; }
 .nav-page__arrow { font-size: 0.92em; line-height: 1; color: var(--blue-text); }
@@ -187,7 +188,7 @@ body::before {
 }
 .hero > * { grid-column: 1 / span 9; min-width: 0; position: relative; z-index: 1; }
 .hero > .kicker, .hero > .hero__name, .hero > .hero__story, .hero > .hero__actions { grid-column: 1 / span 10; }
-.kicker { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #063c82; font-weight: 600; margin-bottom: 1.7rem; }
+.kicker { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-ink); font-weight: 600; margin-bottom: 1.7rem; }
 .hero__kicker { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; }
 .hero__location-group { display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
 .hero__kicker-divider { color: var(--blue-text); font-size: 1.1em; line-height: 1; }
@@ -198,7 +199,7 @@ body::before {
 .hero__name {
   position: relative; isolation: isolate; font-family: var(--serif); font-weight: 500;
   font-size: var(--text-hero); line-height: 0.95; letter-spacing: -0.042em; padding-bottom: 0.12em;
-  background: linear-gradient(110deg, #07336f 0%, #0e5196 39%, #bfeeff 48%, #0e5196 57%, #063c82 100%);
+  background: linear-gradient(110deg, #07336f 0%, #0e5196 39%, #bfeeff 48%, #0e5196 57%, var(--blue-ink) 100%);
   background-size: 240% 100%; background-position: 0% 50%; animation: hero-name-sheen 11s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
   -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0.3px rgba(31, 85, 117, 0.42); paint-order: stroke fill;
@@ -291,7 +292,7 @@ body::before {
   grid-column: 1 / -1; display: grid; grid-template-columns: minmax(15rem, 1.15fr) 3fr; column-gap: clamp(1.5rem, 3vw, 3rem); align-items: center;
   margin-top: 2.6rem; padding: 2.4rem 0 0.6rem; border-top: 1px solid var(--line-strong);
 }
-.hero-proof__eyebrow { margin-bottom: 0.6rem; color: #063c82; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
+.hero-proof__eyebrow { margin-bottom: 0.6rem; color: var(--blue-ink); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
 .hero-proof__intro h2 { font-family: var(--serif); font-size: clamp(2rem, 2.7vw, 2.65rem); font-weight: 500; line-height: 1.03; letter-spacing: -0.03em; }
 .hero-proof__nodes .eng-node small { max-width: 24ch; }
 
@@ -659,7 +660,7 @@ a.dp-name:hover { color: var(--blue-text); }
 
 /* ---------- gtm-systems: toolkit strip (full-color marks) ---------- */
 .toolkit { margin-top: clamp(1.8rem, 3.2vw, 2.6rem); padding-top: 1.6rem; border-top: 1px solid var(--line-strong); text-align: center; }
-.toolkit__label { display: block; margin-bottom: 0.45rem; color: #063c82; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
+.toolkit__label { display: block; margin-bottom: 0.45rem; color: var(--blue-ink); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
 .toolkit__title { margin: 0 auto 1.2rem; font-family: var(--serif); font-weight: 500; font-size: clamp(1.4rem, 2.2vw, 1.85rem); line-height: 1.15; letter-spacing: -0.015em; }
 .toolkit__groups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.9rem; align-items: stretch; text-align: left; }
 .toolkit__group { min-width: 0; padding: 0.9rem 0.9rem 1rem; border: 1px solid var(--tile-border); border-radius: var(--radius-card); background: rgba(255, 255, 255, 0.55); box-shadow: var(--tile-shadow); }
@@ -932,6 +933,10 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .eng-node strong { font-size: 0.88rem; }
   .eng-node small { font-size: 0.7rem; }
 }
+
+/* ---------- tablet and phone layout (<=768px): grids collapse and the header
+   compacts. Read the three phone blocks in order: this one, the <=480px block,
+   then the phone compaction block, which comes last and wins. ---------- */
 @media (max-width: 768px) {
   .site-header--floating {
     top: 0; width: 100%; min-height: 68px; margin: 0; padding-inline: var(--gutter); border-inline: 0; border-radius: 0;
@@ -1031,19 +1036,13 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
                 0 0 42px 10px rgba(143, 205, 238, 0.32);
   }
 }
+/* ---------- small phones (<=480px): only what the compaction block below does not
+   already set. Sizes, section padding, and the metric and play grids live there. ---------- */
 @media (max-width: 480px) {
-  body { font-size: 16px; }
-  .section, .case-section { padding-top: var(--space-12); padding-bottom: var(--space-12); }
-  .hero__name, .case-hero__title { font-size: clamp(2.64rem, 12.48vw, 3.48rem); -webkit-text-stroke-width: 0.35px; }
+  .hero__name { -webkit-text-stroke-width: 0.35px; }
+  .case-hero__title { font-size: clamp(2.64rem, 12.48vw, 3.48rem); -webkit-text-stroke-width: 0.35px; }
   .hero__name::before { opacity: 0.4; filter: blur(6px) saturate(1.08); }
-  .section-title { font-size: 1.05rem; }
-  .tl-role { font-size: 1.05rem; }
-  .tl-card, .contact-tile { padding: 1.25rem; }
-  .metrics, .metrics--balanced, .metrics--four { grid-template-columns: 1fr; }
-  .metrics > .metric:nth-child(4):last-child { grid-column: auto; }
   .site-footer__row { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
-  .case-results { grid-template-columns: repeat(2, 1fr); }
-  .case-index { grid-template-columns: 1fr; }
   .case-index a, .case-index a:nth-child(2n) { border-right: 0; border-bottom: 1px solid var(--line); }
   .case-index a:last-child { grid-column: auto; border-bottom: 0; }
   .case-study__header { grid-template-columns: 1fr; }
@@ -1170,11 +1169,9 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .fold:not([open]) .fold__hint::after { content: "Show more \203A"; }
   .fold[open] .fold__hint::after { content: "Hide \203A"; }
   .fold:not([open]) > summary .systems-subhead { margin-bottom: 0.2rem; }
-}
 
-/* ---------- phone pass, round two: header, type scale, the MBA marker,
-   the comet control. Later in the file so it wins over the block above. ---------- */
-@media (max-width: 768px) {
+  /* ----- round two: header, type scale, the MBA marker, the comet control.
+     Later in the block, so it wins over the rules above. ----- */
   /* header: every link present, nothing scrolls. Row one is the mark and the
      page chips, row two the four section links, small. The nav's children join
      the header's flex row directly, and a zero-height break item forces the wrap. */

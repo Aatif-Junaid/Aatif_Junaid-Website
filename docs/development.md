@@ -41,13 +41,13 @@ Opening HTML directly does not reproduce root-relative URLs on `404.html`; use t
 
 ## Agent tooling
 
-`AGENTS.md` and `CLAUDE.md` route repository-maintenance work without loading private career context. Claude remote sessions additionally use `.claude/hooks/session-start.sh` only when `CLAUDE_CODE_REMOTE=true`. The hook builds pinned TruffleHog source and registers a pinned Chrome DevTools MCP release when the required browser is present. It does not provision marketplaces or third-party plugins.
+`AGENTS.md` holds the rules for repository-maintenance work without loading private career context; `CLAUDE.md` imports it. Claude remote sessions additionally use `.claude/hooks/session-start.sh` only when `CLAUDE_CODE_REMOTE=true`. The hook builds pinned TruffleHog source and registers a pinned Chrome DevTools MCP release when the required browser is present. It does not provision marketplaces or third-party plugins.
 
 Local Codex, Claude, and human development continue to use the prerequisites above. Changes to agent bootstrap behavior require the same review and validation as other executable repository code.
 
 ## Branches
 
-`main` is the only long-lived branch. It is deployable and protected: GitHub blocks force-pushes and deletions. Site Integrity and TruffleHog run in CI on pushes and pull requests; direct validated pushes remain allowed.
+`main` is the only long-lived branch. It is deployable and protected by the `protect-main` ruleset: every change arrives through a pull request, the `Site integrity` and `TruffleHog secrets` checks must pass on the current base, and force-pushes and deletions are blocked. The owner merges; no approval count is required.
 
 For any non-trivial change, use a short-lived topic branch with this two-tier naming scheme:
 
@@ -88,7 +88,7 @@ chore/infra/activate-branch-protection
 fix/perf/compress-og-image
 ```
 
-Direct pushes to `main` are allowed for small, validated, single-file corrections. Use a branch when the change touches multiple files, requires review, or has a non-trivial rollback risk.
+Every change, including a one-line correction, goes through a branch and a pull request. The pre-push hook keeps the branch current with `origin/main` so the required checks run against the real base.
 
 Delete branches after merging. Do not reuse merged branches.
 
@@ -100,9 +100,9 @@ Commit messages and pull-request discussions are public. Describe the code or co
 
 Screenshots, clips, and other proof assets must show reviewed, public-safe work only. Crop private browser chrome, workflow IDs, sheet IDs, credentials, drafts, and unpublished contact details before adding assets to the repository. When an asset demonstrates a workflow, pair it with copy that explains the source, approval gate, and logged outcome without implying live publishing or CRM access that is not connected. Make sure this is not skipped.
 
-## Optional pull requests
+## Pull requests
 
-Use a pull request when review or isolated testing is useful. Include a concise description, validation, and any deployment follow-up.
+Every change merges through a pull request. Include a concise description, validation, and any deployment follow-up.
 
 Visible changes require desktop and mobile review. CSS, JavaScript, resume, metadata, sitemap, or deployment changes must follow the relevant runbook.
 

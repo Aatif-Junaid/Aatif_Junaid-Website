@@ -20,7 +20,7 @@ Preserve:
 
 - warm paper surfaces (`#EEEDE8`, `#E7E3DA`)
 - warm ink (`#26241f`) and muted text (`#6b655b`)
-- blue accent (`#2f7fb3`) with accessible dark variants (`#226aa0`, `#1f5575`)
+- blue accent (`#2f7fb3`) with accessible dark variants (`#226aa0`, `#1f5575`) and the label ink (`#063c82`, `--blue-ink`) for eyebrows and kickers
 - Playfair Display for editorial headings and Inter for clear body text
 - the comet timeline as the signature visual
 - glass-like tiles as a web approximation, used only where elevation communicates grouping

@@ -6,6 +6,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Added
 
+- Dependabot version updates for the pinned GitHub Actions.
 - Architecture, development, security, contribution, and focused operational runbooks.
 - A remote-only Claude web-session hook that installs a pinned, checksum-verified PowerShell validation dependency.
 - One local check shared by pre-commit and CI.
@@ -15,6 +16,9 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- `main` accepts pull requests only; the `protect-main` ruleset requires the `Site integrity` and `TruffleHog secrets` checks.
+- `AGENTS.md` is the single rulebook for AI agents and `CLAUDE.md` imports it; the README gained a reader guide and a complete repository map.
+- Merged the two phone compaction blocks in `site.css`, removed the `480px` rules that later rules already overrode, and named the eyebrow blue `--blue-ink`. No visual change.
 - Consolidated Quantum Corporation and EnCloudEn into one compact resume entry with explicit dates, giving the current Aisepedia work more space without obscuring the earlier chronology.
 - Expanded the public resume with verified Aisepedia pipeline, design-partner, field-event, activation, and AI-automation evidence.
 - Reconciled every public design-partner reference to 13 participants, including 8 senior participants, and removed stale company references from the public resume.
@@ -44,6 +48,10 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 - The experience comet now has frame-rate-independent movement, a directional particle plume, a tapered light trail, a more defined nucleus and aura, and localized canvas redraws while retaining its original spiral path.
 - The comet now begins beside the first Experience marker, moves more slowly, and uses a compact white nucleus with separate blue ion and warm-white dust tails plus denser particles.
 - Public role titles now use `Senior Analyst, Revenue and Product` for POLITICO and `Business Strategy` for Peepal Consulting.
+
+### Removed
+
+- `AI.md` and `docs/ai/`, whose content duplicated the README, `AGENTS.md`, and `docs/development.md` and had gone stale.
 
 ## 2026-08-22
 

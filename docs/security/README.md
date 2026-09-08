@@ -5,7 +5,8 @@ This public repository serves a dependency-free static website. Its security con
 ## Required controls
 
 - Keep the GitHub account protected with two-factor authentication and current recovery methods.
-- Keep `main` protected from deletion and force pushes. Direct fast-forward pushes are allowed for quick maintenance.
+- Keep the `protect-main` ruleset active: pull requests only, `Site integrity` and `TruffleHog secrets` required, no force pushes, no deletion, no bypass actors.
+- Keep GitHub secret scanning on with push protection and non-provider patterns enabled.
 - Run `pwsh -File scripts/check.ps1` before every push.
 - Keep the read-only `Site integrity` and `TruffleHog secrets` GitHub Actions jobs.
 - Pin every third-party GitHub Action to a full 40-character commit SHA.
@@ -18,7 +19,7 @@ This public repository serves a dependency-free static website. Its security con
 
 Never commit credentials, tokens, private career records, or environment files. Treat any committed credential as compromised and rotate it immediately.
 
-The site has no package manager or application dependencies. Do not add Dependabot version-update pull requests, CodeQL, Dependency Review, or cloud-backup workflows unless the architecture changes enough to justify them.
+The site has no package manager or application dependencies. Dependabot watches only the pinned GitHub Actions in `.github/workflows` and opens a pull request when a pinned SHA has a newer release. Do not add CodeQL, Dependency Review, or cloud-backup workflows unless the architecture changes enough to justify them.
 
 ## Cloudflare and external monitoring
 

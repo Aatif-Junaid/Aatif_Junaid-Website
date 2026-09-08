@@ -34,13 +34,15 @@ $response.Headers
 
 ## Content Security Policy
 
-Executable JavaScript and event handlers are externalized. JSON-LD remains inline as inert structured data, and the homepage has one inline `noscript` style fallback. Cloudflare and every HTML page currently enforce this policy:
+Executable JavaScript and event handlers are externalized. JSON-LD remains inline as inert structured data, and the homepage has one inline `noscript` style fallback. Every HTML page enforces the policy in the privacy update above.
 
-```
-default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'
+Checked on 2026-09-07: the Cloudflare response header still carries the older policy (Google Fonts origins, `form-action 'self'`, no `frame-src`). Browsers apply the stricter of the two, so the site is safe, but the header is stale. Replace the Cloudflare `Content-Security-Policy` header value with this exact string, which is the HTML policy plus `frame-ancestors 'self'` (browsers ignore `frame-ancestors` in a meta policy):
+
+```text
+default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; frame-ancestors 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'
 ```
 
-The Cloudflare response-header version also includes `frame-ancestors 'self'`, which browsers ignore in a meta policy. The header and meta fallback were verified live with no browser console violations on 2026-08-23.
+At the same time raise `Strict-Transport-Security` to `max-age=31536000; includeSubDomains`, but only after confirming every subdomain, including `n8n`, serves HTTPS. Re-run the verification block and update the dates in this file.
 
 ## GitHub Pages origin certificate
 

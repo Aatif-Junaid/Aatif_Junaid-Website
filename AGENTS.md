@@ -1,6 +1,6 @@
-# Website instructions for Codex
+# Website instructions for AI agents
 
-Codex and Claude Code follow the same rules in this repository.
+Codex and Claude Code follow this file. `CLAUDE.md` imports it and adds nothing but the Claude commit trailer.
 
 ## Work safely
 
@@ -12,18 +12,19 @@ Codex and Claude Code follow the same rules in this repository.
 - Update query-string versions whenever CSS, JavaScript, `resume.pdf`, or the social image changes. Follow `docs/runbooks/cache-busting.md`.
 - Preserve semantic HTML, keyboard access, reduced-motion behavior, `CNAME`, HTTPS, and the verified domain.
 - Never commit credentials or private professional-brain content. Public claims must be reviewed and public-safe.
-- Direct validated pushes to `main` are allowed for zero-friction solo-development. GitHub blocks force-pushes and deletion of `main`.
+- `main` accepts pull requests only. The `protect-main` ruleset requires a pull request with the `Site integrity` and `TruffleHog secrets` checks passing on the current base, and blocks force-pushes and deletion. Never force-push or delete `main`; the owner merges.
 - Pin external Actions to full commit SHAs and keep workflow permissions minimal.
-- Do not install Claude plugins, marketplace extensions, or MCP servers that are not already listed in .claude/settings.json. The .claude/hooks/session-start.sh file is the only approved provisioning path, and it may only contain TruffleHog and the Chrome DevTools MCP.
+- Do not install Claude plugins, marketplace extensions, or MCP servers that are not already listed in `.claude/settings.json`. The `.claude/hooks/session-start.sh` file is the only approved provisioning path, and it may only contain TruffleHog and the Chrome DevTools MCP.
 
 ## Copy rules
 
 - Use no em dashes and no empty buzzwords.
 - Lead experience bullets with numbers.
 - Spell the company `Aiseberg` and the product `Aisepedia`.
-- Describe the enterprise deal with the documented Splunk/Cisco framing, never as “closed Cisco.”
+- Describe the enterprise deal with the documented Splunk/Cisco framing, never as "closed Cisco."
 - Describe POLITICO figures as reported on or analyzed, never owned.
+- State dollar figures that measure Aatif's own work output. Band or omit figures that describe an employer's business size or performance. Attribution and disclosure are separate questions: a claim can be correctly attributed and still not be his to publish. Pipeline he generated (`$400K`), revenue he recovered (`$473K`), and figures his own analysis produced (`$2.6M` recoverable ACV, `$250K` monthly expansion) are stated. POLITICO's book size, net wallet retention, and bookings totals (`$125M`, `110.4%`, `$32.1M`) are never published; the book is described as nine-figure and the accounts as thousands. This is the brain's rule (`profile/constraints.md`, 2026-09-04 gate) and the site follows it exactly. Applies to the site, the resume, and LinkedIn alike.
 - Keep positioning consistent with GTM and Product Growth unless the owner approves a repositioning.
 - Cross-surface consistency: the resume, `index.html`, `playbook.html`, and LinkedIn must show the identical role title, employer, and location. Diff them before finishing; do not let the resume and the timeline disagree.
 
-AI-authored commit messages end with `Co-Authored-By: Codex <noreply@openai.com>`.
+AI-authored commit messages end with a co-author trailer: `Co-Authored-By: Codex <noreply@openai.com>` for Codex, `Co-Authored-By: Claude <noreply@anthropic.com>` for Claude Code.

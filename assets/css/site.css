@@ -776,6 +776,11 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 /* The plays collapse to a header, a control, and their evidence image. */
 .fold--play > summary { margin-top: 1.2rem; }
 .fold--play + .artifact-proof { margin-top: 1.6rem; }
+/* The headline number and its attribution note sit outside the fold, so a
+   collapsed play still shows what it proved and the limit on that claim. */
+.fold--play + .activation-result { margin-top: 1.6rem; }
+.fold--play + .case-note { margin-top: 1.2rem; }
+.activation-result + .case-note { margin-top: 0.9rem; }
 
 /* ---------- gtm-systems: build timelines, data, credentials ---------- */
 /* Folds: open on desktop and not collapsible there; on phones site.js closes
@@ -1166,8 +1171,10 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .case-study__grid p, .case-actions li { font-size: 0.9rem; line-height: 1.5; }
   .case-actions { gap: 0.5rem; }
   .case-results p { padding: 0.75rem 0.7rem; font-size: 0.78rem; }
-  .activation-result { padding: 1rem; gap: 0.6rem; }
-  .activation-result > strong { font-size: 2.2rem; }
+  .activation-result { padding: 0.85rem 0.9rem; gap: 0.35rem; }
+  .activation-result > strong { font-size: 1.85rem; }
+  .activation-result span { font-size: 0.95rem; }
+  .activation-result p { margin-top: 0.25rem; font-size: 0.74rem; line-height: 1.4; }
   .artifact-proof { gap: 0.8rem; }
   .artifact-proof p { font-size: 0.86rem; }
   /* every page: footer policy links and disclosure controls at full tap size */
@@ -1299,6 +1306,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   /* phones: the evidence image folds away with the text, the summary keeps its thumbnail */
   .fold--play:not([open]) + .artifact-proof { display: none; }
   .fold--play + .artifact-proof { margin-top: 1rem; }
+  .fold--play + .activation-result { margin-top: 1rem; }
+  .fold--play + .case-note { margin-top: 0.8rem; }
 }
 
 /* ---------- reduced motion ---------- */

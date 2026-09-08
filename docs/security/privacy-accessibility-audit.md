@@ -6,19 +6,18 @@ Reviewed September 7, 2026. This record describes implementation and open questi
 
 The owner confirmed this is a personal portfolio with no payments or automated contact collection. Pages link to email, telephone, LinkedIn, GitHub, and other external destinations. There are no HTML forms, embedded frames, accounts, checkout, or visitor-to-CRM integration. Mentions of analytics and automation tools describe professional experience; those tools are not connected to visitors.
 
-- Privacy, terms, cookies, refunds, and accessibility pages are linked in every footer.
-- The refund page states that no purchases occur. Do not invent a returns process or blanket no-refund term for this portfolio.
+- Privacy, terms, and accessibility pages are linked in every footer, on the same chrome as the case pages. Cookie and refund pages were considered and dropped on 2026-09-07: the privacy page carries the cookie facts, and the terms page states that nothing is sold, so a refund page would only confuse a recruiter.
 - No form-consent checkbox is needed because no form submits data. The contact area explains email use. Any future form needs accessible labels, validation and an adjacent collection notice. Marketing enrollment must be separate and optional; a privacy notice is not blanket consent.
-- Removed the homepage Cloudflare Web Analytics beacon. Fonts are now local, with their OFL notices. No advertising pixels, session replay, browser storage, or optional analytics remain in the source.
-- Meta CSP restricts script, font, and connection sources to self; frames, objects, and form submission are blocked. Cloudflare's response policy combines with this policy. Do not loosen it to activate tracking without reviewing notices and consent.
+- Cloudflare Web Analytics stays on the homepage by the owner's decision (2026-09-07): it is cookieless, uses no local storage or fingerprinting, and reports aggregates, so no consent control is needed. The privacy page names it. Fonts are now local, with their OFL notices. No advertising pixels, session replay, or browser storage remain in the source.
+- Meta CSP restricts script, font, and connection sources to self plus the Cloudflare analytics host; frames, objects, and form submission are blocked. Cloudflare's response policy combines with this policy. Do not loosen it to activate tracking without reviewing notices and consent.
 - Hosting/security still processes request information. No claim of zero data collection is made.
 - All meaningful images already had alt text. Repeated decorative tool marks intentionally keep empty alt text.
-- Native video controls replace automatic playback. The adjacent prose describes the silent workflow recording. The animation button pauses CSS effects and uses the existing comet pause mechanism. The comet rendering and velocity are unchanged.
-- In-page navigation now moves keyboard focus to its target. Footer text opacity was removed to restore contrast.
+- The workflow recording keeps its muted in-view autoplay and gains native controls, which satisfy the pause requirement; a viewer's own pause is respected when the clip scrolls back into view. The homepage footer has a small "Pause the comet" control, present only where the comet is; reduced-motion users never see it because the comet does not run for them. The comet rendering and velocity are unchanged.
+- In-page navigation now moves keyboard focus to its target. Footer note opacity was removed to restore contrast. The "Full toolkit" link keeps its deliberately quiet style at the owner's request.
 
 ## Deployment follow-up
 
-Cloudflare dashboard settings are independent of this repository. Check that automatic Web Analytics injection and Zaraz are off, and update the response CSP to match the meta policy plus `frame-ancestors 'self'`. The meta policy blocks the former analytics endpoint even if a beacon is injected, but an injected blocked script can still create a console warning. Verify the deployed response and browser requests after merge. Do not disable security challenges or HTTPS to remove necessary security processing.
+Cloudflare dashboard settings are independent of this repository. Web Analytics is loaded from the page source, so automatic injection should stay off to avoid a duplicate beacon; Zaraz stays off. Update the response CSP to match the meta policy plus `frame-ancestors 'self'`. Verify the deployed response and browser requests after merge. Do not disable security challenges or HTTPS to remove necessary security processing.
 
 ## Applicable-law assessment
 

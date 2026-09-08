@@ -11,7 +11,7 @@ import html, json, os, re, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = ["index.html", "case-studies.html", "field-program.html", "gtm-systems.html", "404.html"]
-PAGES += ["privacy.html", "terms.html", "cookies.html", "refunds.html", "accessibility.html"]
+PAGES += ["privacy.html", "terms.html", "accessibility.html"]
 REQUIRED_SCRIPTS = {
     "index.html": {"assets/js/site.js", "assets/js/homepage.js"},
     "case-studies.html": {"assets/js/site.js", "assets/js/case-studies.js"},
@@ -100,13 +100,14 @@ ok("external links use noopener")
 
 # Portfolio privacy boundary and accessible image alternatives.
 for p, s in pages.items():
-    for policy in ["privacy.html", "terms.html", "cookies.html", "refunds.html", "accessibility.html"]:
+    for policy in ["privacy.html", "terms.html", "accessibility.html"]:
         if f'href="/{policy}"' not in s:
             fail(f"{p}: missing footer policy link {policy}")
     for image in re.findall(r"<img\b[^>]*>", s):
         if not re.search(r'\balt="[^"]*"', image):
             fail(f"{p}: image missing alt attribute")
-    if re.search(r'<(?:script|iframe|form)\b[^>]*(?:src|action)=[\"\']https?://', s, re.I):
+    external = re.findall(r'<(?:script|iframe|form)\b[^>]*(?:src|action)=[\"\'](https?://[^\"\']+)', s, re.I)
+    if any("static.cloudflareinsights.com/beacon.min.js" not in u for u in external):
         fail(f"{p}: external script, embed, or form needs privacy review")
 ok("policy links, image alternatives, and portfolio data boundary")
 

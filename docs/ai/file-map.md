@@ -10,7 +10,7 @@ Annotated map of every tracked file. Grouped by domain. Use this to orient quick
 | `case-studies.html` | 25 KB | Five GTM case studies with evidence artifacts | Canonical design-partner claims, attribution boundaries |
 | `field-program.html` | 14 KB | Long-form field event narrative (PMM 2.0) | Attribution boundary — no pipeline figures |
 | `404.html` | 4 KB | 404 page with nav and CTAs | Canonical link, OG tags |
-| `privacy.html`, `cookies.html`, `terms.html`, `refunds.html`, `accessibility.html` | Small static pages | Footer policy destinations | Match actual data collection and portfolio-only scope |
+| `privacy.html`, `terms.html`, `accessibility.html` | Small static pages on the case-page chrome | Footer policy destinations | Match actual data collection and portfolio-only scope |
 
 ## Root — deployed static assets (must stay at these exact paths)
 

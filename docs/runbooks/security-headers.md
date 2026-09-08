@@ -6,13 +6,13 @@ GitHub Pages cannot configure response headers from repository files. Cloudflare
 
 ## Privacy update, September 7, 2026
 
-The privacy/accessibility branch removes visitor analytics and hosts fonts locally. All HTML meta policies now use:
+The privacy/accessibility branch hosts fonts locally and keeps only the cookieless Cloudflare Web Analytics beacon. All HTML meta policies now use:
 
 ```text
-default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'
+default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'
 ```
 
-On deployment, align the Cloudflare header with this policy and retain `frame-ancestors 'self'`. Disable automatic Web Analytics injection and Zaraz if enabled. The stricter meta policy remains enforced alongside the response header, but disabling unused injection avoids blocked-script console warnings. See the [audit record](../security/privacy-accessibility-audit.md).
+On deployment, align the Cloudflare header with this policy and retain `frame-ancestors 'self'`. Keep automatic Web Analytics injection and Zaraz off; the beacon is loaded from the page source, so injection would only duplicate it. See the [audit record](../security/privacy-accessibility-audit.md).
 
 ## Previously verified state
 

@@ -773,6 +773,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .fold__hint { display: none; }
 .fold--phone > summary { display: none; }
 .fold--tile > summary .framework__title { margin: 0; }
+.fold__sub, .fold__thumb { display: none; }
+.fold__head { display: contents; }
 
 .eng-build { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2rem; }
 .eng-build .systems-subhead { margin-top: 1.6rem; }
@@ -1176,19 +1178,19 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   /* header: every link present, nothing scrolls. Row one is the mark and the
      page chips, row two the four section links, small. The nav's children join
      the header's flex row directly, and a zero-height break item forces the wrap. */
-  .site-header { flex-wrap: wrap; row-gap: 0; padding-top: 0.4rem; padding-bottom: 0.35rem; }
+  .site-header { flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 0.2rem 0.45rem; padding-top: 0.4rem; padding-bottom: 0.4rem; }
   .site-nav { display: contents; }
-  .site-header::after { content: ""; order: 1; flex: 1 0 100%; height: 0; }
-  /* row two: the page chips as a row of equal buttons */
-  .site-nav .nav-page { order: 2; flex: 1 1 0; min-width: 0; min-height: 40px; margin-top: 0.35rem; padding: 0.3rem 0.5rem; justify-content: center; font-size: 0.74rem; }
-  .site-nav .nav-page + .nav-page { margin-left: 0.4rem; }
+  /* page chips: the same size as the section links, with a light blue edge; they wrap only when the row is full */
+  .site-nav .nav-page { order: 1; flex: 0 0 auto; min-width: 0; min-height: 32px; margin: 0; padding: 0.15rem 0.5rem; font-size: 0.66rem; letter-spacing: 0.01em; border-radius: 6px; box-shadow: none; }
+  .site-nav .nav-page:first-of-type { margin-left: auto; }
   .case-header .wordmark { width: 40px; min-width: 40px; height: 40px; font-size: 0; background: url(/assets/logos/am-mark-glossy.svg) center / 36px 36px no-repeat; }
   /* Home as an icon-only chip on phones so three chips and the mark share one row; the aria-label names it */
-  .site-nav .nav-page--home { flex: 0 0 44px; min-width: 44px; padding: 0.3rem 0.5rem; font-size: 0; }
+  /* Home stays the one prominent chip */
+  .site-nav .nav-page--home { flex: 0 0 44px; min-width: 44px; min-height: 36px; padding: 0.3rem 0.5rem; font-size: 0; border-color: rgba(47, 127, 179, 0.7); background: rgba(143, 205, 238, 0.3); }
   .site-nav .nav-page--home .nav-page__icon { font-size: 1rem; }
   /* row one: the mark and the section links, small */
-  .site-nav a:not(.nav-page) { order: 0; flex: 1 1 0; min-height: 40px; margin: 0; padding: 0; justify-content: center; font-size: 0.68rem; letter-spacing: 0.02em; border-bottom: 0; }
-  .site-nav a:not(.nav-page):first-child { margin-left: 0.4rem; }
+  .site-nav a:not(.nav-page) { order: 0; flex: 0 0 auto; min-height: 32px; margin: 0; padding: 0 0.15rem; justify-content: center; font-size: 0.66rem; letter-spacing: 0.02em; border-bottom: 0; }
+  .site-nav a:not(.nav-page):first-child { margin-left: 0.2rem; }
   .site-header--floating {
     top: 10px; width: calc(100% - 20px); min-height: 60px; margin: 10px auto 0; padding: 0 0.7rem;
     border: 1px solid rgba(47, 127, 179, 0.56); border-radius: 12px;
@@ -1243,9 +1245,15 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   /* the comet does not run on phones, so its control has nothing to pause */
   .motion-toggle { display: none; }
   /* each folded block reads as its own tile */
-  .fold { margin-top: 0.7rem; padding: 0 0.85rem; border: 1px solid var(--line); border-radius: var(--radius-card); background: rgba(255, 255, 255, 0.45); }
-  .fold[open] { padding-bottom: 0.9rem; }
-  .fold > summary .systems-subhead, .fold:not([open]) > summary .systems-subhead { margin: 0.55rem 0; font-size: 1.02rem; }
+  .fold { margin-top: 0.8rem; padding: 0 1rem; border: 1px solid var(--line-strong); border-radius: var(--radius-card); background: rgba(255, 255, 255, 0.62); box-shadow: var(--tile-shadow); }
+  .fold[open] { padding-bottom: 1rem; }
+  .fold__head { display: block; padding: 0.85rem 0; }
+  .fold > summary .systems-subhead, .fold:not([open]) > summary .systems-subhead { margin: 0; font-size: 1.12rem; }
+  .fold__sub { display: block; margin-top: 0.3rem; color: var(--ink-soft); font-size: 0.8rem; line-height: 1.4; }
+  .fold__thumb { display: block; flex: 0 0 auto; width: 60px; height: 42px; object-fit: cover; object-position: top; border-radius: 6px; border: 1px solid var(--line-strong); }
+  .fold[open] .fold__thumb { display: none; }
+  /* the control reads as a button once the tile carries weight */
+  .fold > summary .fold__hint { padding: 0.3rem 0.6rem; border: 1px solid rgba(47, 127, 179, 0.48); border-radius: 6px; background: rgba(143, 205, 238, 0.17); white-space: nowrap; }
   .eng-build { gap: 0 2rem; }
   .eng-build > div + div { margin-top: 0; }
   .fold--phone > summary { min-height: 48px; }

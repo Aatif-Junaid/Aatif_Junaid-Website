@@ -1197,7 +1197,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .eng-step p, .systems-step p, .eng-points li { font-size: 0.9rem; line-height: 1.5; }
   .systems-step { padding: 0.9rem; }
   .systems-clip { margin-top: 1rem; }
-  .fold > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; cursor: pointer; pointer-events: auto; }
+  /* Match the desktop :not() specificity so mobile summaries accept taps. */
+  .fold > summary, .fold:not(.fold--always) > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; cursor: pointer; pointer-events: auto; }
   .fold > summary .systems-subhead { margin: 0.9rem 0 0.6rem; }
   .fold__hint { display: inline-block; flex: 0 0 auto; color: var(--blue-text); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; }
   .fold:not([open]) .fold__hint::after { content: "Show more \203A"; }

@@ -25,7 +25,7 @@
   <meta name="theme-color" content="#EEEDE8" />
   <link rel="canonical" href="https://aatifmulla.me/" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'" />
 
   <!-- Structured data for richer search results -->
   <script type="application/ld+json">
@@ -75,13 +75,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
   <!-- Fonts: Playfair Display (artistic display) + Inter (hyper-clean body) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
-  <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/site.css?v=51" />
+  <link rel="stylesheet" href="assets/css/site.css?v=52" />
   <!-- Without JS the reveal observer never runs, so make sure nothing stays invisible. -->
   <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
@@ -567,6 +562,7 @@
           <li><span class="contact__key"><svg class="contact__mark" aria-hidden="true"><use href="#cm-pin"/></svg>Location</span><span>San Francisco, CA</span></li>
         </ul>
 
+        <p class="contact-privacy">Email opens your email app. I use your message to respond, without enrolling you in marketing. Please avoid sensitive or confidential information. <a href="/privacy.html">Privacy policy</a>.</p>
         <div class="contact__actions">
           <!--email_off--><a class="btn btn--primary" href="mailto:aatif.recruitment@gmail.com">Email me</a><!--/email_off-->
         </div>
@@ -590,13 +586,12 @@
       </div>
     </div>
     <p class="site-footer__note">No AI models were trained for this page. Just me, trained on real users and real problems.</p>
+    <nav class="legal-links" aria-label="Policies"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/cookies.html">Cookies</a><a href="/refunds.html">Refunds</a><a href="/accessibility.html">Accessibility</a></nav>
+    <button class="motion-toggle btn" type="button" aria-pressed="false">Pause animations</button>
   </footer>
 
-  <script src="assets/js/site.js?v=4"></script>
-  <script src="assets/js/homepage.js?v=17"></script>
+  <script src="assets/js/site.js?v=5"></script>
+  <script src="assets/js/homepage.js?v=18"></script>
 
-  <!-- Cloudflare Web Analytics -->
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3bb28b64147b4f9db81fc8ee585187c4"}'></script>
-  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>

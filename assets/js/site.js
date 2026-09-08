@@ -2,6 +2,13 @@
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
+  var motionButton = document.querySelector('.motion-toggle');
+  if (motionButton) motionButton.addEventListener('click', function () {
+    var paused = document.documentElement.classList.toggle('animations-paused');
+    motionButton.setAttribute('aria-pressed', String(paused));
+    motionButton.textContent = paused ? 'Resume animations' : 'Pause animations';
+  });
+
   document.querySelectorAll('.logo-chip img').forEach(function (image) {
     image.addEventListener('error', function () {
       image.style.display = 'none';
@@ -17,6 +24,9 @@
         event.preventDefault();
         var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+        history.replaceState(null, '', selector);
       }
     });
   });

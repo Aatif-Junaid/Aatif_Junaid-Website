@@ -25,3 +25,5 @@ The site has no package manager or application dependencies. Do not add Dependab
 Cloudflare owns the production response headers, including CSP and HSTS. Keep the CSP narrow and add an external origin only when the site actually uses it. UptimeRobot provides the external availability check; notification preferences are managed there.
 
 See [audit monitoring](audit-monitoring.md) for the short review routine.
+
+See the [privacy, accessibility, and rights review](privacy-accessibility-audit.md) before adding tracking, forms, embeds, payments, or new third-party assets. It records unresolved permissions and the deployment checks for the policy pages.

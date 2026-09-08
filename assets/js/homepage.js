@@ -487,7 +487,7 @@
     motionToggle.addEventListener('click', function () {
       userPaused = !userPaused;
       motionToggle.setAttribute('aria-pressed', String(userPaused));
-      motionToggle.textContent = userPaused ? 'Play comet' : 'Pause comet';
+      motionToggle.textContent = userPaused ? 'Resume animations' : 'Pause animations';
       if (userPaused) stop();
       else if (inView && !document.hidden) start();
     });

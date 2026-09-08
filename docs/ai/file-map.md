@@ -10,13 +10,14 @@ Annotated map of every tracked file. Grouped by domain. Use this to orient quick
 | `case-studies.html` | 25 KB | Five GTM case studies with evidence artifacts | Canonical design-partner claims, attribution boundaries |
 | `field-program.html` | 14 KB | Long-form field event narrative (PMM 2.0) | Attribution boundary — no pipeline figures |
 | `404.html` | 4 KB | 404 page with nav and CTAs | Canonical link, OG tags |
+| `privacy.html`, `cookies.html`, `terms.html`, `refunds.html`, `accessibility.html` | Small static pages | Footer policy destinations | Match actual data collection and portfolio-only scope |
 
 ## Root — deployed static assets (must stay at these exact paths)
 
 | File | What it is |
 |---|---|
 | `CNAME` | Custom domain record (`aatifmulla.me`) — never edit |
-| `sitemap.xml` | Three-URL sitemap for search crawlers |
+| `sitemap.xml` | Canonical public-page inventory, including policies |
 | `robots.txt` | Allow all + sitemap pointer |
 | `resume.pdf` | Published one-page public resume |
 | `og-image.jpg` | 2400×1260 social preview image (119 KB after compression) |
@@ -38,6 +39,8 @@ Annotated map of every tracked file. Grouped by domain. Use this to orient quick
 | `assets/logos/am-mark-glossy.svg` | AM glossy blue monogram used in the header |
 | `assets/logos/am-mark-flat.svg` | AM flat blue monogram for print, stamps, and small uses |
 | `assets/logos/README.md` | AM mark decision record and usage rules |
+| `assets/fonts/` | Local WOFF2 font subsets and their OFL notices |
+| `docs/security/privacy-accessibility-audit.md` | Legal scope, data inventory, testing and unresolved asset permissions |
 | `assets/logos/hero-geometry.svg` | Decorative hero background geometry |
 | `assets/logos/proof-*.svg/png` | Hero proof section icons (position, demand, activate, convert, launch, scale, strategy, system) |
 | `assets/logos/acharya.png` | Acharya Institute logo (education section) |

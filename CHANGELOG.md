@@ -16,6 +16,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Serif headings on the Playbook, GTM, and policy pages render at the loaded Playfair 600 instead of a browser-synthesized bold. Badges and small labels have a 0.7rem floor on desktop, and phone metric labels grew from 8.6px to 9.9px. The Field page phone header fits one row, the case-page hero closes at the section rhythm on phones, and a copy pass removed filler words.
 - `main` accepts pull requests only; the `protect-main` ruleset requires the `Site integrity` and `TruffleHog secrets` checks.
 - `AGENTS.md` is the single rulebook for AI agents and `CLAUDE.md` imports it; the README gained a reader guide and a complete repository map.
 - Merged the two phone compaction blocks in `site.css`, removed the `480px` rules that later rules already overrode, and named the eyebrow blue `--blue-ink`. No visual change.

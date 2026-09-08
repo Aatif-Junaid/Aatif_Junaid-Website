@@ -7,7 +7,7 @@ The repository is maintained as a public proof of both the site and the working 
 ## Start here
 
 - [Portfolio](https://aatifmulla.me/)
-- [GTM and Product Growth case studies](https://aatifmulla.me/case-studies.html)
+- [Playbook, five GTM plays](https://aatifmulla.me/playbook.html)
 - [GTM systems](https://aatifmulla.me/gtm-systems.html)
 - [First field-program write-up](https://aatifmulla.me/field-program.html)
 - [Resume](https://aatifmulla.me/resume.pdf)
@@ -53,7 +53,7 @@ Detailed setup, branching, testing, and contribution rules live in [`docs/develo
 
 ```text
 index.html              Homepage and professional timeline
-case-studies.html       GTM case studies
+playbook.html           Playbook, five GTM plays (case-studies.html redirects here)
 field-program.html      First-person field-program article
 404.html                Custom not-found page
 assets/css/             Shared site styling

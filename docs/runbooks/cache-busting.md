@@ -17,7 +17,7 @@ Current patterns:
 | Shared CSS | `assets/css/site.css?v=N` |
 | Shared JavaScript | `assets/js/site.js?v=N` |
 | Homepage JavaScript | `assets/js/homepage.js?v=N` |
-| Case-study JavaScript | `assets/js/case-studies.js?v=N` |
+| Playbook JavaScript | `assets/js/playbook.js?v=N` |
 | Public resume | `resume.pdf?v=YYYY-MMx` |
 | Social image | `og-image.jpg?v=N` |
 

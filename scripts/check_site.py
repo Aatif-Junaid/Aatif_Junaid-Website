@@ -10,11 +10,11 @@ Public financial metrics are allowed when verified and intentionally surfaced.
 import html, json, os, re, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGES = ["index.html", "case-studies.html", "field-program.html", "gtm-systems.html", "404.html"]
+PAGES = ["index.html", "playbook.html", "field-program.html", "gtm-systems.html", "404.html"]
 PAGES += ["privacy.html", "terms.html", "accessibility.html"]
 REQUIRED_SCRIPTS = {
     "index.html": {"assets/js/site.js", "assets/js/homepage.js"},
-    "case-studies.html": {"assets/js/site.js", "assets/js/case-studies.js"},
+    "playbook.html": {"assets/js/site.js", "assets/js/playbook.js"},
     "field-program.html": {"assets/js/site.js"},
     "gtm-systems.html": {"assets/js/site.js"},
     "404.html": {"assets/js/site.js"},
@@ -159,7 +159,7 @@ canonical_design_partner_claims = {
         "Co-built a 13-member design partner program",
         "13 Design partners, 8 senior",
     ],
-    "case-studies.html": [
+    "playbook.html": [
         "Design partner conversion 13 practitioners recruited",
         "Built a 13-member design partner cohort, 8 at Director level or above",
     ],
@@ -271,7 +271,7 @@ for f in [
     "og-image.jpg",
     "assets/css/site.css",
     "assets/js/site.js",
-    "assets/js/case-studies.js",
+    "assets/js/playbook.js",
     "assets/js/homepage.js",
 ]:
     if not os.path.isfile(os.path.join(ROOT, f)): fail(f"missing deploy-critical file: {f}")

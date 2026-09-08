@@ -7,7 +7,7 @@ Annotated map of every tracked file. Grouped by domain. Use this to orient quick
 | File | Size | What it is | Touch with care |
 |---|---|---|---|
 | `index.html` | 43 KB | Homepage: hero, experience timeline, education, GTM samples, contact | Copy rules, cache-busters, canonical claim checks |
-| `case-studies.html` | 25 KB | Five GTM case studies with evidence artifacts | Canonical design-partner claims, attribution boundaries |
+| `playbook.html` | 20 KB | Playbook: five GTM plays with evidence artifacts (`case-studies.html` is a redirect stub) | Canonical design-partner claims, attribution boundaries |
 | `field-program.html` | 14 KB | Long-form field event narrative (PMM 2.0) | Attribution boundary — no pipeline figures |
 | `404.html` | 4 KB | 404 page with nav and CTAs | Canonical link, OG tags |
 | `privacy.html`, `terms.html`, `accessibility.html` | Small static pages on the case-page chrome | Footer policy destinations | Match actual data collection and portfolio-only scope |
@@ -34,7 +34,7 @@ Annotated map of every tracked file. Grouped by domain. Use this to orient quick
 | `assets/css/site.css` | **Single CSS file for the entire site** (63 KB). Design tokens, layout, components, responsive, a11y, reduced-motion, print. Cache-buster: `?v=28` |
 | `assets/js/site.js` | Shared JS: footer year, smooth scroll, logo-error hiding. Cache-buster: `?v=3` |
 | `assets/js/homepage.js` | Homepage-only: experience comet (canvas), carousel, reveal observer. Cache-buster: `?v=17` |
-| `assets/js/case-studies.js` | Case-study focus observer. Cache-buster: `?v=2` |
+| `assets/js/playbook.js` | Play focus observer. Cache-buster: `?v=3` |
 | `assets/headshot.jpg` | 24 KB contact section photo |
 | `assets/logos/am-mark-glossy.svg` | AM glossy blue monogram used in the header |
 | `assets/logos/am-mark-flat.svg` | AM flat blue monogram for print, stamps, and small uses |

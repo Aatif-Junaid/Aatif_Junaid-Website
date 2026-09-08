@@ -756,6 +756,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .fold > summary::-webkit-details-marker { display: none; }
 .fold > summary .systems-subhead { display: inline-flex; align-items: center; gap: 0.5rem; }
 .fold__hint { display: none; }
+.fold--phone > summary { display: none; }
 
 .eng-build { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2rem; }
 .eng-build .systems-subhead { margin-top: 1.6rem; }
@@ -1158,11 +1159,17 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 /* ---------- phone pass, round two: header, type scale, the MBA marker,
    the comet control. Later in the file so it wins over the block above. ---------- */
 @media (max-width: 768px) {
-  /* header: one row, in-page anchors hidden, page chips fully visible, floating look kept */
-  .site-header { flex-wrap: nowrap; row-gap: 0; padding-top: 0.4rem; padding-bottom: 0.4rem; }
-  .site-nav { flex: 0 1 auto; overflow: visible; margin-inline: 0; padding-inline: 0; gap: 0.45rem; justify-content: flex-end; scroll-snap-type: none; }
-  .site-nav a:not(.nav-page), .site-nav .nav-page--home { display: none; }
-  .site-nav .nav-page { min-width: 0; padding: 0.3rem 0.6rem; font-size: 0.72rem; }
+  /* header: every link present, nothing scrolls. Row one is the mark and the
+     page chips, row two the four section links, small. The nav's children join
+     the header's flex row directly, and a zero-height break item forces the wrap. */
+  .site-header { flex-wrap: wrap; row-gap: 0; padding-top: 0.4rem; padding-bottom: 0.35rem; }
+  .site-nav { display: contents; }
+  .site-header::after { content: ""; order: 1; flex: 1 0 100%; height: 0; }
+  .site-nav .nav-page { order: 0; min-width: 0; padding: 0.3rem 0.55rem; font-size: 0.7rem; }
+  .site-nav .nav-page:first-of-type { margin-left: auto; }
+  .site-nav .nav-page + .nav-page { margin-left: 0.4rem; }
+  .site-nav .nav-page--home { display: none; }
+  .site-nav a:not(.nav-page) { order: 2; flex: 1 1 0; min-height: 32px; margin-top: 0.15rem; padding: 0; justify-content: center; font-size: 0.68rem; letter-spacing: 0.02em; border-bottom: 0; }
   .site-header--floating {
     top: 10px; width: calc(100% - 20px); min-height: 60px; margin: 10px auto 0; padding: 0 0.7rem;
     border: 1px solid rgba(47, 127, 179, 0.56); border-radius: 12px;
@@ -1184,9 +1191,23 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .tl-desc { font-size: 0.84rem; }
   .tl-points li { font-size: 14px; line-height: 1.45; }
   .tl-note { font-size: 0.78rem; }
-  .metric { padding: 0.65rem 0.7rem; }
-  .metric__num { font-size: 1.2rem; }
-  .metric__label { font-size: 0.6rem; }
+  .metrics, .metrics--balanced, .metrics--four { gap: 0.45rem; }
+  .metric { padding: 0.5rem 0.6rem; border-radius: 10px; }
+  .metric .mi { top: 0.4rem; right: 0.4rem; width: 14px; height: 14px; }
+  .metric .mi svg { width: 14px; height: 14px; }
+  .metric__num { font-size: 1.02rem; }
+  .metric__num--sm { font-size: 0.86rem; padding-top: 0.15rem; }
+  .metric__text { font-size: 0.86rem; }
+  .metric__badge { margin-bottom: 0.3rem; padding: 0.1rem 0.45rem; font-size: 0.5rem; }
+  .metric__label { margin-top: 0.15rem; font-size: 0.54rem; letter-spacing: 0.03em; }
+  /* a lone third tile sits centered under the pair */
+  .metrics > .metric:nth-child(3):last-child { grid-column: 1 / -1; justify-self: center; width: calc(50% - 0.225rem); }
+  /* testimonials behind a control on phones */
+  .fold--phone { margin-top: 0.9rem; }
+  .fold--phone > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; cursor: pointer; pointer-events: auto; }
+  .fold--phone .fold__title { color: var(--blue-deep); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .fold--phone .dp-carousel { margin-top: 0.4rem; }
+  .fold--phone .dp-label { display: none; }
   .tl-head .logo-chip { height: 44px; min-width: 44px; padding: 4px 8px; }
   .tl-head .logo-chip img { height: 24px; }
   .event-strip__title { font-size: 0.92rem; }

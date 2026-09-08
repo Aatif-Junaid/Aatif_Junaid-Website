@@ -11,6 +11,28 @@
     if (phone.addEventListener) phone.addEventListener('change', applyFolds); else phone.addListener(applyFolds);
   }
 
+  // Build tracks: show the first two nodes, the rest behind a See more control.
+  // Without this script every node renders, so nothing depends on it.
+  document.querySelectorAll('ol.eng-steps').forEach(function (list, index) {
+    var total = list.querySelectorAll('li').length;
+    if (total <= 2) return;
+    if (!list.id) list.id = 'eng-steps-' + (index + 1);
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'eng-more';
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-controls', list.id);
+    var label = function (open) { button.textContent = open ? 'Show less' : 'See ' + (total - 2) + ' more'; };
+    label(false);
+    list.classList.add('is-clipped');
+    list.insertAdjacentElement('afterend', button);
+    button.addEventListener('click', function () {
+      var open = list.classList.toggle('is-clipped') === false;
+      button.setAttribute('aria-expanded', String(open));
+      label(open);
+    });
+  });
+
   var motionButton = document.querySelector('.motion-toggle');
   if (motionButton) motionButton.addEventListener('click', function () {
     var paused = document.documentElement.classList.toggle('animations-paused');

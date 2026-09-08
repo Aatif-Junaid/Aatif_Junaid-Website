@@ -550,6 +550,7 @@ a.dp-name:hover { color: var(--blue-text); }
 .case-hero { padding-top: var(--space-20); padding-bottom: var(--space-16); text-align: center; }
 .case-hero__title {
   font-family: var(--serif); font-weight: 600; font-size: var(--text-hero); line-height: 0.98; letter-spacing: -0.025em;
+  padding-bottom: 0.12em;
   background: linear-gradient(110deg, var(--blue-text) 0%, var(--blue) 52%, #226aa0 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0.45px rgba(31, 85, 117, 0.48); paint-order: stroke fill;
@@ -595,7 +596,7 @@ a.dp-name:hover { color: var(--blue-text); }
   font-family: var(--serif); font-weight: 600; font-size: 1rem;
 }
 .case-study__label { color: var(--blue-text); text-transform: uppercase; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 0.35rem; }
-.case-study__header h2 { font-family: var(--serif); font-size: var(--text-heading); line-height: 1.15; max-width: 24ch; }
+.case-study__header h2 { font-family: var(--serif); font-size: var(--text-heading); line-height: 1.15; max-width: 32ch; }
 .case-study__outcome {
   max-width: 18rem; border: 1px solid rgba(143,205,238,0.7); border-radius: var(--radius-control); background: rgba(143,205,238,0.22);
   color: var(--blue-deep); padding: 0.5rem 0.85rem; font-size: 0.75rem; font-weight: 600; line-height: 1.3; text-align: center;
@@ -761,6 +762,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .tl-more::after { content: "\203A"; margin-left: 0.3rem; font-size: 1.1em; line-height: 1; transform: rotate(90deg); }
 .tl-more[aria-expanded="true"]::after { transform: rotate(-90deg); }
 .tl-more:hover { color: var(--blue-deep); }
+/* display on .tl-more overrides the browser's [hidden] rule, so restate it */
+.tl-more[hidden] { display: none; }
 @media (min-width: 769px) { .tl-points.is-collapsed li:nth-child(n+4) { display: none; } }
 /* a fold that starts closed on every width, with its control visible on desktop too */
 .fold--always > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; margin-top: 1.1rem; cursor: pointer; pointer-events: auto; }
@@ -770,11 +773,15 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .fold--always[open] .fold__hint::after { content: "Hide \203A"; }
 .fold--always .dp-label { display: none; }
 .fold--always .dp-carousel { margin-top: 0.4rem; }
+/* The plays collapse to a header, a control, and their evidence image. */
+.fold--play > summary { margin-top: 1.2rem; }
+.fold--play + .artifact-proof { margin-top: 1.6rem; }
 
 /* ---------- gtm-systems: build timelines, data, credentials ---------- */
 /* Folds: open on desktop and not collapsible there; on phones site.js closes
    them and the summary becomes the Show more control. */
-.fold > summary { list-style: none; cursor: default; pointer-events: none; }
+.fold:not(.fold--always) > summary { list-style: none; cursor: default; pointer-events: none; }
+.fold--always > summary { list-style: none; }
 .fold > summary::-webkit-details-marker { display: none; }
 .fold > summary .systems-subhead { display: inline-flex; align-items: center; gap: 0.5rem; }
 .fold__hint { display: none; }
@@ -788,6 +795,17 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .eng-steps { position: relative; padding-left: 1.7rem; }
 .eng-steps::before { content: ""; position: absolute; left: 6px; top: 10px; bottom: 14px; width: 2px; background: var(--line-strong); }
 .eng-step { position: relative; padding-bottom: 1rem; }
+/* Build tracks: collapsed to the first two nodes until See more is pressed.
+   The rail is drawn on the list, so it shortens with the visible nodes. */
+.eng-steps.is-clipped > li:nth-child(n+3) { display: none; }
+.eng-more {
+  display: inline-flex; align-items: center; min-height: 44px; margin: 0 0 0.4rem 1.7rem; padding: 0;
+  border: 0; background: none; color: var(--blue-text); font: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer;
+}
+.eng-more[hidden] { display: none; }
+.eng-more::after { content: "\203A"; margin-left: 0.3rem; font-size: 1.1em; line-height: 1; transform: rotate(90deg); }
+.eng-more[aria-expanded="true"]::after { transform: rotate(-90deg); }
+.eng-more:hover { color: var(--blue-deep); }
 .eng-step::before { content: ""; position: absolute; left: calc(-1.7rem + 1px); top: 0.28rem; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--sky-deep); background: #fff; }
 .eng-step--gate::before { background: var(--sky-deep); box-shadow: 0 0 0 4px rgba(79, 159, 212, 0.22); }
 .eng-step--act::before { background: var(--blue-text); border-color: var(--blue-text); }
@@ -1278,6 +1296,9 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .fold--play[open] { padding-bottom: 0; }
   .fold--play > summary { min-height: 44px; }
   .fold--play .fold__title { font-size: 0.66rem; }
+  /* phones: the evidence image folds away with the text, the summary keeps its thumbnail */
+  .fold--play:not([open]) + .artifact-proof { display: none; }
+  .fold--play + .artifact-proof { margin-top: 1rem; }
 }
 
 /* ---------- reduced motion ---------- */

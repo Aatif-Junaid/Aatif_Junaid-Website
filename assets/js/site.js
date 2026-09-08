@@ -2,6 +2,13 @@
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
+  var motionButton = document.querySelector('.motion-toggle');
+  if (motionButton) motionButton.addEventListener('click', function () {
+    var paused = document.documentElement.classList.toggle('animations-paused');
+    motionButton.setAttribute('aria-pressed', String(paused));
+    motionButton.textContent = paused ? 'Play the comet' : 'Pause the comet';
+  });
+
   document.querySelectorAll('.logo-chip img').forEach(function (image) {
     image.addEventListener('error', function () {
       image.style.display = 'none';
@@ -17,6 +24,9 @@
         event.preventDefault();
         var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+        history.replaceState(null, '', selector);
       }
     });
   });
@@ -38,11 +48,17 @@
         clip.play().catch(function () { clip.controls = true; });
         return;
       }
+      // Native controls are on, so a viewer's own pause has to win over the
+      // in-view autoplay. Pauses we trigger are flagged; any other pause is theirs.
+      var ourPause = false, viewerPaused = false;
+      clip.addEventListener('pause', function () { if (!ourPause && !clip.ended) viewerPaused = true; ourPause = false; });
+      clip.addEventListener('play', function () { viewerPaused = false; });
       var watcher = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            clip.play().catch(function () { clip.controls = true; });
-          } else {
+            if (!viewerPaused) clip.play().catch(function () {});
+          } else if (!clip.paused) {
+            ourPause = true;
             clip.pause();
           }
         });

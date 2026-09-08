@@ -4,6 +4,25 @@
    Playfair + Inter, particle-comet timeline, tiny metric anims.
    ========================================================= */
 
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 600; font-display: swap; src: url('../fonts/inter.woff2') format('woff2'); }
+@font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 500 600; font-display: swap; src: url('../fonts/playfair.woff2') format('woff2'); }
+@font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 500; font-display: swap; src: url('../fonts/playfair-italic.woff2') format('woff2'); }
+
+/* policy pages share the case-page chrome; only the body copy is styled here */
+.policy { padding-top: 0.5rem; }
+.policy h2 { margin: 1.8rem 0 0.6rem; font-family: var(--serif); font-size: var(--text-heading); line-height: 1.15; }
+.policy p + p { margin-top: 0.8rem; }
+.policy a, .contact-privacy a { color: var(--blue-text); text-decoration: underline; text-underline-offset: 3px; }
+.contact-privacy { margin: 24px 0 12px; max-width: 65ch; color: var(--ink-soft); font-size: var(--text-small); }
+.legal-links { display: flex; flex-wrap: wrap; gap: 0 1.2rem; }
+.legal-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-soft); font-size: 0.78rem; text-decoration: underline; text-underline-offset: 0.2em; }
+.legal-links a:hover { color: var(--blue-text); }
+/* the comet control: present for anyone who needs it, quiet for everyone else */
+.motion-toggle { align-self: flex-start; min-height: 44px; margin: -0.4rem 0 0; padding: 0; border: 0; background: none; color: var(--ink-soft); font: inherit; font-size: 0.66rem; opacity: 0.6; text-decoration: underline; text-underline-offset: 0.2em; cursor: pointer; }
+.motion-toggle:hover, .motion-toggle:focus-visible { opacity: 1; color: var(--blue-text); }
+.animations-paused *, .animations-paused *::before, .animations-paused *::after { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) { .motion-toggle { display: none; } }
+
 :root {
   --paper: #EEEDE8;
   --paper-2: #E7E3DA;
@@ -879,7 +898,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   font-size: 0.82rem; color: var(--ink-soft);
 }
 .site-footer__row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
-.site-footer__note { margin: 0; font-style: italic; font-size: 0.78rem; color: var(--ink-soft); opacity: 0.85; }
+.site-footer__note { margin: 0; font-style: italic; font-size: 0.78rem; color: var(--ink-soft); }
 .site-footer__socials { display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 0.6rem; }
 .footer-social { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 36px; font-weight: 600; color: var(--blue-deep); padding: 0.4rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-control); transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease; }
 .footer-social svg { width: 18px; height: 18px; }

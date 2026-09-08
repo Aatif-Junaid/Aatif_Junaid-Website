@@ -7,7 +7,7 @@ Brand marks used nominatively on `gtm-systems.html` to show which tools the work
 | Files | Source | Notes |
 | --- | --- | --- |
 | `n8n`, `anthropic`, `gmail`, `hubspot`, `googlesheets`, `mixpanel`, `posthog`, `calendly`, `zapier`, `figma`, `githubactions`, `googlegemini`, `googleanalytics`, `jira`, `github`, `rss` (SVG) | Simple Icons, CC0 (https://simpleicons.org) | 24 by 24 viewbox, brand fill on the root element |
-| `codex` (OpenAI mark), `salesforce`, `linkedin`, `tableau`, `powerbi` (SVG) | gilbarbara/logos, MIT collection (https://github.com/gilbarbara/logos) | Unmodified vendor artwork |
+| `codex` (OpenAI mark), `salesforce`, `linkedin`, `tableau`, `powerbi` (SVG) | gilbarbara/logos, CC0 collection (https://github.com/gilbarbara/logos) | Unmodified vendor artwork |
 | `powershell` (SVG) | devicon, MIT (https://github.com/devicons/devicon) | |
 | `excel` (SVG) | vscode-icons, CC BY 4.0 (https://github.com/vscode-icons/vscode-icons) | `file_type_excel.svg` |
 | `apollo`, `clay`, `gong`, `attio` (PNG) | The vendors' own site favicons, 128 px (Attio 32 px) | Used at 18 px or smaller |

@@ -2,6 +2,15 @@
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
+  // Folded blocks: open on desktop, collapsed on phones until tapped.
+  var folds = document.querySelectorAll('details.fold');
+  if (folds.length) {
+    var phone = window.matchMedia('(max-width: 768px)');
+    var applyFolds = function () { folds.forEach(function (fold) { fold.open = !phone.matches; }); };
+    applyFolds();
+    if (phone.addEventListener) phone.addEventListener('change', applyFolds); else phone.addListener(applyFolds);
+  }
+
   var motionButton = document.querySelector('.motion-toggle');
   if (motionButton) motionButton.addEventListener('click', function () {
     var paused = document.documentElement.classList.toggle('animations-paused');

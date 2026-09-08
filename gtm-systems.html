@@ -31,7 +31,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
-  <link rel="stylesheet" href="assets/css/site.css?v=55" />
+  <link rel="stylesheet" href="assets/css/site.css?v=56" />
 
   <!-- Structured data: a public article authored by the same Person entity -->
   <script type="application/ld+json">
@@ -259,7 +259,8 @@
 
       <div class="eng-build">
         <div>
-          <h3 class="systems-subhead">Track 1: intake to approval queue</h3>
+          <details class="fold" open>
+            <summary><h3 class="systems-subhead">Track 1: intake to approval queue</h3><span class="fold__hint" aria-hidden="true"></span></summary>
           <ol class="eng-steps" aria-label="Intake track nodes, in order">
             <li class="eng-step"><span class="eng-step__type">Schedule Trigger</span><strong>Run GTM Engine Demo</strong><p>Fires every 5 minutes while the workflow is active.</p></li>
             <li class="eng-step"><span class="eng-step__type"><img src="assets/logos/tools/rss.svg" alt="" width="12" height="12" />RSS Read</span><strong>Read Market Source</strong><p>EIA Today in Energy. A public, named source, not typed-in text.</p></li>
@@ -272,9 +273,11 @@
             <li class="eng-step"><span class="eng-step__type">Code</span><strong>Draft From Cited Inputs</strong><p>Flattens the parsed output into one row per draft, with channel LinkedIn, confidence High, and approval_status Pending as the defaults.</p></li>
             <li class="eng-step"><span class="eng-step__type"><img src="assets/logos/tools/googlesheets.svg" alt="" width="12" height="12" />Google Sheets</span><strong>Write To Approval Queue</strong><p>Append or update on <code>approval_queue</code>, matched on draft_id. The draft stops here and waits for me.</p></li>
           </ol>
+          </details>
         </div>
         <div>
-          <h3 class="systems-subhead">Track 2: approval to activation and log</h3>
+          <details class="fold" open>
+            <summary><h3 class="systems-subhead">Track 2: approval to activation and log</h3><span class="fold__hint" aria-hidden="true"></span></summary>
           <ol class="eng-steps" aria-label="Distribution track nodes, in order">
             <li class="eng-step"><span class="eng-step__type">Schedule Trigger</span><strong>Scheduled Approval Check</strong><p>The only other entry point in the workflow. Every 5 minutes.</p></li>
             <li class="eng-step"><span class="eng-step__type"><img src="assets/logos/tools/googlesheets.svg" alt="" width="12" height="12" />Google Sheets</span><strong>Read Approved Drafts</strong><p>Reads <code>approval_queue</code> for rows where approval_status is Approved and processed_status is blank.</p></li>
@@ -284,10 +287,12 @@
             <li class="eng-step eng-step--act"><span class="eng-step__type"><img src="assets/logos/tools/linkedin.svg" alt="" width="12" height="12" />LinkedIn &middot; activation</span><strong>LinkedIn Draft Ready</strong><p>Posts as an organization through the LinkedIn node. Record LinkedIn Draft Ready logs channel LinkedIn, stage <code>approved_for_distribution</code>, outcome ready for manual publish.</p></li>
             <li class="eng-step eng-step--act"><span class="eng-step__type"><img src="assets/logos/tools/hubspot.svg" alt="" width="12" height="12" />HubSpot &middot; activation</span><strong>HubSpot CRM Log Ready</strong><p>An engagement node that logs the email as a CRM activity against the contact.</p></li>
           </ol>
+          </details>
         </div>
       </div>
 
-      <h3 class="systems-subhead systems-subhead--mark"><img src="assets/logos/tools/googlesheets.svg" alt="" width="22" height="22" />The data is stored in live Google Sheets</h3>
+      <details class="fold" open>
+        <summary><h3 class="systems-subhead systems-subhead--mark"><img src="assets/logos/tools/googlesheets.svg" alt="" width="22" height="22" />The data is stored in live Google Sheets</h3><span class="fold__hint" aria-hidden="true"></span></summary>
       <p class="systems-lead">One live Google Sheet, three tabs. Every node reads or writes here. Nothing is stored anywhere else.</p>
       <ol class="systems-stack" aria-label="The three Google Sheets tabs">
         <li class="systems-step">
@@ -309,8 +314,10 @@
           <details><summary>15 columns, plus 8 source fields carried through</summary><ul class="eng-cols"><li>event_time</li><li>run_id</li><li>company</li><li>channel</li><li>action_taken</li><li>journey_stage</li><li>hubspot_status</li><li>analytics_event</li><li>outcome</li><li>source_url</li><li>source_verified</li><li>notes</li><li>approved_for_distribution</li><li>distribution_logged</li><li>crm_log_ready</li></ul></details>
         </li>
       </ol>
+      </details>
 
-      <h3 class="systems-subhead">How it authenticates</h3>
+      <details class="fold" open>
+        <summary><h3 class="systems-subhead">How it authenticates</h3><span class="fold__hint" aria-hidden="true"></span></summary>
       <p class="systems-lead">Credentials are split by vendor and stored once in n8n, on the self-hosted instance at <code>n8n.aatifmulla.me</code>.</p>
       <ul class="systems-stack systems-stack--auth" aria-label="Credentials by vendor">
         <li class="systems-step">
@@ -339,6 +346,7 @@
           <p>The HubSpot node authenticates with either and writes the engagement to the CRM.</p>
         </li>
       </ul>
+      </details>
     </section>
 
     <section class="case-section" id="proof">
@@ -409,6 +417,6 @@
     <nav class="legal-links" aria-label="Policies"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/accessibility.html">Accessibility</a></nav>
   </footer>
 
-  <script src="assets/js/site.js?v=6"></script>
+  <script src="assets/js/site.js?v=7"></script>
 </body>
 </html>

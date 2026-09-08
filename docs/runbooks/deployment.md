@@ -25,7 +25,7 @@ Push the validated commit to `main`. GitHub Pages starts automatically and norma
 Check the Pages workflow and then request:
 
 - `https://aatifmulla.me/`
-- `https://aatifmulla.me/case-studies.html`
+- `https://aatifmulla.me/playbook.html`
 - `https://aatifmulla.me/field-program.html`
 - `https://aatifmulla.me/robots.txt`
 - `https://aatifmulla.me/sitemap.xml`

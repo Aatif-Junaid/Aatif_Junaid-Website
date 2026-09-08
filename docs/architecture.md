@@ -25,7 +25,7 @@ Cloudflare and aatifmulla.me
 | Root HTML files | Deployable pages, metadata, JSON-LD, and page-specific copy |
 | `assets/css/site.css` | Shared visual system and responsive behavior |
 | `assets/js/site.js` | Footer year and shared in-page navigation behavior |
-| `assets/js/case-studies.js` | Case-study focus behavior |
+| `assets/js/playbook.js` | Play focus behavior on the playbook page |
 | `assets/js/homepage.js` | Homepage-only canvas, timeline, carousel, and reveal behavior |
 | `assets/` media | Headshot, organization logos, and public case-study evidence |
 | `DESIGN.md` | Permanent visual direction, component, motion, and accessibility rules |

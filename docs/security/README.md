@@ -6,7 +6,7 @@ This public repository serves a dependency-free static website. Its security con
 
 - Keep the GitHub account protected with two-factor authentication and current recovery methods.
 - Keep the `protect-main` ruleset active: pull requests only, `Site integrity` and `TruffleHog secrets` required, no force pushes, no deletion, no bypass actors.
-- Keep GitHub secret scanning on with push protection and non-provider patterns enabled.
+- Keep GitHub secret scanning on with push protection enabled. Non-provider patterns need GitHub Secret Protection and stay off on the free plan.
 - Run `pwsh -File scripts/check.ps1` before every push.
 - Keep the read-only `Site integrity` and `TruffleHog secrets` GitHub Actions jobs.
 - Pin every third-party GitHub Action to a full 40-character commit SHA.

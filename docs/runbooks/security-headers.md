@@ -48,6 +48,18 @@ Post-change verification on 2026-09-08: all four routes return the new header, t
 
 To change the policy later, edit that one transform rule's `Content-Security-Policy` value. Leave the other four static headers (`X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`) alone.
 
+## GitHub Pages domain verification
+
+Verified on 2026-09-08. `aatifmulla.me` is a verified custom domain on the `Aatif-Junaid` account, so no other GitHub account can bind it. The API reports `protected_domain_state: verified` at `repos/Aatif-Junaid/Aatif_Junaid-Website/pages`.
+
+Verification depends on a DNS TXT record that must stay in place permanently:
+
+```text
+_github-pages-challenge-Aatif-Junaid.aatifmulla.me
+```
+
+Do not delete that record when tidying DNS. Removing it lets the verification lapse. It is the only purpose that hostname serves, so it looks disposable and is not.
+
 ## GitHub Pages origin certificate
 
 Resolved on 2026-08-23. GitHub Pages issued a replacement certificate for `aatifmulla.me`, and **Enforce HTTPS** is enabled in the repository's Pages settings. Cloudflare continues to proxy the four GitHub Pages apex records and the `www` CNAME. The separate `n8n` record remains DNS-only.

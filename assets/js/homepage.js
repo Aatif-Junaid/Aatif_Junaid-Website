@@ -108,9 +108,10 @@
     var flowingX = cssW / 2 + Math.sin(relativeY * 0.005 + time * 0.035 + pathStartPhase) * pathAmplitude;
     var openingProgress = Math.max(0, Math.min(1, relativeY / 170));
     if (openingProgress >= 1) return flowingX;
-    var easedProgress = openingProgress * openingProgress * (3 - 2 * openingProgress);
+    var easedProgress = Math.pow(openingProgress, 3) * (10 + openingProgress * (-15 + 6 * openingProgress));
     var openingAnchor = pathStartX + Math.sin(time * 0.035) * 3;
-    var leftHook = -46 * Math.pow(Math.sin(Math.PI * openingProgress), 2);
+    var hookReach = Math.max(0, Math.min(72, pathStartX - 16));
+    var leftHook = -hookReach * (256 / 27) * openingProgress * Math.pow(1 - openingProgress, 3);
     return openingAnchor + (flowingX - openingAnchor) * easedProgress + leftHook;
   }
 

@@ -1,0 +1,11 @@
+/* Homepage proof sequence only; loaded exclusively below the mobile breakpoint. */
+.hero-proof__nodes > ol { counter-reset: proof-step; }
+.hero-proof__nodes > ol > .eng-node { counter-increment: proof-step; }
+.hero-proof__nodes > ol > .eng-node > strong::before {
+  content: counter(proof-step) ". ";
+  color: var(--blue-deep);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

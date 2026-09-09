@@ -1377,6 +1377,15 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   a:focus, button:focus, summary:focus { outline: 3px solid var(--blue); outline-offset: 3px; }
 }
 
+/* Home is the consistent dark-blue return action, including on phones. */
+.site-nav .nav-page.nav-page--home {
+  background: var(--blue-text); border-color: var(--blue-text); color: #fff;
+}
+.site-nav .nav-page.nav-page--home .nav-page__icon { color: currentColor; }
+.site-nav .nav-page.nav-page--home:hover {
+  background: var(--blue-deep); border-color: var(--blue-deep); color: #fff;
+}
+
 /* skip link: lets keyboard users jump past the nav (WCAG 2.4.1) */
 .skip-link { min-height: 44px; display: inline-flex; align-items: center; }
 .skip-link {

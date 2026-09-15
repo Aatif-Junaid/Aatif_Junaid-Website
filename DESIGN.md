@@ -40,6 +40,16 @@ Copy is part of the design:
 - preserve the approved Aiseberg, Aisepedia, Splunk/Cisco, and POLITICO framing
 - keep positioning consistent with GTM and Product Growth
 
+The type scale, on every page:
+
+- Seven sizes: 14, 16, 18, 24, 32, 48 for case-page titles, and the name at `clamp(3rem, 6.2vw, 5.5rem)`. Every text element uses one of the `--text-*` tokens; 12px exists only for the phone header.
+- Section titles are 32 at weight 500. Item titles (play titles, card titles, h3) are 24 at weight 600. Page titles are weight 500 everywhere.
+- Body text never runs past about 70 characters: `max-width: 56ch` in Inter, whose `ch` is wide.
+- One header on every page: the flat 68px bar. One hero: left-aligned, kicker over title over lede over actions. The homepage geometry is the site's one signature.
+- Two radii: 16px for cards, 8px for controls. Circles only for real markers and the headshot.
+- One shadow, `--tile-shadow`, on cards only. Icons, buttons, chips, and node circles carry none. Metric tiles carry no icons.
+- Two buttons: filled and outline, both 48px tall, 14px at weight 500. Carousel arrows and the comet toggle are quiet text controls.
+
 Labels and headings, on every page:
 
 - Section headings are the plain word: Experience, Education, Approach, More, The build, The bet. A call to action keeps its sentence. No small label sits above a heading.

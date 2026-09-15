@@ -23,6 +23,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Fact-checked against the professional brain (2026-09-14): play 03 credits one design partner on the PMM 2.0 panel; play 01 shows 83 registered and 36 attended; the lifecycle system is described as nine emails on two tracks; the Aiseberg card says first US hire.
 - Homepage spacing tightened: the hero sits closer under the header, the rule above How I work is gone, the Core stack no longer draws a second line under Education, and sections sit 96px apart instead of 128px.
 - Contact reads "Tell me what you’re building." and "And let’s build it together." The footer line drops the second "real".
 - Each play shows its headline number before anything is expanded. The result block and its attribution note moved outside the fold, and play 05 gained the block it never had.

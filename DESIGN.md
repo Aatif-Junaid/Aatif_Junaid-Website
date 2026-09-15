@@ -40,6 +40,14 @@ Copy is part of the design:
 - preserve the approved Aiseberg, Aisepedia, Splunk/Cisco, and POLITICO framing
 - keep positioning consistent with GTM and Product Growth
 
+Labels and headings, on every page:
+
+- Section headings are the plain word: Experience, Education, Approach, More, The build, The bet. A call to action keeps its sentence. No small label sits above a heading.
+- No small-capitals labels anywhere except dates (`SEPT 2025 - PRESENT`). Metric labels, badges, node types, verb labels, and kickers are ordinary text at 0.78 to 0.95rem.
+- No pills. A badge is plain text. The four verb pills under the How I work diagram and the Aiseberg loop are gone.
+- No arrows on links, chips, or Show more controls. A caret stays only where it marks an expandable block (the Decision systems disclosure, the approach tiles on phones).
+- The header nav reads the same on every page: sentence case, 0.875rem, weight 500.
+
 ## Layout and hierarchy
 
 The general content container caps at 1280px with responsive 20-64px gutters and a 12-column desktop grid. The signature Experience composition remains at its established 1380px width so the comet geometry does not shift. Desktop navigation is 68px tall and remains on one line. Mobile layouts collapse to one column below 768px and never depend on horizontal page scrolling.

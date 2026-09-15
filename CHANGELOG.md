@@ -23,6 +23,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- One type scale (seven sizes), body text capped near 70 characters, the flat header and a left-aligned hero on every page, two radii and one shadow, two buttons. Case-page titles are 48px instead of 92px; metric tile icons and node-circle glows are gone.
 - One design language on every page: section headings are the plain word, the small-capitals labels above and inside blocks are ordinary text, the verb pills under the two diagrams are gone, arrows are off links and chips, and the homepage nav matches the other pages. The hero reads "I build go-to-market for technical products, sold to expert buyers." Dates keep capitals; the Decision systems caret stays.
 - Fact-checked against the professional brain (2026-09-14): play 03 credits one design partner on the PMM 2.0 panel; play 01 shows 83 registered and 36 attended; the lifecycle system is described as nine emails on two tracks; the Aiseberg card says first US hire.
 - Homepage spacing tightened: the hero sits closer under the header, the rule above How I work is gone, the Core stack no longer draws a second line under Education, and sections sit 96px apart instead of 128px.

@@ -1138,7 +1138,6 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .fold__head { display: block; padding: 0.85rem 0; }
   .fold > summary .systems-subhead, .fold:not([open]) > summary .systems-subhead { margin: 0; font-size: var(--text-18); }
   .fold__sub { display: block; margin-top: 0.3rem; color: var(--ink-soft); font-size: var(--text-14); line-height: 1.4; }
-  .fold__thumb { display: block; flex: 0 0 auto; width: 60px; height: 42px; object-fit: cover; object-position: top; border-radius: var(--radius-control); border: 1px solid var(--line-strong); }
   .fold[open] .fold__thumb { display: none; }
   /* the control reads as a button once the tile carries weight */
   .fold > summary .fold__hint { padding: 0.3rem 0.6rem; border: 1px solid rgba(47, 127, 179, 0.48); border-radius: var(--radius-control); background: rgba(143, 205, 238, 0.17); white-space: nowrap; }
@@ -1331,3 +1330,38 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .tl-desc, .tl-points li, .tl-note, .tl-gaptext, .reports p, .deeper__line, .contact__lead,
 .case-hero__lede, .case-hero__context, .case-section p, .case-section li, .systems-lead, .eng-step p, .eng-points li,
 .policy p, .policy li, .artifact-proof p, .case-note { max-width: 56ch; }
+
+/* ---------- phone pass: density and touch ---------- */
+@media (max-width: 768px) {
+  /* short fold labels on phones; the full title stays in the accessibility tree */
+  .fold__title[data-short] { font-size: 0; }
+  .fold__title[data-short]::before { content: attr(data-short); font-size: var(--text-14); }
+  /* touch spacing: 12px between neighbouring targets, a 44px mark */
+  .site-header { grid-template-columns: 44px minmax(0, 1fr); column-gap: 10px; }
+  .site-header .wordmark { width: 44px; min-width: 44px; background-size: 30px 30px; }
+  .site-nav { gap: 12px; }
+  .hero__actions { gap: 0.75rem; }
+  .dp-nav { gap: 12px; }
+  /* the playbook index as five rows */
+  .case-index { grid-template-columns: 1fr; }
+  .case-index a { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; column-gap: 0.75rem; padding: 0.75rem 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .case-index a:last-child { border-bottom: 0; }
+  .case-index strong { margin-top: 0; font-size: var(--text-16); text-align: right; }
+  .case-index small { display: none; }
+  /* the toolkit as four lines of names, not four boxes of rows */
+  .toolkit__groups { display: block; }
+  .toolkit__group { padding: 0; border: 0; background: none; box-shadow: none; text-align: left; }
+  .toolkit__group + .toolkit__group { margin-top: 0.7rem; }
+  .toolkit__group h3 { text-align: left; border: 0; padding: 0; margin: 0 0 0.15rem; }
+  .toolkit__list { display: block; line-height: 1.6; }
+  .tool-row { display: inline; min-height: 0; padding: 0; font-size: var(--text-14); }
+  .tool-row .tool-chip__logo { display: none; }
+  .tool-row::after { content: ", "; }
+  .tool-row:last-child::after { content: "."; }
+  /* the primary action fills the width of the contact block */
+  .contact-tile .btn--primary { width: 100%; justify-content: center; }
+  /* note labels read inline with their sentence */
+  .tl-note { display: block; }
+  .tl-note__badge, .tl-note__text { display: inline; }
+  .tl-note__badge::after { content: ". "; }
+}

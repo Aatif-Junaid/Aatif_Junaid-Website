@@ -980,7 +980,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .edu-card__head { margin-bottom: 0.4rem; align-items: center; }
   .edu-card__deg { font-size: var(--text-16); }
   .edu-card__school { font-size: var(--text-14); margin-top: 0.15rem; }
-  .edu-card__points { font-size: var(--text-14); line-height: 1.4; gap: 0.4rem; }
+  .edu-card__points { font-size: var(--text-16); line-height: 1.5; gap: 0.5rem; }
   .stack { margin-top: 1.4rem; padding-top: 1rem; }
   .stack__title { font-size: var(--text-18); }
   .stack__list li { row-gap: 0; padding: 0.4rem 0; }
@@ -1007,7 +1007,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .case-study__header h2 { font-size: var(--text-18); }
   .case-study__grid { gap: 1rem; padding: 0.9rem 0; }
   .case-study__grid h3 { font-size: var(--text-16); margin-bottom: 0.4rem; }
-  .case-study__grid p, .case-actions li { font-size: var(--text-14); line-height: 1.6; }
+  .case-study__grid p, .case-actions li { font-size: var(--text-16); line-height: 1.55; }
   .case-actions { gap: 0.5rem; }
   .case-results p { padding: 0.75rem 0.7rem; font-size: var(--text-14); }
   .activation-result { padding: 0.85rem 0.9rem; gap: 0.35rem; }
@@ -1031,7 +1031,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .eng-track { padding: 0.9rem 0.8rem 1rem; }
   .eng-gate__how { font-size: var(--text-14); }
   .eng-step { padding-bottom: 0.75rem; }
-  .eng-step p, .systems-step p, .eng-points li { font-size: var(--text-14); line-height: 1.6; }
+  .eng-step p, .systems-step p, .eng-points li { font-size: var(--text-16); line-height: 1.55; }
   .systems-step { padding: 0.9rem; }
   .systems-clip { margin-top: 1rem; }
   /* Match the desktop :not() specificity so mobile summaries accept taps. */
@@ -1094,21 +1094,21 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .site-nav .nav-page--home { flex-basis: 44px; min-width: 44px; font-size: 0; }
   .site-header .wordmark { height: 44px; }
   /* type scale one step down */
-  body { font-size: var(--text-14); }
-  .section-title { font-size: var(--text-18); }
+  body { font-size: var(--text-16); line-height: 1.55; }
+  .section-title { font-size: var(--text-24); }
   .hero__name { font-size: clamp(2.1rem, 9.6vw, 2.6rem); }
-  .hero__tagline { font-size: var(--text-16); }
+  .hero__tagline { font-size: var(--text-18); }
   .hero__statement strong { font-size: var(--text-14); }
   .hero-proof__intro h2 { font-size: var(--text-24); }
-  .tl-role { font-size: var(--text-16); }
+  .tl-role { font-size: var(--text-18); }
   .tl-date { font-size: var(--text-14); }
   .tl-org { font-size: var(--text-14); }
   .tl-desc { font-size: var(--text-14); }
-  .tl-points li { font-size: var(--text-14); line-height: 1.4; }
+  .tl-points li { font-size: var(--text-16); line-height: 1.55; }
   .tl-note { font-size: var(--text-14); }
   .metrics, .metrics--four { gap: 0.45rem; }
   .metric { padding: 0.5rem 0.6rem; border-radius: var(--radius-control); }
-  .metric__num { font-size: var(--text-16); }
+  .metric__num { font-size: var(--text-24); }
   .metric__text { font-size: var(--text-14); }
   .metric__badge { margin-bottom: 0.3rem; padding: 0.1rem 0.45rem; font-size: var(--text-14); }
   .metric__label { margin-top: 0.15rem; font-size: var(--text-14); letter-spacing: 0; }
@@ -1121,7 +1121,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .tl-head .logo-chip img { height: 24px; }
   .event-strip__title { font-size: var(--text-14); }
   .dp-slide { padding: 0.75rem 0.85rem 0.7rem; }
-  .dp-slide blockquote { font-size: var(--text-14); line-height: 1.4; }
+  .dp-slide blockquote { font-size: var(--text-16); line-height: 1.5; }
   .dp-role { font-size: var(--text-14); }
   /* the MBA marker: a quiet line on the timeline, not a card */
   .tl-item--gap { margin-bottom: 0.6rem; }

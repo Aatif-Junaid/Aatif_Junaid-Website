@@ -511,6 +511,7 @@ a.dp-name:hover { color: var(--blue-text); }
 .edu-card__deg { font-family: var(--serif); font-weight: 600; font-size: var(--text-heading); line-height: 1.15; }
 .edu-card__school { font-size: var(--text-14); color: var(--ink-soft); margin-top: 0.3rem; }
 .edu-card__note { color: var(--ink-soft); font-size: var(--text-16); }
+.edu-card__note + .edu-card__note { margin-top: 0.6rem; }
 
 /* ---------- toolkit: flat grouped evidence ---------- */
 

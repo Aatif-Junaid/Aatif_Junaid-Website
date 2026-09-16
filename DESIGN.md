@@ -49,6 +49,8 @@ The type scale, on every page:
 - Two radii: 16px for cards, 8px for controls. Circles only for real markers and the headshot.
 - One shadow, `--tile-shadow`, on cards only. Icons, buttons, chips, and node circles carry none. Metric tiles carry no icons.
 - Two buttons: filled and outline, both 48px tall, 14px at weight 500. Carousel arrows and the comet toggle are quiet text controls.
+- Motion budget: the comet is the one continuous movement on the site. Reveal-on-scroll runs once; hovers lift by a pixel or two. No sweeping gradients, travelling dots, spinning rings, or icon entrances.
+- Experience cards are two columns on desktop: description and bullets on the left at about 75 characters, number tiles two-across on the right. A card without tiles keeps a 56ch column. Phones stack.
 
 Labels and headings, on every page:
 

@@ -432,7 +432,7 @@ a.logo-chip:hover { transform: translateY(-2px) scale(1.04); }
 .reports__summary::-webkit-details-marker { display: none; }
 .reports__head { display: flex; align-items: center; justify-content: flex-start; gap: 0.55rem; }
 .reports__title { font-size: var(--text-14); font-weight: 600; color: var(--blue-deep); }
-.reports__chev { color: var(--blue-text); font-size: 1.3rem; line-height: 1; transition: transform 0.3s ease; }
+.reports__chev { color: var(--blue-text); font-size: var(--text-24); line-height: 1; transition: transform 0.3s ease; }
 .reports[open] .reports__chev { transform: rotate(90deg); }
 .reports__meta { display: block; margin-top: 0.3rem; font-size: var(--text-14); line-height: 1.4; color: var(--ink-soft); }
 .reports__list { margin: 1rem 0 0; display: grid; gap: 0.75rem; }
@@ -696,7 +696,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .eng-node--act .eng-node__icon svg { color: #fff; }
 .eng-loopnote { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1.1rem; color: var(--blue-deep); font-size: var(--text-14); font-weight: 500; }
 .eng-loopnote svg { width: 18px; height: 18px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.eng code, .systems-step code, .systems-lead code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; color: var(--blue-deep); background: rgba(143, 205, 238, 0.2); padding: 0 0.3em; border-radius: var(--radius-control); overflow-wrap: anywhere; }
+.eng code, .systems-step code, .systems-lead code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: var(--text-14); color: var(--blue-deep); background: rgba(143, 205, 238, 0.2); padding: 0 0.3em; border-radius: var(--radius-control); overflow-wrap: anywhere; }
 .eng-node--wait .eng-node__icon { position: relative; }
 .eng-node--wait .eng-node__icon::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px dashed var(--sky-deep); opacity: 0.7; }
 .eng-node--wait .eng-clock .hand { transform-origin: 12px 12px; transform-box: view-box; }
@@ -1344,9 +1344,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .dp-slide blockquote { font-size: var(--text-16); }
 .metric__text { font-size: var(--text-24); }
 .toolkit__title { font-size: var(--text-32); }
-code, .eng code, .systems-step code { font-size: var(--text-14); }
 .nav-page__icon { font-size: var(--text-16); }
-.eng code, .eng-step code, .eng-cols code, .systems-step code, .eng-node code, code { font-size: var(--text-14); }
 .contact-privacy { max-width: 56ch; }
 @media (max-width: 768px) {
   /* the three hero buttons stay on one row at 375 */

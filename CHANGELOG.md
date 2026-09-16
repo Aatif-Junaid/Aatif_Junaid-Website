@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Fixed
 
+- The 404 page's header linked to a homepage anchor that does not exist ("Go-to-market"); it now carries the same three links as the other utility pages. Inline code on the GTM page rendered at 12.6px and the Decision systems caret at 20.8px; both now sit on the type scale.
 - Header links no longer touch on desktops between 900px and 1050px wide. The gap has a 0.6rem floor, and below 1024px the wordmark keeps only its mark.
 - The testimonials control on the homepage is clickable again. A later base rule was cancelling its pointer events.
 - Experience cards no longer show a dead "Show 0 more" control. The script hid the button, but a `display` declaration overrode the browser's `[hidden]` rule.

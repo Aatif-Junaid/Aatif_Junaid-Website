@@ -138,9 +138,9 @@ The rules below came out of a full review against premium, minimal design. They 
 Phones are not a scaled-down desktop. Below 768px:
 
 - Body text is 16px with a 1.55 line-height, never 14px. Captions, footnotes, descriptions, and labels may be 14px. Section titles are 24px, role titles 18px, metric numbers 24px, the tagline 18px.
-- Nothing carries a frame. Experience cards, plays, GTM tracks, folds, and the contact block are frameless and separated by hairlines, so text runs the full width of the screen. The glass tiles are a desktop treatment. No backdrop blur on phones except the sticky header.
+- Cards keep their frames and glass on phones, the same tiles as on desktop. A frameless version was tried on 2026-09-16 and withdrawn the same day: it read as plain. Only the backdrop blur is off below 768px, where the flat background gives it nothing to blur; the sticky header keeps its blur.
 - Neighbouring targets sit at least 12px apart; every target is 44px, the header mark included.
-- Fold rows carry no thumbnail and use short labels from `data-short`; the full title stays in the accessibility tree. The first play and both GTM tracks start open on phones (`data-phone-open`).
-- The playbook index is five single-line rows. The toolkit is four lines of names. The contact action fills the width. Note labels read inline with their sentence.
+- Fold rows use short labels from `data-short` and keep their thumbnails; the full title stays in the accessibility tree. The first play and both GTM tracks start open on phones (`data-phone-open`).
+- The playbook index is five single-line rows. The toolkit keeps its four logo groups, two across. The contact action fills the width. Note labels read inline with their sentence.
 - Metric labels are two or three words.
 

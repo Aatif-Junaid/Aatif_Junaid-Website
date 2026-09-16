@@ -1138,6 +1138,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .fold__head { display: block; padding: 0.85rem 0; }
   .fold > summary .systems-subhead, .fold:not([open]) > summary .systems-subhead { margin: 0; font-size: var(--text-18); }
   .fold__sub { display: block; margin-top: 0.3rem; color: var(--ink-soft); font-size: var(--text-14); line-height: 1.4; }
+  .fold__thumb { display: block; flex: 0 0 auto; width: 60px; height: 42px; object-fit: cover; object-position: top; border-radius: var(--radius-control); border: 1px solid var(--line-strong); }
   .fold[open] .fold__thumb { display: none; }
   /* the control reads as a button once the tile carries weight */
   .fold > summary .fold__hint { padding: 0.3rem 0.6rem; border: 1px solid rgba(47, 127, 179, 0.48); border-radius: var(--radius-control); background: rgba(143, 205, 238, 0.17); white-space: nowrap; }
@@ -1348,16 +1349,6 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .case-index a:last-child { border-bottom: 0; }
   .case-index strong { margin-top: 0; font-size: var(--text-16); text-align: right; }
   .case-index small { display: none; }
-  /* the toolkit as four lines of names, not four boxes of rows */
-  .toolkit__groups { display: block; }
-  .toolkit__group { padding: 0; border: 0; background: none; box-shadow: none; text-align: left; }
-  .toolkit__group + .toolkit__group { margin-top: 0.7rem; }
-  .toolkit__group h3 { text-align: left; border: 0; padding: 0; margin: 0 0 0.15rem; }
-  .toolkit__list { display: block; line-height: 1.6; }
-  .tool-row { display: inline; min-height: 0; padding: 0; font-size: var(--text-14); }
-  .tool-row .tool-chip__logo { display: none; }
-  .tool-row::after { content: ", "; }
-  .tool-row:last-child::after { content: "."; }
   /* the primary action fills the width of the contact block */
   .contact-tile .btn--primary { width: 100%; justify-content: center; }
   /* note labels read inline with their sentence */
@@ -1366,26 +1357,9 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .tl-note__badge::after { content: ". "; }
 }
 
-/* ---------- phone pass: no frames, no blur below 768px ---------- */
+/* ---------- phone pass: blur off where it has nothing to blur ---------- */
 @media (max-width: 768px) {
-  .tile, .btn, .contact-bubble, .artifact-proof, .fold, .dp-slide, .metric { -webkit-backdrop-filter: none; backdrop-filter: none; }
-  .tl-card, .contact-tile, .case-study, .deeper__row, .eng-track, .systems-step, .fold {
-    background: transparent; border: 0; border-radius: 0; box-shadow: none; padding-left: 0; padding-right: 0;
-  }
-  .tl-card, .contact-tile, .case-study { padding-top: 0; padding-bottom: 0; }
-  .tl-item { margin-bottom: 0; }
-  .tl-item + .tl-item .tl-card, .tl-item + .tl-item .tl-gapcard { border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem; }
-  .tl-item.is-focus .tl-card { box-shadow: none; border-color: var(--line); }
-  .case-study { margin-bottom: 0; }
-  .case-study + .case-study { border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem; }
-  .case-study.is-focus { background: transparent; border-color: var(--line); box-shadow: none; }
-  .deeper__row { padding-left: 0; padding-right: 0; }
-  .deeper__row + .deeper__row { border-top: 1px solid var(--line); }
-  .eng-track + .eng-track { margin-top: 1rem; }
-  .fold { margin-top: 0.8rem; border-top: 1px solid var(--line); }
-  .fold[open] { padding-bottom: 0.5rem; }
-  .fold--play { border-top: 0; }
-  .fold > summary .fold__hint { border: 0; background: none; padding: 0.3rem 0; }
+  .tile, .fold, .dp-slide, .metric, .artifact-proof, .contact-bubble { -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 
 /* ---------- phone pass: the two rules that needed more specificity ---------- */

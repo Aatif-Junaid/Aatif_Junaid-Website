@@ -63,8 +63,7 @@
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 
   /* The type scale. Seven sizes; every text element on the site uses one of them.
-     12px exists only for the phone header. */
-  --text-12: 0.75rem;
+     */
   --text-14: 0.875rem;
   --text-16: 1rem;
   --text-18: 1.125rem;
@@ -200,6 +199,8 @@ body::before {
   display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--grid-gap); text-align: left;
 }
 .hero > * { grid-column: 1 / span 9; min-width: 0; position: relative; z-index: 1; }
+/* One left edge: the hero box stays 1400px wide so the geometry does not move; the text column sits on the 1280px edge every section uses. */
+.hero { padding-left: calc(var(--gutter) + clamp(0px, (min(100%, 1400px) - 1280px) / 2, 60px)); padding-right: calc(var(--gutter) + clamp(0px, (min(100%, 1400px) - 1280px) / 2, 60px)); }
 .hero > .kicker, .hero > .hero__name, .hero > .hero__story, .hero > .hero__actions { grid-column: 1 / span 10; }.kicker { margin-bottom: 1.7rem; }
 .hero__kicker { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; }
 .hero__location-group { display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
@@ -1097,7 +1098,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .site-header { flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 0.2rem 0.45rem; padding-top: 0.4rem; padding-bottom: 0.4rem; }
   .site-nav { display: contents; }
   /* page chips: the same size as the section links, with a light blue edge; they wrap only when the row is full */
-  .site-nav .nav-page { order: 1; flex: 0 0 auto; min-width: 0; min-height: 32px; margin: 0; padding: 0.15rem 0.5rem; font-size: var(--text-12); letter-spacing: 0.01em; border-radius: var(--radius-control); }
+  .site-nav .nav-page { order: 1; flex: 0 0 auto; min-width: 0; min-height: 32px; margin: 0; padding: 0.15rem 0.5rem; letter-spacing: 0.01em; border-radius: var(--radius-control); }
   .site-nav .nav-page:first-of-type { margin-left: auto; }
   .case-header .wordmark { width: 40px; min-width: 40px; height: 40px; font-size: 0; background: url(/assets/logos/am-mark-glossy.svg) center / 36px 36px no-repeat; }
   /* Home as an icon-only chip on phones so three chips and the mark share one row; the aria-label names it */
@@ -1110,7 +1111,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 }
   .site-nav .nav-page--home .nav-page__icon { font-size: var(--text-16); }
   /* row one: the mark and the section links, small */
-  .site-nav a:not(.nav-page) { order: 0; flex: 0 0 auto; min-height: 32px; margin: 0; padding: 0 0.15rem; justify-content: center; font-size: var(--text-12); letter-spacing: 0.02em; border-bottom: 0; }
+  .site-nav a:not(.nav-page) { order: 0; flex: 0 0 auto; min-height: 32px; margin: 0; padding: 0 0.15rem; justify-content: center; letter-spacing: 0.02em; border-bottom: 0; }
   .site-nav a:not(.nav-page):first-child { margin-left: 0.2rem; }
   /* Keep mobile navigation inside its own right-aligned column. */
   .site-header {
@@ -1135,6 +1136,11 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
     width: 32px; min-width: 32px; height: 36px; background-size: 30px 30px;
   }
   .wordmark { font-size: var(--text-14); }
+  /* phone header: the page links only, readable and tappable. The in-page anchors are one thumb-scroll away. */
+  .site-nav a:not(.nav-page) { display: none; }
+  .site-nav .nav-page { min-height: 44px; font-size: var(--text-14); padding: 0.3rem 0.8rem; }
+  .site-nav .nav-page--home { flex-basis: 44px; min-width: 44px; font-size: 0; }
+  .site-header .wordmark { height: 44px; }
   /* type scale one step down */
   body { font-size: var(--text-14); }
   .section-title { font-size: var(--text-18); }

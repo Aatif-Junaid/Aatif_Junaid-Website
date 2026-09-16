@@ -885,6 +885,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .dp-slide { flex: 0 0 100%; min-width: 100%; }
   .tl-note { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
 
+  .edu-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+  .edu-card { grid-column: 1 / -1; }
   .edu-card { grid-template-columns: 1fr; gap: var(--space-4); }
   .metrics, .metrics--four { grid-template-columns: repeat(2, 1fr); }
   .stack__list li { grid-template-columns: minmax(2rem, auto) 1fr; }.deeper__row { grid-template-columns: 1fr; }
@@ -1323,3 +1325,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 @media (max-width: 768px) {
   .hero-proof__nodes .eng-node { grid-template-columns: 1fr; }
 }
+
+/* ---------- one measure: body text never runs past 56 characters ---------- */
+.tl-desc, .tl-points li, .tl-note, .tl-gaptext, .reports p, .deeper__line, .contact__lead,
+.case-hero__lede, .case-hero__context, .case-section p, .case-section li, .systems-lead, .eng-step p, .eng-points li,
+.policy p, .policy li, .artifact-proof p, .case-note { max-width: 56ch; }

@@ -26,7 +26,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 ### Changed
 
 - The MBA card's research line now says what the study was: leadership hiring through COVID, including hiring bias by gender and race, with a 48-code codebook Aatif wrote. Confirmed by Aatif on 2026-09-16 against the codebook itself.
-- The timeline's MBA entry now carries only the degree; it marks the gap between roles and nothing else. The research line moved to the Education card, which also links Kogod's student outcomes hub, where the school features Aatif's path from the MBA to POLITICO, and the short video it made about it (August 2024).
+- The timeline's MBA entry now carries only the degree; it marks the gap between roles and nothing else. The Education cards list their details as short points with the same dot marker as the experience cards. The MBA card's points: the designation and scholarship, the two leadership roles, the research with Prof. Mark Clark, the codebook, and Kogod's feature of Aatif's path to POLITICO with links to its student outcomes hub and the short video (August 2024).
 - One left edge on the homepage: the name, sentence, buttons, and How I work sit on the same 1280px edge as every section and page, 60px further right at 1440. The geometry does not move.
 - Phone header: the page links only, at 14px on 44px targets in one 68px row. The in-page anchors leave the phone header; desktop is unchanged.
 - Stylesheet diet with no visual change: 63 rules for classes no page uses and 68 declarations a later rule for the same selector already overrode are gone. The stylesheet went from 98.7KB to 88.3KB. Verified by hashing every element's geometry and computed styles on five pages at five widths, before against after.

@@ -133,3 +133,14 @@ The rules below came out of a full review against premium, minimal design. They 
 - How I work is four numbered columns with no icons, followed by the one-line method note. There is no separate Approach section, and the homepage index of the two case pages is titled Writing.
 - Each fact appears once on a play: bullets carry the actions, the result block carries the number. Disclosure controls say Show, never See.
 
+## The phone pass, 2026-09-16
+
+Phones are not a scaled-down desktop. Below 768px:
+
+- Body text is 16px with a 1.55 line-height, never 14px. Captions, footnotes, descriptions, and labels may be 14px. Section titles are 24px, role titles 18px, metric numbers 24px, the tagline 18px.
+- Nothing carries a frame. Experience cards, plays, GTM tracks, folds, and the contact block are frameless and separated by hairlines, so text runs the full width of the screen. The glass tiles are a desktop treatment. No backdrop blur on phones except the sticky header.
+- Neighbouring targets sit at least 12px apart; every target is 44px, the header mark included.
+- Fold rows carry no thumbnail and use short labels from `data-short`; the full title stays in the accessibility tree. The first play and both GTM tracks start open on phones (`data-phone-open`).
+- The playbook index is five single-line rows. The toolkit is four lines of names. The contact action fills the width. Note labels read inline with their sentence.
+- Metric labels are two or three words.
+

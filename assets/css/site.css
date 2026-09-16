@@ -443,7 +443,6 @@ a.logo-chip:hover { transform: translateY(-2px) scale(1.04); }
 .reports__foot { margin: 0.95rem 0 0; font-size: var(--text-14); line-height: 1.6; color: var(--ink-soft); }
 .metric { position: relative; padding: 0.75rem 0 0; border-top: 1px solid var(--line); }
 .metric__num { display: block; font-family: var(--serif); font-size: var(--text-32); line-height: 1; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--blue-deep); margin-bottom: 0.35rem; }
-.metric__badge { display: inline-block; margin-bottom: 0.45rem; padding: 0.14rem 0.55rem; border-radius: var(--radius-control); background: rgba(143, 205, 238, 0.24); color: var(--blue-deep); font-size: var(--text-micro); font-weight: 700; }.metric__text { display: block; color: var(--blue-deep); font-family: var(--serif); font-weight: 500; line-height: 1.15; }
 .metric__label { font-size: var(--text-14); color: var(--ink-soft); line-height: 1.4; }
 
 /* design partner testimonial carousel (inside the Aisepedia card) */
@@ -492,16 +491,16 @@ a.dp-name:hover { color: var(--blue-text); }
 /* ---------- education: flat editorial rows ---------- */
 .edu-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 var(--grid-gap); margin-bottom: var(--space-6); }
 .edu-card {
-  grid-column: 2 / -1; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); gap: var(--space-8);
-  padding: var(--space-8) 0; border: 0; border-top: 1px solid var(--line-strong); border-radius: 0;
+  grid-column: 2 / -1; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--space-8);
+  padding: var(--space-8) 0; border: 0; border-top: 1px solid var(--line-strong); border-radius: 0; box-shadow: none;
   background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none;
 }
 .edu-card:last-child { border-bottom: 1px solid var(--line-strong); }
-.edu-card:hover { transform: none; background: transparent; }
+.edu-card:hover { transform: none; background: transparent; box-shadow: none; }
 .edu-card__head { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 0.9rem; }
 .edu-card__deg { font-family: var(--serif); font-weight: 500; font-size: var(--text-heading); line-height: 1.15; }
 .edu-card__school { font-size: var(--text-14); color: var(--ink-soft); margin-top: 0.3rem; }
-.edu-card__points { display: grid; gap: 0.5rem; margin: 0; padding: 0; list-style: none; color: var(--ink-soft); font-size: var(--text-16); }
+.edu-card__points { display: grid; gap: 0.5rem; margin: 0; padding: 0; list-style: none; color: var(--ink-soft); font-size: var(--text-14); line-height: 1.6; }
 .edu-card__points li { position: relative; padding-left: 1.1rem; }
 .edu-card__points li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--sky); }
 
@@ -603,7 +602,7 @@ a.dp-name:hover { color: var(--blue-text); }
 .activation-result > strong { flex: 0 0 auto; font-family: var(--serif); font-size: var(--text-48); line-height: 0.9; color: var(--blue-deep); }
 .activation-result span { display: block; font-family: var(--serif); font-size: var(--text-18); font-weight: 500; }
 .activation-result p { margin-top: 0.3rem; color: var(--ink-soft); font-size: var(--text-14); }.case-cta { max-width: 62rem; }
-.case-cta .section-title { margin: 0 auto; max-width: 28ch; }
+.case-cta .section-title { margin: 0; max-width: 28ch; }
 .systems-copy { max-width: 68ch; }
 .systems-copy p + p { margin-top: 1rem; }
 /* Playfair ships at 500 and 600 only. Headings and strong text in the serif
@@ -762,7 +761,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .eng-cols { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
 .eng-cols li { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: var(--text-14); color: var(--blue-deep); background: rgba(143, 205, 238, 0.2); padding: 0.1rem 0.4rem; border-radius: var(--radius-control); }
 .case-cta__sub { display: block; margin-top: 1.6rem; color: var(--blue-deep); font-size: var(--text-micro); font-weight: 600; }
-.case-cta__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 0.6rem; }
+.case-cta__links { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 0.5rem; margin-top: 0.6rem; }
 
 /* The running system itself, so the diagram above is provably not a mockup.
    figure carries a UA default margin of 1em 40px; reset it or the clip is
@@ -1109,11 +1108,9 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .metrics, .metrics--four { gap: 0.45rem; }
   .metric { padding: 0.5rem 0.6rem; border-radius: var(--radius-control); }
   .metric__num { font-size: var(--text-24); }
-  .metric__text { font-size: var(--text-14); }
-  .metric__badge { margin-bottom: 0.3rem; padding: 0.1rem 0.45rem; font-size: var(--text-14); }
   .metric__label { margin-top: 0.15rem; font-size: var(--text-14); letter-spacing: 0; }
   /* a lone third tile sits centered under the pair */
-  .metrics > .metric:nth-child(3):last-child { grid-column: 1 / -1; justify-self: center; width: calc(50% - 0.225rem); }
+  .metrics > .metric:nth-child(3):last-child:not(.metric--text) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 0.225rem); }
   
   .fold--always > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; margin-top: 0; cursor: pointer; pointer-events: auto; }
   .fold--always .fold__title { color: var(--blue-deep); font-size: var(--text-14); font-weight: 600; }
@@ -1256,7 +1253,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .case-actions span, .toolkit__group h3 { font-size: var(--text-14); font-weight: 600; }
 .eng-step__type { font-size: var(--text-14); font-weight: 500; }
 .fold--always .fold__title, .case-cta__sub { font-size: var(--text-14); font-weight: 500; }
-.metric__badge, .tl-note__badge, .reports__freq, .event-strip__badge, .case-study__outcome, .eng-gate__badge { background: none; border: 0; padding: 0; border-radius: 0; font-size: var(--text-14); font-weight: 500; color: var(--ink-soft); }
+.tl-note__badge, .reports__freq, .event-strip__badge, .case-study__outcome, .eng-gate__badge { background: none; border: 0; padding: 0; border-radius: 0; font-size: var(--text-14); font-weight: 500; color: var(--ink-soft); }
 .hero__tagline { white-space: normal; }
 .eng-node__tag { display: block; margin-top: 0.4rem; font-size: var(--text-14); font-style: normal; font-weight: 500; color: var(--ink-soft); }
 .eng-node--act .eng-node__tag { background: none; border: 0; padding: 0; color: var(--ink-soft); }
@@ -1285,7 +1282,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .case-hero__title { font-size: var(--text-48); line-height: 1.05; }
 .contact__lead, .contact-bubble .contact__lead, .activation-result span { font-size: var(--text-18); }
 .dp-slide blockquote { font-size: var(--text-16); }
-.metric__text { font-size: var(--text-24); }
+.metric__num--text { font-size: var(--text-24); line-height: 1.15; }
 .toolkit__title { font-size: var(--text-32); }
 .nav-page__icon { font-size: var(--text-16); }
 .contact-privacy { max-width: 56ch; }
@@ -1299,8 +1296,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 @media (min-width: 769px) {
   .tl-columns { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); column-gap: clamp(1.5rem, 3vw, 2.5rem); align-items: start; }
   .tl-columns--single { grid-template-columns: minmax(0, 1fr); }
-  .tl-columns--single .tl-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: clamp(1.5rem, 3vw, 2.5rem); align-items: start; }
-  .tl-columns--single .tl-body > .tl-more { grid-column: 1 / -1; }
+  .tl-columns--single .tl-body { max-width: 56ch; }
   .tl-body .tl-desc, .tl-body .tl-points li, .tl-body .tl-note, .tl-body .tl-gaptext { max-width: none; }
   .tl-side .metrics, .tl-side .metrics--four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin-bottom: 0; }
   .tl-side .metrics > .metric, .tl-side .metrics--four > .metric:nth-child(4):last-child { grid-column: auto; }
@@ -1355,6 +1351,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .tl-note { display: block; }
   .tl-note__badge, .tl-note__text { display: inline; }
   .tl-note__badge::after { content: ". "; }
+  /* a metric whose value is a word takes the full row so it never wraps */
+  .metric--text { grid-column: 1 / -1; }
 }
 
 /* ---------- phone pass: blur off where it has nothing to blur ---------- */

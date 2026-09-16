@@ -15,6 +15,11 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 - A website-specific design guide for consistent future visual work.
 - A recruiter-friendly case-study index and two real Aisepedia artifact previews with links to the live pages.
 
+### Changed
+
+- The hero tagline is one short line: "I build go-to-market systems."
+- The one Experience card without number tiles (EnCloudEn) runs its description and bullets the full card width instead of a 56ch column that left the right half empty.
+
 ### Fixed
 
 - The 404 page's header linked to a homepage anchor that does not exist ("Go-to-market"); it now carries the same three links as the other utility pages. Inline code on the GTM page rendered at 12.6px and the Decision systems caret at 20.8px; both now sit on the type scale.

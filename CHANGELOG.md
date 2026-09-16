@@ -6,7 +6,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Added
 
-- One photograph on the event page: the PMM 2.0 audience in San Francisco, full width under the hero, with a one-line caption naming the date, the headcount, and the source. The other pages stay as they are.
+- One photograph on the event page: Aatif opening the room at PMM 2.0 in San Francisco, microphone in hand, the audience in frame, full width under the hero, with a one-line caption naming the date and the headcount. The other pages stay as they are.
 - Dependabot version updates for the pinned GitHub Actions.
 - Architecture, development, security, contribution, and focused operational runbooks.
 - A remote-only Claude web-session hook that installs a pinned, checksum-verified PowerShell validation dependency.

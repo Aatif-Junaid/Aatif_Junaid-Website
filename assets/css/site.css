@@ -1324,6 +1324,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .hero-proof .eng-node strong { margin-top: 0.35rem; }
 @media (max-width: 768px) {
   .hero-proof__nodes .eng-node { grid-template-columns: 1fr; }
+  .hero-proof .eng-node::before { display: none; }
 }
 
 /* ---------- one measure: body text never runs past 56 characters ---------- */

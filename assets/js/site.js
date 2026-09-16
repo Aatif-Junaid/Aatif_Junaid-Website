@@ -22,7 +22,7 @@
     button.className = 'eng-more';
     button.setAttribute('aria-expanded', 'false');
     button.setAttribute('aria-controls', list.id);
-    var label = function (open) { button.textContent = open ? 'Show less' : 'See ' + (total - 2) + ' more'; };
+    var label = function (open) { button.textContent = open ? 'Show less' : 'Show ' + (total - 2) + ' more'; };
     label(false);
     list.classList.add('is-clipped');
     list.insertAdjacentElement('afterend', button);

@@ -54,10 +54,10 @@ The type scale, on every page:
 
 Labels and headings, on every page:
 
-- Section headings are the plain word: Experience, Education, Approach, More, The build, The bet. A call to action keeps its sentence. No small label sits above a heading.
+- Section headings are the plain word: Experience, Education, Writing, The build, The bet. A call to action keeps its sentence. No small label sits above a heading.
 - No small-capitals labels anywhere except dates (`SEPT 2025 - PRESENT`). Metric labels, badges, node types, verb labels, and kickers are ordinary text at 0.78 to 0.95rem.
 - No pills. A badge is plain text. The four verb pills under the How I work diagram and the Aiseberg loop are gone.
-- No arrows on links, chips, or Show more controls. A caret stays only where it marks an expandable block (the Decision systems disclosure, the approach tiles on phones).
+- No arrows on links, chips, or Show more controls. A caret stays only where it marks an expandable block (the Decision systems disclosure).
 - The header nav reads the same on every page: sentence case, 0.875rem, weight 500.
 
 ## Layout and hierarchy
@@ -116,3 +116,20 @@ Other motion supports hierarchy or feedback only:
 - reserve layout space for media and lazy-load below-fold images
 
 Every visible change must be checked near 1440px and 375px before deployment.
+
+## The premium pass, 2026-09-16
+
+The rules below came out of a full review against premium, minimal design. They override anything earlier in this file that disagrees.
+
+- Gradient-filled text exists in exactly one place: the homepage name, with its glow. Every other title is solid, case-page titles in the deep blue.
+- No boxes inside boxes. Inside a card, a metric is a Playfair number over a hairline, not a tile; the event strip is a row under a hairline; panelists are a comma list; the MBA gap entry sits between two hairlines. The playbook result blocks put the number on paper with a hairline above, never white on a gradient. The contact intro is plain text beside the photo.
+- Motion: sections fade in, they do not rise, and nothing staggers. Every transition runs 0.2s ease. The comet is the one continuous movement.
+- One spacing system on every page: 48px section padding on desktop, 40px on phones, including case pages. Play cards use 48px inside.
+- Case pages read in a 1040px frame, footer included. An experience card without number tiles splits its description and bullets into two columns.
+- Three blues do the work: deep blue for display and numbers, the accent blue for buttons, rails, and markers, link blue for links. Sky and sky-bright are tints. Navy and the mid blue are retired.
+- Serif headings sit at weight 500; numbers and lead words keep 600. Italic Inter is not used for descriptions or footnotes; italics stay on the tagline, the testimonials, and the footer line.
+- Letter-spacing has three values: -0.02em on display type, none on body, 0.06em on the small-capital dates. The hero name keeps its own. Line-height has three: 1.15 on headings, 1.4 on compact labels, 1.6 on body, with display type tighter.
+- Every heading is left-aligned, the Toolkit included. Closing invitations may centre.
+- How I work is four numbered columns with no icons, followed by the one-line method note. There is no separate Approach section, and the homepage index of the two case pages is titled Writing.
+- Each fact appears once on a play: bullets carry the actions, the result block carries the number. Disclosure controls say Show, never See.
+

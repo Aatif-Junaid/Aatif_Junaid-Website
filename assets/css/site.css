@@ -1365,3 +1365,25 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .tl-note__badge, .tl-note__text { display: inline; }
   .tl-note__badge::after { content: ". "; }
 }
+
+/* ---------- phone pass: no frames, no blur below 768px ---------- */
+@media (max-width: 768px) {
+  .tile, .btn, .contact-bubble, .artifact-proof, .fold, .dp-slide, .metric { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .tl-card, .contact-tile, .case-study, .deeper__row, .eng-track, .systems-step, .fold {
+    background: transparent; border: 0; border-radius: 0; box-shadow: none; padding-left: 0; padding-right: 0;
+  }
+  .tl-card, .contact-tile, .case-study { padding-top: 0; padding-bottom: 0; }
+  .tl-item { margin-bottom: 0; }
+  .tl-item + .tl-item .tl-card, .tl-item + .tl-item .tl-gapcard { border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem; }
+  .tl-item.is-focus .tl-card { box-shadow: none; border-color: var(--line); }
+  .case-study { margin-bottom: 0; }
+  .case-study + .case-study { border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem; }
+  .case-study.is-focus { background: transparent; border-color: var(--line); box-shadow: none; }
+  .deeper__row { padding-left: 0; padding-right: 0; }
+  .deeper__row + .deeper__row { border-top: 1px solid var(--line); }
+  .eng-track + .eng-track { margin-top: 1rem; }
+  .fold { margin-top: 0.8rem; border-top: 1px solid var(--line); }
+  .fold[open] { padding-bottom: 0.5rem; }
+  .fold--play { border-top: 0; }
+  .fold > summary .fold__hint { border: 0; background: none; padding: 0.3rem 0; }
+}

@@ -25,6 +25,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- The MBA card's research line now says what the study was: leadership hiring through COVID, including hiring bias by gender and race, with a 48-code codebook Aatif wrote. Confirmed by Aatif on 2026-09-16 against the codebook itself.
 - One left edge on the homepage: the name, sentence, buttons, and How I work sit on the same 1280px edge as every section and page, 60px further right at 1440. The geometry does not move.
 - Phone header: the page links only, at 14px on 44px targets in one 68px row. The in-page anchors leave the phone header; desktop is unchanged.
 - Stylesheet diet with no visual change: 63 rules for classes no page uses and 68 declarations a later rule for the same selector already overrode are gone. The stylesheet went from 98.7KB to 88.3KB. Verified by hashing every element's geometry and computed styles on five pages at five widths, before against after.

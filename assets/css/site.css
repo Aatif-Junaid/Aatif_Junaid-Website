@@ -510,7 +510,9 @@ a.dp-name:hover { color: var(--blue-text); }
 .edu-card__head { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 0.9rem; }
 .edu-card__deg { font-family: var(--serif); font-weight: 600; font-size: var(--text-heading); line-height: 1.15; }
 .edu-card__school { font-size: var(--text-14); color: var(--ink-soft); margin-top: 0.3rem; }
-.edu-card__note { color: var(--ink-soft); font-size: var(--text-16); }
+.edu-card__points { display: grid; gap: 0.5rem; margin: 0; padding: 0; list-style: none; color: var(--ink-soft); font-size: var(--text-16); }
+.edu-card__points li { position: relative; padding-left: 1.1rem; }
+.edu-card__points li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--sky); }
 
 /* ---------- toolkit: flat grouped evidence ---------- */
 
@@ -1026,7 +1028,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .edu-card__head { margin-bottom: 0.4rem; align-items: center; }
   .edu-card__deg { font-size: var(--text-16); }
   .edu-card__school { font-size: var(--text-14); margin-top: 0.15rem; }
-  .edu-card__note { font-size: var(--text-14); line-height: 1.45; }
+  .edu-card__points { font-size: var(--text-14); line-height: 1.45; gap: 0.4rem; }
   .stack { margin-top: 1.4rem; padding-top: 1rem; }
   .stack__title { font-size: var(--text-18); }
   .stack__list li { row-gap: 0; padding: 0.4rem 0; }
@@ -1317,7 +1319,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .deeper__cta::after, .stack__more::after { content: none; }
 
 /* ---------- one measure: body text never runs past about 70 characters ---------- */
-.tl-desc, .tl-points li, .tl-note, .tl-gaptext, .reports p, .edu-card__note, .framework p, .deeper__line, .contact__lead,
+.tl-desc, .tl-points li, .tl-note, .tl-gaptext, .reports p, .framework p, .deeper__line, .contact__lead,
 .case-hero__lede, .case-hero__context, .case-section p, .case-section li, .systems-lead, .eng-step p, .eng-points li,
 .policy p, .policy li, .artifact-proof p, .case-note { max-width: 56ch; }   /* Inter's ch is wide: 56ch is about 70 characters */
 

@@ -1365,3 +1365,9 @@ code, .eng code, .systems-step code { font-size: var(--text-14); }
   .tl-side .metrics > .metric:nth-child(3):last-child { grid-column: 1 / -1; }
   .tl-columns + .event-strip { margin-top: 1.4rem; }
 }
+
+/* ---------- the one photograph on the event page ---------- */
+.case-section--photo { padding-top: 0; }
+.case-photo { margin: 0; }
+.case-photo img { display: block; width: 100%; height: auto; border-radius: var(--radius-inner); border: 1px solid var(--line); }
+.case-photo figcaption { margin-top: 0.75rem; max-width: 56ch; font-size: var(--text-14); color: var(--ink-soft); }

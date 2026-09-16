@@ -84,6 +84,7 @@ Use flat editorial bands, hairlines, and spacing before adding another tile. Rea
 - Content tiles use a 16px radius, a restrained blue-tinted shadow, a translucent warm-white surface, and a solid fallback when transparency is reduced.
 - Smaller proof modules and media use an 8px radius. Buttons and compact navigation destinations use a pill radius. Circular shapes are reserved for real markers and the headshot.
 - Most content remains flat. Elevation is reserved for Experience cards, evidence artifacts, and the primary case-study invitation.
+- Photographs are rare and informational, never decorative: at most one per page, the full width of the content column, 16:9, with a one-line caption that names the date and the source. The event page carries the room; the homepage carries none.
 - Metrics use large Playfair numerals, concise Inter labels, and tabular figures when comparison alignment matters.
 - Navigation links use semantic anchors. The wordmark always returns to the homepage.
 - Focus states are visible, high contrast, and unobscured by the sticky header.

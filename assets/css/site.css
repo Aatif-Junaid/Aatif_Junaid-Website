@@ -1296,7 +1296,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 @media (min-width: 769px) {
   .tl-columns { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); column-gap: clamp(1.5rem, 3vw, 2.5rem); align-items: start; }
   .tl-columns--single { grid-template-columns: minmax(0, 1fr); }
-  .tl-columns--single .tl-body { max-width: 56ch; }
+  /* A card without tiles runs its text the full card width; the empty right half read as a layout gap (owner, 2026-09-16). */
+  .tl-columns--single .tl-body { max-width: none; }
   .tl-body .tl-desc, .tl-body .tl-points li, .tl-body .tl-note, .tl-body .tl-gaptext { max-width: none; }
   .tl-side .metrics, .tl-side .metrics--four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin-bottom: 0; }
   .tl-side .metrics > .metric, .tl-side .metrics--four > .metric:nth-child(4):last-child { grid-column: auto; }

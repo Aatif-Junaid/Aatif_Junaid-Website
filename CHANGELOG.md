@@ -23,6 +23,8 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- One left edge on the homepage: the name, sentence, buttons, and How I work sit on the same 1280px edge as every section and page, 60px further right at 1440. The geometry does not move.
+- Phone header: the page links only, at 14px on 44px targets in one 68px row. The in-page anchors leave the phone header; desktop is unchanged.
 - Stylesheet diet with no visual change: 63 rules for classes no page uses and 68 declarations a later rule for the same selector already overrode are gone. The stylesheet went from 98.7KB to 88.3KB. Verified by hashing every element's geometry and computed styles on five pages at five widths, before against after.
 - Motion budget: the name's gradient sweep, the travelling dots on both rails, and the GTM wait node's spin and tick are gone; the comet is the one continuous movement. Experience cards are two columns on desktop, text left and number tiles right.
 - One type scale (seven sizes), body text capped near 70 characters, the flat header and a left-aligned hero on every page, two radii and one shadow, two buttons. Case-page titles are 48px instead of 92px; metric tile icons and node-circle glows are gone.

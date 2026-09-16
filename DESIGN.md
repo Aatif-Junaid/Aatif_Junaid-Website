@@ -42,10 +42,10 @@ Copy is part of the design:
 
 The type scale, on every page:
 
-- Seven sizes: 14, 16, 18, 24, 32, 48 for case-page titles, and the name at `clamp(3rem, 6.2vw, 5.5rem)`. Every text element uses one of the `--text-*` tokens; 12px exists only for the phone header.
+- Seven sizes: 14, 16, 18, 24, 32, 48 for case-page titles, and the name at `clamp(3rem, 6.2vw, 5.5rem)`. Every text element uses one of the `--text-*` tokens; nothing renders below 14px.
 - Section titles are 32 at weight 500. Item titles (play titles, card titles, h3) are 24 at weight 600. Page titles are weight 500 everywhere.
 - Body text never runs past about 70 characters: `max-width: 56ch` in Inter, whose `ch` is wide.
-- One header on every page: the flat 68px bar. One hero: left-aligned, kicker over title over lede over actions. The homepage geometry is the site's one signature.
+- One header on every page: the flat 68px bar. On phones it keeps only the page links, 14px on 44px targets; the in-page anchors are one scroll away, and there is no hamburger menu. One hero: left-aligned, kicker over title over lede over actions. The homepage geometry is the site's one signature.
 - Two radii: 16px for cards, 8px for controls. Circles only for real markers and the headshot.
 - One shadow, `--tile-shadow`, on cards only. Icons, buttons, chips, and node circles carry none. Metric tiles carry no icons.
 - Two buttons: filled and outline, both 48px tall, 14px at weight 500. Carousel arrows and the comet toggle are quiet text controls.
@@ -62,7 +62,7 @@ Labels and headings, on every page:
 
 ## Layout and hierarchy
 
-The general content container caps at 1280px with responsive 20-64px gutters and a 12-column desktop grid. The signature Experience composition remains at its established 1380px width so the comet geometry does not shift. Desktop navigation is 68px tall and remains on one line. Mobile layouts collapse to one column below 768px and never depend on horizontal page scrolling.
+The general content container caps at 1280px with responsive 20-64px gutters and a 12-column desktop grid. The homepage hero box stays 1400px wide so the geometry does not move, but its text column sits on the same 1280px edge as every section. The signature Experience composition remains at its established 1380px width so the comet geometry does not shift. Desktop navigation is 68px tall and remains on one line. Mobile layouts collapse to one column below 768px and never depend on horizontal page scrolling.
 
 Use a 4px base spacing system. Major sections use 48px vertical padding on desktop and 40px on phones, so two adjacent sections sit 96px apart on desktop and 80px apart on phones. Section headings sit 48px above their content on desktop and 32px above it on mobile. Education and capability groups use flat editorial groupings with hairlines. Work and Approach use a consistent two-column editorial matrix with shared rails and row rhythm, collapsing to one column on mobile.
 

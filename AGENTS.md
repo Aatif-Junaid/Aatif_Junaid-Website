@@ -16,6 +16,12 @@ Codex and Claude Code follow this file. `CLAUDE.md` imports it and adds nothing 
 - Pin external Actions to full commit SHAs and keep workflow permissions minimal.
 - Do not install Claude plugins, marketplace extensions, or MCP servers that are not already listed in `.claude/settings.json`. The `.claude/hooks/session-start.sh` file is the only approved provisioning path, and it may only contain TruffleHog and the Chrome DevTools MCP.
 
+## Career materials (resume, applications, interviews)
+
+- Any request to write, tailor, review, or rewrite Aatif's resume, a cover letter, an application answer, or interview prep is governed by the `aatif-professional-brain` repository, never by a generic packaged skill a session's tool list happens to offer (for example one named `resume-diagnosis` or similar). A generic skill does not know the retired figures, the confidentiality gate, the canonical titles, or the natural-voice rules the brain enforces, and has already produced rejected drafts before.
+- Before touching any career material: locate the `aatif-professional-brain` clone on disk, or clone `https://github.com/Aatif-Junaid/aatif-professional-brain` if it is not present. Read its `AGENTS.md` in full and follow the task-routing table there. For a resume or job description, that means running the matching skill under `.agents/skills/` (`tailor-resume`, `apply-to-role`, or `interview-and-offer`) end to end, not summarizing it and improvising.
+- If the brain repository cannot be reached, say so explicitly and stop rather than producing career material from memory or a generic skill. A stale or ungoverned resume is worse than none.
+
 ## Copy rules
 
 - Use no em dashes and no empty buzzwords.

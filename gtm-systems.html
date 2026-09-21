@@ -4,23 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My GTM system. Human in the loop | Aatif Junaid Mulla</title>
-  <meta name="description" content="A public GTM systems write-up from Aatif Junaid Mulla: an n8n lifecycle engine that turns public market signals into cited, human-approved content drafts, with the sanitized workflow export on GitHub." />
+  <meta name="description" content="Aatif Junaid Mulla's GTM systems write-up: an n8n lifecycle engine that turns public market signals into cited, human-approved drafts. Export on GitHub." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://aatifmulla.me/gtm-systems.html" />
   <meta property="og:title" content="My GTM system. Human in the loop | Aatif Junaid Mulla" />
   <meta property="og:description" content="An n8n lifecycle engine that turns public market signals into cited, human-approved GTM content drafts, with the sanitized workflow export on GitHub." />
-  <meta property="og:image" content="https://aatifmulla.me/og-image.jpg?v=7" />
+  <meta property="og:image" content="https://aatifmulla.me/og-image.jpg?v=8" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="2400" />
   <meta property="og:image:height" content="1260" />
-  <meta property="og:image:alt" content="Aatif Junaid Mulla | GTM & Product Growth" />
+  <meta property="og:image:alt" content="Aatif Junaid Mulla | GTM and Product Growth" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="My GTM system. Human in the loop | Aatif Junaid Mulla" />
   <meta name="twitter:description" content="An n8n lifecycle engine that turns public market signals into cited, human-approved GTM content drafts, with the sanitized workflow export on GitHub." />
-  <meta name="twitter:image" content="https://aatifmulla.me/og-image.jpg?v=7" />
+  <meta name="twitter:image" content="https://aatifmulla.me/og-image.jpg?v=8" />
 
   <meta name="theme-color" content="#EEEDE8" />
   <link rel="canonical" href="https://aatifmulla.me/gtm-systems.html" />
@@ -31,7 +31,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=4" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=4" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=4" />
-  <link rel="stylesheet" href="assets/css/site.css?v=90" />
+  <link rel="stylesheet" href="assets/css/site.css?v=91" />
 
   <!-- Structured data: a public article authored by the same Person entity -->
   <script type="application/ld+json">
@@ -42,7 +42,7 @@
     "url": "https://aatifmulla.me/gtm-systems.html",
     "datePublished": "2026-09-01T09:00:00-07:00",
     "dateModified": "2026-09-07T18:00:00-07:00",
-    "image": "https://aatifmulla.me/og-image.jpg?v=7",
+    "image": "https://aatifmulla.me/og-image.jpg?v=8",
     "author": {
       "@type": "Person",
       "@id": "https://aatifmulla.me/#person",
@@ -295,26 +295,26 @@
           <img class="systems-step__logo" src="assets/logos/tools/googlesheets.svg" alt="" width="18" height="18" />
           <span>Google Sheets &middot; source_signals</span><strong>The audit trail</strong>
           <p>One row per signal, written before any draft exists.</p>
-          <details><summary>11 columns</summary><ul class="eng-cols"><li>source_url</li><li>source_name</li><li>published_date</li><li>company</li><li>topic</li><li>signal_type</li><li>summary</li><li>source_quality</li><li>status</li><li>is_demo_data</li><li>source_verified</li></ul></details>
+          <details class="fold fold--always"><summary><span class="fold__title">11 columns</span><span class="fold__hint" aria-hidden="true"></span></summary><ul class="eng-cols"><li>source_url</li><li>source_name</li><li>published_date</li><li>company</li><li>topic</li><li>signal_type</li><li>summary</li><li>source_quality</li><li>status</li><li>is_demo_data</li><li>source_verified</li></ul></details>
         </li>
         <li class="systems-step">
           <img class="systems-step__logo" src="assets/logos/tools/googlesheets.svg" alt="" width="18" height="18" />
           <span>Google Sheets &middot; approval_queue</span><strong>The human control point</strong>
           <p>A row is born Pending. I set approval_status to Approved, add a note and a date. The schedule does the rest.</p>
-          <details><summary>16 columns</summary><ul class="eng-cols"><li>draft_id</li><li>company</li><li>signal</li><li>channel</li><li>draft_subject</li><li>draft_body</li><li>gtm_takeaway</li><li>why_it_matters</li><li>source_url</li><li>source_verified</li><li>confidence</li><li>approval_status</li><li>reviewer_note</li><li>approved_at</li><li>processed_status</li><li>processed_at</li></ul></details>
+          <details class="fold fold--always"><summary><span class="fold__title">16 columns</span><span class="fold__hint" aria-hidden="true"></span></summary><ul class="eng-cols"><li>draft_id</li><li>company</li><li>signal</li><li>channel</li><li>draft_subject</li><li>draft_body</li><li>gtm_takeaway</li><li>why_it_matters</li><li>source_url</li><li>source_verified</li><li>confidence</li><li>approval_status</li><li>reviewer_note</li><li>approved_at</li><li>processed_status</li><li>processed_at</li></ul></details>
         </li>
         <li class="systems-step">
           <img class="systems-step__logo" src="assets/logos/tools/googlesheets.svg" alt="" width="18" height="18" />
           <span>Google Sheets &middot; lifecycle_log</span><strong>The event trail</strong>
           <p>Every gate decision and every activation outcome, one row each. This is the CRM-shaped record.</p>
-          <details><summary>15 columns, plus 8 source fields carried through</summary><ul class="eng-cols"><li>event_time</li><li>run_id</li><li>company</li><li>channel</li><li>action_taken</li><li>journey_stage</li><li>hubspot_status</li><li>analytics_event</li><li>outcome</li><li>source_url</li><li>source_verified</li><li>notes</li><li>approved_for_distribution</li><li>distribution_logged</li><li>crm_log_ready</li></ul></details>
+          <details class="fold fold--always"><summary><span class="fold__title">15 columns, plus 8 source fields carried through</span><span class="fold__hint" aria-hidden="true"></span></summary><ul class="eng-cols"><li>event_time</li><li>run_id</li><li>company</li><li>channel</li><li>action_taken</li><li>journey_stage</li><li>hubspot_status</li><li>analytics_event</li><li>outcome</li><li>source_url</li><li>source_verified</li><li>notes</li><li>approved_for_distribution</li><li>distribution_logged</li><li>crm_log_ready</li></ul></details>
         </li>
       </ol>
       </details>
 
       <details class="fold" open>
         <summary><span class="fold__head"><h3 class="systems-subhead">How it authenticates</h3><span class="fold__sub">Every credential, and what it can touch</span></span><span class="fold__hint" aria-hidden="true"></span></summary>
-      <p class="systems-lead">Credentials are split by vendor and stored once in n8n, on the self-hosted instance at <code>n8n.aatifmulla.me</code>.</p>
+      <p class="systems-lead">Credentials are split by vendor and stored once in n8n, on a self-hosted instance.</p>
       <ul class="systems-stack systems-stack--auth" aria-label="Credentials by vendor">
         <li class="systems-step">
           <img class="systems-step__logo" src="assets/logos/tools/googlesheets.svg" alt="" width="18" height="18" />

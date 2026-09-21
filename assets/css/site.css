@@ -757,6 +757,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .systems-subhead--mark img { width: 22px; height: 22px; filter: var(--logo-blue); }
 .systems-step__logo { width: 18px; height: 18px; margin-bottom: 0.55rem; filter: var(--logo-blue); }
 .systems-step details { margin-top: 0.55rem; }
+.systems-step .fold--always > summary { margin-top: 0; }
+.systems-step .fold__hint { flex: 0 0 auto; white-space: nowrap; }
 .systems-step summary { cursor: pointer; padding: 0.78rem 0; color: var(--blue-text); font-size: var(--text-14); font-weight: 600; line-height: 1.4; }
 .eng-cols { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
 .eng-cols li { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: var(--text-14); color: var(--blue-deep); background: rgba(143, 205, 238, 0.2); padding: 0.1rem 0.4rem; border-radius: var(--radius-control); }
@@ -1354,6 +1356,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .tl-note__badge::after { content: ". "; }
   /* a metric whose value is a word takes the full row so it never wraps */
   .metric--text { grid-column: 1 / -1; }
+  /* links inside prose stay inline; the 44px target rule is for controls and standalone links */
+  .edu-card__points .tl-link, .tl-desc .tl-link, .tl-points .tl-link, .tl-gaptext .tl-link { min-height: 0; display: inline; }
 }
 
 /* ---------- phone pass: blur off where it has nothing to blur ---------- */

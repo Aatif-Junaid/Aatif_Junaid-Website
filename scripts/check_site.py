@@ -156,7 +156,7 @@ def visible_text(source):
 
 canonical_design_partner_claims = {
     "index.html": [
-        "Co-built a 13-member design partner program",
+        "Co-built, recruited, and ran a 13-member design partner program",
         "13 Design partners, 8 senior",
     ],
     "playbook.html": [

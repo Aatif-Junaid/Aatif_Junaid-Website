@@ -1,0 +1,3 @@
+# GitHub Pages builds this repository with Jekyll, which skips folders that start with a dot.
+# The only thing this file does is include .well-known so security.txt is published.
+include: [".well-known"]

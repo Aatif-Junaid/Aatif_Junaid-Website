@@ -17,11 +17,13 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- From the 2026-09-21 review: the title, social titles, and a regenerated social image say "GTM and Product Growth" and carry the current tagline; the homepage says the design partner program was co-built, recruited, and run; the event page hero button points at the playbook; the three Google Sheets column lists use the site's Show more disclosure; the policy pages carry social tags; a security.txt is published; the sitemap dates are current; links inside phone prose keep their line height; the GTM description fits a search result; the resume text extract is no longer committed.
 - The hero tagline is one short line: "I build go-to-market systems."
 - The one Experience card without number tiles (EnCloudEn) runs its description and bullets the full card width instead of a 56ch column that left the right half empty.
 
 ### Fixed
 
+- The GTM systems page no longer names the self-hosted n8n host. Play 01 and the event page now say one panelist was a design partner and three were industry leaders from outside the program, matching play 03 and the record.
 - The 404 page's header linked to a homepage anchor that does not exist ("Go-to-market"); it now carries the same three links as the other utility pages. Inline code on the GTM page rendered at 12.6px and the Decision systems caret at 20.8px; both now sit on the type scale.
 - Header links no longer touch on desktops between 900px and 1050px wide. The gap has a 0.6rem floor, and below 1024px the wordmark keeps only its mark.
 - The testimonials control on the homepage is clickable again. A later base rule was cancelling its pointer events.

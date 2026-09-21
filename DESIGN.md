@@ -130,6 +130,7 @@ The rules below came out of a full review against premium, minimal design. They 
 - Serif headings sit at weight 500; numbers and lead words keep 600. Italic Inter is not used for descriptions or footnotes; italics stay on the tagline, the testimonials, and the footer line.
 - Letter-spacing has three values: -0.02em on display type, none on body, 0.06em on the small-capital dates. The hero name keeps its own. Line-height has three: 1.15 on headings, 1.4 on compact labels, 1.6 on body, with display type tighter.
 - Every heading is left-aligned, the Toolkit included. Closing invitations may centre.
+- The social image mirrors the hero: plain kicker, the gradient name, the italic tagline, the four verbs as plain words, and no letterspaced capitals. Regenerate it whenever the hero copy changes and bump its version.
 - How I work is four numbered columns with no icons, followed by the one-line method note. There is no separate Approach section, and the homepage index of the two case pages is titled Go deeper.
 - Each fact appears once on a play: bullets carry the actions, the result block carries the number. Disclosure controls say Show, never See.
 

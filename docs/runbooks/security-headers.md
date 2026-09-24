@@ -14,6 +14,16 @@ default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; sty
 
 On deployment, align the Cloudflare header with this policy and retain `frame-ancestors 'self'`. Keep automatic Web Analytics injection and Zaraz off; the beacon is loaded from the page source, so injection would only duplicate it. See the [audit record](../security/privacy-accessibility-audit.md).
 
+## Preferred Sources button, September 24, 2026
+
+`index.html` loads Google's Preferred Sources button, so that one page carries a wider policy than the other eight:
+
+```text
+default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://news.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.gstatic.com; connect-src 'self' https://cloudflareinsights.com https://news.google.com; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src https://news.google.com
+```
+
+**The Cloudflare transform rule is the enforcing copy and still carries the old value.** A browser applies the meta policy and the response header together and honours whichever is stricter, so until the rule is updated the header keeps blocking `news.google.com` and the button does not render in production. Edit the "Modify response header" rule's `Content-Security-Policy` value to the policy above plus `frame-ancestors 'self'`, which the meta policy cannot express. The other eight pages keep the September 8 policy, so the rule has to apply the wider value site-wide; that is the cost of the header being one value for every route.
+
 ## Earlier verified state
 
 Verified on 2026-08-23 at `https://aatifmulla.me/`. Superseded by the September 8, 2026 alignment above; kept for history.

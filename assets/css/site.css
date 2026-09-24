@@ -816,6 +816,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   font-size: var(--text-14); color: var(--ink-soft);
 }
 .site-footer__row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+.preferred-source:not(:empty) { margin: 1.1rem 0 0; }
 .site-footer__note { margin: 0; font-style: italic; font-size: var(--text-14); color: var(--ink-soft); }
 .site-footer__socials { display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 0.6rem; }
 .footer-social { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 36px; font-weight: 600; color: var(--blue-deep); padding: 0.4rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-control); transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease; }
@@ -1233,6 +1234,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .case-hero__actions,
   .contact__actions,
   .site-footer__note,
+  .preferred-source,
   .site-footer__socials { display: none !important; }
 
   /* Remove interactive styles */

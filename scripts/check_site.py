@@ -98,6 +98,13 @@ for p, s in pages.items():
             fail(f"{p}: target=_blank without rel=noopener -> {a[:80]}")
 ok("external links use noopener")
 
+# Third-party embeds that have been through privacy review and are disclosed in
+# privacy.html. Adding to this list is a deliberate act, not a formality.
+REVIEWED_EMBEDS = (
+    "static.cloudflareinsights.com/beacon.min.js",   # cookieless page-view beacon
+    "news.google.com/swg/js/v1/publisher.js",        # Google Preferred Sources button, home page only
+)
+
 # Portfolio privacy boundary and accessible image alternatives.
 for p, s in pages.items():
     for policy in ["privacy.html", "terms.html", "accessibility.html"]:
@@ -107,7 +114,7 @@ for p, s in pages.items():
         if not re.search(r'\balt="[^"]*"', image):
             fail(f"{p}: image missing alt attribute")
     external = re.findall(r'<(?:script|iframe|form)\b[^>]*(?:src|action)=[\"\'](https?://[^\"\']+)', s, re.I)
-    if any("static.cloudflareinsights.com/beacon.min.js" not in u for u in external):
+    if any(not any(allowed in u for allowed in REVIEWED_EMBEDS) for u in external):
         fail(f"{p}: external script, embed, or form needs privacy review")
 ok("policy links, image alternatives, and portfolio data boundary")
 

@@ -54,7 +54,7 @@ The type scale, on every page:
 
 Labels and headings, on every page:
 
-- Section headings are the plain word: Experience, Education, Go deeper, The build, The bet. A call to action keeps its sentence. No small label sits above a heading.
+- Section headings are the plain word: Experience, Education, What I built, The build, The bet. A call to action keeps its sentence. No small label sits above a heading.
 - No small-capitals labels anywhere except dates (`SEPT 2025 - PRESENT`). Metric labels, badges, node types, verb labels, and kickers are ordinary text at 0.78 to 0.95rem.
 - No pills. A badge is plain text. The four verb pills under the How I work diagram and the Aiseberg loop are gone.
 - No arrows on links, chips, or Show more controls. A caret stays only where it marks an expandable block (the Decision systems disclosure).
@@ -131,7 +131,7 @@ The rules below came out of a full review against premium, minimal design. They 
 - Letter-spacing has three values: -0.02em on display type, none on body, 0.06em on the small-capital dates. The hero name keeps its own. Line-height has three: 1.15 on headings, 1.4 on compact labels, 1.6 on body, with display type tighter.
 - Every heading is left-aligned, the Toolkit included. Closing invitations may centre.
 - The social image mirrors the hero: plain kicker, the gradient name, the italic tagline, the four verbs as plain words, and no letterspaced capitals. Regenerate it whenever the hero copy changes and bump its version.
-- How I work is four numbered columns with no icons, followed by the one-line method note. There is no separate Approach section, and the homepage index of the two case pages is titled Go deeper.
+- How I work is four numbered columns with no icons, followed by the one-line method note. There is no separate Approach section, and the homepage index of the two case pages is titled What I built, which echoes the hero line and pairs with How I work.
 - Each fact appears once on a play: bullets carry the actions, the result block carries the number. Disclosure controls say Show, never See.
 
 ## The phone pass, 2026-09-16

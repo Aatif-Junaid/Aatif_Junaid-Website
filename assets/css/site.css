@@ -97,6 +97,7 @@
   --grid-gap: clamp(16px, 2vw, 24px);
   --radius-control: 8px;
   --radius-card: 16px;
+  --hero-nudge: 1.5rem;  /* one "click" in the owner's hero spacing requests: 24px */
   --radius-inner: 8px;
   --radius: var(--radius-card);
   /* tonal blue: keeps a mark's own light and dark, so a glyph on a filled tile stays readable */
@@ -252,18 +253,24 @@ body::before {
   line-height: 1.4; color: var(--blue-deep);
 }
 .hero__actions { position: relative; z-index: 1; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 0.85rem; }
+/* Opened out one click each way: the kicker up, the buttons down. The name and tagline stay put. */
+.hero > .hero__kicker { margin-bottom: calc(1.7rem + var(--hero-nudge)); }
+.hero > .hero__actions { margin-top: var(--hero-nudge); }
 .hero__geometry {
   position: absolute; grid-column: auto; grid-row: 1 / 2; align-self: auto; justify-self: auto;
   /* Anchored to the kicker's row, so the field keeps its place beside the name when the hero
      centres its content: the old offset from the hero top, minus the old top padding. */
-  z-index: 0; top: calc(clamp(2rem, 4.4vw, 4.1rem) - clamp(2.75rem, 4vw, 3.75rem)); width: min(81.1vw, 71.76rem);
+  z-index: 0; top: calc(clamp(2rem, 4.4vw, 4.1rem) - clamp(2.75rem, 4vw, 3.75rem) + 2 * var(--hero-nudge)); width: min(81.1vw, 71.76rem);
   /* Another 20% of field reach on top of the previous 30% bump. Right offset grows by
      the same amount the width grew again (~11.96rem) so the container's LEFT edge --
      and therefore the triad's own absolute position -- does not move. */
-  right: clamp(-33.26rem, calc(-7vw - 25.76rem), -30.01rem);
+  /* Two clicks right and, net of the kicker moving up, one click down. */
+  right: calc(clamp(-33.26rem, calc(-7vw - 25.76rem), -30.01rem) - 2 * var(--hero-nudge));
   /* Grid triangles span 70 x 80.8 SVG units in a 1498 x 560 viewBox.
      Translate the complete artwork three triangle widths left and one height up. */
   margin: 0; opacity: 1; pointer-events: none; transform: translate3d(-14.0187%, -14.4286%, 0);
+  /* A touch larger, grown around the triad itself so it keeps its place beside the name. */
+  scale: 1.08; transform-origin: 45% 50%;
   /* Bleed: mist on both sides. Triad is the one clear point; grid dissolves outward
      in every direction, no hard edges or container box. */
   -webkit-mask-image: radial-gradient(70% 118% at 40% 46%, #000 17%, rgba(0,0,0,0.45) 36%, transparent 68%);

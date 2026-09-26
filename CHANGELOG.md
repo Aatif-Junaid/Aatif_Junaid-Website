@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- The hero's "How I work" band (Position, Demand, Activate, Convert) is removed, and the Approach section returns after Education with its four tiles and nav link, as it stood before the premium pass.
 - The comet carries no glitter. Its bright pinpoint sparks and gold flecks are replaced by soft dust and gas that eases in, floats in no preferred direction, and swells as it thins out. Its tail is drawn with square stroke ends, so the segments meet flush instead of overlapping into a string of beads.
 - The homepage section linking to the GTM systems write-up and the Playbook is titled "What I built" instead of "Go deeper".
 - Search snippet: the homepage description now says the role, the city, and three proofs in 154 characters. The old case-studies address redirects without a noindex tag so it consolidates into the playbook. The three policy pages are noindex and out of the sitemap; they stay linked and readable.

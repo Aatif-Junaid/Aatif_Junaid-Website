@@ -1014,7 +1014,10 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   /* an inline link inside the hero copy is exempt from the 44px target rule; the tall flex box was stretching its line */
   .case-hero__context .tl-link { min-height: 0; display: inline; }
   .section-head, .case-section__head { margin-bottom: var(--space-6); }
-  .hero { padding-top: var(--space-12); padding-bottom: var(--space-12); }
+  /* Phones: the hero sizes to its content instead of filling three quarters of the screen,
+     and the desktop "click" spacing eases to 8px, so nothing floats in empty space. */
+  :root { --hero-nudge: 0.5rem; }
+  .hero { min-height: 0; padding-top: var(--space-8); padding-bottom: var(--space-4); }
   .hero__story { margin-bottom: 1.4rem; }
   .hero > .hero-proof { margin-top: 1.4rem; padding-top: 1.4rem; }
   .hero-proof__intro { margin-bottom: 1rem; }

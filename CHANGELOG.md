@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Phones only: the homepage hero sizes to its content instead of filling three quarters of the screen, and the hero spacing step eases from 24px to 8px, closing the empty bands under the header and above Experience.
 - Every page carries the homepage header: the AM mark and the serif name, drawn once, which removes the doubled mark on phones; the Home chip matches the other light chips. Playbook and GTM Systems follow the homepage's frame, gradient title, italic tagline and outline buttons. The hexagon graphic is off on phones.
 - The hero's hexagon graphic now shows on tablets and phones: beside the text from 769 to 1024px, and under the buttons at 768px and below, cropped to the triad and its labels. It was hidden at 1024px and below.
 - The hero opens out: the kicker moves up 24px and the buttons down 24px, and the hexagon field moves 48px right and 24px down at 108% scale, filling the space the taller hero left.

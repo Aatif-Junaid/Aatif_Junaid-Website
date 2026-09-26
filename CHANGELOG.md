@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- The downloadable resume is rebuilt from the professional brain's current record (brain commit 59a4eb6): a first-person summary with the credentials folded in, six Aiseberg bullets, EnCloudEn and Quantum grouped under the acquisition, both Peepal titles on their own lines, and the MBA under Education only. The 24% now credits the PostHog drop-off work and guided onboarding that produced it, PMM 2.0 is described as run with a colleague on promotion, and the unverified 20 program signups are gone. Every Resume link moves to `resume.pdf?v=2026-09e`.
 - Phones only: the homepage hero sizes to its content instead of filling three quarters of the screen, and the hero spacing step eases from 24px to 8px, closing the empty bands under the header and above Experience.
 - Every page carries the homepage header: the AM mark and the serif name, drawn once, which removes the doubled mark on phones; the Home chip matches the other light chips. Playbook and GTM Systems follow the homepage's frame, gradient title, italic tagline and outline buttons. The hexagon graphic is off on phones.
 - The hero's hexagon graphic now shows on tablets and phones: beside the text from 769 to 1024px, and under the buttons at 768px and below, cropped to the triad and its labels. It was hidden at 1024px and below.

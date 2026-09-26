@@ -862,10 +862,37 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1024px) {
-  .hero__geometry { display: none; }
+  /* Phones and tablets: the hexagon field joins the flow under the buttons, set to the right
+     the way it sits beside the name on desktop and bleeding off the right edge. --u is one SVG
+     unit in px: the triad is 280 units wide and sits with its labels around (620, 287). Only
+     the outer edges mist out, so the triad and all three labels stay at full strength. */
+  .hero__geometry {
+    --u: clamp(0.62px, 0.098vw, 0.75px);
+    display: block; position: relative; grid-column: 1 / -1; grid-row: auto; align-self: auto;
+    top: auto; right: auto; width: calc(100% + var(--gutter)); height: calc(var(--u) * 500);
+    margin: var(--hero-nudge) calc(-1 * var(--gutter)) 0 0; overflow: hidden; transform: none; scale: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%), linear-gradient(to right, transparent 0, #000 30%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%), linear-gradient(to right, transparent 0, #000 30%);
+    mask-composite: intersect;
+  }
+  .hero__geometry img {
+    position: absolute; max-width: none; height: auto;
+    width: calc(var(--u) * 1498);
+    left: calc(100% - var(--u) * 830);
+    top: calc(50% - var(--u) * 287);
+  }
   .hero > .kicker, .hero > .hero__name, .hero > .hero__story, .hero > .hero__actions { grid-column: 1 / span 10; }
   .hero-proof { grid-template-columns: 1fr; row-gap: 1.5rem; }
   .toolkit__groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Landscape tablets and small laptops have room beside the text: the triad sits to the right
+   of it, centred on the text block, as on desktop, instead of stacking under the buttons. */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero__geometry {
+    position: absolute; grid-row: 1 / 5; top: calc(50% - var(--u) * 250);
+    right: calc(-1 * var(--gutter)); width: 58%; margin: 0;
+  }
 }
 @media (max-width: 900px) {
   .section, .case-section { padding-top: var(--space-12); padding-bottom: var(--space-12); }

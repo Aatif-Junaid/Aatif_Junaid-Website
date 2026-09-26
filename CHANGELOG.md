@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- The hero's hexagon graphic now shows on tablets and phones: beside the text from 769 to 1024px, and under the buttons at 768px and below, cropped to the triad and its labels. It was hidden at 1024px and below.
 - The hero opens out: the kicker moves up 24px and the buttons down 24px, and the hexagon field moves 48px right and 24px down at 108% scale, filling the space the taller hero left.
 - The homepage hero fills three quarters of the first screen, content centred, with a larger name and a 48px tagline, so Experience starts one scroll down. The Approach tiles become the site's glass cards with its card type sizes.
 - The hero's "How I work" band (Position, Demand, Activate, Convert) is removed, and the Approach section returns after Education with its four tiles and nav link, as it stood before the premium pass.

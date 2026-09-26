@@ -78,7 +78,7 @@
 
   <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
   <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
-  <link rel="stylesheet" href="assets/css/site.css?v=92" />
+  <link rel="stylesheet" href="assets/css/site.css?v=93" />
   <link rel="stylesheet" href="assets/css/mobile-proof-sequence.css?v=1" media="(max-width: 768px)" />
   <!-- Without JS the reveal observer never runs, so make sure nothing stays invisible. -->
   <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
@@ -100,10 +100,6 @@
     <symbol id="ic-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></symbol>
     <symbol id="ic-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 7 9 13 13 9 21 17"/><polyline points="15 17 21 17 21 11"/></symbol>
     <symbol id="ic-win" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 11 15.5 16 9"/></symbol>
-    <symbol id="ip-position" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
-    <symbol id="ip-demand" viewBox="0 0 24 24"><path d="M21 3 10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></symbol>
-    <symbol id="ip-activate" viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></symbol>
-    <symbol id="ip-convert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol>
     <symbol id="cm-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
     <symbol id="cm-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
     <symbol id="cm-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
@@ -117,6 +113,7 @@
     <nav class="site-nav" aria-label="Primary">
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
+      <a href="#thinking">Approach</a>
       <a href="#contact">Contact</a>
       <a class="nav-page" href="gtm-systems.html">GTM Systems</a>
       <a class="nav-page" href="/playbook.html">Playbook</a>
@@ -145,21 +142,6 @@
       <div class="hero__geometry" aria-hidden="true">
         <img src="assets/logos/hero-geometry.svg" alt="" width="560" height="540" decoding="async" />
       </div>
-      <section class="hero-proof reveal" aria-labelledby="proof-in-motion">
-        <div class="hero-proof__intro">
-          <h2 id="proof-in-motion">How I work</h2>
-          <p class="hero-proof__note">First principles before building, buyer behaviour before messaging, and results measured against revenue, customers, and product, not activity.</p>
-        </div>
-        <div class="eng-nodes hero-proof__nodes" style="--n: 4">
-          <span class="eng-rail" aria-hidden="true"></span>
-          <ol>
-            <li class="eng-node"><span class="eng-node__icon"><svg aria-hidden="true"><use href="#ip-position"/></svg></span><strong>Position</strong><small>Find the pain. Name it in the buyer's language. Build a story that scales past me.</small></li>
-            <li class="eng-node"><span class="eng-node__icon"><svg aria-hidden="true"><use href="#ip-demand"/></svg></span><strong>Demand</strong><small>Pick the accounts. Reach them with a system, not a spreadsheet.</small></li>
-            <li class="eng-node"><span class="eng-node__icon"><svg aria-hidden="true"><use href="#ip-activate"/></svg></span><strong>Activate</strong><small>Instrument the funnel. See where people stall. Fix that stage.</small></li>
-            <li class="eng-node eng-node--act"><span class="eng-node__icon"><svg aria-hidden="true"><use href="#ip-convert"/></svg></span><strong>Convert</strong><small>Users into references. References into deals. Deals into a repeatable motion.</small></li>
-          </ol>
-        </div>
-      </section>
     </section>
 
     <!-- EXPERIENCE TIMELINE -->
@@ -525,6 +507,31 @@
     </section>
 
     <!-- APPROACH -->
+    <section class="section" id="thinking">
+      <div class="section-head reveal">
+        <h2 class="section-title">Approach</h2>
+      </div>
+
+      <div class="framework-grid">
+        <details class="tile framework fold fold--tile reveal" open>
+          <summary><h3 class="framework__title">First principles, then 5 Whys</h3><span class="fold__hint" aria-hidden="true"></span></summary>
+          <p>I dig to the root of a problem before building, so the work solves the real need, not the surface symptom.</p>
+        </details>
+        <details class="tile framework fold fold--tile reveal" open>
+          <summary><h3 class="framework__title">Design thinking</h3><span class="fold__hint" aria-hidden="true"></span></summary>
+          <p>I work backward from how buyers decide and behave. That keeps go-to-market honest and the message landing.</p>
+        </details>
+        <details class="tile framework fold fold--tile reveal" open>
+          <summary><h3 class="framework__title">Reading the market honestly</h3><span class="fold__hint" aria-hidden="true"></span></summary>
+          <p>Porter's Five Forces, SWOT, and Blue Ocean help me see the market clearly, then choose where to compete and where to create new space.</p>
+        </details>
+        <details class="tile framework fold fold--tile reveal" open>
+          <summary><h3 class="framework__title">Outcomes over activity</h3><span class="fold__hint" aria-hidden="true"></span></summary>
+          <p>OKRs and a balanced scorecard tie the motion to financial, customer, and product results, never vanity metrics.</p>
+        </details>
+      </div>
+    </section>
+
     <!-- WHAT I BUILT: two compact doors to the detail pages -->
     <section class="section" id="more">
       <div class="section-head reveal">

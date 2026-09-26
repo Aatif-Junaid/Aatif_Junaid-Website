@@ -894,6 +894,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
     right: calc(-1 * var(--gutter)); width: 58%; margin: 0;
   }
 }
+/* Phones and portrait tablets: no hexagon field; the hero is the text alone. */
+@media (max-width: 768px) { .hero__geometry { display: none; } }
 @media (max-width: 900px) {
   .section, .case-section { padding-top: var(--space-12); padding-bottom: var(--space-12); }
   #experience { padding-top: var(--space-12); padding-bottom: var(--space-12); }
@@ -1115,7 +1117,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   /* page chips: the same size as the section links, with a light blue edge; they wrap only when the row is full */
   .site-nav .nav-page { order: 1; flex: 0 0 auto; min-width: 0; min-height: 32px; margin: 0; padding: 0.15rem 0.5rem; letter-spacing: 0; border-radius: var(--radius-control); }
   .site-nav .nav-page:first-of-type { margin-left: auto; }
-  .case-header .wordmark { width: 40px; min-width: 40px; height: 40px; font-size: 0; background: url(/assets/logos/am-mark-glossy.svg) center / 36px 36px no-repeat; }
+  .case-header .wordmark { width: 40px; min-width: 40px; height: 40px; justify-content: center; }
+  .wordmark__mark { width: 30px; height: 30px; }
   /* Home as an icon-only chip on phones so three chips and the mark share one row; the aria-label names it */
   /* Home stays the one prominent chip */.site-nav .nav-page--home {
   flex: 0 0 44px;
@@ -1259,14 +1262,6 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   a:focus, button:focus, summary:focus { outline: 3px solid var(--blue); outline-offset: 3px; }
 }
 
-/* Home is the consistent dark-blue return action, including on phones. */
-.site-nav .nav-page.nav-page--home {
-  background: var(--blue-text); border-color: var(--blue-text); color: #fff;
-}
-.site-nav .nav-page.nav-page--home .nav-page__icon { color: currentColor; }
-.site-nav .nav-page.nav-page--home:hover {
-  background: var(--blue-deep); border-color: var(--blue-deep); color: #fff;
-}
 
 /* skip link: lets keyboard users jump past the nav (WCAG 2.4.1) */
 .skip-link { min-height: 44px; display: inline-flex; align-items: center; }
@@ -1441,3 +1436,36 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .fold--always .dp-carousel { margin-top: 0.75rem; }
 }
 
+/* ---------- Playbook and GTM Systems follow the homepage ---------- */
+/* The homepage's 1280px frame and left edge, its gradient title treatment, its italic serif
+   tagline, its outline buttons, and its hero spacing. Other case pages keep the 1040 frame. */
+.case-page--wide .case-hero, .case-page--wide .case-section, .case-page--wide > nav { max-width: var(--maxw); }
+.case-page--wide .case-hero > .kicker { margin-bottom: calc(1.7rem + var(--hero-nudge)); }
+.case-page--wide .case-hero__title {
+  max-width: 20ch; margin-bottom: 0.7rem;
+  font-size: clamp(2.75rem, 5vw, 4.5rem); line-height: 1.02; letter-spacing: -0.035em;
+  background: linear-gradient(110deg, #07336f 0%, #0e5196 39%, #bfeeff 48%, #0e5196 57%, var(--blue-ink) 100%);
+  background-size: 240% 100%; background-position: 0% 50%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.3px rgba(31, 85, 117, 0.42);
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.78)) drop-shadow(0 4px 10px rgba(31, 85, 117, 0.14));
+}
+.case-page--wide .case-hero__lede {
+  max-width: 36ch; margin-bottom: 0.9rem;
+  font-family: var(--serif); font-style: italic; font-weight: 500; font-size: var(--text-32);
+  line-height: 1.15; letter-spacing: -0.02em; color: var(--ink);
+}
+.case-page--wide .case-hero__actions { margin-top: calc(1.8rem + var(--hero-nudge)); gap: 0.6rem; }
+.case-page--wide .case-hero__actions .btn {
+  min-width: 0; min-height: 48px; padding: 0.5rem 1rem; gap: 0.5rem;
+  font-size: var(--text-14); font-weight: 500; text-decoration: none;
+  border: 1px solid var(--line-strong); border-radius: var(--radius-control);
+  background: rgba(255, 255, 255, 0.55); color: var(--blue-deep);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.case-page--wide .case-hero__actions .btn:hover { transform: translateY(-2px); background: var(--blue-text); border-color: var(--blue-text); color: #fff; }
+@media (max-width: 768px) {
+  .case-page--wide .case-hero__title { font-size: clamp(2rem, 9vw, 2.4rem); }
+  .case-page--wide .case-hero__lede { font-size: var(--text-24); }
+  .case-page--wide .case-hero__actions .btn { min-height: 44px; padding: 0.4rem 0.8rem; }
+}

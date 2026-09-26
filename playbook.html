@@ -31,7 +31,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=4" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=4" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=4" />
-  <link rel="stylesheet" href="assets/css/site.css?v=96" />
+  <link rel="stylesheet" href="assets/css/site.css?v=97" />
 
   <!-- Structured data: ties this page back to the same Person entity -->
   <script type="application/ld+json">
@@ -62,7 +62,10 @@
   <a class="skip-link" href="#top">Skip to content</a>
 
   <header class="site-header case-header">
-    <a class="wordmark" href="/">Aatif Junaid Mulla</a>
+    <a class="wordmark" href="/" aria-label="Aatif Junaid Mulla home">
+      <img class="wordmark__mark" src="assets/logos/am-mark-glossy.svg?v=1" alt="" width="64" height="64" />
+      <span class="wordmark__name">Aatif Junaid Mulla</span>
+    </a>
     <nav class="site-nav" aria-label="Playbook navigation">
       <a href="#overview">Overview</a>
       <a href="#cases">Plays</a>
@@ -71,11 +74,11 @@
     </nav>
   </header>
 
-  <main class="case-page" id="top" tabindex="-1">
+  <main class="case-page case-page--wide" id="top" tabindex="-1">
     <section class="case-hero" id="overview">
       <p class="kicker">Pipeline, revenue, repeatable systems</p>
       <h1 class="case-hero__title">The playbook I wrote.</h1>
-      <p class="case-hero__context">Five plays. Each with the problem, what I owned, and the number.</p>
+      <p class="case-hero__lede">Five plays. Each with the problem, what I owned, and the number.</p>
       <div class="case-hero__actions">
         <a class="btn btn--primary" href="#cases">Read the plays</a>
       </div>
@@ -301,7 +304,7 @@
     </section>
   </main>
 
-  <footer class="site-footer site-footer--narrow">
+  <footer class="site-footer">
     <div class="site-footer__row">
       <span class="site-footer__copy">&copy; <span id="year">2026</span> Aatif Junaid Mulla &middot; San Francisco</span>
       <div class="site-footer__socials">

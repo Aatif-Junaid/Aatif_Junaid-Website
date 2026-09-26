@@ -35,6 +35,7 @@
   var SAFE = 60, pathAmplitude = 160, pathOriginY = 0, pathStartX = SAFE, pathStartPhase = -Math.PI / 2;
   var motionElapsed = 0, headInitialized = false;
   var COMET_SPEED_MULTIPLIER = 1.10;
+  var START_GAP = 32, START_MIN_X = 30, motionLevel = 0;
 
   function resize() {
     resizeQueued = false;
@@ -73,7 +74,8 @@
       var firstDotRect = firstPosition.dot ? firstPosition.dot.getBoundingClientRect() : null;
       var firstDotX = firstDotRect ? firstDotRect.left + firstDotRect.width / 2 : SAFE;
       pathOriginY = firstPosition.center;
-      pathStartX = firstDotX - 4;
+      // Rest beside the first dot, on its left and clear of it, so the comet is visible before any scrolling.
+      pathStartX = Math.max(START_MIN_X, firstDotX - START_GAP);
       pathAmplitude = Math.max(160, Math.min(cssW / 2 - SAFE, timelineW / 2 + 50));
       var startRatio = Math.max(-1, Math.min(1, (firstDotX - 28 - cssW / 2) / pathAmplitude));
       pathStartPhase = Math.asin(startRatio);
@@ -160,21 +162,54 @@
     [1, 'rgba(166, 98, 40, 0)']
   ]);
 
-  function spawnOne(x, y, speed) {
+  // A point `phase` along the recorded trail, with the forward tangent there.
+  function pointOnTrail(phase) {
+    for (var index = trail.length - 1; index > 0; index--) {
+      var older = trail[index - 1];
+      if (older.phase > phase && index > 1) continue;
+      var newer = trail[index];
+      var span = newer.phase - older.phase;
+      var t = span > 0 ? Math.max(0, Math.min(1, (phase - older.phase) / span)) : 1;
+      var dx = newer.x - older.x;
+      var dy = newer.y - older.y;
+      var length = Math.hypot(dx, dy);
+      return {
+        x: older.x + dx * t,
+        y: older.y + dy * t,
+        tx: length > 0.001 ? dx / length : travel.x,
+        ty: length > 0.001 ? dy / length : travel.y
+      };
+    }
+    return { x: head.x, y: head.y, tx: travel.x, ty: travel.y };
+  }
+
+  // Glitter is weightless. It is left on the path behind the head and floats slowly in a
+  // random direction; the backward sweep exists only while the comet is actually moving.
+  // In motion it is dropped at the head and left behind; at rest it lies along the tail.
+  function spawnOne(speed, motion) {
     if (parts.length >= 300) return;
-    var spark = Math.random() < 0.18;
-    var perpendicularX = -travel.y;
-    var perpendicularY = travel.x;
-    var back = spark ? 5 + Math.random() * 34 : 10 + Math.random() * 54;
-    var spread = spark ? 4 + back * 0.16 : 5 + back * 0.24;
-    var side = (Math.random() - 0.5) * spread;
-    var drift = spark ? 0.7 + Math.random() * 1.4 : 0.24 + Math.random() * 0.5;
-    var turbulence = (Math.random() - 0.5) * (spark ? 0.5 : 0.18);
+    var rest = 1 - motion;
+    var spark = Math.random() < 0.18 + 0.22 * rest;
+    var back = (spark ? 5 + Math.random() * 34 : 10 + Math.random() * 54) + rest * Math.random() * (spark ? 110 : 70);
+    var available = trail.length > 1 ? trailDistance - trail[0].phase : 0;
+    var along = Math.min(back, available);
+    var anchor = pointOnTrail(trailDistance - along);
+    var side = (Math.random() - 0.5) * (spark ? 4 + back * 0.16 : 5 + back * 0.24);
+    // With no trail yet to sit on, the glitter wears the head as a halo instead.
+    var haloAngle = Math.random() * Math.PI * 2;
+    var halo = Math.random() * Math.min(46, (back - along) * 0.6);
+    var floatAngle = Math.random() * Math.PI * 2;
+    var floatSpeed = spark ? 0.03 + Math.random() * 0.09 : 0.02 + Math.random() * 0.04;
+    var wake = motion * (spark ? 0.7 + Math.random() * 1.4 : 0.24 + Math.random() * 0.5);
     parts.push({
-      x: x - travel.x * back + perpendicularX * side,
-      y: y - travel.y * back + perpendicularY * side,
-      vx: -travel.x * drift + perpendicularX * turbulence,
-      vy: -travel.y * drift + perpendicularY * turbulence,
+      x: anchor.x - anchor.ty * side + Math.cos(haloAngle) * halo,
+      y: anchor.y + anchor.tx * side + Math.sin(haloAngle) * halo,
+      vx: -anchor.tx * wake,
+      vy: -anchor.ty * wake,
+      fx: Math.cos(floatAngle) * floatSpeed,
+      fy: Math.sin(floatAngle) * floatSpeed,
+      angle: Math.atan2(anchor.ty, anchor.tx),
+      stretch: motion,
       drag: spark ? 0.97 : 0.986,
       life: 1,
       decay: spark ? 0.014 + Math.random() * 0.016 : 0.009 + Math.random() * 0.007,
@@ -407,12 +442,13 @@
     lightNodes(head.y);
     recordTrail();
 
-    var emissionRate = 145 + Math.min(75, speed * 4 + Math.abs(horizontalVelocity) * 2.5);
+    motionLevel += (Math.min(1, speed / 2.2) - motionLevel) * (1 - Math.exp(-5 * deltaSeconds));
+    var emissionRate = 55 + motionLevel * (90 + Math.min(75, speed * 4 + Math.abs(horizontalVelocity) * 2.5));
     emissionCarry += emissionRate * deltaSeconds;
     var emit = Math.min(6, Math.floor(emissionCarry));
     emissionCarry -= emit;
     for (var emitted = 0; emitted < emit; emitted++) {
-      spawnOne(head.x, head.y, speed);
+      spawnOne(speed, motionLevel);
     }
     if (dirtyBounds) ctx.clearRect(dirtyBounds.x, dirtyBounds.y, dirtyBounds.width, dirtyBounds.height);
     var visualTrail = buildVisualTrail(time);
@@ -421,8 +457,8 @@
 
     for (var i = parts.length - 1; i >= 0; i--) {
       var particle = parts[i];
-      particle.x += particle.vx * frameScale;
-      particle.y += particle.vy * frameScale;
+      particle.x += (particle.vx + particle.fx) * frameScale;
+      particle.y += (particle.vy + particle.fy) * frameScale;
       particle.vx *= Math.pow(particle.drag, frameScale);
       particle.vy *= Math.pow(particle.drag, frameScale);
       particle.life -= particle.decay * frameScale;
@@ -436,8 +472,8 @@
       ctx.globalCompositeOperation = 'source-over';
       ctx.globalAlpha = Math.pow(particle.life, particle.spark ? 1.25 : 1.7) * (particle.spark ? 0.82 : 0.25);
       ctx.translate(particle.x, particle.y);
-      ctx.rotate(Math.atan2(particle.vy, particle.vx));
-      ctx.scale(1 + particle.speedBoost + (particle.spark ? 0.3 : 0), particle.spark ? 0.52 : 0.82);
+      ctx.rotate(particle.angle);
+      ctx.scale(1 + particle.stretch * (particle.speedBoost + (particle.spark ? 0.3 : 0)), 1 - particle.stretch * (particle.spark ? 0.48 : 0.18));
       var particleSprite = particle.warm ? emberSprite : (particle.spark ? sparkSprite : mistSprite);
       ctx.drawImage(particleSprite, -radius, -radius, radius * 2, radius * 2);
       ctx.restore();
@@ -462,7 +498,10 @@
   }
 
   window.__comet = function () {
-    return { x: Math.round(head.x), y: Math.round(head.y), target: Math.round(targetY), startY: Math.round(pathOriginY), parts: parts.length, trail: trail.length, w: cssW, h: cssH, mobile: mobileQuery.matches };
+    var driftX = 0, driftY = 0;
+    parts.forEach(function (particle) { driftX += particle.vx + particle.fx; driftY += particle.vy + particle.fy; });
+    var count = parts.length || 1;
+    return { x: Math.round(head.x), y: Math.round(head.y), target: Math.round(targetY), startY: Math.round(pathOriginY), parts: parts.length, trail: trail.length, w: cssW, h: cssH, mobile: mobileQuery.matches, motion: +motionLevel.toFixed(3), drift: { x: +(driftX / count).toFixed(3), y: +(driftY / count).toFixed(3) } };
   };
   resize();
   window.addEventListener('resize', queueResize, { passive: true });

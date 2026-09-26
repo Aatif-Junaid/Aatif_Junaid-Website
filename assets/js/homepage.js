@@ -149,17 +149,11 @@
     [0.36, 'rgba(82, 169, 204, 0.11)'],
     [1, 'rgba(47, 127, 179, 0)']
   ]);
-  var sparkSprite = makeGlowSprite([
-    [0, 'rgba(222, 249, 252, 0.96)'],
-    [0.2, 'rgba(128, 220, 237, 0.72)'],
-    [0.55, 'rgba(48, 164, 207, 0.2)'],
-    [1, 'rgba(34, 123, 182, 0)']
-  ]);
-  var emberSprite = makeGlowSprite([
-    [0, 'rgba(255, 244, 207, 0.9)'],
-    [0.24, 'rgba(239, 194, 112, 0.58)'],
-    [0.6, 'rgba(194, 129, 55, 0.14)'],
-    [1, 'rgba(166, 98, 40, 0)']
+  // Dust grains: soft and mid-blue with no bright centre, so nothing reads as a sparkle.
+  var dustSprite = makeGlowSprite([
+    [0, 'rgba(112, 178, 208, 0.5)'],
+    [0.45, 'rgba(88, 160, 198, 0.2)'],
+    [1, 'rgba(73, 138, 173, 0)']
   ]);
 
   // A point `phase` along the recorded trail, with the forward tangent there.
@@ -183,24 +177,25 @@
     return { x: head.x, y: head.y, tx: travel.x, ty: travel.y };
   }
 
-  // Glitter is weightless. It is left on the path behind the head and floats slowly in a
-  // random direction; the backward sweep exists only while the comet is actually moving.
-  // In motion it is dropped at the head and left behind; at rest it lies along the tail.
+  // The matter around the comet is dust and gas, never glitter. It is weightless: left on
+  // the path behind the head, it floats slowly in a random direction, and the backward sweep
+  // exists only while the comet is actually moving. In motion it is dropped at the head and
+  // left behind; at rest it lies along the tail.
   function spawnOne(speed, motion) {
     if (parts.length >= 300) return;
     var rest = 1 - motion;
-    var spark = Math.random() < 0.18 + 0.22 * rest;
-    var back = (spark ? 5 + Math.random() * 34 : 10 + Math.random() * 54) + rest * Math.random() * (spark ? 110 : 70);
+    var grain = Math.random() < 0.26;
+    var back = (grain ? 5 + Math.random() * 34 : 10 + Math.random() * 54) + rest * Math.random() * (grain ? 110 : 70);
     var available = trail.length > 1 ? trailDistance - trail[0].phase : 0;
     var along = Math.min(back, available);
     var anchor = pointOnTrail(trailDistance - along);
-    var side = (Math.random() - 0.5) * (spark ? 4 + back * 0.16 : 5 + back * 0.24);
-    // With no trail yet to sit on, the glitter wears the head as a halo instead.
+    var side = (Math.random() - 0.5) * (grain ? 4 + back * 0.16 : 5 + back * 0.24);
+    // With no trail yet to sit on, the matter gathers round the head as a coma instead.
     var haloAngle = Math.random() * Math.PI * 2;
     var halo = Math.random() * Math.min(46, (back - along) * 0.6);
     var floatAngle = Math.random() * Math.PI * 2;
-    var floatSpeed = spark ? 0.03 + Math.random() * 0.09 : 0.02 + Math.random() * 0.04;
-    var wake = motion * (spark ? 0.7 + Math.random() * 1.4 : 0.24 + Math.random() * 0.5);
+    var floatSpeed = grain ? 0.03 + Math.random() * 0.07 : 0.02 + Math.random() * 0.04;
+    var wake = motion * (grain ? 0.5 + Math.random() * 1 : 0.24 + Math.random() * 0.5);
     parts.push({
       x: anchor.x - anchor.ty * side + Math.cos(haloAngle) * halo,
       y: anchor.y + anchor.tx * side + Math.sin(haloAngle) * halo,
@@ -210,12 +205,11 @@
       fy: Math.sin(floatAngle) * floatSpeed,
       angle: Math.atan2(anchor.ty, anchor.tx),
       stretch: motion,
-      drag: spark ? 0.97 : 0.986,
+      drag: grain ? 0.975 : 0.986,
       life: 1,
-      decay: spark ? 0.014 + Math.random() * 0.016 : 0.009 + Math.random() * 0.007,
-      size: spark ? 1.5 + Math.random() * 2 : 2.4 + Math.random() * 3.8,
-      spark: spark,
-      warm: spark && Math.random() < 0.24,
+      decay: grain ? 0.012 + Math.random() * 0.012 : 0.008 + Math.random() * 0.006,
+      size: grain ? 1.3 + Math.random() * 1.6 : 2.6 + Math.random() * 3.8,
+      grain: grain,
       speedBoost: Math.min(0.35, speed * 0.012)
     });
   }
@@ -240,7 +234,9 @@
     if (visualTrail.length < 3) return;
     ctx.save();
     ctx.globalCompositeOperation = 'source-over';
-    ctx.lineCap = 'round';
+    // Square ends: the segments meet flush. Round ends overlapped at every joint and
+    // doubled the colour there, which drew the tail as a string of beads.
+    ctx.lineCap = 'butt';
     ctx.lineJoin = 'round';
     var layers = [
       { farWidth: 42, nearWidth: 30, alpha: 0.024, color: '73, 138, 173' },
@@ -308,7 +304,7 @@
     var breathe = 0.96 + 0.04 * Math.sin(time * 0.8);
     ctx.save();
     ctx.globalCompositeOperation = 'source-over';
-    ctx.lineCap = 'round';
+    ctx.lineCap = 'butt';
     ctx.lineJoin = 'round';
     for (var pointIndex = 1; pointIndex < visualTrail.length; pointIndex++) {
       var proximity = pointIndex / (visualTrail.length - 1);
@@ -467,15 +463,16 @@
         parts.pop();
         continue;
       }
-      var radius = Math.max(0.8, particle.size * (0.48 + particle.life));
+      // Matter disperses: it eases in rather than popping, and swells as it thins out.
+      var age = 1 - particle.life;
+      var radius = particle.size * (0.9 + age * (particle.grain ? 1.1 : 1.6));
       ctx.save();
       ctx.globalCompositeOperation = 'source-over';
-      ctx.globalAlpha = Math.pow(particle.life, particle.spark ? 1.25 : 1.7) * (particle.spark ? 0.82 : 0.25);
+      ctx.globalAlpha = Math.min(1, age / 0.15) * Math.pow(particle.life, 1.4) * (particle.grain ? 0.5 : 0.24);
       ctx.translate(particle.x, particle.y);
       ctx.rotate(particle.angle);
-      ctx.scale(1 + particle.stretch * (particle.speedBoost + (particle.spark ? 0.3 : 0)), 1 - particle.stretch * (particle.spark ? 0.48 : 0.18));
-      var particleSprite = particle.warm ? emberSprite : (particle.spark ? sparkSprite : mistSprite);
-      ctx.drawImage(particleSprite, -radius, -radius, radius * 2, radius * 2);
+      ctx.scale(1 + particle.stretch * (particle.speedBoost + (particle.grain ? 0.25 : 0)), 1 - particle.stretch * (particle.grain ? 0.35 : 0.12));
+      ctx.drawImage(particle.grain ? dustSprite : mistSprite, -radius, -radius, radius * 2, radius * 2);
       ctx.restore();
     }
 

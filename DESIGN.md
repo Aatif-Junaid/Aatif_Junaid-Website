@@ -42,7 +42,7 @@ Copy is part of the design:
 
 The type scale, on every page:
 
-- Seven sizes: 14, 16, 18, 24, 32, 48 for case-page titles, and the name at `clamp(3rem, 6.2vw, 5.5rem)`. Every text element uses one of the `--text-*` tokens; nothing renders below 14px.
+- Seven sizes: 14, 16, 18, 24, 32, 48 for case-page titles, and the name at `clamp(3rem, 7.4vw, 6.75rem)` (`clamp(2.1rem, 11.2vw, 2.75rem)` on phones). Every text element uses one of the `--text-*` tokens; nothing renders below 14px.
 - Section titles are 32 at weight 500. Item titles (play titles, card titles, h3) are 24 at weight 600. Page titles are weight 500 everywhere.
 - Body text never runs past about 70 characters: `max-width: 56ch` in Inter, whose `ch` is wide.
 - One header on every page: the flat 68px bar. On phones it keeps only the page links, 14px on 44px targets; the in-page anchors are one scroll away, and there is no hamburger menu. One hero: left-aligned, kicker over title over lede over actions. The homepage geometry is the site's one signature.
@@ -131,7 +131,7 @@ The rules below came out of a full review against premium, minimal design. They 
 - Letter-spacing has three values: -0.02em on display type, none on body, 0.06em on the small-capital dates. The hero name keeps its own. Line-height has three: 1.15 on headings, 1.4 on compact labels, 1.6 on body, with display type tighter.
 - Every heading is left-aligned, the Toolkit included. Closing invitations may centre.
 - The social image mirrors the hero: plain kicker, the gradient name, the italic tagline, the four verbs as plain words, and no letterspaced capitals. Regenerate it whenever the hero copy changes and bump its version.
-- The hero carries no method band. Approach sits after Education: four tiles (first principles then 5 Whys, design thinking, reading the market, outcomes over activity), two by two on desktop and small folding tiles on phones, and the homepage index of the two case pages is titled What I built, which echoes the hero line and pairs with How I work.
+- The homepage hero fills three quarters of the first screen together with the 68px header, its content centred and the tagline at 48, so Experience starts one scroll down; the triad field is anchored to the kicker's row so it keeps its place beside the name. The hero carries no method band. Approach sits after Education: four glass cards, the same tile as Experience and What I built, with 24 serif titles at 500 over 14 ink-soft text, two by two on desktop and small folding cards on phones, and the homepage index of the two case pages is titled What I built, which echoes the hero line and pairs with How I work.
 - Each fact appears once on a play: bullets carry the actions, the result block carries the number. Disclosure controls say Show, never See.
 
 ## The phone pass, 2026-09-16

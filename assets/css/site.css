@@ -70,7 +70,7 @@
   --text-24: 1.5rem;
   --text-32: 2rem;
   --text-48: clamp(2.25rem, 3.4vw, 3rem);
-  --text-hero: clamp(3rem, 6.2vw, 5.5rem);
+  --text-hero: clamp(3rem, 7.4vw, 6.75rem);
   --text-display: var(--text-32);   /* section titles */
   --text-heading: var(--text-24);   /* item titles */
   --text-lead: var(--text-18);
@@ -201,6 +201,12 @@ body::before {
 /* One left edge: the hero box stays 1400px wide so the geometry does not move; the text column sits on the 1280px edge every section uses. */
 .hero { padding-left: calc(var(--gutter) + clamp(0px, (min(100%, 1400px) - 1280px) / 2, 60px)); padding-right: calc(var(--gutter) + clamp(0px, (min(100%, 1400px) - 1280px) / 2, 60px)); }
 .hero > .kicker, .hero > .hero__name, .hero > .hero__story, .hero > .hero__actions { grid-column: 1 / span 10; }.kicker { margin-bottom: 1.7rem; }
+/* With the 68px header, the hero fills three quarters of the first screen, content centred,
+   so Experience starts one scroll down. */
+.hero {
+  min-height: calc(75vh - 68px); min-height: calc(75svh - 68px);
+  align-content: center; padding-bottom: clamp(2.75rem, 4vw, 3.75rem);
+}
 .hero__kicker { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; }
 .hero__location-group { display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
 .hero__kicker-divider { color: var(--blue-text); font-size: 1.1em; line-height: 1; }
@@ -234,7 +240,7 @@ body::before {
 }.hero__tagline {
   display: block;
   font-family: var(--serif);
-  font-size: var(--text-32);
+  font-size: var(--text-48);
   line-height: 1.15;
   letter-spacing: -0.02em;
   font-style: italic;
@@ -247,8 +253,10 @@ body::before {
 }
 .hero__actions { position: relative; z-index: 1; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 0.85rem; }
 .hero__geometry {
-  position: absolute; grid-column: auto; grid-row: auto; align-self: auto; justify-self: auto;
-  z-index: 0; top: clamp(2rem, 4.4vw, 4.1rem); width: min(81.1vw, 71.76rem);
+  position: absolute; grid-column: auto; grid-row: 1 / 2; align-self: auto; justify-self: auto;
+  /* Anchored to the kicker's row, so the field keeps its place beside the name when the hero
+     centres its content: the old offset from the hero top, minus the old top padding. */
+  z-index: 0; top: calc(clamp(2rem, 4.4vw, 4.1rem) - clamp(2.75rem, 4vw, 3.75rem)); width: min(81.1vw, 71.76rem);
   /* Another 20% of field reach on top of the previous 30% bump. Right offset grows by
      the same amount the width grew again (~11.96rem) so the container's LEFT edge --
      and therefore the triad's own absolute position -- does not move. */
@@ -788,22 +796,17 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .deeper__cta { color: var(--blue-text); font-size: var(--text-14); font-weight: 600; white-space: nowrap; transition: color 0.2s ease; }
 .deeper__row:hover .deeper__cta { color: var(--blue-deep); }
 
-/* ---------- approach: aligned flat editorial grid ---------- */
+/* ---------- approach: four glass cards, the same tile as Experience and What I built ---------- */
 .framework-grid {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: var(--space-12); row-gap: 0; align-items: stretch;
+  gap: var(--space-6); align-items: stretch;
 }
-.framework {
-  display: grid; grid-template-rows: auto 1fr; align-content: start; min-width: 0;
-  padding: var(--space-8) 0 var(--space-6); border: 0; border-top: 1px solid var(--line-strong); border-radius: 0;
-  background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none;
-}
-.framework:hover { transform: none; background: transparent; }
+.framework { display: grid; grid-template-rows: auto 1fr; align-content: start; min-width: 0; padding: var(--space-8); }
 .framework__title {
-  max-width: 24ch; font-family: var(--serif); font-weight: 600;
-  font-size: var(--text-heading); line-height: 1.15; margin-bottom: var(--space-3); text-wrap: balance;
+  max-width: 24ch; font-family: var(--serif); font-weight: 500;
+  font-size: var(--text-24); line-height: 1.15; margin-bottom: var(--space-3); text-wrap: balance;
 }
-.framework p { max-width: 52ch; color: var(--ink-soft); font-size: var(--text-body); text-wrap: pretty; }
+.framework p { max-width: 52ch; margin-top: var(--space-2); color: var(--ink-soft); font-size: var(--text-14); line-height: 1.6; text-wrap: pretty; }
 .framework-grid .reveal:nth-child(2) { transition-delay: 0.08s; }
 .framework-grid .reveal:nth-child(3) { transition-delay: 0.16s; }
 .framework-grid .reveal:nth-child(4) { transition-delay: 0.24s; }
@@ -952,6 +955,9 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
    already set. Sizes, section padding, and the metric and play grids live there. ---------- */
 @media (max-width: 480px) {
   .hero__name { -webkit-text-stroke-width: 0.35px; }
+  /* the location wraps here: give it its own line instead of leading with the divider dot */
+  .hero__kicker-divider { display: none; }
+  .hero__location-group { flex-basis: 100%; }
   .case-hero__title { font-size: var(--text-48); }
   .hero__name::before { opacity: 0.4; filter: blur(6px) saturate(1.08); }
   .site-footer__row { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
@@ -972,7 +978,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   /* an inline link inside the hero copy is exempt from the 44px target rule; the tall flex box was stretching its line */
   .case-hero__context .tl-link { min-height: 0; display: inline; }
   .section-head, .case-section__head { margin-bottom: var(--space-6); }
-  .hero { padding-top: var(--space-12); }
+  .hero { padding-top: var(--space-12); padding-bottom: var(--space-12); }
   .hero__story { margin-bottom: 1.4rem; }
   .hero > .hero-proof { margin-top: 1.4rem; padding-top: 1.4rem; }
   .hero-proof__intro { margin-bottom: 1rem; }
@@ -1119,8 +1125,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   /* type scale one step down */
   body { font-size: var(--text-16); line-height: 1.55; }
   .section-title { font-size: var(--text-24); }
-  .hero__name { font-size: clamp(2.1rem, 9.6vw, 2.6rem); }
-  .hero__tagline { font-size: var(--text-18); }
+  .hero__name { font-size: clamp(2.1rem, 11.2vw, 2.75rem); }
+  .hero__tagline { font-size: var(--text-24); }
   .hero__statement strong { font-size: var(--text-14); }
   .hero-proof__intro h2 { font-size: var(--text-24); }
   .tl-role { font-size: var(--text-18); }
@@ -1166,11 +1172,11 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .eng-build { gap: 0 2rem; }
   .eng-build > div + div { margin-top: 0; }
   /* approach: four small blocks two by two; the open one spans the row */
-  .framework-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
-  .framework, .framework:nth-child(n) { grid-column: auto; margin: 0; padding: 0.7rem 0.75rem; border: 1px solid var(--line); border-radius: var(--radius-inner); background: rgba(255, 255, 255, 0.45); }
-  .framework[open] { grid-column: 1 / -1; padding-bottom: 0.9rem; }
-  .fold--tile .framework__title { margin: 0; font-size: var(--text-14); line-height: 1.2; }
-  .framework p { margin-top: 0.5rem; font-size: var(--text-14); line-height: 1.5; }
+  .framework-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+  .framework, .framework:nth-child(n) { grid-column: auto; margin: 0; padding: 0.75rem 0.9rem; border: 1px solid var(--tile-border); border-radius: var(--radius-card); background: var(--tile-bg); box-shadow: var(--tile-shadow), var(--tile-inset); }
+  .framework[open] { grid-column: 1 / -1; padding-bottom: 1rem; }
+  .fold--tile .framework__title { margin: 0; font-size: var(--text-16); line-height: 1.25; }
+  .framework p { margin-top: 0.5rem; font-size: var(--text-14); line-height: 1.6; }
   .fold--tile > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; min-height: 44px; cursor: pointer; pointer-events: auto; }
   .fold--tile .fold__hint { font-size: var(--text-14); }
   .fold--tile:not([open]) .fold__hint::after { content: "\203A"; font-size: 1.1em; }

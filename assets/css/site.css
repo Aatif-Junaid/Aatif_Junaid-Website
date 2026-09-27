@@ -218,11 +218,20 @@ body::before {
 .hero__name {
   position: relative; isolation: isolate; font-family: var(--serif); font-weight: 500;
   font-size: var(--text-hero); line-height: 0.95; letter-spacing: -0.042em; padding-bottom: 0.12em;
-  background: linear-gradient(110deg, #07336f 0%, #0e5196 39%, #bfeeff 48%, #0e5196 57%, var(--blue-ink) 100%);
-  background-size: 240% 100%; background-position: 0% 50%;
+  /* Two layers, both clipped to the type: a narrow glint band, parked off the left edge, over
+     the still gradient. The glint crosses once, about a second after the name appears. */
+  background:
+    linear-gradient(105deg, transparent 45%, rgba(191, 238, 255, 0.2) 48.5%, rgba(242, 251, 255, 0.6) 50%, rgba(191, 238, 255, 0.2) 51.5%, transparent 55%),
+    linear-gradient(110deg, #07336f 0%, #0e5196 39%, #bfeeff 48%, #0e5196 57%, var(--blue-ink) 100%);
+  background-size: 300% 100%, 240% 100%; background-position: 100% 50%, 0% 50%;
   -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0.3px rgba(31, 85, 117, 0.42); paint-order: stroke fill;
   filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.78)) drop-shadow(0 4px 10px rgba(31, 85, 117, 0.14));
+}
+.hero__name.is-visible { animation: hero-name-glint 0.8s cubic-bezier(0.45, 0, 0.25, 1) 0.9s 1; }
+@keyframes hero-name-glint {
+  from { background-position: 100% 50%, 0% 50%; }
+  to { background-position: 0% 50%, 0% 50%; }
 }
 .hero__name::before {
   content: attr(data-name); position: absolute; inset: 0; z-index: -1; pointer-events: none;
@@ -264,8 +273,8 @@ body::before {
   /* Another 20% of field reach on top of the previous 30% bump. Right offset grows by
      the same amount the width grew again (~11.96rem) so the container's LEFT edge --
      and therefore the triad's own absolute position -- does not move. */
-  /* Two clicks right and, net of the kicker moving up, one click down. */
-  right: calc(clamp(-33.26rem, calc(-7vw - 25.76rem), -30.01rem) - 2 * var(--hero-nudge));
+  /* Three clicks right and, net of the kicker moving up, one click down. */
+  right: calc(clamp(-33.26rem, calc(-7vw - 25.76rem), -30.01rem) - 3 * var(--hero-nudge));
   /* Grid triangles span 70 x 80.8 SVG units in a 1498 x 560 viewBox.
      Translate the complete artwork three triangle widths left and one height up. */
   margin: 0; opacity: 1; pointer-events: none; transform: translate3d(-14.0187%, -14.4286%, 0);
@@ -894,6 +903,10 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
     right: calc(-1 * var(--gutter)); width: 58%; margin: 0;
   }
 }
+/* Nav labels stay on one line. Below 860px the homepage's six links and the full name do not
+   fit side by side, so its header shows the mark alone there, as it does on phones. */
+.site-nav a { white-space: nowrap; }
+@media (min-width: 769px) and (max-width: 860px) { .site-header--home .wordmark__name { display: none; } }
 /* Phones and portrait tablets: no hexagon field; the hero is the text alone. */
 @media (max-width: 768px) { .hero__geometry { display: none; } }
 @media (max-width: 900px) {
@@ -1238,6 +1251,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   html { scroll-behavior: auto; }
   body::before { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .hero__name.is-visible { animation: none; }
   .case-study { transition: none; }
   .case-study.is-focus { transform: none; }
   .tile:hover, .btn:hover, .metric:hover, a.logo-chip:hover, .footer-social:hover { transform: none; }

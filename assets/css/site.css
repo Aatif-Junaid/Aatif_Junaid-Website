@@ -257,9 +257,6 @@ body::before {
   font-weight: 500;
   color: var(--ink);
 }
-.hero__summary {
-  max-width: 44rem; margin: 1.1rem 0 0; font-size: var(--text-16); line-height: 1.6; color: var(--ink-soft); text-wrap: pretty;
-}
 .hero__statement strong {
   font-family: var(--sans); font-style: normal; font-weight: 600; font-size: var(--text-small);
   line-height: 1.4; color: var(--blue-deep);
@@ -1183,10 +1180,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .section-title { font-size: var(--text-24); }
   .hero__name { font-size: clamp(2.1rem, 11.2vw, 2.75rem); }
   .hero__tagline { font-size: var(--text-24); }
-  .hero__summary {
-  max-width: 44rem; margin: 1.1rem 0 0; font-size: var(--text-16); line-height: 1.6; color: var(--ink-soft); text-wrap: pretty;
-}
-.hero__statement strong { font-size: var(--text-14); }
+  .hero__statement strong { font-size: var(--text-14); }
   .hero-proof__intro h2 { font-size: var(--text-24); }
   .tl-role { font-size: var(--text-18); }
   .tl-date { font-size: var(--text-14); }

@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- The GTM Systems page is renamed the GTM operating system: the nav chip reads GTM OS, the page title "My GTM operating system for product marketing.", and its kicker "Product marketing and GTM operating system". The address stays gtm-systems.html so existing links keep working.
 - Aligned with the live LinkedIn profile (2026-10-03): the kicker, page titles, search descriptions, and share image say Product Marketing and GTM, and the structured data says Product Marketing Manager and GTM; the Aiseberg card reads Product Marketing Manager and GTM, Sept 2025 - Present; Peepal shows Associate (from Dec 2018) and Lead, Business Strategy and Marketing; share image v=10.
 - The two-sentence summary under the hero headline is removed; the hero is the kicker, name, headline, and buttons again.
 - Positioning moves to product marketing and GTM. The hero kicker reads "Product Marketing and GTM", the headline "I make technical products easy to buy.", and a two-sentence summary sits under it. The Aiseberg card leads with the design partner program and battle cards, then the Splunk deal and pipeline, then PMM 2.0 (now described as run with a colleague on promotion) and the 24% (credited to the PostHog analysis and guided onboarding). Page titles, search descriptions, and the share image (v=9) follow. The unsourced "Top 10% of class" line is removed. The Aiseberg role title stays "GTM and Product Growth" to match the resume and LinkedIn.

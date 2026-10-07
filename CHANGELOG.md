@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- aisepedia.com is offline (TLS handshake fails, checked 2026-10-06), so no page links to it. The Aisepedia logo is no longer a link, the event links point to the Wayback Machine copy of the PMM 2.0 page, and the playbook keeps only its archived copies.
 - The public resume (`resume.pdf?v=2026-10a`) now carries the titles on LinkedIn and the timeline: Product Marketing Manager and GTM at Aiseberg, and Associate, then Lead, Business Strategy and Marketing at Peepal. Rebuilt from the brain's GTM master; nothing else on it changed.
 - The GTM Systems page is renamed the GTM operating system: the nav chip reads GTM OS, the page title "My GTM operating system for product marketing.", and its kicker "Product marketing and GTM operating system". The address stays gtm-systems.html so existing links keep working.
 - Aligned with the live LinkedIn profile (2026-10-03): the kicker, page titles, search descriptions, and share image say Product Marketing and GTM, and the structured data says Product Marketing Manager and GTM; the Aiseberg card reads Product Marketing Manager and GTM, Sept 2025 - Present; Peepal shows Associate (from Dec 2018) and Lead, Business Strategy and Marketing; share image v=10.

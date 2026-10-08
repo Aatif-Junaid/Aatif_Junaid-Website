@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Peepal starts Nov 2018 again, matching the employment record (Nov 26, 2018), the brain, and the resume.
 - The PMM 2.0 archive links use the 2026-09-04 Wayback Machine capture, which renders with its styles (the April capture showed unstyled text), and every archive link is labelled "Archived page (original site offline)".
 - aisepedia.com is offline (TLS handshake fails, checked 2026-10-06), so no page links to it. The Aisepedia logo is no longer a link, the event links point to the Wayback Machine copy of the PMM 2.0 page, and the playbook keeps only its archived copies.
 - The public resume (`resume.pdf?v=2026-10a`) now carries the titles on LinkedIn and the timeline: Product Marketing Manager and GTM at Aiseberg, and Associate, then Lead, Business Strategy and Marketing at Peepal. Rebuilt from the brain's GTM master; nothing else on it changed.

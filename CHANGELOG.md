@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- The Aiseberg title reads "Product Marketing Manager & GTM", exactly as on LinkedIn, on the role card, in the structured data on every page, and in the resume (resume.pdf v=2026-10b).
 - Titles now match the employment records: Product Marketing Manager at Aiseberg, Senior Revenue Operations Analyst at POLITICO, and Business and Product Strategy Intern, Pro Subscriptions for the 2023 internship. Timeline, structured data on four pages, and `resume.pdf?v=2026-10b`.
 - Peepal starts Nov 2018 again, matching the employment record (Nov 26, 2018), the brain, and the resume.
 - The PMM 2.0 archive links use the 2026-09-04 Wayback Machine capture, which renders with its styles (the April capture showed unstyled text), and every archive link is labelled "Archived page (original site offline)".

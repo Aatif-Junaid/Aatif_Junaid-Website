@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Titles now match the employment records: Product Marketing Manager at Aiseberg, Senior Revenue Operations Analyst at POLITICO, and Business and Product Strategy Intern, Pro Subscriptions for the 2023 internship. Timeline, structured data on four pages, and `resume.pdf?v=2026-10b`.
 - Peepal starts Nov 2018 again, matching the employment record (Nov 26, 2018), the brain, and the resume.
 - The PMM 2.0 archive links use the 2026-09-04 Wayback Machine capture, which renders with its styles (the April capture showed unstyled text), and every archive link is labelled "Archived page (original site offline)".
 - aisepedia.com is offline (TLS handshake fails, checked 2026-10-06), so no page links to it. The Aisepedia logo is no longer a link, the event links point to the Wayback Machine copy of the PMM 2.0 page, and the playbook keeps only its archived copies.

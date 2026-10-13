@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Faster first paint with no visual change: every page preloads Inter and Playfair, the site scripts load with defer, the toolkit icons lazy-load, and the EnCloudEn and Peepal logos are resized to three times their display size (25 KB to 14 KB). Validator fixes: the labelled divs on the homepage and the GTM page carry role="group", and the GTM page's four collapsible headings are spans with role="heading" (an h3 cannot sit inside a span); they keep balanced wrapping. site.css v=102.
 - The POLITICO internship reads "Intern, Business and Product Strategy, Pro Subscriptions" and the resume's research line "Graduate Research Associate", both as on LinkedIn (resume.pdf v=2026-10c).
 - The Aiseberg title reads "Product Marketing Manager & GTM", exactly as on LinkedIn, on the role card, in the structured data on every page, and in the resume (resume.pdf v=2026-10b).
 - Titles now match the employment records: Product Marketing Manager at Aiseberg, Senior Revenue Operations Analyst at POLITICO, and Business and Product Strategy Intern, Pro Subscriptions for the 2023 internship. Timeline, structured data on four pages, and `resume.pdf?v=2026-10b`.

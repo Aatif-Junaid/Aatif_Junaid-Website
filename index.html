@@ -78,7 +78,9 @@
 
   <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
   <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
-  <link rel="stylesheet" href="assets/css/site.css?v=101" />
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/playfair.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/site.css?v=102" />
   <link rel="stylesheet" href="assets/css/mobile-proof-sequence.css?v=1" media="(max-width: 768px)" />
   <!-- Without JS the reveal observer never runs, so make sure nothing stays invisible. -->
   <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
@@ -133,7 +135,7 @@
       </div>
 
       <div class="hero__actions reveal">
-        <div class="hero__profile-links" aria-label="Profile links">
+        <div role="group" class="hero__profile-links" aria-label="Profile links">
           <a class="btn btn--hero-profile" href="resume.pdf?v=2026-10c" target="_blank" rel="noopener"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 2.75h7.1l3.9 3.9v14.6H6.5z"/><path d="M13.5 2.75v4h4"/><path d="M9.25 12h5.5M9.25 15.5h5.5"/></svg><span>Resume</span></a>
           <a class="btn btn--hero-profile" href="https://www.linkedin.com/in/aatif-junaid" target="_blank" rel="noopener"><svg class="btn__icon btn__icon--fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg><span>LinkedIn</span></a>
           <a class="btn btn--hero-profile" href="https://github.com/Aatif-Junaid" target="_blank" rel="noopener"><svg class="btn__icon btn__icon--fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7A11.3 11.3 0 0 0 8.43 22.72c.57.1.78-.25.78-.55v-2.16c-3.18.69-3.85-1.35-3.85-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.54-.29-5.21-1.27-5.21-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.11 1.17A10.8 10.8 0 0 1 12 5.92a10.8 10.8 0 0 1 2.83.38c2.15-1.48 3.11-1.17 3.11-1.17.62 1.58.23 2.75.11 3.04.73.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.37-5.23 5.65.41.35.78 1.03.78 2.08v3.2c0 .3.21.65.79.54A11.3 11.3 0 0 0 12 .7Z"/></svg><span>GitHub</span></a>
@@ -184,7 +186,7 @@
             </ul>
               </div>
               <div class="tl-side">
-                <div class="metrics" aria-label="Aisepedia results">
+                <div role="group" class="metrics" aria-label="Aisepedia results">
               <div class="metric metric--target"><span class="metric__num">13</span><span class="metric__label">Design partners, 8 senior</span></div>
               <div class="metric metric--text"><span class="metric__num metric__num--text">Splunk</span><span class="metric__label">First enterprise deal (a Cisco company)</span></div>
               <div class="metric metric--users"><span class="metric__num">36</span><span class="metric__label">Event attendees</span></div>
@@ -211,7 +213,7 @@
 
             <details class="fold fold--always" open>
               <summary><span class="fold__title" data-short="Testimonials">Testimonials from the design partner program</span><span class="fold__hint" aria-hidden="true"></span></summary>
-            <div class="dp-carousel reveal" aria-label="Design partner testimonials">
+            <div role="group" class="dp-carousel reveal" aria-label="Design partner testimonials">
               <div class="dp-head">
                 <span class="dp-label">From the design partner program I ran</span>
                 <div class="dp-nav">
@@ -281,7 +283,7 @@
             </ul>
               </div>
               <div class="tl-side">
-                <div class="metrics metrics--four" aria-label="POLITICO results">
+                <div role="group" class="metrics metrics--four" aria-label="POLITICO results">
               <div class="metric metric--layers"><span class="metric__num">5</span><span class="metric__label">Product lines</span></div>
               <div class="metric metric--db"><span class="metric__num">26,207</span><span class="metric__label">Deal records migrated</span></div>
               <div class="metric metric--money"><span class="metric__num">$2.6M</span><span class="metric__label">Recoverable ACV</span></div>
@@ -345,7 +347,7 @@
             </ul>
               </div>
               <div class="tl-side">
-                <div class="metrics" aria-label="Quantum results">
+                <div role="group" class="metrics" aria-label="Quantum results">
               <div class="metric metric--money"><span class="metric__num">$473K</span><span class="metric__label">YoY revenue recovered</span></div>
               <div class="metric metric--win"><span class="metric__num">105%</span><span class="metric__label">Q1 2022 target</span></div>
               <div class="metric metric--up"><span class="metric__num">18%</span><span class="metric__label">Prospect growth</span></div>
@@ -418,7 +420,7 @@
             </ul>
               </div>
               <div class="tl-side">
-                <div class="metrics" aria-label="Peepal results">
+                <div role="group" class="metrics" aria-label="Peepal results">
               <div class="metric metric--users"><span class="metric__num">56</span><span class="metric__label">Clients owned</span></div>
               <div class="metric metric--up"><span class="metric__num">76%</span><span class="metric__label">Digital reach growth</span></div>
               <div class="metric metric--text"><span class="metric__num metric__num--text">Peepal Centennial</span><span class="metric__label">Top performance award</span></div>
@@ -489,17 +491,17 @@
         </div>
       </div>
 
-      <div class="stack reveal" aria-labelledby="stack-title">
+      <div class="stack reveal" role="group" aria-labelledby="stack-title">
         <h3 class="stack__title" id="stack-title">Core stack</h3>
         <ul class="stack__list">
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/clay.png" alt="" width="18" height="18" /></i></span><strong>Clay</strong><span class="stack__line">Enrichment and list building for targeted outbound</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/hubspot.svg" alt="" width="18" height="18" /></i></span><strong>HubSpot</strong><span class="stack__line">134 accounts tracked by stage, follow-up that never waited on me</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/salesforce.svg" alt="" width="18" height="18" /></i></span><strong>Salesforce</strong><span class="stack__line">$473K recovered through renewal audits, 26,207 records migrated</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/zapier.svg" alt="" width="18" height="18" /></i></span><strong>Zapier</strong><span class="stack__line">Lightweight automations between the tools above</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/apollo.png" alt="" width="18" height="18" /></i></span><strong>Apollo.io</strong><span class="stack__line">Prospect data and sequences for outbound</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/n8n.svg" alt="" width="18" height="18" /></i></span><strong>n8n</strong><span class="stack__line">Lifecycle automation behind the 24% drop in early abandonment</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/mixpanel.svg" alt="" width="18" height="18" /><img src="assets/logos/tools/posthog.svg" alt="" width="18" height="18" /></i></span><strong>Mixpanel and PostHog</strong><span class="stack__line">11 events across the 8-stage funnel</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/anthropic.svg" alt="" width="18" height="18" /></i></span><strong>Claude</strong><span class="stack__line">Drafting inside the lifecycle engine, human-approved</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/clay.png" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Clay</strong><span class="stack__line">Enrichment and list building for targeted outbound</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/hubspot.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>HubSpot</strong><span class="stack__line">134 accounts tracked by stage, follow-up that never waited on me</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/salesforce.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Salesforce</strong><span class="stack__line">$473K recovered through renewal audits, 26,207 records migrated</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/zapier.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Zapier</strong><span class="stack__line">Lightweight automations between the tools above</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/apollo.png" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Apollo.io</strong><span class="stack__line">Prospect data and sequences for outbound</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/n8n.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>n8n</strong><span class="stack__line">Lifecycle automation behind the 24% drop in early abandonment</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/mixpanel.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /><img src="assets/logos/tools/posthog.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Mixpanel and PostHog</strong><span class="stack__line">11 events across the 8-stage funnel</span></li>
+          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/anthropic.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Claude</strong><span class="stack__line">Drafting inside the lifecycle engine, human-approved</span></li>
         </ul>
         <a class="stack__more" href="gtm-systems.html#toolkit-title">Full toolkit</a>
       </div>
@@ -606,8 +608,8 @@
     <button class="motion-toggle" type="button" aria-pressed="false">Pause the comet</button>
   </footer>
 
-  <script src="assets/js/site.js?v=11"></script>
-  <script src="assets/js/homepage.js?v=24"></script>
+  <script defer src="assets/js/site.js?v=11"></script>
+  <script defer src="assets/js/homepage.js?v=24"></script>
 
   <!-- Cloudflare Web Analytics: cookieless page views, no consent needed -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3bb28b64147b4f9db81fc8ee585187c4"}'></script>

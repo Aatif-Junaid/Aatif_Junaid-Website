@@ -24,6 +24,8 @@ Codex and Claude Code follow this file. `CLAUDE.md` imports it and adds nothing 
 
 ## Copy rules
 
+- Aiseberg / Aisepedia ended in October 2026 (Aatif, 2026-10-23, matching LinkedIn). Every page, the resume, and structured data show **Sept 2025 to Oct 2026** in the past tense. Never "Present", never a `worksFor` Aiseberg, never "current role". The brain's `profile/identity.md` is the authority.
+
 - Use no em dashes and no empty buzzwords.
 - Lead experience bullets with numbers.
 - Spell the company `Aiseberg` and the product `Aisepedia`.

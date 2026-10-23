@@ -55,7 +55,7 @@ The type scale, on every page:
 Labels and headings, on every page:
 
 - Section headings are the plain word: Experience, Education, What I built, The build, The bet. A call to action keeps its sentence. No small label sits above a heading.
-- No small-capitals labels anywhere except dates (`SEPT 2025 - PRESENT`). Metric labels, badges, node types, verb labels, and kickers are ordinary text at 0.78 to 0.95rem.
+- No small-capitals labels anywhere except dates (`SEPT 2025 - OCT 2026`). Metric labels, badges, node types, verb labels, and kickers are ordinary text at 0.78 to 0.95rem.
 - No pills. A badge is plain text. The four verb pills under the How I work diagram and the Aiseberg loop are gone.
 - No arrows on links, chips, or Show more controls. A caret stays only where it marks an expandable block (the Decision systems disclosure).
 - The header nav reads the same on every page: sentence case, 0.875rem, weight 500.

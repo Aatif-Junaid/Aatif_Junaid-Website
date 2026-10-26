@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- The downloadable resume now follows the gold-standard format from the brain (Aatif's own Word template, approved 2026-10-26): a general product marketing and GTM version, one page, 12 bullets. resume.pdf v=2026-10f.
 - Aiseberg / Aisepedia ended in October 2026: the homepage timeline and the resume read Sept 2025 - Oct 2026, and the homepage structured data no longer lists Aiseberg as a current employer (resume.pdf v=2026-10e, built from the brain master in brain PR #245).
 - The public resume matches the brain's 2026-10-19 record (resume.pdf v=2026-10d): POLITICO reporting reads as a weekly wallet-retention report, and the migration as AdBook to Placements.io, with the validation rules written in AdBook. Quantum now shows growth in major storage clients in one quarter and the channel-partner quoting. Peepal shows a revenue target, LinkedIn growth from a dormant page, and the gold sponsorship of the TA Leadership Forum, Hyderabad 2019. Titles, employers, and locations are unchanged.
 - The homepage timeline and the playbook carry the same corrections: the Wallet Retention Report is weekly (every Monday), the POLITICO migration reads AdBook to Placements.io, the Salesforce toolkit line no longer implies a Salesforce migration, Quantum's 18% is storage-client growth in one quarter with channel-partner quoting, and Peepal's 76% is LinkedIn reach growth with the interns led through the TA Leadership Forum, Hyderabad 2019 sponsorship.

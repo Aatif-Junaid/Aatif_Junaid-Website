@@ -117,6 +117,20 @@ Other motion supports hierarchy or feedback only:
 
 Every visible change must be checked near 1440px and 375px before deployment.
 
+## The homepage system, 2026-11-04
+
+Aatif chose option B ("Field report") for the homepage on 2026-11-04. It applies to `index.html` only, which loads `assets/css/home.css` instead of `site.css`. Every other page keeps the system described in the rest of this file until it is carried over. Where the two disagree on the homepage, this section wins.
+
+- Colour follows 60-30-10, as tokens on `:root` in `home.css`. White and `#F3F4F6` paper are dominant, charcoal `#23272E` (raised `#2D323A`) is secondary, and blue `#1A6DD0` (hover `#155CB0`, `#9DC9F8` on charcoal and the photo) is the accent. The last measurement at 1440 was 66.7 / 26.3 / 7.0. Re-measure after any band change and keep 55 to 68 / 24 to 36 / 4 to 10.
+- One typeface: Poppins 400, 500 and 600, self hosted (`assets/fonts/poppins-*.woff2`). Sizes come from the Tailwind scale through named text style classes (`heading-*`, `title-*`, `body-*`, `button-*`, `caption-*`). No italics, nothing heavier than 600.
+- Spacing comes from the 2 to 96 scale, and radii are 2 and 4 only (full for round dots). Borders go all the way round a card or not at all. The stats panel carries the only shadow. There are no gradient backgrounds; the hero photo has one flat charcoal overlay at 60%.
+- Icons are Phosphor regular (MIT, `assets/icons/Phosphor-LICENSE.txt`), as an inline SVG sprite, so the CSP stays unchanged.
+- The hero is the PMM 2.0 stage photo (`assets/media/pmm-2-0-stage-*.jpg`, 768, 1280 and 2048 wide). Text stays in the dark left side and never covers his face, his body or the slide question at any width. Below 1024 the photo stacks above the text.
+- The comet keeps its markup and script. Cards sit at 80% white so the dust reads through, and the canvas draws above them at 40% opacity with a multiply blend, which keeps every text pair at 4.5:1 or better.
+- The design partner testimonials sit in their own charcoal band after Experience, always open. The block inside it is byte for byte the original; never reword it. Four across at 1280 and up, 2 by 2 from 1024, a carousel with 44px arrows below 1024.
+- The contact band carries the tagline reveal: each word moves from muted to full colour as it scrolls through, in CSS only (`animation-timeline: view()`), full colour without support, under reduced motion and when the comet is paused.
+- Motion uses `cubic-bezier(0.22, 1, 0.36, 1)`, 500ms for movement and 300ms for colour.
+
 ## The premium pass, 2026-09-16
 
 The rules below came out of a full review against premium, minimal design. They override anything earlier in this file that disagrees.

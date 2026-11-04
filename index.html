@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="Product marketing and GTM, San Francisco. 13 design partners, roughly $400K in qualified pipeline, and a first enterprise deal with Splunk (a Cisco company)." />
   <meta name="twitter:image" content="https://aatifmulla.me/og-image.jpg?v=10" />
 
-  <meta name="theme-color" content="#EEEDE8" />
+  <meta name="theme-color" content="#23272E" />
   <link rel="canonical" href="https://aatifmulla.me/" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://news.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.gstatic.com; connect-src 'self' https://cloudflareinsights.com https://news.google.com; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src https://news.google.com" />
@@ -65,13 +65,14 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=4" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=4" />
 
-  <!-- Fonts: Playfair Display (artistic display) + Inter (hyper-clean body) -->
+  <!-- Fonts: Poppins 400, 500, 600, self hosted (OFL, assets/fonts/Poppins-OFL.txt) -->
 
   <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
   <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
-  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/assets/fonts/playfair.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/site.css?v=103" />
+  <link rel="preload" href="/assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/poppins-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/home.css?v=1" />
   <link rel="stylesheet" href="assets/css/mobile-proof-sequence.css?v=1" media="(max-width: 768px)" />
   <!-- Without JS the reveal observer never runs, so make sure nothing stays invisible. -->
   <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
@@ -82,128 +83,334 @@
 
   <a class="skip-link" href="#top">Skip to content</a>
 
-  <!-- Icon sprite for the tiny metric animations -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <symbol id="ic-money" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2.5" x2="12" y2="21.5"/><path d="M16.5 6.5C16.5 4.8 14.5 3.7 12 3.7S7.5 4.8 7.5 6.5 9.5 9.3 12 9.8s4.5 1.6 4.5 3.4-2 3.1-4.5 3.1-4.5-1-4.5-2.8"/></symbol>
-    <symbol id="ic-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16 5.2a3 3 0 0 1 0 5.6M21 20c0-2.3-1.7-4-3.8-4.6"/></symbol>
-    <symbol id="ic-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
-    <symbol id="ic-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></symbol>
-    <symbol id="ic-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></symbol>
-    <symbol id="ic-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
-    <symbol id="ic-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></symbol>
-    <symbol id="ic-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 7 9 13 13 9 21 17"/><polyline points="15 17 21 17 21 11"/></symbol>
-    <symbol id="ic-win" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 11 15.5 16 9"/></symbol>
-    <symbol id="cm-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
-    <symbol id="cm-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
-    <symbol id="cm-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+  <!-- Icons: Phosphor Icons (MIT), assets/icons/Phosphor-LICENSE.txt -->
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <symbol id="ph-arrow-counter-clockwise" viewBox="0 0 256 256"><path d="M224,128a96,96,0,0,1-94.71,96H128A95.38,95.38,0,0,1,62.1,197.8a8,8,0,0,1,11-11.63A80,80,0,1,0,71.43,71.39a3.07,3.07,0,0,1-.26.25L44.59,96H72a8,8,0,0,1,0,16H24a8,8,0,0,1-8-8V56a8,8,0,0,1,16,0V85.8L60.25,60A96,96,0,0,1,224,128Z"/></symbol>
+    <symbol id="ph-arrow-up-right" viewBox="0 0 256 256"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></symbol>
+    <symbol id="ph-binoculars" viewBox="0 0 256 256"><path d="M237.2,151.87v0a47.1,47.1,0,0,0-2.35-5.45L193.26,51.8a7.82,7.82,0,0,0-1.66-2.44,32,32,0,0,0-45.26,0A8,8,0,0,0,144,55V80H112V55a8,8,0,0,0-2.34-5.66,32,32,0,0,0-45.26,0,7.82,7.82,0,0,0-1.66,2.44L21.15,146.4a47.1,47.1,0,0,0-2.35,5.45v0A48,48,0,1,0,112,168V96h32v72a48,48,0,1,0,93.2-16.13ZM76.71,59.75a16,16,0,0,1,19.29-1v73.51a47.9,47.9,0,0,0-46.79-9.92ZM64,200a32,32,0,1,1,32-32A32,32,0,0,1,64,200ZM160,58.74a16,16,0,0,1,19.29,1l27.5,62.58A47.9,47.9,0,0,0,160,132.25ZM192,200a32,32,0,1,1,32-32A32,32,0,0,1,192,200Z"/></symbol>
+    <symbol id="ph-caret-right" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></symbol>
+    <symbol id="ph-chart-bar" viewBox="0 0 256 256"><path d="M224,200h-8V40a8,8,0,0,0-8-8H152a8,8,0,0,0-8,8V80H96a8,8,0,0,0-8,8v40H48a8,8,0,0,0-8,8v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16ZM160,48h40V200H160ZM104,96h40V200H104ZM56,144H88v56H56Z"/></symbol>
+    <symbol id="ph-chart-line-up" viewBox="0 0 256 256"><path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/></symbol>
+    <symbol id="ph-envelope-simple" viewBox="0 0 256 256"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></symbol>
+    <symbol id="ph-file-text" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"/></symbol>
+    <symbol id="ph-github-logo" viewBox="0 0 256 256"><path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"/></symbol>
+    <symbol id="ph-linkedin-logo" viewBox="0 0 256 256"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"/></symbol>
+    <symbol id="ph-magnifying-glass" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></symbol>
+    <symbol id="ph-map-pin" viewBox="0 0 256 256"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></symbol>
+    <symbol id="ph-microphone-stage" viewBox="0 0 256 256"><path d="M168,16A72.07,72.07,0,0,0,96,88a73.29,73.29,0,0,0,.63,9.42L27.12,192.22A15.93,15.93,0,0,0,28.71,213L43,227.29a15.93,15.93,0,0,0,20.78,1.59l94.81-69.53A73.29,73.29,0,0,0,168,160a72,72,0,1,0,0-144Zm56,72a55.72,55.72,0,0,1-11.16,33.52L134.49,43.16A56,56,0,0,1,224,88ZM54.32,216,40,201.68,102.14,117A72.37,72.37,0,0,0,139,153.86ZM112,88a55.67,55.67,0,0,1,11.16-33.51l78.34,78.34A56,56,0,0,1,112,88Zm-2.35,58.34a8,8,0,0,1,0,11.31l-8,8a8,8,0,1,1-11.31-11.31l8-8A8,8,0,0,1,109.67,146.33Z"/></symbol>
+    <symbol id="am-mark" viewBox="0 0 128 128"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 104 64 17 108 104" stroke-width="8.4"/><path d="M20 104 64 126 108 104" stroke-width="8.4"/><path d="M39 98 51 73Q53.5 68.5 56.5 73L64 85 71.5 73Q74.5 68.5 77 73L89 98" stroke-width="7.6"/></g></symbol>
+    <symbol id="ph-phone" viewBox="0 0 256 256"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></symbol>
+    <symbol id="ph-target" viewBox="0 0 256 256"><path d="M221.87,83.16A104.1,104.1,0,1,1,195.67,49l22.67-22.68a8,8,0,0,1,11.32,11.32l-96,96a8,8,0,0,1-11.32-11.32l27.72-27.72a40,40,0,1,0,17.87,31.09,8,8,0,1,1,16-.9,56,56,0,1,1-22.38-41.65L184.3,60.39a87.88,87.88,0,1,0,23.13,29.67,8,8,0,0,1,14.44-6.9Z"/></symbol>
+    <symbol id="ph-trend-down" viewBox="0 0 256 256"><path d="M240,128v64a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h44.69L136,107.31l-34.34,34.35a8,8,0,0,1-11.32,0l-72-72A8,8,0,0,1,29.66,58.34L96,124.69l34.34-34.35a8,8,0,0,1,11.32,0L224,172.69V128a8,8,0,0,1,16,0Z"/></symbol>
+    <symbol id="ph-user-focus" viewBox="0 0 256 256"><path d="M224,40V76a8,8,0,0,1-16,0V48H180a8,8,0,0,1,0-16h36A8,8,0,0,1,224,40Zm-8,132a8,8,0,0,0-8,8v28H180a8,8,0,0,0,0,16h36a8,8,0,0,0,8-8V180A8,8,0,0,0,216,172ZM76,208H48V180a8,8,0,0,0-16,0v36a8,8,0,0,0,8,8H76a8,8,0,0,0,0-16ZM40,84a8,8,0,0,0,8-8V48H76a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8V76A8,8,0,0,0,40,84Zm136,92a8,8,0,0,1-6.41-3.19,52,52,0,0,0-83.2,0,8,8,0,1,1-12.8-9.62A67.94,67.94,0,0,1,101,141.51a40,40,0,1,1,53.94,0,67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,176,176Zm-48-40a24,24,0,1,0-24-24A24,24,0,0,0,128,136Z"/></symbol>
+    <symbol id="ph-users-three" viewBox="0 0 256 256"><path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"/></symbol>
   </svg>
 
-  <header class="site-header case-header site-header--home">
-    <a class="wordmark" href="/" aria-label="Aatif Junaid Mulla home">
-      <img class="wordmark__mark" src="assets/logos/am-mark-glossy.svg?v=1" alt="" width="64" height="64" />
-      <span class="wordmark__name">Aatif Junaid Mulla</span>
-    </a>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#thinking">My approach</a>
-      <a href="#contact">Contact</a>
-      <a class="nav-page" href="gtm-systems.html">GTM OS</a>
-      <a class="nav-page" href="/playbook.html">Playbook</a>
-    </nav>
+  <header class="site-header on-dark">
+    <div class="container site-header__inner">
+      <a class="brand" href="/" aria-label="Aatif Junaid Mulla home">
+        <svg class="brand__mark" aria-hidden="true"><use href="#am-mark"/></svg>
+        <span class="brand__name title-4">Aatif Junaid Mulla</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link nav__link--anchor caption-3" href="#experience">Experience</a>
+        <a class="nav__link nav__link--anchor caption-3" href="#education">Education</a>
+        <a class="nav__link nav__link--anchor caption-3" href="#thinking">My approach</a>
+        <a class="nav__link nav__link--anchor caption-3" href="#contact">Contact</a>
+        <span class="nav__sep" aria-hidden="true"></span>
+        <a class="nav__link nav__link--page button-md" href="gtm-systems.html">GTM OS</a>
+        <a class="nav__link nav__link--page button-md" href="/playbook.html">Playbook</a>
+      </nav>
+    </div>
   </header>
 
   <main id="top" tabindex="-1">
 
-    <!-- HERO -->
-    <section class="hero">
-      <p class="kicker hero__kicker reveal"><span>Product Marketing and GTM</span><span class="hero__location-group"><span class="hero__kicker-divider" aria-hidden="true">&middot;</span><span class="hero__location"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 14s4-3.44 4-7A4 4 0 1 0 4 7c0 3.56 4 7 4 7Z"/><circle cx="8" cy="7" r="1.35"/></svg>San Francisco</span></span></p>
-      <h1 class="hero__name reveal" data-name="Aatif Junaid Mulla">Aatif Junaid Mulla</h1>
-      <div class="hero__story reveal">
-        <p class="hero__statement">
-          <span class="hero__tagline">I make technical products easy to buy.</span>
-          <strong>13 design partners, roughly $400K in qualified pipeline, and a first enterprise deal with Splunk (a&nbsp;Cisco&nbsp;company).</strong>
-        </p>
-      </div>
-
-      <div class="hero__actions reveal">
-        <div role="group" class="hero__profile-links" aria-label="Contact">
-          <!--email_off--><a class="btn btn--hero-profile btn--primary" href="mailto:aatif.recruitment@gmail.com"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.75 5.75h16.5v12.5H3.75z"/><path d="m4.25 6.5 7.75 6 7.75-6"/></svg><span>Email me</span></a><!--/email_off-->
-          <a class="btn btn--hero-profile" href="resume.pdf?v=2026-10f" target="_blank" rel="noopener"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 2.75h7.1l3.9 3.9v14.6H6.5z"/><path d="M13.5 2.75v4h4"/><path d="M9.25 12h5.5M9.25 15.5h5.5"/></svg><span>Resume</span></a>
+    <!-- HERO: the PMM 2.0 stage photo under one flat charcoal layer -->
+    <section class="hero on-dark" aria-labelledby="hero-name">
+      <figure class="hero__media">
+        <img class="hero__photo" src="assets/media/pmm-2-0-stage-1280.jpg" srcset="assets/media/pmm-2-0-stage-768.jpg 768w, assets/media/pmm-2-0-stage-1280.jpg 1280w, assets/media/pmm-2-0-stage-2048.jpg 2048w" sizes="(max-width: 599px) 178vw, (min-width: 1024px) 114vw, 100vw" width="2048" height="1151" fetchpriority="high" decoding="async" alt="Aatif Junaid Mulla on stage at PMM 2.0 in San Francisco, in front of a slide asking how product marketers earn their seat at the table" />
+        <figcaption class="hero__caption caption-5">PMM 2.0, San Francisco, Nov 11, 2025</figcaption>
+      </figure>
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <p class="hero__label caption-2"><span>Product Marketing and GTM</span><span class="hero__sep" aria-hidden="true">&middot;</span><span class="hero__loc"><svg class="icon" aria-hidden="true"><use href="#ph-map-pin"/></svg>San Francisco</span></p>
+          <h1 class="hero__name display" id="hero-name">Aatif Junaid Mulla</h1>
+          <p class="hero__tagline heading-5">I make technical products easy to buy.</p>
+          <p class="hero__proof body-3">13 design partners, roughly $400K in qualified pipeline, and a first enterprise deal with Splunk (a&nbsp;Cisco&nbsp;company).</p>
+          <div role="group" class="hero__actions" aria-label="Contact">
+            <!--email_off--><a class="btn btn--primary button-md" href="mailto:aatif.recruitment@gmail.com"><svg class="icon" aria-hidden="true"><use href="#ph-envelope-simple"/></svg><span>Email me</span></a><!--/email_off-->
+            <a class="btn btn--ghost button-md" href="resume.pdf?v=2026-10f" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#ph-file-text"/></svg><span>Resume</span></a>
+          </div>
         </div>
       </div>
-      <div class="hero__geometry" aria-hidden="true">
-        <img src="assets/logos/hero-geometry.svg" alt="" width="560" height="540" decoding="async" />
+    </section>
+
+    <!-- STATS: one white panel riding up over the hero's lower edge -->
+    <section class="stats" aria-label="Results">
+      <div class="container">
+        <ul class="stats__panel">
+          <li class="stat">
+            <svg class="icon icon--20 stat__icon" aria-hidden="true"><use href="#ph-users-three"/></svg>
+            <span class="stat__num heading-2">13</span>
+            <span class="stat__label body-5">Design partners, 8&nbsp;senior</span>
+            <span class="stat__src caption-4">Aiseberg</span>
+          </li>
+          <li class="stat">
+            <svg class="icon icon--20 stat__icon" aria-hidden="true"><use href="#ph-trend-down"/></svg>
+            <span class="stat__num heading-2">24%</span>
+            <span class="stat__label body-5">Less early abandonment</span>
+            <span class="stat__src caption-4">Aiseberg</span>
+          </li>
+          <li class="stat">
+            <svg class="icon icon--20 stat__icon" aria-hidden="true"><use href="#ph-chart-line-up"/></svg>
+            <span class="stat__num heading-2">$2.6M</span>
+            <span class="stat__label body-5">Recoverable ACV surfaced</span>
+            <span class="stat__src caption-4">POLITICO</span>
+          </li>
+          <li class="stat">
+            <svg class="icon icon--20 stat__icon" aria-hidden="true"><use href="#ph-arrow-counter-clockwise"/></svg>
+            <span class="stat__num heading-2">$473K</span>
+            <span class="stat__label body-5">YoY revenue recovered</span>
+            <span class="stat__src caption-4">Quantum</span>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- EXPERIENCE TIMELINE -->
-    <section class="section" id="experience">
-      <div class="section-head reveal">
-        <div>
-          <h2 class="section-title">Experience</h2>
+    <section class="section section--white experience" id="experience" aria-labelledby="exp-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="label caption-2">Experience</p>
+          <h2 class="heading-3" id="exp-title">From strategy and sales to product&nbsp;marketing</h2>
+        </header>
+
+        <div class="timeline">
+          <canvas class="tl-comet" aria-hidden="true"></canvas>
+          <ol class="timeline__list">
+
+          <!-- Aiseberg / Aisepedia -->
+          <li class="tl-item reveal">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <article class="role">
+              <div class="role__head">
+                <span class="logo-chip role__logo" data-mono="A">
+                  <img src="assets/logos/aisepedia.png" alt="Aisepedia logo" width="256" height="256" loading="lazy" decoding="async" />
+                </span>
+                <div class="role__id">
+                  <p class="role__date caption-2">Sept 2025 to Oct 2026</p>
+                  <h3 class="role__title title-2">Product Marketing Manager &amp; GTM</h3>
+                  <p class="role__org body-5">Aiseberg (Aisepedia) &middot; <span class="nowrap">San Francisco, CA</span></p>
+                </div>
+              </div>
+              <div class="rule" role="presentation"></div>
+              <div class="role__body">
+                <div class="role__main">
+                  <p class="role__desc body-4">A pre-seed AI startup building Aisepedia, a Product Marketing Environment for product marketers. I joined as the first US hire.</p>
+                  <a class="event-strip reveal" href="https://web.archive.org/web/20260904174519/https://www.aisepedia.com/events/pmm-2-0" target="_blank" rel="noopener" aria-label="Archived PMM 2.0 event page">
+                    <span class="event-strip__head">
+                      <span class="event-strip__badge caption-4"><svg class="icon" aria-hidden="true"><use href="#ph-microphone-stage"/></svg>Event I hosted</span>
+                      <span class="event-strip__meta caption-5">San Francisco &middot; Nov 11, 2025</span>
+                    </span>
+                    <span class="event-strip__title title-5">PMM 2.0: Redefining the role for maximum impact</span>
+                    <span class="rule" role="presentation"></span>
+                    <ul class="event-strip__panelists body-5">
+                      <li>Lara McCaskill &middot; Atlassian</li>
+                      <li>Laura Thompson &middot; Meta Reality Labs</li>
+                      <li>Liz Flores &middot; Google</li>
+                      <li>Sajag Chikarsal &middot; ex-Celona, Google, Zscaler</li>
+                    </ul>
+                    <span class="event-strip__link caption-3">Archived page (original site offline)<svg class="icon icon--arrow" aria-hidden="true"><use href="#ph-arrow-up-right"/></svg></span>
+                  </a>
+                </div>
+                <div class="role__points">
+                  <ul class="tl-points body-4">
+                    <li>Co-built, recruited, and ran a 13-member design partner program, 8 at Director level or above, through 32 discovery sessions that fed positioning and the roadmap.</li>
+                    <li>30+ enterprise sales conversations supported with competitive battle cards and objection handling.</li>
+                    <li>The first signed enterprise deal with Splunk (a Cisco company), converted from a design partner alongside the founder, and ~$400K in qualified pipeline across 134 tracked accounts.</li>
+                    <li>36 senior attendees at PMM 2.0, the San Francisco event that opened the public beta, run with a colleague on promotion, with panelists from Atlassian, Meta Reality Labs, and Google.</li>
+                    <li>24% less early abandonment after drop-off analysis in PostHog led to a guided onboarding flow, then an 8-stage funnel with 11 tracked events and 22 lifecycle KPIs, automated across n8n, HubSpot, and Calendly.</li>
+                    <li>1,000 targeted reach-outs in six weeks converted 20 signups into the design partner program.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <!-- POLITICO -->
+          <li class="tl-item reveal">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <article class="role">
+              <div class="role__head">
+                <a class="logo-chip role__logo" href="https://www.politico.com/" target="_blank" rel="noopener" data-mono="P" aria-label="Visit POLITICO">
+                  <img src="assets/logos/politico.png" alt="POLITICO logo" width="256" height="256" loading="lazy" decoding="async" />
+                </a>
+                <div class="role__id">
+                  <p class="role__date caption-2">Jun 2024 to Jul 2025</p>
+                  <h3 class="role__title title-2">Senior Revenue Operations Analyst</h3>
+                  <p class="role__org body-5">POLITICO &middot; Arlington, VA</p>
+                </div>
+              </div>
+              <div class="rule" role="presentation"></div>
+              <div class="role__body">
+                <div class="role__main">
+                  <p class="role__desc body-4">A global newsroom and policy-intelligence company.</p>
+                  <p class="tl-note"><span class="tl-note__badge caption-4">Intern to full time</span><span class="tl-note__text body-5">Joined full time after a summer 2023 internship as Intern, Business and Product Strategy, Pro Subscriptions, rotating across product, marketing, data, and competitive intelligence.</span></p>
+                </div>
+                <div class="role__points">
+                  <ul class="tl-points body-4">
+                    <li>5 product lines and thousands of accounts covered by the weekly and monthly reporting I built for revenue leadership.</li>
+                    <li>$2.6M in recoverable ACV and $250K in monthly expansion potential surfaced across renewals, upsells, and new business in the reporting I built.</li>
+                    <li>26,207 deal records and 21 account executives moved from AdBook to Placements.io with zero errors, on validation rules I wrote in AdBook.</li>
+                    <li>2 SOPs written for the internal generative AI task force after evaluating AI for newsroom and revenue workflows.</li>
+                  </ul>
+                </div>
+              </div>
+              <details class="reports">
+                <summary class="reports__summary">
+                  <span class="reports__head">
+                    <svg class="icon icon--20 reports__icon" aria-hidden="true"><use href="#ph-chart-bar"/></svg>
+                    <span class="reports__title title-5">Decision systems I built</span>
+                    <span class="reports__chev" aria-hidden="true"></span>
+                  </span>
+                  <span class="reports__meta body-5">The retention and monetization reporting I built, read directly by the CEO, COO, VP of Finance, and sales leaders to steer the subscription business.</span>
+                </summary>
+                <ul class="reports__list body-5">
+                  <li class="reports__item"><span class="reports__freq caption-4">Weekly</span><span class="reports__body"><strong>Wallet Retention Report.</strong> Sent every Monday: renewal, upsell, and new-business ACV by product line and month, against budget and the prior year.</span></li>
+                  <li class="reports__item"><span class="reports__freq caption-4">Weekly</span><span class="reports__body"><strong>Renewal Report.</strong> Flagged every deal renewing flat or under 5% to the sales team and VP of Finance so at-risk renewals surfaced early.</span></li>
+                  <li class="reports__item"><span class="reports__freq caption-4">Monthly</span><span class="reports__body"><strong>MRR Deck.</strong> Refreshed the RevOps slides in the monthly recurring-revenue deck from live data pulls.</span></li>
+                  <li class="reports__item"><span class="reports__freq caption-4">Monthly</span><span class="reports__body"><strong>Vertical Profitability Report.</strong> Tracked profitability across POLITICO's 17 policy verticals month over month, subscriptions against media, and flagged any vertical slipping from the prior month.</span></li>
+                </ul>
+                <p class="reports__foot body-5">Also day to day: EU mirror-deal setup and account access, assigning every new account to the right AE by industry, RevOps Jira triage, and order verification three times a day.</p>
+              </details>
+            </article>
+          </li>
+
+          <!-- MBA interlude: explains the Jul 2022 to May 2024 gap -->
+          <li class="tl-item tl-item--gap reveal">
+            <div class="gap-row">
+              <a class="logo-chip role__logo role__logo--sm" href="https://www.american.edu/" target="_blank" rel="noopener" aria-label="Visit American University">
+                <img src="assets/logos/american.png" alt="American University logo" width="256" height="256" loading="lazy" decoding="async" />
+              </a>
+              <div>
+                <p class="role__date caption-2">Aug 2022 to May 2024</p>
+                <p class="gap-row__text title-5">STEM MBA, American University (Kogod School of&nbsp;Business)</p>
+              </div>
+            </div>
+          </li>
+
+          <!-- Quantum -->
+          <li class="tl-item reveal">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <article class="role">
+              <div class="role__head">
+                <a class="logo-chip role__logo" href="https://www.quantum.com/" target="_blank" rel="noopener" data-mono="Q" aria-label="Visit Quantum">
+                  <img src="assets/logos/quantum.svg" alt="Quantum Corporation logo" width="200" height="51" loading="lazy" decoding="async" />
+                </a>
+                <div class="role__id">
+                  <p class="role__date caption-2">Oct 2021 to Jul 2022</p>
+                  <h3 class="role__title title-2">Technology Sales Specialist, Product and Customer Strategy</h3>
+                  <p class="role__org body-5">Quantum Corporation &middot; Bengaluru</p>
+                </div>
+              </div>
+              <div class="rule" role="presentation"></div>
+              <div class="role__body">
+                <div class="role__main">
+                  <p class="role__desc body-4">Data storage and management technology (NASDAQ: QMCO). Quantum acquired EnCloudEn in 2021 (<a href="https://www.prnewswire.com/news-releases/quantum-announces-definitive-agreement-to-acquire-hyperconverged-software-startup-enclouden-technology-301363442.html" target="_blank" rel="noopener" class="tl-link">announcement</a>), and I moved across with the portfolio.</p>
+                </div>
+                <div class="role__points">
+                  <ul class="tl-points body-4">
+                    <li>$473K in YoY revenue recovered through Salesforce renewal audits across 80+ enterprise accounts.</li>
+                    <li>105% of the Q1 2022 target and 18% growth in major storage clients in one quarter, with quotes and partner margins built for channel-partner deals.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <!-- EnCloudEn -->
+          <li class="tl-item reveal">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <article class="role">
+              <div class="role__head">
+                <span class="logo-chip role__logo logo-chip--mark">
+                  <img src="assets/logos/enclouden.png" alt="EnCloudEn logo" width="120" height="120" loading="lazy" decoding="async" />
+                </span>
+                <div class="role__id">
+                  <p class="role__date caption-2">Jul 2020 to Sept 2021</p>
+                  <h3 class="role__title title-2">Technical Sales Specialist, Enterprise&nbsp;Infrastructure</h3>
+                  <p class="role__org body-5">EnCloudEn &middot; Bengaluru</p>
+                </div>
+              </div>
+              <div class="rule" role="presentation"></div>
+              <div class="role__body">
+                <div class="role__main">
+                  <p class="role__desc body-4">Hyperconverged infrastructure software for enterprise data centers, acquired by Quantum in 2021.</p>
+                </div>
+                <div class="role__points">
+                  <ul class="tl-points body-4">
+                    <li>Solution demos, technical documentation, and sales training built alongside our solution architect for enterprise IT buyers who evaluated on architecture.</li>
+                    <li>Enterprise requirements translated into technical specifications and proposals, feeding customer signal to engineering through the Quantum acquisition.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          <!-- Peepal promotion sequence -->
+          <li class="tl-item reveal">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <article class="role">
+              <div class="role__head">
+                <a class="logo-chip role__logo" href="https://peepalconsulting.com/" target="_blank" rel="noopener" data-mono="P" aria-label="Visit Peepal Consulting">
+                  <img src="assets/logos/peepal-white-background.png" alt="Peepal Consulting logo" width="738" height="264" loading="lazy" decoding="async" />
+                </a>
+                <div class="role__id">
+                  <p class="role__date caption-2">Nov 2018 to Jul 2020</p>
+                  <h3 class="role__title title-2">Lead, Business Strategy and Marketing</h3>
+                  <p class="role__org body-5">Peepal Consulting &middot; Bengaluru</p>
+                </div>
+              </div>
+              <div class="rule" role="presentation"></div>
+              <div class="role__body">
+                <div class="role__main">
+                  <p class="role__desc body-4">A Bengaluru talent and business strategy firm serving enterprise technology clients.</p>
+                  <ol class="tl-promotion" aria-label="Promotion from Associate to Lead, Business Strategy and Marketing at Peepal Consulting">
+                    <li class="tl-promotion__role">
+                      <span class="tl-promotion__date caption-5">Feb 2020 to Jul 2020</span>
+                      <h4 class="title-5">Lead, Business Strategy and Marketing</h4>
+                    </li>
+                    <li class="tl-promotion__role">
+                      <span class="tl-promotion__date caption-5">Nov 2018 to Jan 2020</span>
+                      <h4 class="title-5">Associate, Business Strategy and Marketing</h4>
+                    </li>
+                  </ol>
+                  <p class="tl-note"><span class="tl-note__badge caption-4">Business strategy</span><span class="tl-note__text body-5">Reported to the CEO and ran the full client cycle, prospecting to delivery.</span></p>
+                </div>
+                <div class="role__points">
+                  <ul class="tl-points body-4">
+                    <li>9 consecutive months over revenue target across 56 enterprise accounts, earning the Peepal Centennial Award.</li>
+                    <li>76% growth in LinkedIn reach from a dormant page, through recruiting tips and recruiter-focused content.</li>
+                    <li>2 interns led through Peepal's gold sponsorship of the TA Leadership Forum, Hyderabad 2019.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </li>
+
+          </ol>
         </div>
       </div>
+    </section>
 
-      <div class="timeline">
-        <canvas class="tl-comet" aria-hidden="true"></canvas>
-        <ol class="timeline__list">
-
-        <!-- Aiseberg / Aisepedia -->
-        <li class="tl-item reveal">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <div class="tile tl-card">
-            <div class="tl-head">
-              <span class="logo-chip" data-mono="A">
-                <img src="assets/logos/aisepedia.png" alt="Aisepedia logo" width="256" height="256" loading="lazy" decoding="async" />
-              </span>
-              <div class="tl-headtext">
-                <div class="tl-date">Sept 2025 - Oct 2026</div>
-                <h3 class="tl-role">Product Marketing Manager &amp; GTM</h3>
-                <div class="tl-org">Aiseberg (Aisepedia) &middot; San Francisco, CA</div>
-              </div>
-            </div>
-            <div class="tl-columns">
-              <div class="tl-body">
-            <p class="tl-desc">A pre-seed AI startup building Aisepedia, a Product Marketing Environment for product marketers. I joined as the first US hire.</p>
-
-            <ul class="tl-points">
-              <li>Co-built, recruited, and ran a 13-member design partner program, 8 at Director level or above, through 32 discovery sessions that fed positioning and the roadmap.</li>
-              <li>30+ enterprise sales conversations supported with competitive battle cards and objection handling.</li>
-              <li>The first signed enterprise deal with Splunk (a Cisco company), converted from a design partner alongside the founder, and ~$400K in qualified pipeline across 134 tracked accounts.</li>
-              <li>36 senior attendees at PMM 2.0, the San Francisco event that opened the public beta, run with a colleague on promotion, with panelists from Atlassian, Meta Reality Labs, and Google.</li>
-              <li>24% less early abandonment after drop-off analysis in PostHog led to a guided onboarding flow, then an 8-stage funnel with 11 tracked events and 22 lifecycle KPIs, automated across n8n, HubSpot, and Calendly.</li>
-              <li>1,000 targeted reach-outs in six weeks converted 20 signups into the design partner program.</li>
-            </ul>
-              </div>
-              <div class="tl-side">
-                <div role="group" class="metrics" aria-label="Aisepedia results">
-              <div class="metric metric--target"><span class="metric__num">13</span><span class="metric__label">Design partners, 8 senior</span></div>
-              <div class="metric metric--text"><span class="metric__num metric__num--text">Splunk</span><span class="metric__label">First enterprise deal (a Cisco company)</span></div>
-              <div class="metric metric--users"><span class="metric__num">36</span><span class="metric__label">Event attendees</span></div>
-              <div class="metric metric--down"><span class="metric__num">24%</span><span class="metric__label">Less early abandonment</span></div>
-              <div class="metric metric--money"><span class="metric__num">~$400K</span><span class="metric__label">Qualified pipeline</span></div>
-              <div class="metric metric--send"><span class="metric__num">1,000</span><span class="metric__label">Targeted outreach</span></div>
-            </div>
-              </div>
-            </div>
-<a class="event-strip reveal" href="https://web.archive.org/web/20260904174519/https://www.aisepedia.com/events/pmm-2-0" target="_blank" rel="noopener" aria-label="Archived PMM 2.0 event page">
-              <div class="event-strip__head">
-                <span class="event-strip__badge">Event I hosted</span>
-                <span class="event-strip__meta">San Francisco &middot; Nov 11, 2025</span>
-              </div>
-              <span class="event-strip__title">PMM 2.0: Redefining the role for maximum impact</span>
-              <ul class="event-strip__panelists">
-                <li>Lara McCaskill &middot; Atlassian</li>
-                <li>Laura Thompson &middot; Meta Reality Labs</li>
-                <li>Liz Flores &middot; Google</li>
-                <li>Sajag Chikarsal &middot; ex-Celona, Google, Zscaler</li>
-              </ul>
-              <span class="event-strip__link">Archived page (original site offline)</span>
-            </a>
-
-            <details class="fold fold--always" open>
-              <summary><span class="fold__title" data-short="Testimonials">Testimonials from the design partner program</span><span class="fold__hint" aria-hidden="true"></span></summary>
+    <!-- TESTIMONIALS: the design partner carousel, kept byte for byte; a grid from 1024px up -->
+    <section class="band band--dark testimonials on-dark" aria-labelledby="dp-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="label caption-2">Testimonials</p>
+          <h2 class="heading-3" id="dp-title">What design partners said</h2>
+        </header>
             <div role="group" class="dp-carousel reveal" aria-label="Design partner testimonials">
               <div class="dp-head">
                 <span class="dp-label">From the design partner program I ran</span>
@@ -243,360 +450,245 @@
                 </figure>
               </div>
             </div>
-            </details>
-          </div>
-        </li>
-
-        <!-- POLITICO -->
-        <li class="tl-item reveal">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <div class="tile tl-card">
-            <div class="tl-head">
-              <a class="logo-chip" href="https://www.politico.com/" target="_blank" rel="noopener" data-mono="P" aria-label="Visit POLITICO">
-                <img src="assets/logos/politico.png" alt="POLITICO logo" width="256" height="256" loading="lazy" decoding="async" />
-              </a>
-              <div class="tl-headtext">
-                <div class="tl-date">Jun 2024 - Jul 2025</div>
-                <h3 class="tl-role">Senior Revenue Operations Analyst</h3>
-                <div class="tl-org">POLITICO &middot; Arlington, VA</div>
-              </div>
-            </div>
-            <div class="tl-columns">
-              <div class="tl-body">
-            <p class="tl-desc">A global newsroom and policy-intelligence company.</p>
-            <p class="tl-note"><span class="tl-note__badge">Intern to full time</span><span class="tl-note__text">Joined full time after a summer 2023 internship as Intern, Business and Product Strategy, Pro Subscriptions, rotating across product, marketing, data, and competitive intelligence.</span></p>
-
-            <ul class="tl-points">
-              <li>5 product lines and thousands of accounts covered by the weekly and monthly reporting I built for revenue leadership.</li>
-              <li>$2.6M in recoverable ACV and $250K in monthly expansion potential surfaced across renewals, upsells, and new business in the reporting I built.</li>
-              <li>26,207 deal records and 21 account executives moved from AdBook to Placements.io with zero errors, on validation rules I wrote in AdBook.</li>
-              <li>2 SOPs written for the internal generative AI task force after evaluating AI for newsroom and revenue workflows.</li>
-            </ul>
-              </div>
-              <div class="tl-side">
-                <div role="group" class="metrics metrics--four" aria-label="POLITICO results">
-              <div class="metric metric--layers"><span class="metric__num">5</span><span class="metric__label">Product lines</span></div>
-              <div class="metric metric--db"><span class="metric__num">26,207</span><span class="metric__label">Deal records migrated</span></div>
-              <div class="metric metric--money"><span class="metric__num">$2.6M</span><span class="metric__label">Recoverable ACV</span></div>
-              <div class="metric metric--up"><span class="metric__num">$250K</span><span class="metric__label">Monthly expansion</span></div>
-            </div>
-              </div>
-            </div>
-<details class="reports">
-              <summary class="reports__summary">
-                <span class="reports__head">
-                  <span class="reports__chev" aria-hidden="true">&rsaquo;</span>
-                  <span class="reports__title">Decision systems I built</span>
-                </span>
-                <span class="reports__meta">The retention and monetization reporting I built, read directly by the CEO, COO, VP of Finance, and sales leaders to steer the subscription business.</span>
-              </summary>
-              <ul class="reports__list">
-                <li class="reports__item"><span class="reports__freq">Weekly</span><span class="reports__body"><strong>Wallet Retention Report.</strong> Sent every Monday: renewal, upsell, and new-business ACV by product line and month, against budget and the prior year.</span></li>
-                <li class="reports__item"><span class="reports__freq">Weekly</span><span class="reports__body"><strong>Renewal Report.</strong> Flagged every deal renewing flat or under 5% to the sales team and VP of Finance so at-risk renewals surfaced early.</span></li>
-                <li class="reports__item"><span class="reports__freq">Monthly</span><span class="reports__body"><strong>MRR Deck.</strong> Refreshed the RevOps slides in the monthly recurring-revenue deck from live data pulls.</span></li>
-                <li class="reports__item"><span class="reports__freq">Monthly</span><span class="reports__body"><strong>Vertical Profitability Report.</strong> Tracked profitability across POLITICO's 17 policy verticals month over month, subscriptions against media, and flagged any vertical slipping from the prior month.</span></li>
-              </ul>
-              <p class="reports__foot">Also day to day: EU mirror-deal setup and account access, assigning every new account to the right AE by industry, RevOps Jira triage, and order verification three times a day.</p>
-            </details>
-          </div>
-        </li>
-
-        <!-- MBA interlude: explains the Jul 2022 to May 2024 gap -->
-        <li class="tl-item tl-item--gap reveal">
-          <div class="tl-gapcard">
-            <a class="logo-chip logo-chip--sm" href="https://www.american.edu/" target="_blank" rel="noopener" aria-label="Visit American University">
-              <img src="assets/logos/american.png" alt="American University logo" width="256" height="256" loading="lazy" decoding="async" />
-            </a>
-            <div>
-              <div class="tl-date">Aug 2022 - May 2024</div>
-              <p class="tl-gaptext"><strong>STEM MBA, American University (Kogod School of Business)</strong></p>
-            </div>
-          </div>
-        </li>
-
-        <!-- Quantum -->
-        <li class="tl-item reveal">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <div class="tile tl-card">
-            <div class="tl-head">
-              <a class="logo-chip" href="https://www.quantum.com/" target="_blank" rel="noopener" data-mono="Q" aria-label="Visit Quantum">
-                <img src="assets/logos/quantum.svg" alt="Quantum Corporation logo" width="200" height="51" loading="lazy" decoding="async" />
-              </a>
-              <div class="tl-headtext">
-                <div class="tl-date">Oct 2021 - Jul 2022</div>
-                <h3 class="tl-role">Technology Sales Specialist, Product and Customer Strategy</h3>
-                <div class="tl-org">Quantum Corporation &middot; Bengaluru</div>
-              </div>
-            </div>
-            <div class="tl-columns">
-              <div class="tl-body">
-            <p class="tl-desc">Data storage and management technology (NASDAQ: QMCO). Quantum acquired EnCloudEn in 2021 (<a href="https://www.prnewswire.com/news-releases/quantum-announces-definitive-agreement-to-acquire-hyperconverged-software-startup-enclouden-technology-301363442.html" target="_blank" rel="noopener" class="tl-link">announcement</a>), and I moved across with the portfolio.</p>
-
-            <ul class="tl-points">
-              <li>$473K in YoY revenue recovered through Salesforce renewal audits across 80+ enterprise accounts.</li>
-              <li>105% of the Q1 2022 target and 18% growth in major storage clients in one quarter, with quotes and partner margins built for channel-partner deals.</li>
-            </ul>
-              </div>
-              <div class="tl-side">
-                <div role="group" class="metrics" aria-label="Quantum results">
-              <div class="metric metric--money"><span class="metric__num">$473K</span><span class="metric__label">YoY revenue recovered</span></div>
-              <div class="metric metric--win"><span class="metric__num">105%</span><span class="metric__label">Q1 2022 target</span></div>
-              <div class="metric metric--up"><span class="metric__num">18%</span><span class="metric__label">Storage-client growth</span></div>
-            </div>
-              </div>
-            </div>
-</div>
-        </li>
-
-        <!-- EnCloudEn -->
-        <li class="tl-item reveal">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <div class="tile tl-card">
-            <div class="tl-head">
-              <span class="logo-chip logo-chip--mark">
-                <img src="assets/logos/enclouden.png" alt="EnCloudEn logo" width="120" height="120" loading="lazy" decoding="async" />
-              </span>
-              <div class="tl-headtext">
-                <div class="tl-date">Jul 2020 - Sept 2021</div>
-                <h3 class="tl-role">Technical Sales Specialist, Enterprise Infrastructure</h3>
-                <div class="tl-org">EnCloudEn &middot; Bengaluru</div>
-              </div>
-            </div>
-            <div class="tl-columns tl-columns--single">
-              <div class="tl-body">
-            <p class="tl-desc">Hyperconverged infrastructure software for enterprise data centers, acquired by Quantum in 2021.</p>
-
-            <ul class="tl-points">
-              <li>Solution demos, technical documentation, and sales training built alongside our solution architect for enterprise IT buyers who evaluated on architecture.</li>
-              <li>Enterprise requirements translated into technical specifications and proposals, feeding customer signal to engineering through the Quantum acquisition.</li>
-            </ul>
-              </div>
-            </div>
-</div>
-        </li>
-
-        <!-- Peepal promotion sequence -->
-        <li class="tl-item reveal">
-          <span class="tl-dot" aria-hidden="true"></span>
-          <div class="tile tl-card">
-            <div class="tl-head">
-              <a class="logo-chip" href="https://peepalconsulting.com/" target="_blank" rel="noopener" data-mono="P" aria-label="Visit Peepal Consulting">
-                <img src="assets/logos/peepal-white-background.png" alt="Peepal Consulting logo" width="738" height="264" loading="lazy" decoding="async" />
-              </a>
-              <div class="tl-headtext">
-                <div class="tl-date">Nov 2018 - Jul 2020</div>
-                <h3 class="tl-role">Lead, Business Strategy and Marketing</h3>
-                <div class="tl-org">Peepal Consulting &middot; Bengaluru</div>
-              </div>
-            </div>
-            <div class="tl-columns">
-              <div class="tl-body">
-            <p class="tl-desc">A Bengaluru talent and business strategy firm serving enterprise technology clients.</p>
-            <ol class="tl-promotion" aria-label="Promotion from Associate to Lead, Business Strategy and Marketing at Peepal Consulting">
-              <li class="tl-promotion__role">
-                <span class="tl-promotion__date">Feb 2020 - Jul 2020</span>
-                <h4>Lead, Business Strategy and Marketing</h4>
-              </li>
-              <li class="tl-promotion__role">
-                <span class="tl-promotion__date">Nov 2018 - Jan 2020</span>
-                <h4>Associate, Business Strategy and Marketing</h4>
-              </li>
-            </ol>
-            <p class="tl-note"><span class="tl-note__badge">Business strategy</span><span class="tl-note__text">Reported to the CEO and ran the full client cycle, prospecting to delivery.</span></p>
-
-            <ul class="tl-points">
-              <li>9 consecutive months over revenue target across 56 enterprise accounts, earning the Peepal Centennial Award.</li>
-              <li>76% growth in LinkedIn reach from a dormant page, through recruiting tips and recruiter-focused content.</li>
-              <li>2 interns led through Peepal's gold sponsorship of the TA Leadership Forum, Hyderabad 2019.</li>
-            </ul>
-              </div>
-              <div class="tl-side">
-                <div role="group" class="metrics" aria-label="Peepal results">
-              <div class="metric metric--users"><span class="metric__num">56</span><span class="metric__label">Clients owned</span></div>
-              <div class="metric metric--up"><span class="metric__num">76%</span><span class="metric__label">LinkedIn reach growth</span></div>
-              <div class="metric metric--text"><span class="metric__num metric__num--text">Peepal Centennial</span><span class="metric__label">Top performance award</span></div>
-            </div>
-              </div>
-            </div>
-</div>
-        </li>
-
-        </ol>
       </div>
     </section>
 
     <!-- EDUCATION -->
-    <section class="section" id="education">
-      <div class="section-head reveal">
-        <h2 class="section-title">Education</h2>
-      </div>
+    <section class="section section--white" id="education" aria-labelledby="edu-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="label caption-2">Education</p>
+          <h2 class="heading-3" id="edu-title">Engineering first, then business</h2>
+        </header>
 
-      <div class="edu-grid">
-        <div class="tile edu-card reveal">
-          <div class="edu-card__head">
-            <a class="logo-chip" href="https://www.american.edu/" target="_blank" rel="noopener" data-mono="A" aria-label="Visit American University">
-              <img src="assets/logos/american.png" alt="American University logo" width="256" height="256" loading="lazy" decoding="async" />
-            </a>
-            <div>
-              <h3 class="edu-card__deg">MBA, Kogod School of Business</h3>
-              <div class="edu-card__school"><a href="https://www.american.edu/" target="_blank" rel="noopener" class="tl-link">American University</a> &middot; 2024</div>
+        <div class="edu-grid">
+          <div class="card edu-card edu-card--lead reveal">
+            <div class="edu-card__head">
+              <a class="logo-chip role__logo" href="https://www.american.edu/" target="_blank" rel="noopener" data-mono="A" aria-label="Visit American University">
+                <img src="assets/logos/american.png" alt="American University logo" width="256" height="256" loading="lazy" decoding="async" />
+              </a>
+              <div>
+                <h3 class="edu-card__deg title-3">MBA, Kogod School of Business</h3>
+                <p class="edu-card__school body-5"><a href="https://www.american.edu/" target="_blank" rel="noopener" class="tl-link">American University</a> &middot; 2024</p>
+              </div>
             </div>
+            <div class="rule" role="presentation"></div>
+            <ul class="edu-card__points body-4">
+              <li>STEM-designated MBA on a merit scholarship.</li>
+              <li>President, ASCEND AU. VP of Marketing, Graduate Business Association.</li>
+              <li>Graduate Research Associate to Prof. Mark Clark, Mar 2023 to Jun 2024: leadership hiring through COVID, and hiring bias by gender and race.</li>
+              <li>Coded the interview transcripts in NVivo and wrote the team's <span class="nowrap">48-code</span> codebook.</li>
+              <li>Featured by Kogod on its <a class="tl-link" href="https://kogod.american.edu/kogod-school-of-business-student-outcomes-hub" target="_blank" rel="noopener">student outcomes hub</a> and in a <a class="tl-link" href="https://www.instagram.com/p/C-V0tzIyawr/" target="_blank" rel="noopener">short video</a>: the path from the MBA to POLITICO, August 2024.</li>
+            </ul>
           </div>
-          <ul class="edu-card__points">
-            <li>STEM-designated MBA on a merit scholarship.</li>
-            <li>President, ASCEND AU. VP of Marketing, Graduate Business Association.</li>
-            <li>Graduate Research Associate to Prof. Mark Clark, Mar 2023 to Jun 2024: leadership hiring through COVID, and hiring bias by gender and race.</li>
-            <li>Coded the interview transcripts in NVivo and wrote the team's 48-code codebook.</li>
-            <li>Featured by Kogod on its <a class="tl-link" href="https://kogod.american.edu/kogod-school-of-business-student-outcomes-hub" target="_blank" rel="noopener">student outcomes hub</a> and in a <a class="tl-link" href="https://www.instagram.com/p/C-V0tzIyawr/" target="_blank" rel="noopener">short video</a>: the path from the MBA to POLITICO, August 2024.</li>
-          </ul>
+
+          <div class="card edu-card reveal">
+            <div class="edu-card__head">
+              <a class="logo-chip role__logo" href="https://www.acharya.ac.in/" target="_blank" rel="noopener" data-mono="A" aria-label="Visit Acharya Institute of Technology">
+                <img src="assets/logos/acharya.png" alt="Acharya Institute of Technology logo" width="256" height="256" loading="lazy" decoding="async" />
+              </a>
+              <div>
+                <h3 class="edu-card__deg title-3">BE, Mechatronics&nbsp;Engineering</h3>
+                <p class="edu-card__school body-5"><a href="https://www.acharya.ac.in/" target="_blank" rel="noopener" class="tl-link">Acharya Institute of Technology</a> &middot; 2018</p>
+              </div>
+            </div>
+            <div class="rule" role="presentation"></div>
+            <ul class="edu-card__points body-4">
+              <li>The engineering foundation behind how I break problems down into systems.</li>
+            </ul>
+          </div>
+
+          <div class="card edu-card reveal">
+            <div class="edu-card__head">
+              <a class="logo-chip role__logo" href="https://www.pmi.org/certifications/project-management-pmp" target="_blank" rel="noopener" data-mono="P" aria-label="About the PMP certification">
+                <img src="assets/logos/pmi.png" alt="PMI logo" width="180" height="180" loading="lazy" decoding="async" />
+              </a>
+              <div>
+                <h3 class="edu-card__deg title-3">PMP Certification</h3>
+                <p class="edu-card__school body-5"><a href="https://www.pmi.org/certifications/project-management-pmp" target="_blank" rel="noopener" class="tl-link">Project Management Institute</a> &middot; Active</p>
+              </div>
+            </div>
+            <div class="rule" role="presentation"></div>
+            <ul class="edu-card__points body-4">
+              <li>Disciplined scoping, sequencing, and delivery across cross-functional product work.</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="tile edu-card reveal">
-          <div class="edu-card__head">
-            <a class="logo-chip" href="https://www.acharya.ac.in/" target="_blank" rel="noopener" data-mono="A" aria-label="Visit Acharya Institute of Technology">
-              <img src="assets/logos/acharya.png" alt="Acharya Institute of Technology logo" width="256" height="256" loading="lazy" decoding="async" />
-            </a>
-            <div>
-              <h3 class="edu-card__deg">BE, Mechatronics Engineering</h3>
-              <div class="edu-card__school"><a href="https://www.acharya.ac.in/" target="_blank" rel="noopener" class="tl-link">Acharya Institute of Technology</a> &middot; 2018</div>
-            </div>
+        <div class="stack on-dark reveal" role="group" aria-labelledby="stack-title">
+          <div class="stack__head">
+            <h3 class="stack__title title-3" id="stack-title">Core stack</h3>
+            <a class="stack__more text-link caption-2" href="gtm-systems.html#toolkit-title">Full toolkit<svg class="icon icon--arrow" aria-hidden="true"><use href="#ph-caret-right"/></svg></a>
           </div>
-          <ul class="edu-card__points">
-            <li>The engineering foundation behind how I break problems down into systems.</li>
+          <ul class="stack__list">
+            <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/clay.png" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong class="title-5">Clay</strong><span class="stack__line body-5">Enrichment and list building for targeted outbound</span></li>
+            <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/hubspot.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong class="title-5">HubSpot</strong><span class="stack__line body-5">134 accounts tracked by stage, follow-up that never waited on me</span></li>
+            <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/salesforce.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong class="title-5">Salesforce</strong><span class="stack__line body-5">$473K recovered through renewal audits, POLITICO deal hygiene and dashboards</span></li>
+            <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/zapier.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong class="title-5">Zapier</strong><span class="stack__line body-5">Lightweight automations between the tools above</span></li>
+            <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/apollo.png" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong class="title-5">Apollo.io</strong><span class="stack__line body-5">Prospect data and sequences for outbound</span></li>
+            <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/n8n.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong class="title-5">n8n</strong><span class="stack__line body-5">Lifecycle automation behind the 24% drop in early abandonment</span></li>
+            <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/mixpanel.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /><img src="assets/logos/tools/posthog.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong class="title-5">Mixpanel and PostHog</strong><span class="stack__line body-5">11 events across the 8-stage funnel</span></li>
+            <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/anthropic.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong class="title-5">Claude</strong><span class="stack__line body-5">Drafting inside the lifecycle engine,&nbsp;human-approved</span></li>
           </ul>
         </div>
-
-        <div class="tile edu-card reveal">
-          <div class="edu-card__head">
-            <a class="logo-chip" href="https://www.pmi.org/certifications/project-management-pmp" target="_blank" rel="noopener" data-mono="P" aria-label="About the PMP certification">
-              <img src="assets/logos/pmi.png" alt="PMI logo" width="180" height="180" loading="lazy" decoding="async" />
-            </a>
-            <div>
-              <h3 class="edu-card__deg">PMP Certification</h3>
-              <div class="edu-card__school"><a href="https://www.pmi.org/certifications/project-management-pmp" target="_blank" rel="noopener" class="tl-link">Project Management Institute</a> &middot; Active</div>
-            </div>
-          </div>
-          <ul class="edu-card__points">
-            <li>Disciplined scoping, sequencing, and delivery across cross-functional product work.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="stack reveal" role="group" aria-labelledby="stack-title">
-        <h3 class="stack__title" id="stack-title">Core stack</h3>
-        <ul class="stack__list">
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/clay.png" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Clay</strong><span class="stack__line">Enrichment and list building for targeted outbound</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/hubspot.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>HubSpot</strong><span class="stack__line">134 accounts tracked by stage, follow-up that never waited on me</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/salesforce.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Salesforce</strong><span class="stack__line">$473K recovered through renewal audits, POLITICO deal hygiene and dashboards</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/zapier.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Zapier</strong><span class="stack__line">Lightweight automations between the tools above</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/apollo.png" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Apollo.io</strong><span class="stack__line">Prospect data and sequences for outbound</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/n8n.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>n8n</strong><span class="stack__line">Lifecycle automation behind the 24% drop in early abandonment</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/mixpanel.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /><img src="assets/logos/tools/posthog.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Mixpanel and PostHog</strong><span class="stack__line">11 events across the 8-stage funnel</span></li>
-          <li><span class="stack__mark"><i class="stack__dot"><img src="assets/logos/tools/anthropic.svg" alt="" width="18" height="18" loading="lazy" decoding="async" /></i></span><strong>Claude</strong><span class="stack__line">Drafting inside the lifecycle engine, human-approved</span></li>
-        </ul>
-        <a class="stack__more" href="gtm-systems.html#toolkit-title">Full toolkit</a>
       </div>
     </section>
 
     <!-- APPROACH -->
-    <section class="section" id="thinking">
-      <div class="section-head reveal">
-        <h2 class="section-title">How I approach problems</h2>
-      </div>
+    <section class="section section--paper" id="thinking" aria-labelledby="thinking-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="label caption-2">My approach</p>
+          <h2 class="heading-3" id="thinking-title">How I approach&nbsp;problems</h2>
+        </header>
 
-      <div class="framework-grid">
-        <details class="tile framework fold fold--tile reveal" open>
-          <summary><h3 class="framework__title">First principles, then 5 Whys</h3><span class="fold__hint" aria-hidden="true"></span></summary>
-          <p>I dig to the root of a problem before building, so the work solves the real need, not the surface symptom.</p>
-        </details>
-        <details class="tile framework fold fold--tile reveal" open>
-          <summary><h3 class="framework__title">Design thinking</h3><span class="fold__hint" aria-hidden="true"></span></summary>
-          <p>I work backward from how buyers decide and behave. That keeps go-to-market honest and the message landing.</p>
-        </details>
-        <details class="tile framework fold fold--tile reveal" open>
-          <summary><h3 class="framework__title">Reading the market honestly</h3><span class="fold__hint" aria-hidden="true"></span></summary>
-          <p>Porter's Five Forces, SWOT, and Blue Ocean help me see the market clearly, then choose where to compete and where to create new space.</p>
-        </details>
-        <details class="tile framework fold fold--tile reveal" open>
-          <summary><h3 class="framework__title">Outcomes over activity</h3><span class="fold__hint" aria-hidden="true"></span></summary>
-          <p>OKRs and a balanced scorecard tie the motion to financial, customer, and product results, never vanity metrics.</p>
-        </details>
+        <div class="framework-grid">
+          <details class="card framework fold fold--tile reveal" open>
+            <summary><span class="framework__plate"><svg class="icon icon--20 framework__icon" aria-hidden="true"><use href="#ph-magnifying-glass"/></svg></span><h3 class="framework__title title-3">First principles, then 5 Whys</h3><span class="fold__hint" aria-hidden="true"></span></summary>
+            <p class="body-4">I dig to the root of a problem before building, so the work solves the real need, not the surface symptom.</p>
+          </details>
+          <details class="card framework fold fold--tile reveal" open>
+            <summary><span class="framework__plate"><svg class="icon icon--20 framework__icon" aria-hidden="true"><use href="#ph-user-focus"/></svg></span><h3 class="framework__title title-3">Design thinking</h3><span class="fold__hint" aria-hidden="true"></span></summary>
+            <p class="body-4">I work backward from how buyers decide and behave. That keeps <span class="nowrap">go-to-market</span> honest and the message landing.</p>
+          </details>
+          <details class="card framework fold fold--tile reveal" open>
+            <summary><span class="framework__plate"><svg class="icon icon--20 framework__icon" aria-hidden="true"><use href="#ph-binoculars"/></svg></span><h3 class="framework__title title-3">Reading the market honestly</h3><span class="fold__hint" aria-hidden="true"></span></summary>
+            <p class="body-4">Porter's Five Forces, SWOT, and Blue Ocean help me see the market clearly, then choose where to compete and where to create new space.</p>
+          </details>
+          <details class="card framework fold fold--tile reveal" open>
+            <summary><span class="framework__plate"><svg class="icon icon--20 framework__icon" aria-hidden="true"><use href="#ph-target"/></svg></span><h3 class="framework__title title-3">Outcomes over activity</h3><span class="fold__hint" aria-hidden="true"></span></summary>
+            <p class="body-4">OKRs and a balanced scorecard tie the motion to financial, customer, and product results, never vanity metrics.</p>
+          </details>
+        </div>
       </div>
     </section>
 
-    <!-- WHAT I BUILT: two compact doors to the detail pages -->
-    <section class="section" id="more">
-      <div class="section-head reveal">
-        <h2 class="section-title">What I built</h2>
-      </div>
-      <div class="deeper">
-        <a class="deeper__row tile reveal" href="gtm-systems.html">
-          <span class="deeper__eyebrow">GTM operating system</span>
-          <span class="deeper__body"><span class="deeper__title">The engine underneath the motion.</span><span class="deeper__line">An n8n lifecycle engine that drafts, waits for a human, then logs.</span></span>
-          <span class="deeper__cta">Read the write-up <span aria-hidden="true"></span></span>
-        </a>
-        <a class="deeper__row tile reveal" href="/playbook.html">
-          <span class="deeper__eyebrow">Playbook</span>
-          <span class="deeper__body"><span class="deeper__title">Five plays, each with the problem, what I owned, and the number.</span><span class="deeper__line">The event, the pipeline, the partners, the funnel, and the reporting.</span></span>
-          <span class="deeper__cta">See the playbook <span aria-hidden="true"></span></span>
-        </a>
+    <!-- WHAT I BUILT -->
+    <section class="section section--white" id="more" aria-labelledby="more-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="label caption-2">Work</p>
+          <h2 class="heading-3" id="more-title">What I built</h2>
+        </header>
+        <ul class="work-grid">
+          <li class="reveal">
+            <a class="work-card" href="/playbook.html">
+              <span class="work-card__img work-card__cover" aria-hidden="true">
+                <span class="cover-list">
+                  <span class="cover-list__row"><span class="cover-list__n caption-4">01</span><span class="body-5">Category launch</span></span>
+                  <span class="cover-list__row"><span class="cover-list__n caption-4">02</span><span class="body-5">Pipeline generation</span></span>
+                  <span class="cover-list__row"><span class="cover-list__n caption-4">03</span><span class="body-5">Design partner conversion</span></span>
+                  <span class="cover-list__row"><span class="cover-list__n caption-4">04</span><span class="body-5">Lifecycle instrumentation</span></span>
+                  <span class="cover-list__row"><span class="cover-list__n caption-4">05</span><span class="body-5">Revenue intelligence</span></span>
+                </span>
+              </span>
+              <span class="work-card__body">
+                <span class="work-card__tag caption-4">Playbook</span>
+                <span class="work-card__title title-3">The playbook I wrote.</span>
+                <span class="work-card__lede body-5">Five plays, each with the problem, what I owned, and the number.</span>
+                <span class="work-card__cta caption-2">See the playbook<svg class="icon icon--arrow" aria-hidden="true"><use href="#ph-caret-right"/></svg></span>
+              </span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="work-card" href="gtm-systems.html">
+              <span class="work-card__img work-card__img--engine"><img src="assets/media/gtm-lifecycle-engine-poster.jpg" alt="" width="1400" height="640" loading="lazy" decoding="async" /></span>
+              <span class="work-card__body">
+                <span class="work-card__tag caption-4">GTM operating system</span>
+                <span class="work-card__title title-3">The engine underneath the motion.</span>
+                <span class="work-card__lede body-5">An n8n lifecycle engine that drafts, waits for a human, then logs.</span>
+                <span class="work-card__cta caption-2">See the workflow<svg class="icon icon--arrow" aria-hidden="true"><use href="#ph-caret-right"/></svg></span>
+              </span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="work-card" href="field-program.html">
+              <span class="work-card__img work-card__img--room"><img src="assets/evidence/pmm-2-event-page.jpg" alt="" width="1123" height="794" loading="lazy" decoding="async" /></span>
+              <span class="work-card__body">
+                <span class="work-card__tag caption-4">Field program</span>
+                <span class="work-card__title title-3">The room is the product.</span>
+                <span class="work-card__lede body-5">How a first field event put 36 senior product marketers in one room, with no events team and no paid promotion.</span>
+                <span class="work-card__cta caption-2">Read the write-up<svg class="icon icon--arrow" aria-hidden="true"><use href="#ph-caret-right"/></svg></span>
+              </span>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="section section--contact" id="contact">
-      <div class="section-head reveal">
-        <h2 class="section-title">Tell me what you’re building.</h2>
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="statement on-dark">
+        <div class="container">
+          <h2 class="statement__text heading-2" id="contact-title"><span class="statement__line"><span class="statement__phrase"><span class="w" style="--i:0">Tell</span> <span class="w" style="--i:1">me</span> <span class="w" style="--i:2">what</span> <span class="w" style="--i:3">you&rsquo;re</span> <span class="w" style="--i:4">building.</span></span></span> <span class="statement__line statement__line--soft"><span class="statement__phrase"><span class="w" style="--i:5">I</span> <span class="w" style="--i:6">answer</span> <span class="w" style="--i:7">my</span> <span class="w" style="--i:8">own</span> <span class="w" style="--i:9">inbox.</span></span> <span class="statement__phrase"><span class="w" style="--i:10">No</span> <span class="w" style="--i:11">agents,</span> <span class="w" style="--i:12">no</span> <span class="w" style="--i:13">autoresponders.</span></span></span></h2>
+        </div>
       </div>
 
-      <div class="tile contact-tile reveal">
-        <div class="contact-intro">
-          <img class="contact-photo" src="assets/headshot.jpg?v=2" alt="Aatif Junaid Mulla" width="100" height="100" loading="lazy" decoding="async" />
-          <div class="contact-bubble">
-            <p class="contact__lead">
-              And let’s build it together.
-            </p>
-            <p class="contact__joke">I answer my own inbox. No agents, no autoresponders.</p>
+      <div class="contact-panel on-accent">
+        <div class="container contact-panel__grid">
+          <div class="contact-panel__intro reveal">
+            <p class="label caption-2">Contact</p>
+            <div class="contact-card">
+              <img class="contact-photo" src="assets/headshot.jpg?v=2" alt="Aatif Junaid Mulla" width="80" height="80" loading="lazy" decoding="async" />
+              <div>
+                <p class="title-2">Aatif Junaid Mulla</p>
+                <p class="contact-card__role body-5">Product Marketing and GTM, San Francisco</p>
+              </div>
+            </div>
+            <!--email_off--><a class="btn btn--white button-md" href="mailto:aatif.recruitment@gmail.com"><svg class="icon" aria-hidden="true"><use href="#ph-envelope-simple"/></svg><span>Email me</span></a><!--/email_off-->
+            <p class="contact-privacy body-5">Email opens your email app. I use your message to respond, without enrolling you in marketing. Please avoid sensitive or confidential information. <a href="/privacy.html">Privacy policy</a>.</p>
           </div>
-        </div>
-
-        <ul class="contact-list">
-          <li><span class="contact__key"><svg class="contact__mark" aria-hidden="true"><use href="#cm-mail"/></svg>Email</span><!--email_off--><a href="mailto:aatif.recruitment@gmail.com">aatif.recruitment@gmail.com</a><!--/email_off--></li>
-          <li><span class="contact__key"><svg class="contact__mark" aria-hidden="true"><use href="#cm-phone"/></svg>Phone</span><a href="tel:+12026840451">(202) 684-0451</a></li>
-          <li><span class="contact__key"><img class="contact__mark contact__mark--img" src="assets/logos/tools/linkedin.svg" alt="" width="16" height="16" />LinkedIn</span><a href="https://www.linkedin.com/in/aatif-junaid" target="_blank" rel="noopener">linkedin.com/in/aatif-junaid</a></li>
-          <li><span class="contact__key"><img class="contact__mark contact__mark--img" src="assets/logos/tools/github.svg" alt="" width="16" height="16" />GitHub</span><a href="https://github.com/Aatif-Junaid" target="_blank" rel="noopener">github.com/Aatif-Junaid</a></li>
-          <li><span class="contact__key"><svg class="contact__mark" aria-hidden="true"><use href="#cm-pin"/></svg>Location</span><span>San Francisco, CA</span></li>
-        </ul>
-
-        <p class="contact-privacy">Email opens your email app. I use your message to respond, without enrolling you in marketing. Please avoid sensitive or confidential information. <a href="/privacy.html">Privacy policy</a>.</p>
-        <div class="contact__actions">
-          <!--email_off--><a class="btn btn--primary" href="mailto:aatif.recruitment@gmail.com">Email me</a><!--/email_off-->
+          <ul class="contact-list reveal">
+            <li><span class="contact__key caption-3"><svg class="icon" aria-hidden="true"><use href="#ph-envelope-simple"/></svg>Email</span><!--email_off--><a class="contact__value body-3" href="mailto:aatif.recruitment@gmail.com">aatif.recruitment@gmail.com</a><!--/email_off--></li>
+            <li><span class="contact__key caption-3"><svg class="icon" aria-hidden="true"><use href="#ph-phone"/></svg>Phone</span><a class="contact__value body-3" href="tel:+12026840451">(202) 684-0451</a></li>
+            <li><span class="contact__key caption-3"><svg class="icon" aria-hidden="true"><use href="#ph-linkedin-logo"/></svg>LinkedIn</span><a class="contact__value body-3" href="https://www.linkedin.com/in/aatif-junaid" target="_blank" rel="noopener">linkedin.com/in/aatif-junaid</a></li>
+            <li><span class="contact__key caption-3"><svg class="icon" aria-hidden="true"><use href="#ph-github-logo"/></svg>GitHub</span><a class="contact__value body-3" href="https://github.com/Aatif-Junaid" target="_blank" rel="noopener">github.com/Aatif-Junaid</a></li>
+            <li><span class="contact__key caption-3"><svg class="icon" aria-hidden="true"><use href="#ph-map-pin"/></svg>Location</span><span class="contact__value body-3">San Francisco, CA</span></li>
+          </ul>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="site-footer">
-    <div class="site-footer__row">
-      <span class="site-footer__copy">&copy; <span id="year">2026</span> Aatif Junaid Mulla &middot; San Francisco</span>
-      <div class="site-footer__socials">
-        <a class="footer-social" href="https://www.linkedin.com/in/aatif-junaid" target="_blank" rel="noopener" aria-label="Aatif Junaid Mulla on LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-          <span>LinkedIn</span>
+  <footer class="site-footer on-dark">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="#top" aria-label="Aatif Junaid Mulla, back to top">
+          <svg class="brand__mark" aria-hidden="true"><use href="#am-mark"/></svg>
+          <span class="title-4">Aatif Junaid Mulla</span>
         </a>
-        <a class="footer-social" href="https://github.com/Aatif-Junaid" target="_blank" rel="noopener" aria-label="Aatif Junaid Mulla on GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .7A11.3 11.3 0 0 0 8.43 22.72c.57.1.78-.25.78-.55v-2.16c-3.18.69-3.85-1.35-3.85-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.54-.29-5.21-1.27-5.21-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.11 1.17A10.8 10.8 0 0 1 12 5.92a10.8 10.8 0 0 1 2.83.38c2.15-1.48 3.11-1.17 3.11-1.17.62 1.58.23 2.75.11 3.04.73.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.37-5.23 5.65.41.35.78 1.03.78 2.08v3.2c0 .3.21.65.79.54A11.3 11.3 0 0 0 12 .7Z"/></svg>
-          <span>GitHub</span>
-        </a>
+        <p class="body-5">Product Marketing and GTM, San Francisco</p>
+        <p class="footer__note body-5">No AI models were trained on this page. Just me, trained on real users and problems.</p>
       </div>
+      <nav class="footer__col" aria-labelledby="foot-pages">
+        <h2 class="title-5" id="foot-pages">Pages</h2>
+        <ul class="footer__links body-5">
+          <li><a href="/playbook.html">Playbook</a></li>
+          <li><a href="gtm-systems.html">GTM operating system</a></li>
+          <li><a href="field-program.html">The room is the product</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-labelledby="foot-elsewhere">
+        <h2 class="title-5" id="foot-elsewhere">Elsewhere</h2>
+        <ul class="footer__links body-5">
+          <li><a href="https://www.linkedin.com/in/aatif-junaid" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#ph-linkedin-logo"/></svg>LinkedIn</a></li>
+          <li><a href="https://github.com/Aatif-Junaid" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#ph-github-logo"/></svg>GitHub</a></li>
+          <li><a href="resume.pdf?v=2026-10f" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#ph-file-text"/></svg>Resume (PDF)</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="preferred-source">
-      <div google-add-preferred-source-btn data-theme="light"></div>
+    <div class="container">
+      <div class="preferred-source">
+        <div google-add-preferred-source-btn data-theme="light"></div>
+      </div>
+      <div class="rule" role="presentation"></div>
     </div>
-    <p class="site-footer__note">No AI models were trained on this page. Just me, trained on real users and problems.</p>
-    <nav class="legal-links" aria-label="Policies"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/accessibility.html">Accessibility</a></nav>
-    <button class="motion-toggle" type="button" aria-pressed="false">Pause the comet</button>
+    <div class="container footer__legal">
+      <p class="caption-5">&copy; <span id="year">2026</span> Aatif Junaid Mulla</p>
+      <nav class="legal-links caption-5" aria-label="Policies"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/accessibility.html">Accessibility</a></nav>
+      <button class="motion-toggle caption-4" type="button" aria-pressed="false">Pause the comet</button>
+    </div>
   </footer>
 
   <script defer src="assets/js/site.js?v=11"></script>

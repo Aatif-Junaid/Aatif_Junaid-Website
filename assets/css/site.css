@@ -1370,7 +1370,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .nav-page__icon { font-size: var(--text-16); }
 .contact-privacy { max-width: 56ch; }
 @media (max-width: 768px) {
-  /* the three hero buttons stay on one row at 375 */
+  /* the two hero buttons stay on one row at 375 */
   .hero__actions .btn.btn--hero-profile { padding: 0.4rem 0.65rem; min-height: 44px; gap: 0.4rem; }
   .hero__profile-links { gap: 0.45rem; }
 }
@@ -1486,3 +1486,10 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .case-page--wide .case-hero__lede { font-size: var(--text-24); }
   .case-page--wide .case-hero__actions .btn { min-height: 44px; padding: 0.4rem 0.8rem; }
 }
+
+/* ---------- hero: one primary action (Email me), Resume second ---------- */
+.hero__actions .btn.btn--hero-profile.btn--primary { background: var(--blue-text); border-color: var(--blue-text); color: #fff; }
+.hero__actions .btn.btn--hero-profile.btn--primary .btn__icon { color: currentColor; }
+.hero__actions .btn.btn--hero-profile.btn--primary:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
+.hero__statement strong { max-width: 56ch; text-wrap: pretty; }
+.hero__actions .btn.btn--hero-profile.btn--primary { width: auto; min-width: 0; }

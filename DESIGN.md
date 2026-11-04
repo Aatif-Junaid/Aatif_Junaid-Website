@@ -117,9 +117,11 @@ Other motion supports hierarchy or feedback only:
 
 Every visible change must be checked near 1440px and 375px before deployment.
 
-## The homepage system, 2026-11-04
+## The site system, 2026-11-04
 
-Aatif chose option B ("Field report") for the homepage on 2026-11-04. It applies to `index.html` only, which loads `assets/css/home.css` instead of `site.css`. Every other page keeps the system described in the rest of this file until it is carried over. Where the two disagree on the homepage, this section wins.
+Aatif chose option B ("Field report") for the homepage on 2026-11-04 and asked for it on every page the same day. Every page loads `assets/css/home.css`, which holds the tokens, Poppins, the text styles, buttons, header and footer. `index.html` uses it alone; the inner pages add `site.css` for their own components (plays, the engine diagram, policies) on the same tokens. Where this section and the older sections below disagree, this section wins.
+
+- Inner pages share one frame: the homepage header and footer, a charcoal hero band, white sections (paper where cards need lifting), and the blue accent panel as the closing call to action. The playbook index and the event photo ride over the hero edge the way the stats panel does on the homepage. Reading pages (the event write-up) put the section head in a left column and the text in the right from 1024 up.
 
 - Colour follows 60-30-10, as tokens on `:root` in `home.css`. White and `#F3F4F6` paper are dominant, charcoal `#23272E` (raised `#2D323A`) is secondary, and blue `#1A6DD0` (hover `#155CB0`, `#9DC9F8` on charcoal and the photo) is the accent. The last measurement at 1440 was 66.7 / 26.3 / 7.0. Re-measure after any band change and keep 55 to 68 / 24 to 36 / 4 to 10.
 - One typeface: Poppins 400, 500 and 600, self hosted (`assets/fonts/poppins-*.woff2`). Sizes come from the Tailwind scale through named text style classes (`heading-*`, `title-*`, `body-*`, `button-*`, `caption-*`). No italics, nothing heavier than 600.

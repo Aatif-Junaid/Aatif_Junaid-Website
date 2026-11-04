@@ -1,4 +1,4 @@
-/* Homepage stylesheet (index.html only; every other page keeps site.css).
+/* The site system: every page loads this. index.html uses it alone; the inner pages add site.css for their components.
    Option B, "Field report": Poppins, charcoal and white bands, one blue accent.
    60-30-10 measured on the 1440 capture (of_60_30_10_roles): dominant 66.5, secondary 26.6, accent 6.9. */
 
@@ -328,7 +328,7 @@ a.role__logo:active { transform: translateY(1px); }
 .dp-arrow:disabled { opacity: 0.4; cursor: default; }
 .dp-track { display: flex; gap: var(--space-24); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
   overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--on-dark-soft) var(--line-dark); padding-bottom: var(--space-16);
-  -webkit-overflow-scrolling: touch; } /* the scrollbar stays: the arrows can stay disabled after a resize across 1024 */
+  -webkit-overflow-scrolling: touch; }
 .dp-slide { display: flex; flex-direction: column; flex: 0 0 calc((100% - var(--space-24)) / 2); margin: 0; padding: var(--space-32);
   scroll-snap-align: start; border: 1px solid var(--line-dark); border-radius: var(--radius-4); background: var(--charcoal-raised); }
 .dp-slide blockquote { color: var(--white); }

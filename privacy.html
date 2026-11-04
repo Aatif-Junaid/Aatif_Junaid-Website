@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="Privacy policy | Aatif Junaid Mulla" />
   <meta name="twitter:description" content="How Aatif Junaid Mulla's personal portfolio handles hosting information, contact messages, and analytics." />
   <meta name="twitter:image" content="https://aatifmulla.me/og-image.jpg?v=10" />
-  <meta name="theme-color" content="#EEEDE8" />
+  <meta name="theme-color" content="#23272E" />
   <link rel="canonical" href="https://aatifmulla.me/privacy.html" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'" />
@@ -31,27 +31,40 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=4" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=4" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=4" />
-  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/assets/fonts/playfair.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/site.css?v=103" />
+  <link rel="preload" href="/assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/home.css?v=2" />
+  <link rel="stylesheet" href="/assets/css/site.css?v=104" />
 </head>
 <body>
   <a class="skip-link" href="#top">Skip to content</a>
 
-  <header class="site-header case-header">
-    <a class="wordmark" href="/" aria-label="Aatif Junaid Mulla home">
-      <img class="wordmark__mark" src="assets/logos/am-mark-glossy.svg?v=1" alt="" width="64" height="64" />
-      <span class="wordmark__name">Aatif Junaid Mulla</span>
-    </a>
-    <nav class="site-nav" aria-label="Site navigation">
-      <a class="nav-page" href="/gtm-systems.html">GTM OS</a>
-      <a class="nav-page" href="/playbook.html">Playbook</a>
-      <a class="nav-page nav-page--home" href="/" aria-label="Return to the home page"><span class="nav-page__icon" aria-hidden="true">⌂</span>Home</a>
-    </nav>
+  <!-- Icons: Phosphor Icons (MIT), assets/icons/Phosphor-LICENSE.txt -->
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <symbol id="am-mark" viewBox="0 0 128 128"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 104 64 17 108 104" stroke-width="8.4"/><path d="M20 104 64 126 108 104" stroke-width="8.4"/><path d="M39 98 51 73Q53.5 68.5 56.5 73L64 85 71.5 73Q74.5 68.5 77 73L89 98" stroke-width="7.6"/></g></symbol>
+    <symbol id="ph-envelope-simple" viewBox="0 0 256 256"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></symbol>
+    <symbol id="ph-arrow-up-right" viewBox="0 0 256 256"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></symbol>
+    <symbol id="ph-file-text" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"/></symbol>
+    <symbol id="ph-linkedin-logo" viewBox="0 0 256 256"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"/></symbol>
+    <symbol id="ph-github-logo" viewBox="0 0 256 256"><path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"/></symbol>
+  </svg>
+
+  <header class="site-header on-dark">
+    <div class="container site-header__inner">
+      <a class="brand" href="/" aria-label="Aatif Junaid Mulla home">
+        <svg class="brand__mark" aria-hidden="true"><use href="#am-mark"/></svg>
+        <span class="brand__name title-4">Aatif Junaid Mulla</span>
+      </a>
+      <nav class="nav" aria-label="Site navigation">
+        <a class="nav__link nav__link--page button-md" href="/gtm-systems.html">GTM OS</a>
+        <a class="nav__link nav__link--page button-md" href="/playbook.html">Playbook</a>
+        <a class="nav__link nav__link--page nav__link--home button-md" href="/">Home</a>
+      </nav>
+    </div>
   </header>
 
   <main class="case-page" id="top" tabindex="-1">
-    <section class="case-hero">
+    <section class="case-hero on-dark">
       <p class="kicker">Policies &middot; Privacy</p>
       <h1 class="case-hero__title">Privacy policy</h1>
       <p class="case-hero__context">Last updated September 24, 2026.</p>
@@ -81,16 +94,41 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="site-footer__row">
-      <span class="site-footer__copy">&copy; <span id="year">2026</span> Aatif Junaid Mulla &middot; San Francisco</span>
-      <div class="site-footer__socials">
-        <a class="footer-social" href="https://www.linkedin.com/in/aatif-junaid" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="footer-social" href="https://github.com/Aatif-Junaid" target="_blank" rel="noopener">GitHub</a>
+  <footer class="site-footer on-dark">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="#top" aria-label="Aatif Junaid Mulla, back to top">
+          <svg class="brand__mark" aria-hidden="true"><use href="#am-mark"/></svg>
+          <span class="title-4">Aatif Junaid Mulla</span>
+        </a>
+        <p class="body-5">Product Marketing and GTM, San Francisco</p>
+        <p class="footer__note body-5">No AI models were trained on this page. Just me, trained on real users and problems.</p>
       </div>
+      <nav class="footer__col" aria-labelledby="foot-pages">
+        <h2 class="title-5" id="foot-pages">Pages</h2>
+        <ul class="footer__links body-5">
+          <li><a href="/">Home</a></li>
+          <li><a href="/playbook.html">Playbook</a></li>
+          <li><a href="/gtm-systems.html">GTM operating system</a></li>
+          <li><a href="/field-program.html">The room is the product</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-labelledby="foot-elsewhere">
+        <h2 class="title-5" id="foot-elsewhere">Elsewhere</h2>
+        <ul class="footer__links body-5">
+          <li><a href="https://www.linkedin.com/in/aatif-junaid" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#ph-linkedin-logo"/></svg>LinkedIn</a></li>
+          <li><a href="https://github.com/Aatif-Junaid" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#ph-github-logo"/></svg>GitHub</a></li>
+          <li><a href="/resume.pdf?v=2026-10f" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#ph-file-text"/></svg>Resume (PDF)</a></li>
+        </ul>
+      </nav>
     </div>
-    <p class="site-footer__note">No AI models were trained on this page. Just me, trained on real users and problems.</p>
-    <nav class="legal-links" aria-label="Policies"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/accessibility.html">Accessibility</a></nav>
+    <div class="container">
+      <div class="rule" role="presentation"></div>
+    </div>
+    <div class="container footer__legal">
+      <p class="caption-5">&copy; <span id="year">2026</span> Aatif Junaid Mulla</p>
+      <nav class="legal-links caption-5" aria-label="Policies"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/accessibility.html">Accessibility</a></nav>
+    </div>
   </footer>
 
   <script defer src="/assets/js/site.js?v=11"></script>

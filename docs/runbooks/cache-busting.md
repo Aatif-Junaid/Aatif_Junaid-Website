@@ -14,8 +14,8 @@ Current patterns:
 
 | Asset | Reference pattern |
 |---|---|
-| Shared CSS | `assets/css/site.css?v=N` |
-| Homepage CSS | `assets/css/home.css?v=N` |
+| Inner-page CSS | `assets/css/site.css?v=N` |
+| Site system CSS (every page) | `assets/css/home.css?v=N` |
 | Shared JavaScript | `assets/js/site.js?v=N` |
 | Homepage JavaScript | `assets/js/homepage.js?v=N` |
 | Playbook JavaScript | `assets/js/playbook.js?v=N` |

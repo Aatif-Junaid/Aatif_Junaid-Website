@@ -607,6 +607,7 @@
     });
   });
   var ticking = false;
+  window.addEventListener('resize', refresh, { passive: true }); // the arrows follow a resize across 1024
   track.addEventListener('scroll', function () {
     if (!ticking) {
       ticking = true;

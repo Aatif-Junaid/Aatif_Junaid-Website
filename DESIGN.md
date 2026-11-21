@@ -62,7 +62,7 @@ Labels and headings, on every page:
 
 ## Layout and hierarchy
 
-The general content container caps at 1280px with responsive 20-64px gutters and a 12-column desktop grid. The homepage hero box stays 1400px wide so the geometry does not move, but its text column sits on the same 1280px edge as every section. The signature Experience composition remains at its established 1380px width so the comet geometry does not shift. Desktop navigation is 68px tall and remains on one line. Mobile layouts collapse to one column below 768px and never depend on horizontal page scrolling.
+The general content container caps at 1280px with responsive 20-64px gutters and a 12-column desktop grid. The homepage hero box stays 1400px wide so the geometry does not move, but its text column sits on the same 1280px edge as every section. The signature Experience composition remains at its established 1380px width so the comet geometry does not shift. Desktop navigation is normally one 68px row and wraps when enlarged text needs more space. Mobile layouts collapse to one column below 768px and never depend on horizontal page scrolling.
 
 Use a 4px base spacing system. Major sections use 48px vertical padding on desktop and 40px on phones, so two adjacent sections sit 96px apart on desktop and 80px apart on phones. Section headings sit 48px above their content on desktop and 32px above it on mobile. Education and capability groups use flat editorial groupings with hairlines. Work and Approach use a consistent two-column editorial matrix with shared rails and row rhythm, collapsing to one column on mobile.
 

@@ -2,22 +2,25 @@
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
-  // Keep a reader's compact disclosures when rotation changes the layout.
+  // Restore a reader's disclosure choices when returning to either layout.
   var folds = document.querySelectorAll('details.fold');
   if (folds.length) {
     var phone = window.matchMedia('(max-width: 768px)');
     var compact = phone.matches;
     var compactStates = new WeakMap();
+    var desktopStates = new WeakMap();
     folds.forEach(function (fold) {
       fold.open = compact ? fold.hasAttribute('data-phone-open') : !fold.classList.contains('fold--always');
     });
     function applyFolds() {
       var nextCompact = phone.matches;
       if (nextCompact === compact) return;
+      var previousStates = compact ? compactStates : desktopStates;
+      var nextStates = nextCompact ? compactStates : desktopStates;
       folds.forEach(function (fold) {
         if (fold.classList.contains('fold--always')) return;
-        if (compact) compactStates.set(fold, fold.open);
-        fold.open = !nextCompact || (compactStates.has(fold) ? compactStates.get(fold) : fold.hasAttribute('data-phone-open'));
+        previousStates.set(fold, fold.open);
+        fold.open = nextStates.has(fold) ? nextStates.get(fold) : !nextCompact || fold.hasAttribute('data-phone-open');
       });
       compact = nextCompact;
     }

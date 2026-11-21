@@ -652,20 +652,20 @@
 
 (function () {
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var revealElements = document.querySelectorAll('.reveal');
-  if (prefersReduced || !('IntersectionObserver' in window)) {
-    revealElements.forEach(function (element) { element.classList.add('is-visible'); });
-    return;
-  }
+  if (prefersReduced || !('IntersectionObserver' in window)) return;
+
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
+        entry.target.classList.remove('reveal-pending');
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
-  revealElements.forEach(function (element) { observer.observe(element); });
+  document.querySelectorAll('.reveal').forEach(function (element) {
+    observer.observe(element);
+    element.classList.add('reveal-pending');
+  });
 })();
 
 (function () {

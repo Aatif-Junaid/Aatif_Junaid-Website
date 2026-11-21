@@ -366,8 +366,7 @@ a.logo-chip:hover { transform: translateY(-2px) scale(1.04); }
 
 /* ---------- experience timeline: particle comet ---------- */
 .timeline { position: relative; padding-left: 0; }
-/* canvas spans the full list height (top+bottom:0) so the comet track maps
-   exactly to the experience section and can never go stale */
+/* The homepage script extends the canvas up to the hero's opening point. */
 .tl-comet {
   position: absolute; left: 50%; transform: translateX(-50%); top: 0; width: 100vw; pointer-events: none; z-index: 0; opacity: 1;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 1%, #000 93%, transparent 100%);
@@ -1529,16 +1528,13 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 }
 .hero--profile > .hero__identity { grid-area: 1 / 1; }
 .hero--profile > .hero__copy { grid-area: 2 / 1; }
-.hero--profile > .hero__portrait {
+.hero--profile > .hero__comet-start {
   grid-area: 1 / 2 / span 2;
-  align-self: center;
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-card);
+  place-self: center;
+  width: 0;
+  height: 0;
 }
-.hero--profile > .hero__geometry { opacity: 0.56; }
+.hero--profile > .hero__geometry { opacity: 0.85; }
 .hero__person {
   color: var(--blue-deep);
   font-family: var(--serif);
@@ -1562,7 +1558,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .hero__proof-line { color: var(--blue-deep); font-weight: 500; }
 .hero--profile .hero__actions { margin-top: var(--space-6); }
 
-.selected-work { padding-top: var(--space-8); }
+.selected-work { position: relative; z-index: 1; padding-top: var(--space-8); }
 .selected-work .section-head { margin-bottom: var(--space-6); }
 .selected-work__grid {
   display: grid;
@@ -1584,13 +1580,10 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 @media (max-width: 768px) {
   .hero--profile {
     min-height: auto;
-    grid-template-columns: minmax(0, 1fr) 5.5rem;
-    align-items: center;
-    gap: var(--space-6) var(--space-4);
+    grid-template-columns: minmax(0, 1fr);
     padding: var(--space-8) var(--gutter) var(--space-4);
   }
-  .hero--profile > .hero__portrait { grid-area: 1 / 2; }
-  .hero--profile > .hero__copy { grid-area: 2 / 1 / auto / -1; }
+  .hero--profile > .hero__comet-start { display: none; }
   .hero__headline { font-size: clamp(2rem, 7.5vw, 2.625rem); }
   .hero__summary { font-size: var(--text-16); }
   .selected-work__grid { grid-template-columns: 1fr; }

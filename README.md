@@ -1,30 +1,30 @@
 # aatifmulla.me
 
-Aatif Junaid Mulla's public GTM and Product Growth portfolio. It presents verified work across zero-to-one enterprise GTM, product-growth instrumentation, lifecycle systems, and recurring-revenue analysis.
+Aatif Junaid Mulla's public portfolio for GTM & Enterprise Growth. It covers enterprise technology sales, customer discovery, revenue operations, and AI workflows with human review.
 
 The repository is maintained as a public proof of both the site and the working practice behind it: small, reviewed changes, source-backed claims, and deployable static assets. That is the foundation.
 
 ## Start here
 
 - [Portfolio](https://aatifmulla.me/)
-- [Playbook, five GTM plays](https://aatifmulla.me/playbook.html)
-- [GTM systems](https://aatifmulla.me/gtm-systems.html)
-- [First field-program write-up](https://aatifmulla.me/field-program.html)
+- [Enterprise GTM: Selected Work](https://aatifmulla.me/playbook.html)
+- [GTM Workflows: Research, Drafting and Human Review](https://aatifmulla.me/gtm-systems.html)
+- [Building an Enterprise Field Program in San Francisco](https://aatifmulla.me/field-program.html)
 - [Resume](https://aatifmulla.me/resume.pdf)
 - [LinkedIn](https://www.linkedin.com/in/aatif-junaid)
 
 ## How to read the site
 
-- Homepage: the career timeline with the comet, one card per role, numbers first, then education, the core stack, and how I work. Two minutes.
-- Playbook: five go-to-market plays, each with the problem, what I owned, and the number it moved, with evidence screenshots inline.
-- GTM systems: the n8n lifecycle engine node by node, the toolkit behind it, and the sanitized export on GitHub.
+- Homepage: an introduction and three selected cases, followed by the career timeline, approach, toolkit, and credentials.
+- Selected work: five enterprise GTM cases with context, responsibility, decisions, outcomes, and evidence.
+- GTM workflows: a public n8n demonstration and a separate account of lifecycle work at Aiseberg.
 - Field program: one first-person write-up of the PMM 2.0 event.
 - Resume: one page, the same facts as the site.
 
 ## Selected proof
 
-- Recruited 13 named design partners, including 8 at Director level or above, and helped land Aisepedia's first signed enterprise agreement with Splunk, a Cisco company, alongside the founder.
-- Instrumented 11 Mixpanel events and 22 lifecycle KPIs, then used the resulting drop-off analysis to help cut early-stage abandonment 24%.
+- Co-built a design partner program with 13 publicly named practitioners, eight at Director level or above, and helped land Aisepedia's first signed enterprise agreement with Splunk, a Cisco company, alongside the founder.
+- Specified lifecycle tracking, including 11 Mixpanel events and 22 KPIs, and analyzed funnel drop-off. The guided onboarding changes cut early abandonment 24%.
 - Built recurring-revenue reporting across five POLITICO product lines and thousands of accounts, used weekly by the CEO, COO, and VP Finance, and surfaced $2.6M in recoverable ACV.
 
 The website is built with static HTML, CSS, and vanilla JavaScript and deployed from `main` through GitHub Pages.
@@ -68,7 +68,7 @@ privacy.html, terms.html, accessibility.html
                         Policy pages, linked from every footer
 404.html                Custom not-found page
 assets/css/site.css     The one stylesheet: tokens, layout, components, phone blocks
-assets/js/              site.js (shared), homepage.js (comet, carousel), playbook.js
+assets/js/              site.js (shared), homepage.js (comet), playbook.js
 assets/fonts/           Self-hosted Inter and Playfair Display subsets (OFL)
 assets/evidence/        Public screenshots that substantiate the plays
 assets/logos/           Organization and tool logos, the AM mark

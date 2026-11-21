@@ -163,15 +163,14 @@ def visible_text(source):
 
 canonical_design_partner_claims = {
     "index.html": [
-        "Co-built, recruited, and ran a 13-member design partner program",
-        "13 Design partners, 8 senior",
+        "Co-built a 13-member design partner program",
+        "13 Design partners, eight at Director level or above",
     ],
     "playbook.html": [
-        "Design partner conversion 13 practitioners recruited",
-        "Built a 13-member design partner cohort, 8 at Director level or above",
+        "co-built a 13-member design partner program, with eight practitioners at Director level or above",
     ],
     "field-program.html": [
-        "a 13-member cohort with 8 people at Director level or above",
+        "13 publicly named practitioners, eight at Director level or above",
     ],
 }
 for page, claims in canonical_design_partner_claims.items():

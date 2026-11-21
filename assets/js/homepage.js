@@ -1,4 +1,4 @@
-// Homepage-only scroll effects, timeline comet, carousel, and reveal behavior.
+// Homepage-only scroll effects, timeline comet and reveal behavior.
 
 (function () {
   var labels = document.querySelectorAll('.eyebrow');
@@ -20,12 +20,15 @@
   var canvas = document.querySelector('.tl-comet');
   if (!timeline || !canvas) return;
   var ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  var heroAnchor = document.querySelector('.hero__comet-start');
+  var hero = heroAnchor && heroAnchor.closest('.hero');
   var items = timeline.querySelectorAll('.tl-item');
   var motionToggle = document.querySelector('.motion-toggle');
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var mobileQuery = window.matchMedia('(max-width: 768px)');
 
-  var dpr = 1, cssW = 0, cssH = 0, timelineW = 0, timelineTop = 0;
+  var dpr = 1, cssW = 0, cssH = 0, canvasTop = 0;
   var head = { x: 0, y: 0 }, targetY = 0, prevY = 0, prevX = 0;
   var parts = [], trail = [], running = false, inView = false, resizeQueued = false, lastLitY = -999, userPaused = false;
   var travel = { x: 0, y: 1 }, travelSign = 1, lastFrameTime = 0, emissionCarry = 0, dirtyBounds = null;
@@ -33,18 +36,18 @@
   var MAX_TRAIL_POINTS = 66, MAX_TRAIL_DISTANCE = 340;
   var itemPositions = [];
   var SAFE = 60, pathAmplitude = 160, pathOriginY = 0, pathStartX = SAFE, pathStartPhase = -Math.PI / 2;
-  var motionElapsed = 0, headInitialized = false;
+  var motionElapsed = 0, frameRequest = 0;
   var COMET_SPEED_MULTIPLIER = 1.10;
   var START_GAP = 32, START_MIN_X = 30, motionLevel = 0;
+  var heroStartX = 0, heroStartY = 0;
 
   function resize() {
     resizeQueued = false;
     var vw = document.documentElement.clientWidth;
     if (!vw) return;
-    if (mobileQuery.matches) {
+    if (prefersReduced || mobileQuery.matches) {
       cssW = vw;
       cssH = 0;
-      timelineW = 0;
       itemPositions = [];
       parts.length = 0;
       trail.length = 0;
@@ -54,19 +57,22 @@
       canvas.height = 1;
       return;
     }
-    dpr = Math.max(1, Math.min(1.5, window.devicePixelRatio || 1));
     cssW = vw;
-    cssH = timeline.offsetHeight;
-    timelineW = timeline.offsetWidth;
-    timelineTop = timeline.getBoundingClientRect().top + window.scrollY;
+    var timelineRect = timeline.getBoundingClientRect();
+    var leadIn = hero ? Math.max(0, Math.round(timelineRect.top - hero.getBoundingClientRect().top)) : 0;
+    cssH = timeline.offsetHeight + leadIn;
+    // Fit the longer canvas within a 4096px backing dimension on high-density tablets.
+    var displayScale = Math.max(1, Math.min(1.5, window.devicePixelRatio || 1));
+    dpr = Math.min(displayScale, 4096 / Math.max(cssW, cssH));
+    canvasTop = timelineRect.top + window.scrollY - leadIn;
     itemPositions = Array.prototype.map.call(items, function (item) {
       var dot = item.querySelector('.tl-dot');
       return {
         item: item,
         dot: dot,
-        center: item.offsetTop + (dot ? dot.offsetTop + dot.offsetHeight / 2 : 0),
-        start: item.offsetTop - 10,
-        end: item.offsetTop + item.offsetHeight + 10
+        center: leadIn + item.offsetTop + (dot ? dot.offsetTop + dot.offsetHeight / 2 : 0),
+        start: leadIn + item.offsetTop - 10,
+        end: leadIn + item.offsetTop + item.offsetHeight + 10
       };
     });
     if (itemPositions.length) {
@@ -74,28 +80,31 @@
       var firstDotRect = firstPosition.dot ? firstPosition.dot.getBoundingClientRect() : null;
       var firstDotX = firstDotRect ? firstDotRect.left + firstDotRect.width / 2 : SAFE;
       pathOriginY = firstPosition.center;
-      // Rest beside the first dot, on its left and clear of it, so the comet is visible before any scrolling.
+      // Enter the original timeline path beside its first dot.
       pathStartX = Math.max(START_MIN_X, firstDotX - START_GAP);
-      pathAmplitude = Math.max(160, Math.min(cssW / 2 - SAFE, timelineW / 2 + 50));
+      pathAmplitude = Math.max(160, Math.min(cssW / 2 - SAFE, timeline.offsetWidth / 2 + 50));
       var startRatio = Math.max(-1, Math.min(1, (firstDotX - 28 - cssW / 2) / pathAmplitude));
       pathStartPhase = Math.asin(startRatio);
-      if (!headInitialized) {
-        head.y = pathOriginY;
-        targetY = pathOriginY;
-        prevY = pathOriginY;
-        head.x = pathX(head.y, 0);
-        prevX = head.x;
-        headInitialized = true;
-      }
     }
+    var anchorRect = hero ? heroAnchor.getBoundingClientRect() : null;
+    heroStartX = anchorRect ? anchorRect.left : pathStartX;
+    heroStartY = anchorRect ? Math.min(pathOriginY, anchorRect.top + window.scrollY - canvasTop) : pathOriginY;
+    computeTarget();
+    head.y = prevY = targetY;
+    head.x = prevX = pathX(head.y, motionElapsed);
+    canvas.style.top = -leadIn + 'px';
     canvas.style.width = cssW + 'px';
     canvas.style.height = cssH + 'px';
     canvas.width = Math.round(cssW * dpr);
     canvas.height = Math.round(cssH * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    parts.length = 0;
     trail.length = 0;
     trailDistance = 0;
-    dirtyBounds = null;
+    lastLitY = -999;
+    lightNodes(head.y);
+    drawHead(motionElapsed, []);
+    updateDirtyBounds();
   }
 
   function queueResize() {
@@ -107,20 +116,29 @@
 
   function pathX(y, time) {
     var relativeY = y - pathOriginY;
+    var drift = Math.sin(time * 0.035) * 3;
+    var hookReach = Math.max(0, Math.min(72, pathStartX - 16));
+    if (relativeY < 0 && heroStartY < pathOriginY) {
+      var leadDistance = pathOriginY - heroStartY;
+      var progress = Math.max(0, (y - heroStartY) / leadDistance);
+      var eased = progress * progress * (3 - 2 * progress);
+      // Match the tangent of the original opening hook at the first marker.
+      var endTangent = -hookReach * (256 / 27) * leadDistance / 170;
+      return heroStartX + (pathStartX - heroStartX) * eased + endTangent * progress * progress * (progress - 1) + drift;
+    }
     var flowingX = cssW / 2 + Math.sin(relativeY * 0.005 + time * 0.035 + pathStartPhase) * pathAmplitude;
     var openingProgress = Math.max(0, Math.min(1, relativeY / 170));
     if (openingProgress >= 1) return flowingX;
     var easedProgress = Math.pow(openingProgress, 3) * (10 + openingProgress * (-15 + 6 * openingProgress));
-    var openingAnchor = pathStartX + Math.sin(time * 0.035) * 3;
-    var hookReach = Math.max(0, Math.min(72, pathStartX - 16));
+    var openingAnchor = pathStartX + drift;
     var leftHook = -hookReach * (256 / 27) * openingProgress * Math.pow(1 - openingProgress, 3);
     return openingAnchor + (flowingX - openingAnchor) * easedProgress + leftHook;
   }
 
   function computeTarget() {
     var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    var firstMarkerY = itemPositions.length ? itemPositions[0].center : 0;
-    targetY = Math.max(firstMarkerY, Math.min(cssH, viewportHeight * 0.5 + window.scrollY - timelineTop));
+    var trackingLine = Math.min(viewportHeight * 0.5, canvasTop + heroStartY);
+    targetY = Math.max(heroStartY, Math.min(cssH, trackingLine + window.scrollY - canvasTop));
   }
 
   function lightNodes(y) {
@@ -395,6 +413,8 @@
   }
 
   function frame(now) {
+    frameRequest = 0;
+    if (!running) return;
     if (canvas.offsetParent === null) {
       running = false;
       return;
@@ -479,19 +499,21 @@
     drawHead(time, visualTrail);
 
     updateDirtyBounds();
-    if (running) requestAnimationFrame(frame);
+    if (running) frameRequest = requestAnimationFrame(frame);
   }
 
   function start() {
     if (!running && !userPaused && !prefersReduced && !mobileQuery.matches) {
       running = true;
       lastFrameTime = 0;
-      requestAnimationFrame(frame);
+      frameRequest = requestAnimationFrame(frame);
     }
   }
   function stop() {
     running = false;
     lastFrameTime = 0;
+    cancelAnimationFrame(frameRequest);
+    frameRequest = 0;
   }
 
   window.__comet = function () {
@@ -503,7 +525,11 @@
   resize();
   window.addEventListener('resize', queueResize, { passive: true });
   window.addEventListener('load', queueResize, { once: true });
-  if (window.ResizeObserver) new ResizeObserver(queueResize).observe(timeline);
+  if (window.ResizeObserver) {
+    var sizeObserver = new ResizeObserver(queueResize);
+    sizeObserver.observe(timeline);
+    if (hero) sizeObserver.observe(hero);
+  }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueResize);
   if (prefersReduced) {
     canvas.style.display = 'none';
@@ -535,7 +561,7 @@
         inView = entry.isIntersecting;
         if (inView && !document.hidden) start(); else stop();
       });
-    }, { rootMargin: '0px 0px 55% 0px', threshold: 0 }).observe(timeline);
+    }, { rootMargin: '0px 0px 55% 0px', threshold: 0 }).observe(canvas);
   } else {
     inView = true;
     start();
@@ -582,44 +608,6 @@
   else mediaQuery.addListener(sync);
 })();
 
-(function () {
-  var carousel = document.querySelector('.dp-carousel');
-  if (!carousel) return;
-  var track = carousel.querySelector('.dp-track');
-  var arrows = carousel.querySelectorAll('.dp-arrow');
-  if (!track) return;
-
-  function atStart() { return track.scrollLeft <= 2; }
-  function atEnd() { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; }
-  function refresh() {
-    if (arrows[0]) arrows[0].disabled = atStart();
-    if (arrows[1]) arrows[1].disabled = atEnd();
-  }
-  function move(direction) {
-    if (direction > 0 && atEnd()) track.scrollTo({ left: 0, behavior: 'smooth' });
-    else if (direction < 0 && atStart()) track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
-    else track.scrollBy({ left: direction * track.clientWidth, behavior: 'smooth' });
-  }
-
-  arrows.forEach(function (arrow) {
-    arrow.addEventListener('click', function () {
-      move(parseInt(arrow.getAttribute('data-dir'), 10));
-    });
-  });
-  var ticking = false;
-  window.addEventListener('resize', refresh, { passive: true }); // the arrows follow a resize across 1024
-  track.addEventListener('scroll', function () {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(function () {
-        refresh();
-        ticking = false;
-      });
-    }
-  }, { passive: true });
-  refresh();
-
-})();
 
 (function () {
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

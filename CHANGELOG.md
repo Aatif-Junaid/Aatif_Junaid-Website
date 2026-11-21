@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Shorten the homepage introduction to the name, role label, and one proof line. Simplify the share card to match (`site.css?v=109`, `og-image.jpg?v=13`).
 - Show the scroll-following comet in compact windows and keep its starting point in view on short screens. Apply changes to reduced-motion preferences while the page is open (`site.css?v=108`, `homepage.js?v=28`).
 - Refocus the portfolio on enterprise GTM and revenue operations. Put three cases ahead of Experience and bring the scroll-following comet into the homepage hero. Reorder and correct the case studies, and separate the public n8n demo from Aiseberg lifecycle work. Refresh the share card, metadata, and public résumé (`og-image.jpg?v=12`, `site.css?v=107`, `homepage.js?v=27`, `resume.pdf?v=2026-11b`).
 - Return to the editorial design across the site with warm paper, Playfair and Inter, the hexagon hero, and the comet timeline. Move the PMM 2.0 stage photo into the field program write-up. Add a direct route from the hero to Selected work and retain the standalone testimonials and current GTM content (`site.css?v=105`).

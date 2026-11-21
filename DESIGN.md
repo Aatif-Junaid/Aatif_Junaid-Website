@@ -4,7 +4,7 @@ This file defines how aatifmulla.me should look and behave. Read it before visib
 
 ## Design read
 
-This is a recruiter-facing GTM and Product Growth portfolio. It should feel warm, editorial, evidence-led, and technically credible. The site is a targeted evolution of its existing identity, not a template or a brand imitation.
+This is a recruiter-facing enterprise GTM portfolio. It should feel warm, editorial, evidence-led, and technically credible. The site is a targeted evolution of its existing identity, not a template or a brand imitation.
 
 - Design variance: 6/10. Editorial composition with controlled asymmetry.
 - Motion intensity: 6/10 for the comet, 3/10 elsewhere. Expressive signature motion inside a calm interface.
@@ -38,7 +38,7 @@ Copy is part of the design:
 - make evidence easy to scan
 - lead experience bullets with documented numbers
 - preserve the approved Aiseberg, Aisepedia, Splunk/Cisco, and POLITICO framing
-- keep positioning consistent with GTM and Product Growth
+- keep positioning consistent with GTM & Enterprise Growth
 
 The type scale, on every page:
 
@@ -84,7 +84,7 @@ Use flat editorial bands, hairlines, and spacing before adding another tile. Rea
 - Content tiles use a 16px radius, a restrained blue-tinted shadow, a translucent warm-white surface, and a solid fallback when transparency is reduced.
 - Smaller proof modules and media use an 8px radius. Buttons and compact navigation destinations use a pill radius. Circular shapes are reserved for real markers and the headshot.
 - Most content remains flat. Elevation is reserved for Experience cards, evidence artifacts, and the primary case-study invitation.
-- Photographs are rare and informational, never decorative: at most one per page, the full width of the content column, 16:9, with a one-line caption that names the date and the source. The event page carries the room; the homepage carries none.
+- Photographs are rare and informational, never decorative: at most one per page, the full width of the content column, 16:9, with a one-line caption that names the date and the source. Use the professional portrait on the homepage and the PMM 2.0 stage photo in the field program write-up.
 - Metrics use large Playfair numerals, concise Inter labels, and tabular figures when comparison alignment matters.
 - Navigation links use semantic anchors. The wordmark always returns to the homepage.
 - Focus states are visible, high contrast, and unobscured by the sticky header.
@@ -119,12 +119,13 @@ Every visible change must be checked near 1440px and 375px before deployment.
 
 ## The current editorial system
 
-Every page uses the self-hosted Inter and Playfair Display fonts and the warm paper and blue tokens in `assets/css/site.css`. The homepage uses the original hexagon artwork on desktop and tablet. The PMM 2.0 stage photo appears below the introduction to the field program write-up.
+Every page uses the self-hosted Inter and Playfair Display fonts and the warm paper and blue tokens in `assets/css/site.css`. These rules describe the current homepage and take precedence over the earlier notes below.
 
-- The hero presents the current role, name, positioning, and one proof line. Email is the primary button, Resume is the secondary button, and Selected work is a text link.
-- Experience keeps the comet and the timeline. Selected work follows it with direct links to the Playbook, GTM operating system, and field program.
-- Design partner testimonials appear in their own section, visible without opening a disclosure. They use four columns from 1280px, two from 1024px, and a carousel with 44px controls below 1024px.
-- The current role, dates, resume, case-study evidence, canonical URLs, and structured data follow the public record.
+- The homepage pairs a professional portrait with a GTM & Enterprise Growth headline, a supporting paragraph, one proof line, and two actions: Explore my work and View résumé.
+- Three selected case studies precede the career timeline: the first enterprise agreement, subscription revenue analysis, and a GTM workflow demonstration with human review.
+- The comet stays with Experience. The approach and toolkit follow Experience, above Education and Contact.
+- Design partner quotes appear in the relevant case study as attributed product feedback. The PMM 2.0 stage photo sits below the introduction to the field program write-up.
+- The share image uses the same portrait, name, public positioning, and headline as the homepage.
 
 ## The premium pass, 2026-09-16
 

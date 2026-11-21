@@ -1,4 +1,4 @@
-// Homepage-only scroll effects, timeline comet, carousel, and reveal behavior.
+// Homepage-only scroll effects, timeline comet and reveal behavior.
 
 (function () {
   var labels = document.querySelectorAll('.eyebrow');
@@ -582,44 +582,6 @@
   else mediaQuery.addListener(sync);
 })();
 
-(function () {
-  var carousel = document.querySelector('.dp-carousel');
-  if (!carousel) return;
-  var track = carousel.querySelector('.dp-track');
-  var arrows = carousel.querySelectorAll('.dp-arrow');
-  if (!track) return;
-
-  function atStart() { return track.scrollLeft <= 2; }
-  function atEnd() { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; }
-  function refresh() {
-    if (arrows[0]) arrows[0].disabled = atStart();
-    if (arrows[1]) arrows[1].disabled = atEnd();
-  }
-  function move(direction) {
-    if (direction > 0 && atEnd()) track.scrollTo({ left: 0, behavior: 'smooth' });
-    else if (direction < 0 && atStart()) track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
-    else track.scrollBy({ left: direction * track.clientWidth, behavior: 'smooth' });
-  }
-
-  arrows.forEach(function (arrow) {
-    arrow.addEventListener('click', function () {
-      move(parseInt(arrow.getAttribute('data-dir'), 10));
-    });
-  });
-  var ticking = false;
-  window.addEventListener('resize', refresh, { passive: true }); // the arrows follow a resize across 1024
-  track.addEventListener('scroll', function () {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(function () {
-        refresh();
-        ticking = false;
-      });
-    }
-  }, { passive: true });
-  refresh();
-
-})();
 
 (function () {
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

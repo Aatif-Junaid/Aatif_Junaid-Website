@@ -376,11 +376,10 @@ a.logo-chip:hover { transform: translateY(-2px) scale(1.04); }
 
 /* ---------- experience timeline: particle comet ---------- */
 .timeline { position: relative; padding-left: 0; }
-/* The homepage script extends the canvas up to the hero's opening point. */
 .tl-comet {
   position: absolute; left: 50%; transform: translateX(-50%); top: 0; width: 100vw; pointer-events: none; z-index: 0; opacity: 1;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 1%, #000 93%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 1%, #000 93%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 18px, #000 93%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 18px, #000 93%, transparent 100%);
 }
 .timeline__list { position: relative; z-index: 1; margin: 0; padding: 0; }
 /* proximity highlight: the card the comet head is passing behind lifts and glows */
@@ -985,8 +984,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .tl-head { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
   .tl-headtext { width: 100%; }
 
-  /* Compact cards span the full width and keep the comet in the outer gutter. */
-  .tl-dot { display: none; }
+  /* Keep the hidden marker's position so the compact comet starts at the same height. */
+  .tl-dot { visibility: hidden; }
   .tl-item { padding-left: 0; }
   .tl-points li, .tl-desc { max-width: 100%; }
   .dp-slide { flex: 0 0 100%; min-width: 100%; }
@@ -1546,12 +1545,6 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 }
 .hero--profile > .hero__identity { grid-area: 1 / 1; }
 .hero--profile > .hero__copy { grid-area: 2 / 1; }
-.hero--profile > .hero__comet-start {
-  grid-area: 1 / 2 / span 2;
-  place-self: center;
-  width: 0;
-  height: 0;
-}
 .hero--profile > .hero__geometry { opacity: 0.85; }
 .hero__label { margin-top: 0.35rem; color: var(--ink-soft); font-weight: 500; }
 .hero__headline {
@@ -1591,13 +1584,6 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
     min-height: auto;
     grid-template-columns: minmax(0, 1fr);
     padding: var(--space-8) var(--gutter) var(--space-4);
-  }
-  .hero--profile > .hero__identity { padding-inline-end: 4rem; }
-  .hero--profile > .hero__comet-start {
-    position: absolute;
-    grid-area: auto;
-    inset-block-start: calc(var(--space-8) + 1.625rem);
-    inset-inline-end: calc(var(--gutter) + 1.625rem);
   }
   .hero__headline { font-size: clamp(2rem, 7.5vw, 2.625rem); }
   .selected-work__grid { grid-template-columns: minmax(0, 1fr); }

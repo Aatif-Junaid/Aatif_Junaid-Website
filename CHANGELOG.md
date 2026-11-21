@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Start the comet at the first Experience marker again and keep its head with the scroll on desktop and mobile (`site.css?v=112`, `homepage.js?v=31`).
 - Keep desktop navigation and case content within the viewport at larger text sizes, make desktop disclosures work with both mouse and keyboard, and keep homepage content visible if its animation script cannot load (`site.css?v=111`, `site.js?v=13`, `homepage.js?v=30`).
 - Fix mobile header wrapping, touch targets, section history and scroll offsets, experience disclosures after rotation, and comet recovery after large scroll jumps. Wrap long GTM schema labels, defer offscreen video downloads, and respect changes to reduced motion while the video page is open (`site.css?v=110`, `site.js?v=12`, `homepage.js?v=29`).
 - Shorten the homepage introduction to the name, role label, and one proof line. Simplify the share card to match (`site.css?v=109`, `og-image.jpg?v=13`).

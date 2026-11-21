@@ -121,11 +121,11 @@ Every visible change must be checked near 1440px and 375px before deployment.
 
 Every page uses the self-hosted Inter and Playfair Display fonts and the warm paper and blue tokens in `assets/css/site.css`. These rules describe the current homepage and take precedence over the earlier notes below.
 
-- The homepage pairs the animated comet with a GTM & Enterprise Growth headline, a supporting paragraph, one proof line, and two actions: Explore my work and View résumé.
+- The homepage pairs the animated comet with Aatif's name, the GTM & Enterprise Growth label, one proof line, and two actions: Explore my work and View résumé.
 - Three selected case studies precede the career timeline: the first enterprise agreement, subscription revenue analysis, and a GTM workflow demonstration with human review.
 - The comet opens on the right of the hero and follows the scroll into Experience. At compact widths it follows the outer gutter. Reduced-motion settings suppress the comet. The approach and toolkit follow Experience, above Education and Contact.
 - Design partner quotes appear in the relevant case study as attributed product feedback. The PMM 2.0 stage photo sits below the introduction to the field program write-up.
-- The share image uses the professional portrait and the homepage's name, public positioning, and headline.
+- The share image uses the professional portrait, name, and GTM & Enterprise Growth label.
 
 ## The premium pass, 2026-09-16
 

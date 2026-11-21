@@ -1520,7 +1520,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 /* Homepage introduction */
 .hero--profile {
   max-width: var(--maxw);
-  min-height: min(64svh, 40rem);
+  min-height: min(51svh, 31rem);
   grid-template-columns: minmax(0, 1fr) clamp(12rem, 24vw, 21rem);
   gap: var(--space-6) clamp(1.5rem, 5vw, 4.5rem);
   padding: clamp(2.5rem, 5vw, 4.5rem) var(--gutter) var(--space-8);
@@ -1534,13 +1534,6 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   height: 0;
 }
 .hero--profile > .hero__geometry { opacity: 0.85; }
-.hero__person {
-  color: var(--blue-deep);
-  font-family: var(--serif);
-  font-size: var(--text-24);
-  font-weight: 500;
-  line-height: 1.2;
-}
 .hero__label { margin-top: 0.35rem; color: var(--ink-soft); font-weight: 500; }
 .hero__headline {
   max-width: 24ch;
@@ -1552,9 +1545,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   line-height: 1.08;
   text-wrap: balance;
 }
-.hero__summary, .hero__proof-line { max-width: 56ch; margin-top: var(--space-4); }
-.hero__summary { color: var(--ink-soft); font-size: var(--text-18); }
-.hero__proof-line { color: var(--blue-deep); font-weight: 500; }
+.hero__proof-line { max-width: 56ch; color: var(--blue-deep); font-weight: 500; }
 .hero--profile .hero__actions { margin-top: var(--space-6); }
 
 .selected-work { position: relative; z-index: 1; padding-top: var(--space-8); }
@@ -1590,6 +1581,5 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
     inset-inline-end: calc(var(--gutter) + 1.625rem);
   }
   .hero__headline { font-size: clamp(2rem, 7.5vw, 2.625rem); }
-  .hero__summary { font-size: var(--text-16); }
   .selected-work__grid { grid-template-columns: 1fr; }
 }

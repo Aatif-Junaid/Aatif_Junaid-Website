@@ -25,8 +25,9 @@
   var hero = heroAnchor && heroAnchor.closest('.hero');
   var items = timeline.querySelectorAll('.tl-item');
   var motionToggle = document.querySelector('.motion-toggle');
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   var mobileQuery = window.matchMedia('(max-width: 768px)');
+  var reducedObserver = null;
 
   var dpr = 1, cssW = 0, cssH = 0, canvasTop = 0;
   var head = { x: 0, y: 0 }, targetY = 0, prevY = 0, prevX = 0;
@@ -45,7 +46,7 @@
     resizeQueued = false;
     var vw = document.documentElement.clientWidth;
     if (!vw) return;
-    if (prefersReduced || mobileQuery.matches) {
+    if (motionQuery.matches) {
       cssW = vw;
       cssH = 0;
       itemPositions = [];
@@ -88,7 +89,11 @@
     }
     var anchorRect = hero ? heroAnchor.getBoundingClientRect() : null;
     heroStartX = anchorRect ? anchorRect.left : pathStartX;
-    heroStartY = anchorRect ? Math.min(pathOriginY, anchorRect.top + window.scrollY - canvasTop) : pathOriginY;
+    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    var lowestVisibleY = Math.max(48, viewportHeight - canvasTop - 48);
+    heroStartY = anchorRect
+      ? Math.min(pathOriginY, anchorRect.top + window.scrollY - canvasTop, lowestVisibleY)
+      : pathOriginY;
     computeTarget();
     head.y = prevY = targetY;
     head.x = prevX = pathX(head.y, motionElapsed);
@@ -102,7 +107,8 @@
     trail.length = 0;
     trailDistance = 0;
     lastLitY = -999;
-    lightNodes(head.y);
+    if (mobileQuery.matches) clearTimelineLights();
+    else lightNodes(head.y);
     drawHead(motionElapsed, []);
     updateDirtyBounds();
   }
@@ -115,6 +121,12 @@
   }
 
   function pathX(y, time) {
+    if (mobileQuery.matches) {
+      // Keep the compact trail in the gutter once it leaves the hero.
+      var progressToGutter = Math.max(0, Math.min(1, (y - heroStartY) / 100));
+      var easeToGutter = progressToGutter * progressToGutter * (3 - 2 * progressToGutter);
+      return heroStartX + (cssW - 16 - heroStartX) * easeToGutter;
+    }
     var relativeY = y - pathOriginY;
     var drift = Math.sin(time * 0.035) * 3;
     var hookReach = Math.max(0, Math.min(72, pathStartX - 16));
@@ -142,12 +154,16 @@
   }
 
   function lightNodes(y) {
-    if (Math.abs(y - lastLitY) < 4) return;
+    if (mobileQuery.matches || Math.abs(y - lastLitY) < 4) return;
     lastLitY = y;
     itemPositions.forEach(function (position) {
       position.item.classList.toggle('lit', y >= position.center);
       position.item.classList.toggle('comet-near', y > position.start && y < position.end);
     });
+  }
+
+  function clearTimelineLights() {
+    items.forEach(function (item) { item.classList.remove('lit', 'comet-near'); });
   }
 
   function makeGlowSprite(stops) {
@@ -503,7 +519,7 @@
   }
 
   function start() {
-    if (!running && !userPaused && !prefersReduced && !mobileQuery.matches) {
+    if (!running && !userPaused && !motionQuery.matches) {
       running = true;
       lastFrameTime = 0;
       frameRequest = requestAnimationFrame(frame);
@@ -522,20 +538,22 @@
     var count = parts.length || 1;
     return { x: Math.round(head.x), y: Math.round(head.y), target: Math.round(targetY), startY: Math.round(pathOriginY), parts: parts.length, trail: trail.length, w: cssW, h: cssH, mobile: mobileQuery.matches, motion: +motionLevel.toFixed(3), drift: { x: +(driftX / count).toFixed(3), y: +(driftY / count).toFixed(3) } };
   };
-  resize();
-  window.addEventListener('resize', queueResize, { passive: true });
-  window.addEventListener('load', queueResize, { once: true });
-  if (window.ResizeObserver) {
-    var sizeObserver = new ResizeObserver(queueResize);
-    sizeObserver.observe(timeline);
-    if (hero) sizeObserver.observe(hero);
-  }
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueResize);
-  if (prefersReduced) {
-    canvas.style.display = 'none';
-    if (motionToggle) motionToggle.hidden = true;
-    if ('IntersectionObserver' in window) {
-      var reducedObserver = new IntersectionObserver(function (entries) {
+  function syncMotionPreference() {
+    stop();
+    if (reducedObserver) {
+      reducedObserver.disconnect();
+      reducedObserver = null;
+    }
+    clearTimelineLights();
+    var reduced = motionQuery.matches;
+    canvas.style.display = reduced ? 'none' : '';
+    if (motionToggle) motionToggle.hidden = reduced;
+    resize();
+    if (!reduced) {
+      if (inView && !document.hidden) start();
+    } else if ('IntersectionObserver' in window) {
+      reducedObserver = new IntersectionObserver(function (entries, observer) {
+        if (observer !== reducedObserver) return;
         entries.forEach(function (entry) {
           entry.target.classList.toggle('lit', entry.isIntersecting);
         });
@@ -544,8 +562,15 @@
     } else {
       items.forEach(function (item) { item.classList.add('lit'); });
     }
-    return;
   }
+  window.addEventListener('resize', queueResize, { passive: true });
+  window.addEventListener('load', queueResize, { once: true });
+  if (window.ResizeObserver) {
+    var sizeObserver = new ResizeObserver(queueResize);
+    sizeObserver.observe(timeline);
+    if (hero) sizeObserver.observe(hero);
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueResize);
   if (motionToggle) {
     motionToggle.addEventListener('click', function () {
       userPaused = !userPaused;
@@ -564,18 +589,15 @@
     }, { rootMargin: '0px 0px 55% 0px', threshold: 0 }).observe(canvas);
   } else {
     inView = true;
-    start();
   }
   document.addEventListener('visibilitychange', function () {
     if (inView && !document.hidden) start(); else stop();
   });
-  function syncViewportMode() {
-    stop();
-    resize();
-    if (!mobileQuery.matches && inView && !document.hidden) start();
-  }
-  if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', syncViewportMode);
-  else mobileQuery.addListener(syncViewportMode);
+  if (motionQuery.addEventListener) motionQuery.addEventListener('change', syncMotionPreference);
+  else motionQuery.addListener(syncMotionPreference);
+  if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', queueResize);
+  else mobileQuery.addListener(queueResize);
+  syncMotionPreference();
 })();
 
 (function () {

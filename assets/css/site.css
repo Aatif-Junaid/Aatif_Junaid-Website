@@ -977,8 +977,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .tl-head { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
   .tl-headtext { width: 100%; }
 
-  /* drop the comet rail on mobile; cards span the full width */
-  .tl-comet, .tl-dot { display: none; }
+  /* Compact cards span the full width and keep the comet in the outer gutter. */
+  .tl-dot { display: none; }
   .tl-item { padding-left: 0; }
   .tl-points li, .tl-desc { max-width: 100%; }
   .dp-slide { flex: 0 0 100%; min-width: 100%; }
@@ -1015,7 +1015,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .dp-head { flex-wrap: wrap; }                      /* label wraps rather than squeezing the arrows */.contact-list li { grid-template-columns: 1fr; gap: 0.2rem; }
   .contact-intro { gap: 0.85rem; }
 
-  /* neon focus state replaces the comet on mobile/tablet */
+  /* Mark the current card while the compact comet moves along the gutter. */
   .tl-card { transition: box-shadow 0.2s ease, border-color 0.2s ease; }
   .tl-item.is-focus .tl-card {
     border-color: rgba(143, 205, 238, 0.9);
@@ -1234,8 +1234,6 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .tl-gapcard .tl-gaptext + .tl-gaptext { display: none; }
   .tl-gapcard .tl-gaptext strong { color: var(--ink-soft); font-weight: 500; font-size: var(--text-14); }
   .tl-gapcard .tl-date { margin-bottom: 0.1rem; font-size: var(--text-14); }
-  /* the comet does not run on phones, so its control has nothing to pause */
-  .motion-toggle { display: none; }
   /* each folded block reads as its own tile */
   .fold { margin-top: 0.8rem; padding: 0 1rem; border: 1px solid var(--line-strong); border-radius: var(--radius-card); background: rgba(255, 255, 255, 0.62); box-shadow: var(--tile-shadow); }
   .fold[open] { padding-bottom: 1rem; }
@@ -1273,6 +1271,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .tl-comet { display: none; }
   body::before { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .hero__name.is-visible { animation: none; }
@@ -1583,7 +1582,13 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
     grid-template-columns: minmax(0, 1fr);
     padding: var(--space-8) var(--gutter) var(--space-4);
   }
-  .hero--profile > .hero__comet-start { display: none; }
+  .hero--profile > .hero__identity { padding-inline-end: 4rem; }
+  .hero--profile > .hero__comet-start {
+    position: absolute;
+    grid-area: auto;
+    inset-block-start: calc(var(--space-8) + 1.625rem);
+    inset-inline-end: calc(var(--gutter) + 1.625rem);
+  }
   .hero__headline { font-size: clamp(2rem, 7.5vw, 2.625rem); }
   .hero__summary { font-size: var(--text-16); }
   .selected-work__grid { grid-template-columns: 1fr; }

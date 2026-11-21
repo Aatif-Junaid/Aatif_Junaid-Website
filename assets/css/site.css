@@ -189,6 +189,17 @@ body::before {
 }
 .nav-page__icon { line-height: 1; color: var(--blue-text); transform: translateY(-0.02em); }
 
+@media (min-width: 769px) {
+  .site-header { padding-block: 0.375rem; }
+  .site-header .wordmark { flex: none; }
+  .site-nav { min-width: 0; flex-wrap: wrap; justify-content: flex-end; row-gap: 0.5rem; }
+  .site-nav .nav-page { margin-block: 0; }
+}
+
+@media (min-width: 769px) and (max-width: 920px) {
+  .site-header--home .site-nav { column-gap: 0.75rem; }
+}
+
 /* ---------- shared layout ---------- */
 .hero, .section, .site-footer { padding-left: var(--gutter); padding-right: var(--gutter); }
 
@@ -583,11 +594,11 @@ a.dp-name:hover { color: var(--blue-text); }
   color: var(--blue-deep); padding: 0.5rem 0.85rem; font-size: var(--text-14); font-weight: 600; line-height: 1.4; text-align: center;
 }
 .case-study__outcome--direct { background: rgba(31,85,117,0.1); border-color: rgba(31,85,117,0.35); }
-.case-study__grid { display: grid; grid-template-columns: 0.9fr 1.35fr; gap: clamp(1.5rem, 4vw, 3rem); padding: 1.8rem 0; }
+.case-study__grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr); gap: clamp(1.5rem, 4vw, 3rem); padding: 1.8rem 0; }
 .case-study__grid h3 { font-family: var(--serif); font-size: var(--text-heading); line-height: 1.15; margin-bottom: 0.5rem; }
 .case-study__grid p { color: var(--ink-soft); }
 .case-actions { display: grid; gap: 0.75rem; }
-.case-actions li { display: grid; grid-template-columns: 7rem 1fr; gap: 0.8rem; color: var(--ink-soft); }
+.case-actions li { display: grid; grid-template-columns: min(7rem, 40%) minmax(0, 1fr); gap: 0.8rem; color: var(--ink-soft); }
 .case-actions span { color: var(--blue-deep); font-size: var(--text-14); font-weight: 600; padding-top: 0.15rem; }
 .artifact-proof {
   display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.65fr); gap: clamp(1.2rem, 3vw, 2.2rem);
@@ -727,12 +738,15 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 /* display on .tl-more overrides the browser's [hidden] rule, so restate it */
 .tl-more[hidden] { display: none; }
 @media (min-width: 769px) { .tl-points.is-collapsed li:nth-child(n+4) { display: none; } }
-/* a fold that starts closed on every width, with its control visible on desktop too */
-.fold--always > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; margin-top: 1.1rem; cursor: pointer; pointer-events: auto; }
+/* Disclosures stay operable in both layouts. */
+.fold > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; cursor: pointer; list-style: none; }
+.fold > summary::-webkit-details-marker { display: none; }
+.fold > summary > .fold__hint { display: inline-block; flex: 0 0 auto; color: var(--blue-text); font-size: var(--text-14); font-weight: 600; letter-spacing: 0; white-space: nowrap; }
+.fold > summary:hover > .fold__hint { color: var(--blue-deep); }
+.fold:not([open]) > summary > .fold__hint::after { content: "Show more"; }
+.fold[open] > summary > .fold__hint::after { content: "Hide"; }
+.fold--always > summary { min-height: 44px; margin-top: 1.1rem; }
 .fold--always .fold__title { color: var(--blue-deep); font-size: var(--text-14); font-weight: 600; }
-.fold--always .fold__hint { display: inline-block; color: var(--blue-text); font-size: var(--text-14); font-weight: 600; }
-.fold--always:not([open]) .fold__hint::after { content: "Show more"; }
-.fold--always[open] .fold__hint::after { content: "Hide"; }
 .fold--always .dp-label { display: none; }
 .fold--always .dp-carousel { margin-top: 0.4rem; }
 /* The plays collapse to a header, a control, and their evidence image. */
@@ -745,13 +759,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .activation-result + .case-note { margin-top: 0.9rem; }
 
 /* ---------- gtm-systems: build timelines, data, credentials ---------- */
-/* Folds: open on desktop and not collapsible there; on phones site.js closes
-   them and the summary becomes the Show more control. */
-.fold:not(.fold--always) > summary { list-style: none; cursor: default; pointer-events: none; }
-.fold--always > summary { list-style: none; }
-.fold > summary::-webkit-details-marker { display: none; }
 .fold > summary .systems-subhead { display: inline-flex; align-items: center; gap: 0.5rem; }
-.fold__hint { display: none; }
 .fold--tile > summary .framework__title { margin: 0; }
 .fold__sub, .fold__thumb { display: none; }
 .fold__head { display: contents; }
@@ -783,7 +791,6 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .systems-step__logo { width: 18px; height: 18px; margin-bottom: 0.55rem; filter: var(--logo-blue); }
 .systems-step details { margin-top: 0.55rem; }
 .systems-step .fold--always > summary { margin-top: 0; }
-.systems-step .fold__hint { flex: 0 0 auto; white-space: nowrap; }
 .systems-step summary { cursor: pointer; padding: 0.78rem 0; color: var(--blue-text); font-size: var(--text-14); font-weight: 600; line-height: 1.4; }
 .eng-cols { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
 .eng-cols li { max-width: 100%; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: var(--text-14); color: var(--blue-deep); background: rgba(143, 205, 238, 0.2); padding: 0.1rem 0.4rem; border-radius: var(--radius-control); }
@@ -823,9 +830,9 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   font-size: var(--text-24); line-height: 1.15; margin-bottom: var(--space-3); text-wrap: balance;
 }
 .framework p { max-width: 52ch; margin-top: var(--space-2); color: var(--ink-soft); font-size: var(--text-14); line-height: 1.6; text-wrap: pretty; }
-.framework-grid .reveal:nth-child(2) { transition-delay: 0.08s; }
-.framework-grid .reveal:nth-child(3) { transition-delay: 0.16s; }
-.framework-grid .reveal:nth-child(4) { transition-delay: 0.24s; }
+.framework-grid .reveal:nth-child(2) { --reveal-delay: 0.08s; }
+.framework-grid .reveal:nth-child(3) { --reveal-delay: 0.16s; }
+.framework-grid .reveal:nth-child(4) { --reveal-delay: 0.24s; }
 
 
 /* ---------- contact ---------- */
@@ -886,9 +893,11 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .footer-social svg { width: 18px; height: 18px; }
 .footer-social:hover { background: var(--blue-text); color: #fff; border-color: var(--blue-text); transform: translateY(-2px); }
 
-/* ---------- reveal / fade-in-up + light stagger ---------- */
-.reveal { opacity: 0; transition: opacity 0.2s ease; }
-.reveal.is-visible { opacity: 1; }
+/* ---------- scroll reveal ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-pending:not(:focus-within) { opacity: 0; }
+  .reveal:not(.reveal-pending):not(:focus-within) { transition: opacity 0.2s ease var(--reveal-delay, 0s); }
+}
 
 /* ---------- tiny metric icon animations (one-shot on reveal) ---------- */
 
@@ -944,7 +953,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .case-results { grid-template-columns: repeat(2, 1fr); }
   .case-results p:nth-child(2) { border-right: 0; }
   .case-results p:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
-  .eng-build { grid-template-columns: 1fr; }
+  .eng-build { grid-template-columns: minmax(0, 1fr); }
   .eng-node strong { font-size: var(--text-14); }
   .eng-node small { font-size: var(--text-14); }
 }
@@ -968,9 +977,9 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .eng-node__icon { grid-row: 1 / span 3; }
   .eng-node strong { margin-top: 0.2rem; }
   .eng-node small { margin-top: 0.15rem; }
-  .case-study__grid, .artifact-proof, .artifact-proof--reverse, .systems-stack { grid-template-columns: 1fr; }
+  .case-study__grid, .artifact-proof, .artifact-proof--reverse, .systems-stack { grid-template-columns: minmax(0, 1fr); }
   .artifact-proof--reverse .artifact-proof__media { order: 0; }
-  .case-actions li { grid-template-columns: 5.5rem 1fr; }
+  .case-actions li { grid-template-columns: min(5.5rem, 40%) minmax(0, 1fr); }
 
   /* stack the experience card header so nothing is squished into a column */
   .tl-head { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
@@ -1037,7 +1046,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .case-index a:last-child { grid-column: auto; border-bottom: 0; }
   .case-study__header { grid-template-columns: 1fr; }
   .case-study__outcome { grid-column: 1; }
-  .case-actions li { grid-template-columns: 1fr; gap: 0.2rem; }
+  .case-actions li { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
   .activation-result { align-items: flex-start; flex-direction: column; }
 }
 
@@ -1138,12 +1147,8 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .eng-step p, .systems-step p, .eng-points li { font-size: var(--text-16); line-height: 1.55; }
   .systems-step { padding: 0.9rem; }
   .systems-clip { margin-top: 1rem; }
-  /* Match the desktop :not() specificity so mobile summaries accept taps. */
-  .fold > summary, .fold:not(.fold--always) > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; min-height: 44px; cursor: pointer; pointer-events: auto; }
+  .fold > summary { min-height: 44px; }
   .fold > summary .systems-subhead { margin: 0.9rem 0 0.6rem; }
-  .fold__hint { display: inline-block; flex: 0 0 auto; color: var(--blue-text); font-size: var(--text-14); font-weight: 600; letter-spacing: 0; }
-  .fold:not([open]) .fold__hint::after { content: "Show more"; }
-  .fold[open] .fold__hint::after { content: "Hide"; }
   .fold:not([open]) > summary .systems-subhead { margin-bottom: 0.2rem; }
 
   /* ----- round two: header, type scale, the MBA marker, the comet control.
@@ -1247,14 +1252,16 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .eng-build > div + div { margin-top: 0; }
   /* approach: four small blocks two by two; the open one spans the row */
   .framework-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
-  .framework, .framework:nth-child(n) { grid-column: auto; margin: 0; padding: 0.75rem 0.9rem; border: 1px solid var(--tile-border); border-radius: var(--radius-card); background: var(--tile-bg); box-shadow: var(--tile-shadow), var(--tile-inset); }
+  .framework, .framework:nth-child(n) { grid-column: auto; grid-template-columns: minmax(0, 1fr); margin: 0; padding: 0.75rem 0.9rem; border: 1px solid var(--tile-border); border-radius: var(--radius-card); background: var(--tile-bg); box-shadow: var(--tile-shadow), var(--tile-inset); }
   .framework[open] { grid-column: 1 / -1; padding-bottom: 1rem; }
   .fold--tile .framework__title { margin: 0; font-size: var(--text-16); line-height: 1.25; }
   .framework p { margin-top: 0.5rem; font-size: var(--text-14); line-height: 1.6; }
   .fold--tile > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; min-height: 44px; cursor: pointer; pointer-events: auto; }
+  .framework > summary { flex-wrap: wrap; }
+  .framework__title { min-width: 0; }
   .fold--tile .fold__hint { font-size: var(--text-14); }
-  .fold--tile:not([open]) .fold__hint::after { content: "\203A"; font-size: 1.1em; }
-  .fold--tile[open] .fold__hint::after { content: "\2039"; font-size: 1.1em; }
+  .fold--tile:not([open]) > summary > .fold__hint::after { content: "\203A"; font-size: 1.1em; }
+  .fold--tile[open] > summary > .fold__hint::after { content: "\2039"; font-size: 1.1em; }
   /* playbook: each play folds to its header */
   .fold--play { margin-top: 0.3rem; padding: 0; border: 0; background: none; }
   .fold--play[open] { padding-bottom: 0; }
@@ -1472,6 +1479,7 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 
 @media (pointer: coarse) {
   .site-header .wordmark, .site-nav a, .footer-social, .legal-links a { min-width: 44px; min-height: 44px; }
+  .fold > summary { min-height: 44px; }
   .site-nav a, .legal-links a { justify-content: center; }
 }
 
@@ -1592,5 +1600,5 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
     inset-inline-end: calc(var(--gutter) + 1.625rem);
   }
   .hero__headline { font-size: clamp(2rem, 7.5vw, 2.625rem); }
-  .selected-work__grid { grid-template-columns: 1fr; }
+  .selected-work__grid { grid-template-columns: minmax(0, 1fr); }
 }

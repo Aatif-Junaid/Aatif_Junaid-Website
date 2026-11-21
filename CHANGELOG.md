@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Fix mobile header wrapping, touch targets, section history and scroll offsets, experience disclosures after rotation, and comet recovery after large scroll jumps. Wrap long GTM schema labels, defer offscreen video downloads, and respect changes to reduced motion while the video page is open (`site.css?v=110`, `site.js?v=12`, `homepage.js?v=29`).
 - Shorten the homepage introduction to the name, role label, and one proof line. Simplify the share card to match (`site.css?v=109`, `og-image.jpg?v=13`).
 - Show the scroll-following comet in compact windows and keep its starting point in view on short screens. Apply changes to reduced-motion preferences while the page is open (`site.css?v=108`, `homepage.js?v=28`).
 - Refocus the portfolio on enterprise GTM and revenue operations. Put three cases ahead of Experience and bring the scroll-following comet into the homepage hero. Reorder and correct the case studies, and separate the public n8n demo from Aiseberg lifecycle work. Refresh the share card, metadata, and public résumé (`og-image.jpg?v=12`, `site.css?v=107`, `homepage.js?v=27`, `resume.pdf?v=2026-11b`).

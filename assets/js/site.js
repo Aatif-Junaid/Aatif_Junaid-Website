@@ -2,12 +2,25 @@
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
-  // Folded blocks: open on desktop, collapsed on phones until tapped.
+  // Keep a reader's compact disclosures when rotation changes the layout.
   var folds = document.querySelectorAll('details.fold');
   if (folds.length) {
     var phone = window.matchMedia('(max-width: 768px)');
-    var applyFolds = function () { folds.forEach(function (fold) { if (phone.matches && fold.hasAttribute('data-phone-open')) { fold.open = true; return; } fold.open = fold.classList.contains('fold--always') ? false : !phone.matches; }); };
-    applyFolds();
+    var compact = phone.matches;
+    var compactStates = new WeakMap();
+    folds.forEach(function (fold) {
+      fold.open = compact ? fold.hasAttribute('data-phone-open') : !fold.classList.contains('fold--always');
+    });
+    function applyFolds() {
+      var nextCompact = phone.matches;
+      if (nextCompact === compact) return;
+      folds.forEach(function (fold) {
+        if (fold.classList.contains('fold--always')) return;
+        if (compact) compactStates.set(fold, fold.open);
+        fold.open = !nextCompact || (compactStates.has(fold) ? compactStates.get(fold) : fold.hasAttribute('data-phone-open'));
+      });
+      compact = nextCompact;
+    }
     if (phone.addEventListener) phone.addEventListener('change', applyFolds); else phone.addListener(applyFolds);
   }
 
@@ -46,55 +59,85 @@
     });
   });
 
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var measureHeader = function () {
+      document.documentElement.style.setProperty('--site-header-height', header.offsetHeight + 'px');
+    };
+    measureHeader();
+    if (window.ResizeObserver) new ResizeObserver(measureHeader).observe(header);
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener('click', function (event) {
-      var selector = this.getAttribute('href');
-      if (!selector || selector.length < 2) return;
-      var target = document.querySelector(selector);
-      if (target) {
-        event.preventDefault();
-        var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
-        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-        target.focus({ preventScroll: true });
-        history.replaceState(null, '', selector);
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      var target = document.getElementById(this.hash.slice(1));
+      // Make the destination focusable without intercepting fragment navigation or Back.
+      if (target && target.tabIndex < 0 && !target.hasAttribute('tabindex')) {
+        target.setAttribute('tabindex', '-1');
       }
     });
   });
 
-  /* Looping demo clips behave like a GIF, but reduced-motion users get the
-     poster frame and a play control instead of movement they did not ask for.
-     Everyone else only starts the clip once it is actually on screen. */
+  /* Autoplay demo clips in view when motion is allowed. Native play and pause
+     controls remain available with either motion preference. */
   var clips = document.querySelectorAll('video[data-autoloop]');
   if (clips.length) {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var observeVisibility = 'IntersectionObserver' in window;
     clips.forEach(function (clip) {
-      if (reduced) {
-        clip.removeAttribute('autoplay');
-        clip.controls = true;
+      var inView = !observeVisibility;
+      var viewerIntent = null;
+      var automaticPlayback = false;
+      var pausingAutomatically = false;
+      clip.controls = true;
+
+      function playInView() {
+        if (motion.matches || !inView || viewerIntent === 'pause' || !clip.paused || automaticPlayback) return;
+        automaticPlayback = true;
+        clip.play().catch(function () { automaticPlayback = false; });
+      }
+
+      function pauseForPage() {
+        if (clip.paused) return;
+        pausingAutomatically = true;
         clip.pause();
-        return;
       }
-      if (!('IntersectionObserver' in window)) {
-        clip.play().catch(function () { clip.controls = true; });
-        return;
+
+      function syncMotion() {
+        if (!motion.matches) playInView();
+        else {
+          clip.removeAttribute('autoplay');
+          if (automaticPlayback && viewerIntent !== 'play') pauseForPage();
+        }
       }
-      // Native controls are on, so a viewer's own pause has to win over the
-      // in-view autoplay. Pauses we trigger are flagged; any other pause is theirs.
-      var ourPause = false, viewerPaused = false;
-      clip.addEventListener('pause', function () { if (!ourPause && !clip.ended) viewerPaused = true; ourPause = false; });
-      clip.addEventListener('play', function () { viewerPaused = false; });
-      var watcher = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            if (!viewerPaused) clip.play().catch(function () {});
-          } else if (!clip.paused) {
-            ourPause = true;
-            clip.pause();
-          }
-        });
-      }, { threshold: 0.25 });
-      watcher.observe(clip);
+
+      // Media events also fire for calls the page makes. Only a viewer's
+      // own Play or Pause should change their preference.
+      clip.addEventListener('pause', function () {
+        var pagePaused = pausingAutomatically;
+        pausingAutomatically = false;
+        automaticPlayback = false;
+        if (pagePaused) playInView();
+        else if (!clip.ended) viewerIntent = 'pause';
+      });
+      clip.addEventListener('play', function () {
+        if (!automaticPlayback) viewerIntent = 'play';
+        else if (!inView || (motion.matches && viewerIntent !== 'play')) pauseForPage();
+      });
+      if (observeVisibility) {
+        var watcher = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            inView = entry.intersectionRatio >= 0.25;
+            if (inView) playInView();
+            else pauseForPage();
+          });
+        }, { threshold: 0.25 });
+        watcher.observe(clip);
+      }
+      if (motion.addEventListener) motion.addEventListener('change', syncMotion);
+      else motion.addListener(syncMotion);
+      syncMotion();
     });
   }
 })();

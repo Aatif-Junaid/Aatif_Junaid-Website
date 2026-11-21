@@ -153,6 +153,24 @@
     targetY = Math.max(heroStartY, Math.min(cssH, trackingLine + window.scrollY - canvasTop));
   }
 
+  function recoverFromScrollJump(time) {
+    if (Math.abs(targetY - head.y) <= MAX_TRAIL_DISTANCE) return;
+    var top = window.scrollY - canvasTop;
+    var bottom = top + (window.innerHeight || document.documentElement.clientHeight);
+    var headRadius = 36;
+    if (targetY < top || targetY > bottom || (head.y + headRadius >= top && head.y - headRadius <= bottom)) return;
+
+    // Move back into view after a long jump and start a new trail at the destination.
+    travelSign = targetY > head.y ? 1 : -1;
+    head.y = prevY = targetY;
+    head.x = prevX = pathX(head.y, time);
+    parts.length = 0;
+    trail.length = 0;
+    trailDistance = 0;
+    motionLevel = 0;
+    emissionCarry = 0;
+  }
+
   function lightNodes(y) {
     if (mobileQuery.matches || Math.abs(y - lastLitY) < 4) return;
     lastLitY = y;
@@ -441,6 +459,7 @@
     motionElapsed += deltaSeconds;
     var time = motionElapsed;
     computeTarget();
+    recoverFromScrollJump(time);
     var follow = 1 - Math.exp(-(1.65 * COMET_SPEED_MULTIPLIER) * deltaSeconds);
     var yStep = (targetY - head.y) * follow;
     var maxStep = 8.2 * COMET_SPEED_MULTIPLIER * frameScale;
@@ -659,26 +678,25 @@
   lists.forEach(function (list) {
     var total = list.querySelectorAll('li').length;
     if (total < 3) return;
+    var expanded = false;
     var button = document.createElement('button');
     button.type = 'button';
     button.className = 'tl-more';
-    button.hidden = true;
-    button.setAttribute('aria-expanded', 'false');
     list.insertAdjacentElement('afterend', button);
-    function extra() { return total - (phone.matches ? 2 : 3); }
-    function label(open) { button.textContent = open ? 'Show less' : 'Show ' + extra() + ' more'; }
-    button.addEventListener('click', function () {
-      var open = list.classList.toggle('is-collapsed') === false;
-      button.setAttribute('aria-expanded', String(open));
-      label(open);
-    });
     function apply() {
-      var on = phone.matches ? extra() >= 1 : extra() >= 2;
-      button.hidden = !on;
-      if (!on) { list.classList.remove('is-collapsed'); button.setAttribute('aria-expanded', 'false'); }
-      else if (button.getAttribute('aria-expanded') !== 'true') list.classList.add('is-collapsed');
-      label(button.getAttribute('aria-expanded') === 'true');
+      var extra = total - (phone.matches ? 2 : 3);
+      var canCollapse = extra >= (phone.matches ? 1 : 2);
+      button.hidden = !canCollapse;
+      list.classList.toggle('is-collapsed', canCollapse && !expanded);
+      if (canCollapse) {
+        button.setAttribute('aria-expanded', String(expanded));
+        button.textContent = expanded ? 'Show less' : 'Show ' + extra + ' more';
+      }
     }
+    button.addEventListener('click', function () {
+      expanded = !expanded;
+      apply();
+    });
     apply();
     if (phone.addEventListener) phone.addEventListener('change', apply); else phone.addListener(apply);
   });

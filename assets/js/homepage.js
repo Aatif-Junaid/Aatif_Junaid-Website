@@ -21,16 +21,14 @@
   if (!timeline || !canvas) return;
   var ctx = canvas.getContext('2d');
   if (!ctx) return;
-  var heroAnchor = document.querySelector('.hero__comet-start');
-  var hero = heroAnchor && heroAnchor.closest('.hero');
   var items = timeline.querySelectorAll('.tl-item');
   var motionToggle = document.querySelector('.motion-toggle');
   var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   var mobileQuery = window.matchMedia('(max-width: 768px)');
   var reducedObserver = null;
 
-  var dpr = 1, cssW = 0, cssH = 0, canvasTop = 0;
-  var head = { x: 0, y: 0 }, targetY = 0, prevY = 0, prevX = 0;
+  var dpr = 1, cssW = 0, cssH = 0;
+  var head = { x: 0, y: 0 }, targetY = 0;
   var parts = [], trail = [], running = false, inView = false, resizeQueued = false, lastLitY = -999, userPaused = false;
   var travel = { x: 0, y: 1 }, travelSign = 1, lastFrameTime = 0, emissionCarry = 0, dirtyBounds = null;
   var trailDistance = 0, TRAIL_WAVE = 3.6;
@@ -38,9 +36,7 @@
   var itemPositions = [];
   var SAFE = 60, pathAmplitude = 160, pathOriginY = 0, pathStartX = SAFE, pathStartPhase = -Math.PI / 2;
   var motionElapsed = 0, frameRequest = 0;
-  var COMET_SPEED_MULTIPLIER = 1.10;
   var START_GAP = 32, START_MIN_X = 30, motionLevel = 0;
-  var heroStartX = 0, heroStartY = 0;
 
   function resize() {
     resizeQueued = false;
@@ -58,22 +54,22 @@
       canvas.height = 1;
       return;
     }
-    cssW = vw;
-    var timelineRect = timeline.getBoundingClientRect();
-    var leadIn = hero ? Math.max(0, Math.round(timelineRect.top - hero.getBoundingClientRect().top)) : 0;
-    cssH = timeline.offsetHeight + leadIn;
-    // Fit the longer canvas within a 4096px backing dimension on high-density tablets.
+    var height = timeline.offsetHeight;
+    // Fit the canvas within a 4096px backing dimension on high-density tablets.
     var displayScale = Math.max(1, Math.min(1.5, window.devicePixelRatio || 1));
-    dpr = Math.min(displayScale, 4096 / Math.max(cssW, cssH));
-    canvasTop = timelineRect.top + window.scrollY - leadIn;
+    var nextDpr = Math.min(displayScale, 4096 / Math.max(vw, height));
+    var canvasSizeChanged = cssW !== vw || cssH !== height || dpr !== nextDpr;
+    cssW = vw;
+    cssH = height;
+    dpr = nextDpr;
     itemPositions = Array.prototype.map.call(items, function (item) {
       var dot = item.querySelector('.tl-dot');
       return {
         item: item,
         dot: dot,
-        center: leadIn + item.offsetTop + (dot ? dot.offsetTop + dot.offsetHeight / 2 : 0),
-        start: leadIn + item.offsetTop - 10,
-        end: leadIn + item.offsetTop + item.offsetHeight + 10
+        center: item.offsetTop + (dot ? dot.offsetTop + dot.offsetHeight / 2 : 0),
+        start: item.offsetTop - 10,
+        end: item.offsetTop + item.offsetHeight + 10
       };
     });
     if (itemPositions.length) {
@@ -81,23 +77,17 @@
       var firstDotRect = firstPosition.dot ? firstPosition.dot.getBoundingClientRect() : null;
       var firstDotX = firstDotRect ? firstDotRect.left + firstDotRect.width / 2 : SAFE;
       pathOriginY = firstPosition.center;
-      // Enter the original timeline path beside its first dot.
+      // Start beside the first Experience marker.
       pathStartX = Math.max(START_MIN_X, firstDotX - START_GAP);
       pathAmplitude = Math.max(160, Math.min(cssW / 2 - SAFE, timeline.offsetWidth / 2 + 50));
       var startRatio = Math.max(-1, Math.min(1, (firstDotX - 28 - cssW / 2) / pathAmplitude));
       pathStartPhase = Math.asin(startRatio);
     }
-    var anchorRect = hero ? heroAnchor.getBoundingClientRect() : null;
-    heroStartX = anchorRect ? anchorRect.left : pathStartX;
-    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    var lowestVisibleY = Math.max(48, viewportHeight - canvasTop - 48);
-    heroStartY = anchorRect
-      ? Math.min(pathOriginY, anchorRect.top + window.scrollY - canvasTop, lowestVisibleY)
-      : pathOriginY;
+    // Mobile browser chrome can resize the viewport without changing the canvas.
+    if (!canvasSizeChanged) return;
     computeTarget();
-    head.y = prevY = targetY;
-    head.x = prevX = pathX(head.y, motionElapsed);
-    canvas.style.top = -leadIn + 'px';
+    head.y = targetY;
+    head.x = pathX(head.y, motionElapsed);
     canvas.style.width = cssW + 'px';
     canvas.style.height = cssH + 'px';
     canvas.width = Math.round(cssW * dpr);
@@ -121,23 +111,10 @@
   }
 
   function pathX(y, time) {
-    if (mobileQuery.matches) {
-      // Keep the compact trail in the gutter once it leaves the hero.
-      var progressToGutter = Math.max(0, Math.min(1, (y - heroStartY) / 100));
-      var easeToGutter = progressToGutter * progressToGutter * (3 - 2 * progressToGutter);
-      return heroStartX + (cssW - 16 - heroStartX) * easeToGutter;
-    }
+    if (mobileQuery.matches) return cssW - 16;
     var relativeY = y - pathOriginY;
     var drift = Math.sin(time * 0.035) * 3;
     var hookReach = Math.max(0, Math.min(72, pathStartX - 16));
-    if (relativeY < 0 && heroStartY < pathOriginY) {
-      var leadDistance = pathOriginY - heroStartY;
-      var progress = Math.max(0, (y - heroStartY) / leadDistance);
-      var eased = progress * progress * (3 - 2 * progress);
-      // Match the tangent of the original opening hook at the first marker.
-      var endTangent = -hookReach * (256 / 27) * leadDistance / 170;
-      return heroStartX + (pathStartX - heroStartX) * eased + endTangent * progress * progress * (progress - 1) + drift;
-    }
     var flowingX = cssW / 2 + Math.sin(relativeY * 0.005 + time * 0.035 + pathStartPhase) * pathAmplitude;
     var openingProgress = Math.max(0, Math.min(1, relativeY / 170));
     if (openingProgress >= 1) return flowingX;
@@ -149,26 +126,9 @@
 
   function computeTarget() {
     var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    var trackingLine = Math.min(viewportHeight * 0.5, canvasTop + heroStartY);
-    targetY = Math.max(heroStartY, Math.min(cssH, trackingLine + window.scrollY - canvasTop));
-  }
-
-  function recoverFromScrollJump(time) {
-    if (Math.abs(targetY - head.y) <= MAX_TRAIL_DISTANCE) return;
-    var top = window.scrollY - canvasTop;
-    var bottom = top + (window.innerHeight || document.documentElement.clientHeight);
-    var headRadius = 36;
-    if (targetY < top || targetY > bottom || (head.y + headRadius >= top && head.y - headRadius <= bottom)) return;
-
-    // Move back into view after a long jump and start a new trail at the destination.
-    travelSign = targetY > head.y ? 1 : -1;
-    head.y = prevY = targetY;
-    head.x = prevX = pathX(head.y, time);
-    parts.length = 0;
-    trail.length = 0;
-    trailDistance = 0;
-    motionLevel = 0;
-    emissionCarry = 0;
+    var midpoint = viewportHeight * 0.5 - timeline.getBoundingClientRect().top;
+    // Even on a tall screen, stay at the marker at the top of the page.
+    targetY = Math.max(pathOriginY, Math.min(cssH, midpoint, pathOriginY + window.scrollY));
   }
 
   function lightNodes(y) {
@@ -459,26 +419,28 @@
     motionElapsed += deltaSeconds;
     var time = motionElapsed;
     computeTarget();
-    recoverFromScrollJump(time);
-    var follow = 1 - Math.exp(-(1.65 * COMET_SPEED_MULTIPLIER) * deltaSeconds);
-    var yStep = (targetY - head.y) * follow;
-    var maxStep = 8.2 * COMET_SPEED_MULTIPLIER * frameScale;
-    head.y += Math.max(-maxStep, Math.min(maxStep, yStep));
-    var deltaY = head.y - prevY;
-    var speed = Math.abs(deltaY) / frameScale;
+    var deltaY = targetY - head.y;
+    var jumped = Math.abs(deltaY) > MAX_TRAIL_DISTANCE;
+    if (jumped) {
+      parts.length = 0;
+      motionLevel = 0;
+      emissionCarry = 0;
+    }
     if (Math.abs(deltaY) > 0.08) {
       var nextTravelSign = deltaY > 0 ? 1 : -1;
-      if (nextTravelSign !== travelSign) {
+      if (jumped || nextTravelSign !== travelSign) {
         trail.length = 0;
         trailDistance = 0;
         parts.forEach(function (particle) { particle.life = Math.min(particle.life, 0.24); });
       }
       travelSign = nextTravelSign;
     }
-    prevY = head.y;
-    head.x = pathX(head.y, time);
-    var horizontalVelocity = head.x - prevX;
-    prevX = head.x;
+    // Keep the head with the scroll. The direction, trail and dust ease independently.
+    head.y = targetY;
+    var speed = jumped ? 0 : Math.abs(deltaY) / frameScale;
+    var nextX = pathX(head.y, time);
+    var horizontalVelocity = jumped ? 0 : nextX - head.x;
+    head.x = nextX;
     var tangentProbe = 12 * travelSign;
     var tangentX = pathX(head.y + tangentProbe, time) - head.x;
     var tangentLength = Math.hypot(tangentX, tangentProbe) || 1;
@@ -587,7 +549,6 @@
   if (window.ResizeObserver) {
     var sizeObserver = new ResizeObserver(queueResize);
     sizeObserver.observe(timeline);
-    if (hero) sizeObserver.observe(hero);
   }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueResize);
   if (motionToggle) {

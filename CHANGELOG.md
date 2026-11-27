@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Quick polish from the look-and-feel test (Aatif, 2026-11-27): the Experience cards on desktop are near-solid (96%), so the comet's dust passes behind them instead of smudging through; the header Home chip says Home on every width instead of showing a house glyph on phones; the four approach cards stay open on desktop with no Hide control and fold only on phones; and the GTM workflows video poster no longer shows a mouse pointer (`?v=2`). Site CSS is `v=118` and site JavaScript `v=14`.
 - The Selected work index is five single-line rows on phones again, as DESIGN.md asks: below 600px each row shows its result, left-aligned, and the topic stays in the link name for screen readers (each play repeats it as its label). Rows are 44px tall (`site.css?v=117`).
 - One logo chip size in Experience (Aatif, 2026-11-27): every logo sits centred in a 112px chip, so the date, title, and company start at one edge on every card (they ranged from 247 to 337px at 1440) and the logos read at one scale (`site.css?v=116`).
 - One button treatment (Aatif, 2026-11-27): the closing Email me on Selected work and GTM workflows is filled again, like the homepage contact, the field program, and the 404 page, and outline button text is the deep blue on every page (`site.css?v=115`).

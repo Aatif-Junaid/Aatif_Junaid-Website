@@ -145,7 +145,8 @@ body::before {
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 @media (hover: hover) and (pointer: fine) {
-  .tile:hover { transform: translateY(-3px); background: var(--tile-bg-hover); box-shadow: var(--tile-shadow-hover), var(--tile-inset); }
+  /* Cards brighten on hover but never move, so nothing hops as they pass under the pointer while scrolling. */
+  .tile:hover { background: var(--tile-bg-hover); box-shadow: var(--tile-shadow-hover), var(--tile-inset); }
 }
 
 /* ---------- header ---------- */
@@ -381,18 +382,17 @@ a.logo-chip:hover { transform: translateY(-2px) scale(1.04); }
   mask-image: linear-gradient(to bottom, transparent 0, #000 18px, #000 93%, transparent 100%);
 }
 .timeline__list { position: relative; z-index: 1; margin: 0; padding: 0; }
-/* proximity highlight: the card the comet head is passing behind lifts and glows */
+/* proximity highlight: the card the comet head is passing behind glows; it does not move */
 .tl-card {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 @media (min-width: 769px) {
   /* Near-solid cards so the comet's dust passes behind them, not through them. */
   .tl-card { --tile-bg: rgba(247, 246, 242, 0.96); --tile-bg-hover: rgba(247, 246, 242, 0.98); }
   .tl-item.comet-near .tl-card {
     border-color: rgba(143, 205, 238, 0.95);
-    transform: translateY(-3px);
     box-shadow: 0 22px 56px rgba(40, 110, 160, 0.20),
                 0 0 0 1px rgba(143, 205, 238, 0.45),
                 0 0 36px 8px rgba(143, 205, 238, 0.24);

@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Show the current role again (Aatif, 2026-11-27): Founding GTM at Lab0, Nov 2026 to Present, San Francisco, CA and Bengaluru, is the first Experience entry, with scope in the present tense and no results yet. Structured data on the homepage, Selected work, GTM workflows, and field program pages says jobTitle Founding GTM, worksFor Lab0. The headline positioning stays GTM & Enterprise Growth. The resume adds the Lab0 entry and keeps one bullet each for POLITICO and Quantum so it stays on one page (`resume.pdf?v=2026-11c`).
 - Start the comet at the first Experience marker again and keep its head with the scroll on desktop and mobile (`site.css?v=112`, `homepage.js?v=31`).
 - Keep desktop navigation and case content within the viewport at larger text sizes, make desktop disclosures work with both mouse and keyboard, and keep homepage content visible if its animation script cannot load (`site.css?v=111`, `site.js?v=13`, `homepage.js?v=30`).
 - Fix mobile header wrapping, touch targets, section history and scroll offsets, experience disclosures after rotation, and comet recovery after large scroll jumps. Wrap long GTM schema labels, defer offscreen video downloads, and respect changes to reduced motion while the video page is open (`site.css?v=110`, `site.js?v=12`, `homepage.js?v=29`).

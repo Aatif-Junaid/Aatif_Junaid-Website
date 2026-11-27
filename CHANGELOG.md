@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- One button treatment (Aatif, 2026-11-27): the closing Email me on Selected work and GTM workflows is filled again, like the homepage contact, the field program, and the 404 page, and outline button text is the deep blue on every page (`site.css?v=115`).
 - One footer on every page (Aatif, 2026-11-27): the homepage footer now matches the others, with the serif name and tagline, text-only LinkedIn, GitHub, and Résumé chips, a Home link, and the copyright last. It keeps the Google preferred-source button and the comet control. Each page marks its own footer link as current, the footer blocks share one 14px rhythm, and the page links keep their left edge. DESIGN.md records the rule (`site.css?v=114`).
 - Cosmetic pass across every page at 1440, 768, and 375 (`site.css?v=113`):
   - Text links draw their sky underline with `text-decoration`, so it stays on the text when a phone target grows to 44px. Contact links underline their own text, not the whole row.

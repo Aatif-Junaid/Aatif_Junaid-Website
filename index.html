@@ -72,7 +72,7 @@
   <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
   <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/playfair.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/site.css?v=113" />
+  <link rel="stylesheet" href="assets/css/site.css?v=114" />
   <!-- Google Preferred Sources: renders the "add as preferred source" button in the footer. -->
   <script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
 </head>
@@ -510,23 +510,21 @@
 
   <footer class="site-footer">
     <div class="site-footer__row">
-      <span class="site-footer__copy">&copy; <span id="year">2026</span> Aatif Junaid Mulla &middot; GTM &amp; Enterprise Growth</span>
+      <div class="site-footer__identity">
+        <a href="#top" aria-label="Aatif Junaid Mulla, back to top">Aatif Junaid Mulla</a>
+        <p>GTM &amp; Enterprise Growth</p>
+      </div>
       <div class="site-footer__socials">
-        <a class="footer-social" href="https://www.linkedin.com/in/aatif-junaid" target="_blank" rel="noopener" aria-label="Aatif Junaid Mulla on LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-          <span>LinkedIn</span>
-        </a>
-        <a class="footer-social" href="https://github.com/Aatif-Junaid" target="_blank" rel="noopener" aria-label="Aatif Junaid Mulla on GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .7A11.3 11.3 0 0 0 8.43 22.72c.57.1.78-.25.78-.55v-2.16c-3.18.69-3.85-1.35-3.85-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.54-.29-5.21-1.27-5.21-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.11 1.17A10.8 10.8 0 0 1 12 5.92a10.8 10.8 0 0 1 2.83.38c2.15-1.48 3.11-1.17 3.11-1.17.62 1.58.23 2.75.11 3.04.73.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.37-5.23 5.65.41.35.78 1.03.78 2.08v3.2c0 .3.21.65.79.54A11.3 11.3 0 0 0 12 .7Z"/></svg>
-          <span>GitHub</span>
-        </a>
+        <a class="footer-social" href="https://www.linkedin.com/in/aatif-junaid" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="footer-social" href="https://github.com/Aatif-Junaid" target="_blank" rel="noopener">GitHub</a>
+        <a class="footer-social" href="/resume.pdf?v=2026-11c" target="_blank" rel="noopener">Résumé (PDF)</a>
       </div>
     </div>
-    <nav class="site-footer__pages" aria-label="Portfolio">
+    <nav class="site-footer__pages" aria-label="Portfolio pages">
+      <a href="/" aria-current="page">Home</a>
       <a href="/playbook.html">Selected work</a>
-      <a href="gtm-systems.html">GTM workflows</a>
-      <a href="field-program.html">Field program</a>
-      <a href="resume.pdf?v=2026-11c" target="_blank" rel="noopener">Résumé (PDF)</a>
+      <a href="/gtm-systems.html">GTM workflows</a>
+      <a href="/field-program.html">Field program</a>
     </nav>
     <div class="preferred-source">
       <div google-add-preferred-source-btn data-theme="light"></div>
@@ -534,6 +532,7 @@
     <p class="site-footer__note">No AI models were trained on this page. Just me, trained on real users and problems.</p>
     <nav class="legal-links" aria-label="Policies"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/accessibility.html">Accessibility</a></nav>
     <button class="motion-toggle" type="button" aria-pressed="false" hidden>Pause the comet</button>
+    <p class="site-footer__copy">&copy; <span id="year">2026</span> Aatif Junaid Mulla</p>
   </footer>
 
   <script defer src="assets/js/site.js?v=13"></script>

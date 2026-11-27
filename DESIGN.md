@@ -46,6 +46,7 @@ The type scale, on every page:
 - Section titles are 32 at weight 500. Item titles (play titles, card titles, h3) are 24 at weight 600. Page titles are weight 500 everywhere.
 - Body text never runs past about 70 characters: `max-width: 56ch` in Inter, whose `ch` is wide.
 - One header on every page: the flat 68px bar, with the same wordmark everywhere, the AM mark as an image plus the serif blue name (the mark alone on phones, drawn once; never also as a background). Page chips, Home included, share one light-blue treatment. On phones it keeps only the page links, 14px on 44px targets; the in-page anchors are one scroll away, and there is no hamburger menu. One hero: left-aligned, kicker over title over lede over actions. The homepage geometry is the site's one signature.
+- One footer on every page (Aatif, 2026-11-27): the serif name and tagline, then LinkedIn, GitHub, and Résumé (PDF) as text-only outline chips; the page links Home, Selected work, GTM workflows, and Field program, with the current page marked; the footer line; the policy links; and the copyright last. The homepage adds only the Google preferred-source button and the comet control. Event and policy footers sit in the 1040px frame.
 - Two radii: 16px for cards, 8px for controls. Circles only for real markers and the headshot.
 - One shadow, `--tile-shadow`, on cards only. Icons, buttons, chips, and node circles carry none. Metric tiles carry no icons.
 - Two buttons: filled and outline, both 48px tall, 14px at weight 500. Carousel arrows and the comet toggle are quiet text controls.

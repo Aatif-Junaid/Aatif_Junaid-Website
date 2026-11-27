@@ -304,7 +304,7 @@ body::before {
 .hero__actions, .contact__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }.btn {
   font-family: var(--sans);
   font-size: var(--text-14);
-  color: var(--ink);
+  color: var(--blue-deep);
   padding: 0.72rem 1.4rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-control);
@@ -1530,6 +1530,9 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
 }
 .case-page--wide .case-hero__actions .btn:hover { transform: translateY(-2px); background: var(--blue-text); border-color: var(--blue-text); color: #fff; }
+/* the closing call to action keeps its one filled primary, as on the homepage contact and the other pages */
+.case-page--wide .case-cta .btn--primary { background: var(--blue-text); border-color: var(--blue-text); color: #fff; }
+.case-page--wide .case-cta .btn--primary:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
 @media (max-width: 768px) {
   .case-page--wide .case-hero__title { font-size: clamp(2rem, 9vw, 2.4rem); }
   .case-page--wide .case-hero__lede { font-size: var(--text-24); }

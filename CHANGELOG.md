@@ -17,6 +17,7 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- One footer on every page (Aatif, 2026-11-27): the homepage footer now matches the others, with the serif name and tagline, text-only LinkedIn, GitHub, and Résumé chips, a Home link, and the copyright last. It keeps the Google preferred-source button and the comet control. Each page marks its own footer link as current, the footer blocks share one 14px rhythm, and the page links keep their left edge. DESIGN.md records the rule (`site.css?v=114`).
 - Cosmetic pass across every page at 1440, 768, and 375 (`site.css?v=113`):
   - Text links draw their sky underline with `text-decoration`, so it stays on the text when a phone target grows to 44px. Contact links underline their own text, not the whole row.
   - Links inside a sentence stay inline on phones.
@@ -34,7 +35,6 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
   - The event and 404 hero paragraphs have a gap between them.
   - The policy and 404 footers sit in the 1040px frame.
   - The 404 header matches the other pages.
-  - Footer page links space evenly.
   - Step labels lose their tracking.
   - Education points keep the 56ch measure.
   - The PMM 2.0 evidence image is cropped to the event page hero at 16:9.

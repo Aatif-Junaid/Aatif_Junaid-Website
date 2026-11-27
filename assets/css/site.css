@@ -886,7 +886,6 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
 .site-footer__pages a {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   min-width: 44px;
   min-height: 44px;
   color: var(--blue-text);
@@ -894,11 +893,9 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   text-underline-offset: 0.2em;
 }
 .site-footer__pages a:hover, .site-footer__identity a:hover { color: var(--blue-deep); }
-.preferred-source:not(:empty) { margin: 1.1rem 0 0; }
 .site-footer__note { margin: 0; font-style: italic; font-size: var(--text-14); color: var(--ink-soft); }
 .site-footer__socials { display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 0.6rem; }
 .footer-social { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 36px; font-weight: 600; color: var(--blue-deep); padding: 0.4rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-control); transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease; }
-.footer-social svg { width: 18px; height: 18px; }
 .footer-social:hover { background: var(--blue-text); color: #fff; border-color: var(--blue-text); transform: translateY(-2px); }
 
 /* ---------- scroll reveal ---------- */

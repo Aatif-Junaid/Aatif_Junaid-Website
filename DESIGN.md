@@ -154,6 +154,6 @@ Phones are not a scaled-down desktop. Below 768px:
 - Cards keep their frames and glass on phones, the same tiles as on desktop. A frameless version was tried on 2026-09-16 and withdrawn the same day: it read as plain. Only the backdrop blur is off below 768px, where the flat background gives it nothing to blur; the sticky header keeps its blur.
 - Neighbouring targets sit at least 12px apart; every target is 44px, the header mark included.
 - Fold rows use short labels from `data-short` and keep their thumbnails; the full title stays in the accessibility tree. The first play and both GTM tracks start open on phones (`data-phone-open`).
-- The playbook index is five single-line rows. The toolkit keeps its four logo groups, two across. The contact action fills the width. Note labels read inline with their sentence.
+- The playbook index is five single-line rows. Below 600px, where topic and result no longer fit one line, each row shows only its result; the topic stays in the link name. The toolkit keeps its four logo groups, two across. The contact action fills the width. Note labels read inline with their sentence.
 - Metric labels are two or three words.
 

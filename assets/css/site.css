@@ -1605,3 +1605,11 @@ a.tool-chip:hover { border-color: var(--blue); color: var(--blue-deep); }
   .hero__headline { font-size: clamp(2rem, 7.5vw, 2.625rem); }
   .selected-work__grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* the playbook index stays five single-line rows: below 600px topic and result no longer fit one line,
+   so the row shows the result and the topic stays in the link name (each play repeats it as its label) */
+@media (max-width: 599px) {
+  .case-index a { grid-template-columns: minmax(0, 1fr); min-height: 44px; align-content: center; }
+  .case-index span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .case-index strong { text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}

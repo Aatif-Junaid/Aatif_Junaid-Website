@@ -25,6 +25,20 @@
       compact = nextCompact;
     }
     if (phone.addEventListener) phone.addEventListener('change', applyFolds); else phone.addListener(applyFolds);
+
+    // The approach cards are two lines each, so on wide screens they stay open
+    // with no Hide control; they fold only on phones.
+    var tileSummaries = document.querySelectorAll('details.fold--tile > summary');
+    function lockTiles() {
+      tileSummaries.forEach(function (summary) {
+        if (phone.matches) summary.removeAttribute('tabindex'); else summary.setAttribute('tabindex', '-1');
+      });
+    }
+    tileSummaries.forEach(function (summary) {
+      summary.addEventListener('click', function (event) { if (!phone.matches) event.preventDefault(); });
+    });
+    lockTiles();
+    if (phone.addEventListener) phone.addEventListener('change', lockTiles); else phone.addListener(lockTiles);
   }
 
   // Build tracks: show the first two nodes, the rest behind a See more control.

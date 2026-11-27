@@ -32,7 +32,7 @@
   var parts = [], trail = [], running = false, inView = false, resizeQueued = false, lastLitY = -999, userPaused = false;
   var travel = { x: 0, y: 1 }, travelSign = 1, lastFrameTime = 0, emissionCarry = 0, dirtyBounds = null;
   var trailDistance = 0, TRAIL_WAVE = 3.6;
-  var MAX_TRAIL_POINTS = 66, MAX_TRAIL_DISTANCE = 340;
+  var MAX_TRAIL_POINTS = 66, MAX_TRAIL_DISTANCE = 340, HEAD_FOLLOW = 14, MAX_HEAD_LAG = 900, lastTargetY = 0;
   var itemPositions = [];
   var SAFE = 60, pathAmplitude = 160, pathOriginY = 0, pathStartX = SAFE, pathStartPhase = -Math.PI / 2;
   var motionElapsed = 0, frameRequest = 0;
@@ -86,7 +86,7 @@
     // Mobile browser chrome can resize the viewport without changing the canvas.
     if (!canvasSizeChanged) return;
     computeTarget();
-    head.y = targetY;
+    head.y = lastTargetY = targetY;
     head.x = pathX(head.y, motionElapsed);
     canvas.style.width = cssW + 'px';
     canvas.style.height = cssH + 'px';
@@ -420,7 +420,10 @@
     var time = motionElapsed;
     computeTarget();
     var deltaY = targetY - head.y;
-    var jumped = Math.abs(deltaY) > MAX_TRAIL_DISTANCE;
+    // A jump is the scroll position leaping (an anchor link, a resize), or the head
+    // falling a long way behind; a fast flick only widens the gap and is not one.
+    var jumped = Math.abs(targetY - lastTargetY) > MAX_TRAIL_DISTANCE || Math.abs(deltaY) > MAX_HEAD_LAG;
+    lastTargetY = targetY;
     if (jumped) {
       parts.length = 0;
       motionLevel = 0;
@@ -435,9 +438,11 @@
       }
       travelSign = nextTravelSign;
     }
-    // Keep the head with the scroll. The direction, trail and dust ease independently.
-    head.y = targetY;
-    var speed = jumped ? 0 : Math.abs(deltaY) / frameScale;
+    // The head follows the scroll closely but eases in (about 70ms), so it glides
+    // instead of shaking when the browser scrolls ahead of the drawing thread.
+    var stepY = jumped ? deltaY : deltaY * (1 - Math.exp(-HEAD_FOLLOW * deltaSeconds));
+    head.y += stepY;
+    var speed = jumped ? 0 : Math.abs(stepY) / frameScale;
     var nextX = pathX(head.y, time);
     var horizontalVelocity = jumped ? 0 : nextX - head.x;
     head.x = nextX;

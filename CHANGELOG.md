@@ -17,6 +17,27 @@ All notable user-facing and repository-maintenance changes are recorded here. Th
 
 ### Changed
 
+- Cosmetic pass across every page at 1440, 768, and 375 (`site.css?v=113`):
+  - Text links draw their sky underline with `text-decoration`, so it stays on the text when a phone target grows to 44px. Contact links underline their own text, not the whole row.
+  - Links inside a sentence stay inline on phones.
+  - Neighbouring phone targets sit 12px apart.
+  - Full toolkit and Pause the comet meet contrast.
+  - The footer name uses weight 500.
+  - Experience dates all read with a hyphen.
+  - Core stack rows share one text edge.
+  - The Aiseberg metrics fill two rows on phones, and phone metrics drop the rounded hairline and side inset.
+  - Toolkit group headings are left-aligned, and the Toolkit title is 24px on phones.
+  - On phones, play sub-heads match the 18px play title, the play panel drops its shadow, and result blocks sit flush with the text.
+  - My responsibility reads in ink like its sibling headings.
+  - Result labels use the 1.15 display line-height.
+  - The archive link sits under its label.
+  - The event and 404 hero paragraphs have a gap between them.
+  - The policy and 404 footers sit in the 1040px frame.
+  - The 404 header matches the other pages.
+  - Footer page links space evenly.
+  - Step labels lose their tracking.
+  - Education points keep the 56ch measure.
+  - The PMM 2.0 evidence image is cropped to the event page hero at 16:9.
 - Show the current role again (Aatif, 2026-11-27): Founding GTM at Lab0, Nov 2026 to Present, San Francisco, CA and Bengaluru, is the first Experience entry, with scope in the present tense and no results yet. Structured data on the homepage, Selected work, GTM workflows, and field program pages says jobTitle Founding GTM, worksFor Lab0. The headline positioning stays GTM & Enterprise Growth. The resume adds the Lab0 entry and keeps one bullet each for POLITICO and Quantum so it stays on one page (`resume.pdf?v=2026-11c`).
 - Start the comet at the first Experience marker again and keep its head with the scroll on desktop and mobile (`site.css?v=112`, `homepage.js?v=31`).
 - Keep desktop navigation and case content within the viewport at larger text sizes, make desktop disclosures work with both mouse and keyboard, and keep homepage content visible if its animation script cannot load (`site.css?v=111`, `site.js?v=13`, `homepage.js?v=30`).
